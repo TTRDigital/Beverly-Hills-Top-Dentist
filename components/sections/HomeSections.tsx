@@ -91,7 +91,7 @@ export function OurWork({ work, cases }: { work: HomeContent["work"]; cases: Bef
         <p className="mb-[30px] mt-[30px] text-center">{work.text}</p>
         {cases.length ? (
           <div>
-            <Carousel label={work.heading} perView="w-full md:w-[calc((100%-20px)/3)]" arrows="sides">
+            <Carousel label={work.heading} perView="w-full md:w-[calc((100%-20px)/3)]" arrows="sides" tone="dark">
               {cases.map((c) => (
                 <div key={c.id} className="relative aspect-square overflow-hidden rounded-[12px]">
                   <Image src={c.image.src} alt={c.image.alt ?? ""} fill sizes="(min-width: 768px) 30vw, 90vw" className="object-cover" />

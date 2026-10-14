@@ -31,17 +31,17 @@ export default async function BeforeAfterPage() {
           <h2 className="h2 text-center text-ink">{page.gallery.heading}</h2>
           <p className="mb-10 mt-5 text-center md:mb-[30px]">{page.gallery.text}</p>
         </div>
-        <div className="container-box">
+        <div className="container-x">
           {/* Desktop: the full grid. Phones: the old site's carousel of six cases. */}
-          <ul className="hidden grid-cols-3 gap-[10px] lg:grid">
+          <ul className="hidden grid-cols-3 gap-[15px] lg:grid">
             {grid.map((c) => (
               <li key={c.id} className="relative aspect-square overflow-hidden">
-                <Image src={c.image.src} alt={c.image.alt ?? ""} fill sizes="(min-width: 1024px) 380px, 33vw" className="object-cover" />
+                <Image src={c.image.src} alt={c.image.alt ?? ""} fill sizes="(min-width: 1024px) 430px, 33vw" className="object-cover" />
               </li>
             ))}
           </ul>
           <div className="lg:hidden">
-            <Carousel label={page.gallery.heading} perView="w-full md:w-[calc(50%-5px)]">
+            <Carousel label={page.gallery.heading} perView="w-full md:w-[calc(50%-5px)]" tone="dark">
               {mobile.map((c) => (
                 <div key={c.id} className="relative min-h-[400px] overflow-hidden">
                   <Image src={c.image.src} alt={c.image.alt ?? ""} fill sizes="(min-width: 768px) 50vw, 90vw" className="object-cover" />

@@ -37,7 +37,7 @@ export function Carousel({
     else if (dir === -1 && atStart) el.scrollTo({ left: el.scrollWidth, behavior: "smooth" });
     else el.scrollBy({ left: dir * step, behavior: "smooth" });
   };
-  const btn = `flex h-11 w-11 items-center justify-center transition-opacity hover:opacity-70 ${tone === "dark" ? "text-white" : "text-ink/60"}`;
+  const btn = `flex h-11 w-11 items-center justify-center transition-opacity hover:opacity-70 ${tone === "dark" ? "text-white drop-shadow-[0_1px_2px_rgb(0_0_0/0.6)]" : "text-ink/60"}`;
   return (
     <div role="region" aria-roledescription="carousel" aria-label={label} className="relative">
       <div ref={row} className={`snap-row flex overflow-x-auto ${gap}`}>

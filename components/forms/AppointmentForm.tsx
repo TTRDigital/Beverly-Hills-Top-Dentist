@@ -109,7 +109,7 @@ export function AppointmentForm({ buttonLabel, businessName, phone, phoneHref, p
   const inputCls = (f: Field) =>
     `block w-full rounded-[3px] border bg-paper px-4 text-[15px] text-night outline-none transition-[border-color,box-shadow] focus:border-brand-2 focus:shadow-[0_0_0_3px_rgb(49_121_75/0.35)] ${
       errors[f] ? "border-[#ff9b9b]" : "border-line"
-    } ${f === "comment" ? "min-h-[86px] py-2.5" : "min-h-[47px] py-2"}`;
+    } ${f === "comment" ? "min-h-[170px] py-2.5" : "min-h-[47px] py-2"}`;
 
   const err = (f: Field | "consent") =>
     errors[f] ? (

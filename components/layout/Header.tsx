@@ -154,7 +154,7 @@ export function Header({ menu, cta, phone, phoneHref, logo, siteName }: { menu: 
 /** First-level dropdown; items with children open a flyout to the left (as on the old site). */
 function Dropdown({ items, path }: { items: MenuItem[]; path: string }) {
   return (
-    <ul className="invisible absolute right-0 top-full z-10 w-[250px] translate-y-1 rounded-menu bg-dropdown py-1 opacity-0 shadow-menu transition-all duration-200 group-focus-within/top:visible group-focus-within/top:translate-y-0 group-focus-within/top:opacity-100 group-hover/top:visible group-hover/top:translate-y-0 group-hover/top:opacity-100 mt-[5px] before:absolute before:-top-[10px] before:left-0 before:h-[10px] before:w-full">
+    <ul className="invisible absolute right-0 top-full z-10 w-[250px] translate-y-1 rounded-menu bg-dropdown py-1 opacity-0 shadow-menu transition-all duration-200 group-focus-within/top:visible group-focus-within/top:translate-y-0 group-focus-within/top:opacity-100 group-hover/top:visible group-hover/top:translate-y-0 group-hover/top:opacity-100 mt-[26px] before:absolute before:-top-[26px] before:left-0 before:h-[26px] before:w-full">
       {items.map((item) => (
         <li key={item.label} className="group/sub relative">
           <Link

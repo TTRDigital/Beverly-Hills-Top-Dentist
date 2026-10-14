@@ -24,7 +24,7 @@ export default async function AppointmentPage() {
         </div>
       </section>
       <section className="bg-night py-10 text-white md:py-[30px]">
-        <div className="container-x flex flex-col gap-10 py-2.5 md:flex-row md:gap-0">
+        <div className="container-x flex flex-col-reverse gap-10 py-2.5 md:flex-row md:gap-0">
           <div className="space-y-5 md:w-[40%] md:px-5">
             <p>
               <span aria-hidden="true">☎ </span>
