@@ -1,0 +1,25 @@
+"use client";
+
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import type { Img } from "@/lib/types";
+
+/** Background slideshow that cross-fades every few seconds (the old site's Elementor slideshow). */
+export function Slideshow({ images, interval = 5000 }: { images: Img[]; interval?: number }) {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    if (images.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const t = window.setInterval(() => setI((x) => (x + 1) % images.length), interval);
+    return () => window.clearInterval(t);
+  }, [images.length, interval]);
+  return (
+    <div aria-hidden="true" className="absolute inset-0">
+      {images.map((img, n) => (
+        <div key={img.src} className={`absolute inset-0 transition-opacity duration-1000 ${n === i ? "opacity-100" : "opacity-0"}`}>
+          {/* Only the first slide loads up front; the rest load lazily. */}
+          <Image src={img.src} alt="" fill sizes="100vw" className="object-cover" loading={n === 0 ? "eager" : "lazy"} />
+        </div>
+      ))}
+    </div>
+  );
+}
