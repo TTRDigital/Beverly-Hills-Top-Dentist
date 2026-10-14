@@ -10,6 +10,9 @@ export default function imageLoader({ src, width, quality }: { src: string; widt
     const sep = src.includes("?") ? "&" : "?";
     return `${src}${sep}w=${width}&q=${quality || 75}&fit=max&auto=format`;
   }
-  if (!src.startsWith("/images/") || src.endsWith(".svg")) return src;
+  // SVGs scale on their own; the #w fragment only tells next/image the width was handled
+  // (fragments are not sent to the server, so every width is the same cached file).
+  if (src.endsWith(".svg")) return `${src}#w${width}`;
+  if (!src.startsWith("/images/")) return src;
   return `/_img${src.replace(/\.(jpe?g|png|webp)$/i, "")}-${width}.webp`;
 }

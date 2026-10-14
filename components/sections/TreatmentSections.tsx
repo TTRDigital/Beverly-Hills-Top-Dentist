@@ -40,7 +40,7 @@ export function Hero({ s, first = true }: { s: HeroSection; first?: boolean }) {
   return (
     <section className="relative flex min-h-[637px] flex-col justify-end overflow-hidden py-[100px] md:aspect-video md:min-h-0">
       {s.image ? (
-        <Image src={s.image.src} alt={s.image.alt} fill preload={first} sizes="100vw" className="object-cover" />
+        <Image src={s.image.src} alt={s.image.alt ?? ""} fill preload={first} sizes="100vw" className="object-cover" />
       ) : (
         <div className="absolute inset-0 bg-night" />
       )}
@@ -48,7 +48,9 @@ export function Hero({ s, first = true }: { s: HeroSection; first?: boolean }) {
       <div className="container-x relative text-white">
         <h1 className="pb-[60px] text-h1 font-semibold lg:max-w-[34%]">{s.heading}</h1>
         {s.subheading ? <h2 className="h2 capitalize">{s.subheading}</h2> : null}
-        <RichText paras={s.text} className="mt-5" />
+        <div style={s.textMaxWidth ? { maxWidth: s.textMaxWidth } : undefined}>
+          <RichText paras={s.text} className="mt-5" />
+        </div>
       </div>
     </section>
   );
@@ -57,7 +59,7 @@ export function Hero({ s, first = true }: { s: HeroSection; first?: boolean }) {
 export function TextBand({ s }: { s: TextBandSection }) {
   const dark = s.tone === "dark";
   return (
-    <section className={`py-20 ${dark ? "bg-night text-white" : "bg-paper text-ink"}`}>
+    <section className={`py-20 ${dark ? "bg-night text-white" : "bg-paper text-body"}`}>
       <div className="container-x">
         <h2 className="h2 text-black">{s.heading}</h2>
         <RichText paras={s.text} className="mt-5 md:max-w-[80%]" />
@@ -76,24 +78,26 @@ export function AccordionFeature({ s }: { s: AccordionFeatureSection }) {
     <section className="bg-night py-20 text-white">
       <div className="container-x">
         <h2 className="h2 uppercase">{s.heading}</h2>
-        <RichText paras={s.text} className="mt-5 max-w-[814px] text-white/75" />
+        <div style={s.textMaxWidth ? { maxWidth: s.textMaxWidth } : undefined}>
+          <RichText paras={s.text} className="mt-5 text-white/75" />
+        </div>
         <div className="mt-[50px] flex flex-col-reverse gap-10 lg:flex-row lg:gap-[92px]">
           {s.image ? (
             <div className="relative h-[337px] lg:h-[700px] lg:w-[48.6%] lg:shrink-0">
-              <Image src={s.image.src} alt={s.image.alt} fill sizes="(min-width: 1024px) 55vw, 90vw" className="object-cover" />
+              <Image src={s.image.src} alt={s.image.alt ?? ""} fill sizes="(min-width: 1024px) 55vw, 90vw" className="object-cover" />
             </div>
           ) : null}
-          <div className="flex-1 lg:pr-2.5">
+          <div className="flex-1 lg:px-2.5">
             <Accordion
               tone="dark"
               items={s.items.map((it) => ({
                 title: it.title,
-                content: it.body.length ? <RichText paras={it.body} className="text-[18px] leading-[1.5] text-white/80" /> : undefined,
+                content: it.body.length ? <RichText paras={it.body} className="text-white/80" /> : undefined,
               }))}
             />
             {s.link ? (
               <p className="mt-8">
-                <TextLink link={s.link} className="text-[18px] font-bold text-white" />
+                <TextLink link={s.link} className="text-white" />
               </p>
             ) : null}
           </div>
@@ -122,7 +126,7 @@ export function CardPair({ s }: { s: CardPairSection }) {
               <div key={i}>
                 {c.image ? (
                   <div className="relative h-[270px]">
-                    <Image src={c.image.src} alt={c.image.alt} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" className="object-cover" />
+                    <Image src={c.image.src} alt={c.image.alt ?? ""} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" className="object-cover" />
                   </div>
                 ) : null}
                 <h3 className="mb-2.5 mt-[25px] text-h3 font-semibold uppercase text-black">{c.title}</h3>
@@ -182,11 +186,13 @@ export function Steps({ s }: { s: StepsSection }) {
 export function ImageBand({ s }: { s: ImageBandSection }) {
   return (
     <section className="relative flex min-h-[400px] flex-col justify-end overflow-hidden p-5 md:aspect-video md:min-h-0 md:px-[90px] md:py-20">
-      {s.image ? <Image src={s.image.src} alt={s.image.alt} fill sizes="100vw" className="object-cover" /> : <div className="absolute inset-0 bg-night" />}
+      {s.image ? <Image src={s.image.src} alt={s.image.alt ?? ""} fill sizes="100vw" className="object-cover" /> : <div className="absolute inset-0 bg-night" />}
       <Shade overlay={s.overlay} opacity={s.overlayOpacity} side="left" />
       <div className="relative text-white">
-        <h2 className="text-[20px] font-semibold uppercase leading-[1.3] md:text-h2">{s.heading}</h2>
-        <RichText paras={s.text} className="mt-5" />
+        <h2 className="h2 uppercase">{s.heading}</h2>
+        <div style={s.textMaxWidth ? { maxWidth: s.textMaxWidth } : undefined}>
+          <RichText paras={s.text} className="mt-5" />
+        </div>
       </div>
     </section>
   );
@@ -201,7 +207,6 @@ export function Faqs({ s }: { s: FaqSection }) {
         <RichText paras={s.text} className="mx-auto mt-5 md:text-center" />
         <div className="mt-5">
           <Accordion
-            titleClass="px-2.5"
             items={s.items.map((f) => ({ title: f.question, content: f.answer.length ? <RichText paras={f.answer} className="px-5" /> : undefined }))}
           />
         </div>
@@ -218,17 +223,17 @@ export function Topics({ s }: { s: TopicsSection }) {
       <div className="container-x">
         {s.blocks.map((b, i) => (
           <div key={i} className="mb-10 text-center">
-            <h2 className="h2 text-black">{b.heading}</h2>
-            <RichText paras={b.text} className="mx-auto mt-5 max-w-[900px]" />
+            <h2 className="h2 uppercase text-black">{b.heading}</h2>
+            <RichText paras={b.text} className="mx-auto mt-5 max-w-[850px]" />
           </div>
         ))}
         {s.columns.some((c) => c.length) ? (
-          <div className="grid gap-x-5 gap-y-4 px-2.5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-x-2.5 gap-y-[18px] px-[18px] sm:grid-cols-2 lg:grid-cols-4">
             {s.columns.map((col, i) => (
-              <ul key={i} className="space-y-4">
+              <ul key={i} className="space-y-[18px]">
                 {col.map((t) => (
-                  <li key={t} className="flex items-center gap-2.5 text-base uppercase leading-[1.3]">
-                    <CheckCircle className="h-[25px] w-[25px] shrink-0 text-black" />
+                  <li key={t} className="flex items-center gap-1.5 text-base uppercase leading-[1.65]">
+                    <CheckCircle className="h-6 w-6 shrink-0 text-black" />
                     {t}
                   </li>
                 ))}
@@ -240,7 +245,7 @@ export function Topics({ s }: { s: TopicsSection }) {
           <ul className="mt-16 grid grid-cols-2 items-center gap-8 sm:grid-cols-3 lg:grid-cols-5" aria-label="Insurance accepted">
             {s.logos.map((l) => (
               <li key={l.src} className="flex justify-center">
-                <Image src={l.src} alt={l.alt} width={l.width} height={l.height} sizes="224px" className="h-auto max-h-16 w-auto max-w-[210px] object-contain opacity-80 grayscale" />
+                <Image src={l.src} alt={l.alt ?? ""} width={l.width} height={l.height} sizes="224px" className="h-auto max-h-16 w-auto max-w-[210px] object-contain opacity-80 grayscale" />
               </li>
             ))}
           </ul>
@@ -258,10 +263,10 @@ export function IconFeatures({ s }: { s: IconFeaturesSection }) {
           <h2 className="h2 uppercase">{s.heading}</h2>
           <RichText paras={s.text} className="mt-5" />
         </div>
-        <div className="mt-16 grid gap-12 md:grid-cols-3 md:gap-8">
+        <div className="mt-12 grid gap-12 md:mt-0 md:grid-cols-3 md:gap-[50px] md:pt-20">
           {s.items.map((it, i) => (
             <div key={i} className="text-center">
-              {it.icon ? <Image src={it.icon.src} alt={it.icon.alt} width={96} height={96} className="mx-auto h-24 w-24" /> : null}
+              {it.icon ? <Image src={it.icon.src} alt={it.icon.alt ?? ""} width={96} height={96} className="mx-auto h-20 w-20 md:h-[100px] md:w-[100px]" /> : null}
               <h3 className="mt-5 text-h3 font-semibold">{it.title}</h3>
               <p className="mt-2">{it.text}</p>
             </div>

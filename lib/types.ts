@@ -20,6 +20,8 @@ export type HeroSection = {
   image?: Img;
   overlay: Overlay;
   overlayOpacity?: number;
+  /** Optional maximum width of the text, in px (some pages use a narrower column). */
+  textMaxWidth?: number;
 };
 
 export type TextBandSection = { _type: "textBand"; _key?: string; heading: string; text: Paragraphs; link?: Link; tone: "light" | "dark" };
@@ -32,6 +34,7 @@ export type AccordionFeatureSection = {
   image?: Img;
   items: { title: string; body: Paragraphs }[];
   link?: Link;
+  textMaxWidth?: number;
 };
 
 export type CardPairSection = {
@@ -52,7 +55,7 @@ export type StepsSection = {
   items: { icon?: Img; title: string; text: string }[];
 };
 
-export type ImageBandSection = { _type: "imageBand"; _key?: string; heading: string; text: Paragraphs; image?: Img; overlay: Overlay; overlayOpacity?: number };
+export type ImageBandSection = { _type: "imageBand"; _key?: string; heading: string; text: Paragraphs; image?: Img; overlay: Overlay; overlayOpacity?: number; textMaxWidth?: number };
 
 export type Faq = { question: string; answer: Paragraphs };
 

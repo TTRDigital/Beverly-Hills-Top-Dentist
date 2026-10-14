@@ -16,8 +16,8 @@ export default async function ThankYouPage() {
           <circle cx="12" cy="12" r="11" />
           <path d="M17 8.5 10.5 15.5 7 12" />
         </svg>
-        <h1 className="max-w-[720px] text-[clamp(1.75rem,3.4vw,2.5rem)] font-semibold leading-[1.2] tracking-[-0.01em] text-[#1f2a33]">{page.heading}</h1>
-        <p className="mt-4 max-w-[720px] text-[1.0625rem] text-[#4f5a52]">{page.text}</p>
+        <h1 className="max-w-[720px] text-h1 font-semibold tracking-[-0.01em] text-[#1f2a33]">{page.heading}</h1>
+        <p className="mt-4 max-w-[720px] text-[1.0625rem] leading-[1.55] text-[#4f5a52]">{page.text}</p>
       </section>
       <OurWork work={home.work} cases={results} />
     </>

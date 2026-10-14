@@ -91,7 +91,7 @@ async function section(s: Section): Promise<Record<string, unknown>> {
   const base = { _key: key() };
   switch (s._type) {
     case "hero":
-      return { ...base, _type: "hero", heading: s.heading, subheading: s.subheading, text: s.text, image: await altImage(s.image), overlay: s.overlay, overlayOpacity: s.overlayOpacity };
+      return { ...base, _type: "hero", heading: s.heading, subheading: s.subheading, text: s.text, image: await altImage(s.image), overlay: s.overlay, overlayOpacity: s.overlayOpacity, textMaxWidth: s.textMaxWidth };
     case "textBand":
       return { ...base, _type: "textBand", heading: s.heading, text: s.text, link: link(s.link), tone: s.tone };
     case "accordionFeature":
@@ -103,6 +103,7 @@ async function section(s: Section): Promise<Record<string, unknown>> {
         image: await altImage(s.image),
         items: s.items.map((it) => ({ _key: key(), _type: "accordionItem", title: it.title, body: it.body })),
         link: link(s.link),
+        textMaxWidth: s.textMaxWidth,
       };
     case "cardPair":
       return {
@@ -123,7 +124,7 @@ async function section(s: Section): Promise<Record<string, unknown>> {
         items: await Promise.all(s.items.map(async (it) => ({ _key: key(), _type: "step", title: it.title, text: it.text, icon: await altImage(it.icon) }))),
       };
     case "imageBand":
-      return { ...base, _type: "imageBand", heading: s.heading, text: s.text, image: await altImage(s.image), overlay: s.overlay, overlayOpacity: s.overlayOpacity };
+      return { ...base, _type: "imageBand", heading: s.heading, text: s.text, image: await altImage(s.image), overlay: s.overlay, overlayOpacity: s.overlayOpacity, textMaxWidth: s.textMaxWidth };
     case "faq":
       return { ...base, _type: "faqSection", heading: s.heading, text: s.text, items: s.items.map((f) => ({ _key: key(), _type: "faqItem", question: f.question, answer: f.answer })) };
     case "topics":

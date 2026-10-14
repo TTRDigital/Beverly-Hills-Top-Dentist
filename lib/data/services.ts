@@ -13,7 +13,8 @@ export const fallbackServicesHub: HubContent = {
         "Preventive dentistry helps keep your teeth and gums healthy through regular care and early detection of dental problems."
       ],
       image: images.patientDentalExamCloseup,
-      overlay: "none"
+      overlay: "none",
+      textMaxWidth: 630
     },
     {
       _type: "textBand",
@@ -85,7 +86,8 @@ export const fallbackServicesHub: HubContent = {
             "Relief and treatment for temporomandibular joint disorders, alleviating pain and improving jaw function."
           ]
         }
-      ]
+      ],
+      textMaxWidth: 814
     },
     {
       _type: "cardPair",
@@ -144,7 +146,8 @@ export const fallbackServicesHub: HubContent = {
         "A dental emergency can happen anytime, and prompt care is crucial. At Ideal Dental Solutions, we offer immediate and effective dental emergency care to address urgent issues and alleviate pain."
       ],
       image: images.dentistShowingXRay,
-      overlay: "none"
+      overlay: "none",
+      textMaxWidth: 728
     },
     {
       _type: "faq",
@@ -254,7 +257,8 @@ export const fallbackCategories: ServiceCategory[] = [
           "Replace missing teeth with implants planned using in-office 3D imaging and placed and restored by the same dentist. Dr. Shir rebuilds the whole tooth, root included, so your bite, your bone and your appearance are all protected."
         ],
         image: images.patientSmilingChair2,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -818,7 +822,8 @@ export const fallbackCategories: ServiceCategory[] = [
           "Treatment for gum disease, recession and the tissue that supports your teeth. Gum health is the foundation everything else in dentistry sits on, and it is assessed at every visit here."
         ],
         image: images.patientSmilingChair,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -890,7 +895,8 @@ export const fallbackCategories: ServiceCategory[] = [
               "Periodontal disease is managed rather than cured. Once treated, more frequent maintenance visits, usually every three to four months, keep the bacterial load down and catch any return early. This is the stage that determines whether treatment holds."
             ]
           }
-        ]
+        ],
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -951,7 +957,8 @@ export const fallbackCategories: ServiceCategory[] = [
           "Effective periodontal treatment stops the destruction of the bone holding your teeth in place, which is what preserves them. Research has also identified associations between periodontal disease and conditions including heart disease, diabetes and respiratory illness, though the nature of those links is still being studied. What is established is that gum disease is the leading cause of tooth loss in adults, and that treating it early is far simpler than treating it late."
         ],
         image: images.dentistsTreatingPatient,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -1003,7 +1010,8 @@ export const fallbackCategories: ServiceCategory[] = [
           "Preventive dentistry focuses on maintaining your oral health by preventing dental problems before they start. Our proactive approach includes regular checkups, cleanings, and treatments designed to keep your smile healthy for life."
         ],
         image: images.patientSmilingChair,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -1057,7 +1065,8 @@ export const fallbackCategories: ServiceCategory[] = [
               "Night guards are custom-made oral appliances designed to protect your teeth from grinding and clenching while you sleep. They help reduce tooth wear, jaw discomfort, headaches, and damage caused by bruxism. A properly fitted night guard provides comfort and long-term protection for your smile and oral health."
             ]
           }
-        ]
+        ],
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -1118,7 +1127,8 @@ export const fallbackCategories: ServiceCategory[] = [
           "Don’t wait until dental problems become serious. At Beverly Hills Dental Art Studio, we’re here to help you maintain your oral health with comprehensive preventive services. Schedule your appointment today at our McLean office."
         ],
         image: images.dentistsTreatingPatient,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -1362,7 +1372,8 @@ export const fallbackServices: Service[] = [
           "Achieve your ideal smile with Invisalign clear aligners. Ideal Dental Solutions offers expert Invisalign treatment in Northern Virginia — a discreet, comfortable way to straighten your teeth without traditional braces."
         ],
         image: images.patientSmilingChair,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -1434,7 +1445,8 @@ export const fallbackServices: Service[] = [
               "Store aligners in their protective case when not in use. Never wrap in a napkin or leave them out to avoid accidental loss or damage."
             ]
           }
-        ]
+        ],
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -1503,7 +1515,8 @@ export const fallbackServices: Service[] = [
           "You want a straighter smile — not two years of metal brackets and wires. At Ideal Dental Solutions in McLean, we use Invisalign clear aligners and advanced 3D imaging to gradually guide your teeth into perfect alignment, discreetly and comfortably. The aligners are virtually invisible and fully removable, so you can eat what you love, brush and floss normally, and go about your day without anyone noticing you’re in treatment. Most patients finish in just 12 to 18 months, and you’ll see your predicted final smile before you even begin. Schedule your Invisalign consultation today and take the first step toward the smile you’ve always wanted."
         ],
         image: images.dentistShowingXRay,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -1558,7 +1571,8 @@ export const fallbackServices: Service[] = [
           "Designed digitally, previewed in your own mouth, and only then made. You see the result before any tooth is prepared."
         ],
         image: images.patientSmilingChair,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -1628,7 +1642,8 @@ export const fallbackServices: Service[] = [
               "Wear a night guard if you grind, since grinding is the most common cause of early failure, and avoid using your front teeth as tools. Individual veneers can be replaced without redoing the whole set if one is damaged."
             ]
           }
-        ]
+        ],
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -1690,7 +1705,8 @@ export const fallbackServices: Service[] = [
         ],
         image: images.dentistsTreatingPatient,
         overlay: "left",
-        overlayOpacity: 0.69
+        overlayOpacity: 0.69,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -2127,7 +2143,8 @@ export const fallbackServices: Service[] = [
           "Replace one missing tooth without touching the teeth either side. Planned on a 3D scan taken in this office, then placed and restored by Dr. Shir."
         ],
         image: images.patientDentalExamCloseup,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -2199,7 +2216,8 @@ export const fallbackServices: Service[] = [
               "The shape of the abutment influences how the gum sits around the finished crown, which is what decides whether a front tooth reads as natural. That is planned rather than left to chance."
             ]
           }
-        ]
+        ],
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -2265,7 +2283,8 @@ export const fallbackServices: Service[] = [
         ],
         image: images.dentistsTreatingPatient,
         overlay: "left",
-        overlayOpacity: 0.69
+        overlayOpacity: 0.69,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -2508,7 +2527,8 @@ export const fallbackServices: Service[] = [
           "Treatment for every stage of gum disease, starting with the least invasive option that works. Laser therapy and ozone used alongside deep cleaning, with surgery reserved for cases that need it."
         ],
         image: images.bleedingGums,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -2562,7 +2582,8 @@ export const fallbackServices: Service[] = [
               "Where recession has exposed root surfaces, tissue can be grafted to cover them, reducing sensitivity and protecting the softer root from decay. Also used to rebuild gum tissue that has thinned to the point where it no longer protects the tooth."
             ]
           }
-        ]
+        ],
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -2623,7 +2644,8 @@ export const fallbackServices: Service[] = [
           "More than thirty years of restorative practice, with gum health assessed at every routine visit rather than only when something has gone wrong. Treatment starts with the least invasive option that addresses your stage, supported by laser therapy and ozone. You receive a written plan covering the treatment and the maintenance interval afterwards, because the follow-up is what decides whether the result holds. Book an assessment with Dr. Shir."
         ],
         image: images.dentistsTreatingPatient,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -3006,7 +3028,8 @@ export const fallbackServices: Service[] = [
           "A thin protective coating bonded into the deep grooves of back teeth, where a toothbrush bristle physically cannot reach. Quick to place, no drilling, no anaesthetic."
         ],
         image: images.patientSmilingChair,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -3076,7 +3099,8 @@ export const fallbackServices: Service[] = [
               "We use sealant materials selected to avoid BPA, in keeping with the metal-free and biologically conservative approach we take throughout the practice."
             ]
           }
-        ]
+        ],
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -3137,7 +3161,8 @@ export const fallbackServices: Service[] = [
           "Children and teenagers with newly erupted permanent molars benefit most, ideally sealed soon after those teeth come through. Adults with deep unrestored grooves and a history of decay are also good candidates. The one situation where a sealant is not appropriate is a tooth that already has decay in the grooves, which needs treating rather than covering. An examination will tell you which applies. Book with Dr. Shir."
         ],
         image: images.dentistsTreatingPatient,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -3372,7 +3397,8 @@ export const fallbackServices: Service[] = [
           "Replace one or more missing teeth with a fixed bridge, custom made and shaded to your own teeth. A non-surgical option, completed in a few weeks rather than a few months."
         ],
         image: images.patientSmilingChair,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -3444,7 +3470,8 @@ export const fallbackServices: Service[] = [
               "Bridges commonly serve ten to fifteen years and often longer. What ends most of them is decay at the margin where the crown meets the anchor tooth, which is why cleaning underneath the bridge daily matters more than anything else you do for it."
             ]
           }
-        ]
+        ],
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -3506,7 +3533,8 @@ export const fallbackServices: Service[] = [
         ],
         image: images.dentistsTreatingPatient,
         overlay: "left",
-        overlayOpacity: 0.69
+        overlayOpacity: 0.69,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -3559,7 +3587,8 @@ export const fallbackServices: Service[] = [
           "Tooth-coloured fillings that bond to your own tooth structure, placed conservatively so as little healthy enamel is removed as the situation allows."
         ],
         image: images.patientSmilingChair,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -3631,7 +3660,8 @@ export const fallbackServices: Service[] = [
               "Composite fillings commonly serve for five to ten years and often longer, depending on their size, where they sit and how heavily you bite. Ceramic lasts longer under heavy chewing load. Both are checked at every routine visit."
             ]
           }
-        ]
+        ],
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -3693,7 +3723,8 @@ export const fallbackServices: Service[] = [
         ],
         image: images.dentistsTreatingPatient,
         overlay: "left",
-        overlayOpacity: 0.69
+        overlayOpacity: 0.69,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -3746,7 +3777,8 @@ export const fallbackServices: Service[] = [
           "At Ideal Dental Solutions, we offer premium-quality full and partial dentures designed to look natural, feel comfortable, and help you enjoy life with confidence again."
         ],
         image: images.patientSmilingChair,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -3818,7 +3850,8 @@ export const fallbackServices: Service[] = [
               "With today's innovations, our carefully selected materials provide strength without unnecessary weight, making dentures feel natural and comfortable all day."
             ]
           }
-        ]
+        ],
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -3877,7 +3910,8 @@ export const fallbackServices: Service[] = [
           "From full and partial dentures to implant-supported options, our experienced team at Ideal Dental Solutions is ready to create a personalized solution just for you. Schedule your denture consultation in Northern Virginia today."
         ],
         image: images.dentistShowingXRay,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -3932,7 +3966,8 @@ export const fallbackServices: Service[] = [
           "Achieve dental pain relief with expert root canal therapy. Our gentle, precision-focused approach saves your natural tooth while eliminating infection and discomfort."
         ],
         image: images.patientSmilingChair,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -4008,7 +4043,8 @@ export const fallbackServices: Service[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -4077,7 +4113,8 @@ export const fallbackServices: Service[] = [
           "Say goodbye to tooth pain and protect your smile with expert care from Ideal Dental Solutions. Contact us today to schedule your pain-free root canal consultation in Northern Virginia and take the first step toward lasting oral health."
         ],
         image: images.dentistShowingXRay,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -4186,7 +4223,8 @@ export const fallbackServices: Service[] = [
           "Your path to lasting relief from TMJ pain starts here. At Ideal Dental Solutions, we provide comprehensive, personalized TMJ treatment to help you regain comfort and function."
         ],
         image: images.patientSmilingChair,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -4258,7 +4296,8 @@ export const fallbackServices: Service[] = [
               "TMJ disorders can make chewing, speaking, and yawning uncomfortable — our treatments restore natural jaw movement and function."
             ]
           }
-        ]
+        ],
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -4319,7 +4358,8 @@ export const fallbackServices: Service[] = [
           "If you’re experiencing jaw pain, headaches, clicking sounds, or difficulty chewing, our expert team at Ideal Dental Solutions is ready to help. Schedule your TMJ consultation in Northern Virginia today."
         ],
         image: images.dentistShowingXRay,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",

@@ -17,6 +17,8 @@ import { fallbackCategories, fallbackServices, fallbackServicesHub } from "@/lib
 import { fallbackLocationPages } from "@/lib/data/locations";
 import type {
   AboutContent,
+  Img,
+  Section,
   AppointmentContent,
   BeforeAfterCase,
   BeforeAfterContent,
@@ -45,13 +47,13 @@ import type {
 
 /* ---------- GROQ fragments ---------- */
 
-const IMG = `{ "src": asset->url, alt, "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height }`;
+const IMG = `{ "src": asset->url, "alt": coalesce(alt, ""), "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height }`;
 const SEO = `seo{ title, description, noIndex, "image": ogImage${IMG} }`;
 const LINK = `{ label, href }`;
 
 /** Treatment-template sections: images resolved, nested string lists flattened. */
 const SECTIONS = `sections[]{
-  "_type": select(_type == "faqSection" => "faq", _type), _key, heading, subheading, text, tone, overlay, overlayOpacity,
+  "_type": select(_type == "faqSection" => "faq", _type), _key, heading, subheading, text, tone, overlay, overlayOpacity, textMaxWidth,
   "image": image${IMG},
   "link": link${LINK},
   "items": items[]{ title, body, text, question, answer, "icon": icon${IMG} },
@@ -64,26 +66,55 @@ const SECTIONS = `sections[]{
 
 const PAGE = `{ "slug": slug.current, title, order, ${SECTIONS}, ${SEO} }`;
 
-/** Sections from the CMS, with shared FAQs (references) appended to each FAQ section's own questions. */
-function withSharedFaqs<T>(page: T): T {
+type Loose = Record<string, unknown>;
+const arr = <T,>(v: unknown): T[] => (Array.isArray(v) ? (v as T[]) : []);
+
+/**
+ * Sections from the CMS, made safe to render: every list a component reads is
+ * present (an emptied field comes back missing), and shared FAQs (references)
+ * are appended to each FAQ section's own questions.
+ */
+function normalizeSection(raw: unknown): Section | null {
+  const s = (raw ?? {}) as Loose;
+  if (typeof s._type !== "string") return null;
+  const base = { ...s, text: arr<string>(s.text) };
+  switch (s._type) {
+    case "hero":
+    case "imageBand":
+      return { overlay: "none", ...base } as Section;
+    case "textBand":
+      return { tone: "light", ...base } as Section;
+    case "accordionFeature":
+      return { ...base, items: arr<Loose>(s.items).map((it) => ({ ...it, title: String(it.title ?? ""), body: arr<string>(it.body) })) } as Section;
+    case "cardPair":
+      return { ...base, cards: arr<Loose>(s.cards).map((c) => ({ ...c, title: String(c.title ?? ""), text: arr<string>(c.text) })) } as Section;
+    case "steps":
+    case "iconFeatures":
+      return { ...base, items: arr<Loose>(s.items).map((it) => ({ ...it, title: String(it.title ?? ""), text: String(it.text ?? "") })) } as Section;
+    case "faq": {
+      const items = [...arr<Loose>(s.items), ...arr<Loose>(s.shared)].map((f) => ({ question: String(f.question ?? ""), answer: arr<string>(f.answer) }));
+      const { shared: _shared, ...rest } = base as Loose;
+      void _shared;
+      return { ...rest, heading: String(s.heading ?? ""), items } as Section;
+    }
+    case "topics":
+      return { ...s, blocks: arr<Loose>(s.blocks).map((b) => ({ heading: String(b.heading ?? ""), text: arr<string>(b.text) })), columns: arr<unknown>(s.columns).map((c) => arr<string>(c)), logos: arr<Img>(s.logos) } as Section;
+    default:
+      return null;
+  }
+}
+
+function normalizePage<T>(page: T): T {
   const sections = (page as { sections?: unknown[] } | null)?.sections;
   if (!sections) return page;
-  return {
-    ...page,
-    sections: sections.map((s) => {
-      const sec = s as { _type?: string; items?: Faq[]; shared?: Faq[] };
-      if (sec._type !== "faq") return sec;
-      const { shared, ...rest } = sec;
-      return { ...rest, items: [...(rest.items ?? []), ...(shared ?? [])] };
-    }),
-  };
+  return { ...page, sections: sections.map(normalizeSection).filter(Boolean) };
 }
 
 /** CMS documents merge over the matching fallback (same slug); CMS-only documents are added. */
 function mergeBySlug<T extends { slug: string; order: number }>(fallback: T[], cms: Partial<T>[] | null, blank: T): T[] {
   if (!cms?.length) return fallback;
   const bySlug = new Map(fallback.map((f) => [f.slug, f]));
-  const merged = cms.map((c) => merge(bySlug.get(c.slug ?? "") ?? { ...blank, slug: c.slug ?? "" }, withSharedFaqs(c)));
+  const merged = cms.map((c) => normalizePage(merge(bySlug.get(c.slug ?? "") ?? { ...blank, slug: c.slug ?? "" }, c)));
   const missing = fallback.filter((f) => !cms.some((c) => c.slug === f.slug));
   return [...merged, ...missing].sort((a, b) => a.order - b.order);
 }
@@ -135,7 +166,7 @@ export const getLocationPages = cache(async (): Promise<LocationPage[]> => {
   // Slugs repeat across folders (night-guards), so match on folder + slug.
   const keyOf = (p: { basePath?: string; slug?: string }) => `${p.basePath}${p.slug}`;
   const byKey = new Map(fallbackLocationPages.map((f) => [keyOf(f), f]));
-  const merged = cms.map((c) => merge(byKey.get(keyOf(c)) ?? { ...blankPage, basePath: (c.basePath ?? "/locations/mclean/") as LocationBase, order: 99 }, withSharedFaqs(c)));
+  const merged = cms.map((c) => normalizePage(merge(byKey.get(keyOf(c)) ?? { ...blankPage, basePath: (c.basePath ?? "/locations/mclean/") as LocationBase, order: 99 }, c)));
   const missing = fallbackLocationPages.filter((f) => !cms.some((c) => keyOf(c) === keyOf(f)));
   return [...merged, ...missing].sort((a, b) => a.order - b.order);
 });
@@ -146,7 +177,7 @@ export async function getLocationPagesIn(basePath: LocationBase) {
 
 async function hub(id: string, fallback: HubContent): Promise<HubContent> {
   const cms = await sanityFetch<Partial<HubContent>>(`*[_id == $id][0]{ title, ${SECTIONS}, ${SEO} }`, { id }, [id]);
-  return merge(fallback, withSharedFaqs(cms ?? {}));
+  return normalizePage(merge(fallback, cms));
 }
 
 export const getServicesHub = cache(() => hub("servicesPage", fallbackServicesHub));

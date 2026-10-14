@@ -58,6 +58,7 @@ const overlay = defineField({
   initialValue: "none",
 });
 const overlayOpacity = defineField({ name: "overlayOpacity", title: "Shade strength (0 to 1)", type: "number", validation: (r) => r.min(0).max(1) });
+const textMaxWidth = defineField({ name: "textMaxWidth", title: "Text width limit (px, optional)", type: "number", description: "Leave empty for the full width." });
 
 /* ---------- Treatment-template sections (services, categories, McLean pages) ---------- */
 
@@ -72,6 +73,7 @@ export const hero = defineType({
     defineField({ name: "image", title: "Background photo", type: "altImage" }),
     overlay,
     overlayOpacity,
+    textMaxWidth,
   ],
   preview: { select: { title: "heading", media: "image" }, prepare: (v) => ({ title: v.title, subtitle: "Banner", media: v.media }) },
 });
@@ -111,6 +113,7 @@ export const accordionFeature = defineType({
       ],
     }),
     defineField({ name: "link", type: "link" }),
+    textMaxWidth,
   ],
   preview: { select: { title: "heading", media: "image" }, prepare: (v) => ({ title: v.title, subtitle: "Photo + accordion", media: v.media }) },
 });
@@ -168,7 +171,7 @@ export const imageBand = defineType({
   name: "imageBand",
   title: "Photo band",
   type: "object",
-  fields: [defineField({ name: "heading", type: "string", validation: (r) => r.required() }), paragraphs(), defineField({ name: "image", type: "altImage" }), overlay, overlayOpacity],
+  fields: [defineField({ name: "heading", type: "string", validation: (r) => r.required() }), paragraphs(), defineField({ name: "image", type: "altImage" }), overlay, overlayOpacity, textMaxWidth],
   preview: { select: { title: "heading", media: "image" }, prepare: (v) => ({ title: v.title, subtitle: "Photo band", media: v.media }) },
 });
 

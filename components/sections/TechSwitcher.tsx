@@ -17,9 +17,9 @@ export function TechSwitcher({ heading, text, items }: Props) {
     <section className="bg-white py-[30px] md:py-[60px]">
       <div className="flex flex-col md:flex-row md:items-start">
         <div className="relative z-10 md:flex md:min-h-[525px] md:w-[40%] md:items-start md:justify-end">
-          <div className="bg-white px-5 py-2.5 text-center md:w-[min(100%,516px)] md:translate-x-[20%] md:px-[34px] md:pb-[60px] md:pt-[50px] md:text-left">
-            <h2 className="h2 font-bold">{heading}</h2>
-            <RichText paras={text} className="mt-5 text-ink/90" />
+          <div className="bg-white px-5 py-2.5 text-center md:w-[516px] md:max-w-none md:translate-x-[16%] md:px-5 md:pb-[60px] md:pt-[50px] md:text-left">
+            <h2 className="h2 text-black">{heading}</h2>
+            <RichText paras={text} className="mt-5 text-body" />
             <ul className="mt-6 space-y-3 text-left">
               {items.map((it, i) => (
                 <li key={it.title}>
@@ -27,7 +27,7 @@ export function TechSwitcher({ heading, text, items }: Props) {
                     type="button"
                     onClick={() => setActive(i)}
                     aria-expanded={active === i}
-                    className={`group relative text-left text-[20px] leading-[1.35] transition-colors hover:text-olive ${active === i ? "text-olive" : "text-black"}`}
+                    className={`group relative text-left text-[20px] leading-[1.5] transition-colors hover:text-olive ${active === i ? "text-olive" : "text-black"}`}
                   >
                     {it.title}
                     <span aria-hidden="true" className={`absolute -bottom-1 left-0 h-px bg-black transition-[width] duration-300 ${active === i && i !== 0 ? "w-full" : "w-0 group-hover:w-full"}`} />
@@ -44,7 +44,7 @@ export function TechSwitcher({ heading, text, items }: Props) {
               <Image
                 key={it.title}
                 src={it.image.src}
-                alt={it.image.alt}
+                alt={it.image.alt ?? ""}
                 width={it.image.width}
                 height={it.image.height}
                 sizes="(min-width: 768px) 60vw, 100vw"

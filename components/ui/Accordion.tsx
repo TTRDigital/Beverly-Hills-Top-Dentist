@@ -17,13 +17,13 @@ export function Accordion({
   titleClass?: string;
 }) {
   const name = useId();
-  const color = tone === "dark" ? "text-white" : "text-ink";
+  const color = tone === "dark" ? "text-white" : "text-black";
   return (
     <div className="flex flex-col gap-[25px]">
       {items.map((it, i) =>
         it.content ? (
           <details key={i} name={name} open={i === 0} className="group">
-            <summary className={`flex cursor-pointer items-center justify-between gap-4 text-[20px] font-medium leading-[1.4] ${color} ${titleClass}`}>
+            <summary className={`flex cursor-pointer items-center justify-between gap-4 text-[20px] font-semibold leading-[1.5] ${color} ${titleClass}`}>
               <span>{it.title}</span>
               <span className="shrink-0">
                 <Plus className="acc-plus h-[15px] w-[15px]" />
@@ -33,7 +33,7 @@ export function Accordion({
             <div className="pt-[25px]">{it.content}</div>
           </details>
         ) : (
-          <div key={i} className={`flex items-center justify-between gap-4 text-[20px] font-medium leading-[1.4] ${color} ${titleClass}`}>
+          <div key={i} className={`flex items-center justify-between gap-4 text-[20px] font-semibold leading-[1.5] ${color} ${titleClass}`}>
             <span>{it.title}</span>
             <Plus className="h-[15px] w-[15px] shrink-0" />
           </div>

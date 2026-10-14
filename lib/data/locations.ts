@@ -18,7 +18,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientDentalExamCloseup,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -94,7 +95,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -164,7 +166,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -306,7 +309,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientDentalExamCloseup,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -382,7 +386,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -452,7 +457,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -587,7 +593,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientDentalExamCloseup,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -659,7 +666,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -729,7 +737,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -1471,7 +1480,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientSmilingChair2,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -1547,7 +1557,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -1617,7 +1628,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -1738,7 +1750,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "3D imaging, digital scanning, soft tissue lasers and ozone, all in this office. Equipment most general practices refer out for, so planning and treatment happen in the same place."
         ],
         image: images.patientSmilingChair2,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -1812,7 +1825,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -1881,7 +1895,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "Most patients have never seen their own teeth in three dimensions, and it makes decisions about treatment considerably clearer. Whether you are considering an implant, have been told a tooth needs removing, or simply want a proper assessment of where you stand, the imaging happens here and you see it on the screen with Dr. Shir. Book a consultation."
         ],
         image: images.dentistsTreatingPatient,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -1952,7 +1967,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "A small wand captures your teeth as an accurate 3D model in a few minutes. No trays, no material setting in your mouth, and a better fit on everything we make from it."
         ],
         image: images.patientSmilingChair2,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -2028,7 +2044,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -2095,7 +2112,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "A strong gag reflex has kept plenty of people from having work they needed done. Digital scanning removes the tray and the material entirely, and takes a few minutes. If that has been the obstacle, it is worth another look. Book a consultation with Dr. Shir."
         ],
         image: images.dentistsTreatingPatient,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -2166,7 +2184,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "Imaging at a considerably lower radiation dose than film, appearing on screen instantly. This is how decay between teeth is found while it is still a filling."
         ],
         image: images.patientSmilingChair2,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -2240,7 +2259,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -2307,7 +2327,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "Decay between teeth, failing margins under old fillings and bone loss from gum disease all develop silently, and all of them are visible on imaging long before they produce symptoms. If it has been a while since you had X-rays taken, an examination with current imaging will tell you exactly where you stand. Book with Dr. Shir."
         ],
         image: images.dentistsTreatingPatient,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -2379,7 +2400,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.seniorPatientMirror2,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -2455,7 +2477,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -2525,7 +2548,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -2639,7 +2663,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "Reshaping the gum line so it frames your teeth evenly. Carried out with a soft tissue laser, and planned before any veneers or crowns are designed to it."
         ],
         image: images.patientSmilingChair2,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -2715,7 +2740,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -2782,7 +2808,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "If your teeth look short, uneven, or your smile shows more gum than you would like, the answer may be a straightforward reshaping of the tissue rather than anything done to the teeth themselves. A consultation will tell you whether contouring alone would achieve what you want, or whether crown lengthening is the more appropriate procedure. Book an assessment with Dr. Shir."
         ],
         image: images.dentistsTreatingPatient,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -2854,7 +2881,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.bleedingGums2,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -2930,7 +2958,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -3000,7 +3029,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -3122,7 +3152,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.gumProcedure2,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -3198,7 +3229,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -3268,7 +3300,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -3390,7 +3423,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientSmilingChair2,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -3466,7 +3500,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -3536,7 +3571,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -3645,7 +3681,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "A soft tissue laser used alongside deep cleaning to treat gum disease, and to reshape gum tissue. For many patients it is an alternative to surgery, with less bleeding and a more comfortable recovery."
         ],
         image: images.patientSmilingChair2,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -3719,7 +3756,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -3788,7 +3826,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "If you have been recommended for periodontal surgery, it is worth finding out whether laser treatment alongside deep cleaning would manage your case instead. It does not suit every situation, particularly advanced disease with significant bone loss, and we will tell you honestly which category yours falls into. Book an assessment with Dr. Shir."
         ],
         image: images.dentistsTreatingPatient,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -4506,7 +4545,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientSmilingChair2,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -4582,7 +4622,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -4652,7 +4693,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -4767,7 +4809,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientSmilingChair2,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -4843,7 +4886,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -4913,7 +4957,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -5035,7 +5080,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientSmilingChair2,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -5111,7 +5157,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -5181,7 +5228,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -5305,7 +5353,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "A conservative alternative to a full crown. Custom porcelain that covers only the damaged part of the tooth, so more of your own structure stays where it is."
         ],
         image: images.patientSmilingChair2,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -5381,7 +5430,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -5450,7 +5500,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "If you have been told a tooth needs a crown, it is worth finding out whether an onlay would do the same job. Not every tooth can take one, and we will tell you honestly which yours is. Where it can, you keep structure that cannot be replaced later. Book an assessment with Dr. Shir."
         ],
         image: images.dentistsTreatingPatient,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -5522,7 +5573,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientSmilingChair2,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -5580,7 +5632,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -5650,7 +5703,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -5760,7 +5814,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientSmilingChair,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -5830,7 +5885,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -5900,7 +5956,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -6010,7 +6067,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientSmilingChair2,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -6086,7 +6144,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -6156,7 +6215,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -6277,7 +6337,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "Treat the infection inside the tooth and keep the tooth itself. Canal anatomy mapped in 3D where the case calls for it, and the protective crown afterwards completed in the same office."
         ],
         image: images.patientSmilingChair2,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -6353,7 +6414,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -6422,7 +6484,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "Infection inside a tooth does not resolve on its own. It progresses into the bone at the root tip, and the tooth can eventually become unrestorable, at which point removal is the only option left. Treatment carried out earlier is shorter, more comfortable and more likely to succeed. Book an assessment with Dr. Shir."
         ],
         image: images.dentistsTreatingPatient,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -6494,7 +6557,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientSmilingChair,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -6570,7 +6634,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -6640,7 +6705,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -6750,7 +6816,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientDentalExamCloseup,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -6826,7 +6893,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -6894,7 +6962,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -7213,7 +7282,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "Several treatments planned as one result rather than booked one at a time. Designed digitally against your own face, previewed before anything is prepared, and sequenced so each stage supports the next."
         ],
         image: images.patientSmilingChair2,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -7289,7 +7359,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -7358,7 +7429,8 @@ export const fallbackLocationPages: LocationPage[] = [
           "At your consultation Dr. Shir will assess your teeth, gums and bite, talk through what you want to change and what is realistic, and design the proposed result against your own face. You will see it before agreeing to anything, and you leave with a written plan covering the sequence, the timeline and the cost. No pressure to start."
         ],
         image: images.dentistsTreatingPatient,
-        overlay: "none"
+        overlay: "none",
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -7430,7 +7502,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientSmilingChair2,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -7506,7 +7579,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -7576,7 +7650,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -7698,7 +7773,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientDentalExamCloseup,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -7756,7 +7832,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -7826,7 +7903,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -7933,7 +8011,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientSmilingChair2,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -8009,7 +8088,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -8079,7 +8159,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -8413,7 +8494,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientSmilingChair2,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -8489,7 +8571,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -8557,7 +8640,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",
@@ -8676,7 +8760,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.patientDentalExamCloseup,
         overlay: "dark",
-        overlayOpacity: 0.55
+        overlayOpacity: 0.55,
+        textMaxWidth: 630
       },
       {
         _type: "textBand",
@@ -8752,7 +8837,8 @@ export const fallbackLocationPages: LocationPage[] = [
         link: {
           label: "Learn more",
           href: "/about-us/"
-        }
+        },
+        textMaxWidth: 814
       },
       {
         _type: "cardPair",
@@ -8820,7 +8906,8 @@ export const fallbackLocationPages: LocationPage[] = [
         ],
         image: images.dentistShowingXRay,
         overlay: "dark",
-        overlayOpacity: 0.72
+        overlayOpacity: 0.72,
+        textMaxWidth: 728
       },
       {
         _type: "faq",

@@ -83,7 +83,7 @@ export function Header({ menu, cta, phone, phoneHref, logo, siteName }: { menu: 
               <Link
                 href={cta.href}
                 aria-current={norm(cta.href) === path ? "page" : undefined}
-                className={`block border-b-2 border-ink px-2 py-2 text-[15.1px] font-semibold uppercase leading-[1.2] ${linkCls(norm(cta.href) === path)}`}
+                className={`block border-b-2 border-ink px-2 py-2 text-[15.1px] font-bold uppercase leading-[1.2] ${linkCls(norm(cta.href) === path)}`}
               >
                 {cta.label}
               </Link>
