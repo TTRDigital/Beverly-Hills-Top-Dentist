@@ -6,35 +6,42 @@ Next.js 16 (App Router, static export) + Sanity Studio embedded at `/cms`, Tailw
 - **Content:** the old site's text, copied word for word, with the same page titles and meta descriptions. Everything is editable in `/cms`. Until Sanity has content (or a field is left empty), the site shows the built-in copy from `lib/data`, so it never breaks.
 - **Form:** the appointment form posts to `/api/lead.php` (PHP on SiteGround), which forwards to a GoHighLevel inbound webhook once one is configured.
 
-## Pages (every old URL, same path, trailing slash)
+## Pages (trailing slash)
 
 | URL | Route |
 |---|---|
-| `/` | `app/(site)/page.tsx`: video hero, three approach cards, office slideshow band, technology switcher, smile results carousel, four-ideas cards |
+| `/` | `app/(site)/page.tsx`: video hero, three approach cards, office slideshow band, technology switcher, "Our Work" carousel (9 photos, click to enlarge), four-ideas cards |
 | `/about-us/`, `/before-after/`, `/appointment/`, `/thank-you/` (noindex) | singletons |
-| `/services/` | services hub (treatment template) |
-| `/services/<category>/` | `[category]`, 5 pages |
-| `/services/<category>/<service>/` | `[category]/[service]`, 18 pages |
-| `/locations/`, `/locations/mclean/` | hubs (empty on the old site; sections can be added in /cms) |
-| `/locations/mclean/<slug>/` | `locations/mclean/[slug]`, 32 pages |
-| `/locations/night-guards/` | `locations/[slug]` |
-| `/preventive-dentistry-in-northern-virginia/`, `/dental-fillings-in-mclean-va/`, `/dental-fillings-in-mclean-va-2/`, `/dental-bridges-in-mclean-va/` | `[slug]` at the root |
-| `/privacy-policy/` | new, linked from the form's consent box (text still to be supplied) |
+| `/services/` | services hub: one photo + accordion band per category, each service linking to its page |
+| `/services/<category>/` | `[category]`, 6 pages (implants, cosmetic, restorative, periodontic, preventive, dental technology) |
+| `/services/<category>/<service>/` | `[category]/[service]`, 29 pages |
+| `/privacy-policy/` | linked from the form's consent box and the footer |
 | `/cms` | Sanity Studio |
 
 All dynamic routes use `generateStaticParams` with `dynamicParams = false`. `/blog/<slug>/` is ready for posts written in /cms (the old site had none).
+
+### Old URLs (301 redirects in `public/.htaccess`)
+
+The old site kept 16 menu pages under `/locations/mclean/...`, plus 21 more copies there, under `/locations/` and at the root, with McLean / Northern Virginia / "Ideal Dental Solutions" text. Every service now lives under `/services/<category>/<service>/`, and each old URL answers with a **301** to its Beverly Hills page, so links and rankings carry over:
+
+- the 16 menu-linked McLean pages (15 services and the Dental Technology hub) → the same page under `/services/...` (e.g. `/locations/mclean/root-canal-therapy-3/` → `/services/restorative-dentistry/root-canal-therapy/`; `-2` and the plain slug go there too);
+- McLean / Virginia copies of existing services → that service (e.g. `/locations/mclean/porcelain-dental-veneers/` → `/services/cosmetic-dentistry/porcelain-veneers/`, `/dental-fillings-in-mclean-va/` → `/services/restorative-dentistry/dental-fillings/`);
+- pages with no Beverly Hills page of their own → their category (TMJ, porcelain crowns) or the closest service (Invisalign → Clear Aligners, Dentures → Partial Dentures, Soft Tissue Lasers → Laser Gum Treatments);
+- the empty `/locations/` and `/locations/mclean/` hubs → `/`.
+
+Also redirected: every old `/wp-content/uploads/...` photo (any WordPress size) and the hero video to the new files, `?page_id=` / `?p=` short links to their page, the WordPress sitemaps to `/sitemap.xml`, and the author page to `/about-us/`. WordPress-only paths (`/feed/`, `/wp-json/`, `/wp-admin/`, `/wp-login.php`, `/xmlrpc.php`, theme and plugin files) answer **410 Gone**. The redirect block is generated from the old site's data; to change one, edit its line in `.htaccess` (keep it above the trailing-slash rule).
 
 ## Setup
 
 1. **Sanity project:** `q5yxih7t`, dataset `production` (defaults in `sanity/env.ts`).
 2. **CORS:** in sanity.io/manage > project q5yxih7t > API > CORS origins, add `https://beverlyhillstopdentist.com`, `https://www.beverlyhillstopdentist.com` and `http://localhost:3000`, each with "Allow credentials". Without it, /cms shows "Add CORS origin".
 3. **Local env:** copy `.env.example` to `.env.local`.
-4. **Load the content into Sanity (once):** create an Editor token (sanity.io/manage > API > Tokens), put it in `.env.local` as `SANITY_WRITE_TOKEN`, then `npm install && npm run seed`. It uploads 121 files (photos, icons and the hero video) and writes 105 documents. Running it again only adds missing documents; `npm run seed -- --force` overwrites the CMS with the built-in content; `npm run seed -- --dry-run` checks everything without writing. Delete or rotate the token afterwards.
+4. **Load the content into Sanity (once):** create an Editor token (sanity.io/manage > API > Tokens), put it in `.env.local` as `SANITY_WRITE_TOKEN`, then `npm install && npm run seed`. It uploads 96 files (photos, icons and the hero video) and writes 78 documents. Running it again only adds missing documents; `npm run seed -- --force` overwrites the CMS with the built-in content; `npm run seed -- --dry-run` checks everything without writing. Delete or rotate the token afterwards.
 5. **Run:** `npm run dev`, then http://localhost:3000 and http://localhost:3000/cms.
 
 ## Hosting on SiteGround
 
-`npm run build` writes the whole site to `out/`: HTML pages, `_next/` scripts, `_img/` WebP photos, `video/`, `api/lead.php` (the form) and `.htaccess` (canonical host, trailing slashes, security headers + CSP, caching, 404 page, /cms deep links). Upload the **contents** of `out/` into the site's `public_html`.
+`npm run build` writes the whole site to `out/`: HTML pages, `_next/` scripts, `_img/` WebP photos, `video/`, `api/lead.php` (the form) and `.htaccess` (canonical host, old-URL redirects, trailing slashes, security headers + CSP, caching, 404 page, /cms deep links). Upload the **contents** of `out/` into the site's `public_html`.
 
 Automatic deploys (`.github/workflows/deploy-siteground.yml`) build and upload over FTPS on every push to this branch or `main`, when Sanity publishes, and from Actions > "Deploy to SiteGround" > Run workflow. Only changed files are uploaded. Until the FTP secrets exist the workflow only builds (the site zip is kept as a run artifact for 14 days).
 
@@ -57,8 +64,8 @@ Same fields as the old form (Full Name, Email Address, Phone Number, Comment) pl
 ## Editing in /cms
 
 - **Site settings:** name, phone, address, map link, hours, social links, header button, main menu (with both dropdown levels), logos, privacy policy link.
-- **Pages:** Home, About, Before & after, Appointment, Thank you, Services hub, Locations hub, McLean hub, Privacy policy.
-- **Service categories / Services / Location pages:** each page is a list of sections (Banner, Text band, Photo + accordion, Intro + photo cards, Steps, Photo band, FAQ, Topics checklist + insurance logos, Icon features) that can be edited, reordered, added or removed.
+- **Pages:** Home, About, Before & after, Appointment, Thank you, Services hub, Privacy policy (a paragraph starting with `## ` is a heading).
+- **Service categories / Services:** each page is a list of sections (Banner, Text band, Photo + accordion (dark or light, items can link to a page), Intro + photo cards, Steps, Photo band, FAQ, Topics checklist + insurance logos, Icon features) that can be edited, reordered, added or removed.
 - **Before & after cases** (with where each one shows), **Team**, **Reviews**, **FAQs** (shared questions an FAQ section can include), **Blog posts**.
 - Paragraph fields: one box per paragraph; `**double asterisks**` make text bold.
 
@@ -73,7 +80,7 @@ npm run build      # WebP copies + static export to out/
 
 Builds in an environment that already sets another project's Sanity variables: `env -u NEXT_PUBLIC_SANITY_PROJECT_ID -u NEXT_PUBLIC_SANITY_DATASET npm run build`.
 
-- `lib/data/*`: built-in content (fallbacks and seed source). `services.ts` and `locations.ts` were generated from the old Elementor markup; `images.ts` lists every photo with alt text.
+- `lib/data/*`: built-in content (fallbacks and seed source). `services.ts` was generated from the old Elementor markup (McLean / Virginia place names and stray implant FAQs removed); `images.ts` lists every photo with alt text.
 - `lib/content.ts`: GROQ queries, the merge over fallbacks, and normalization of CMS sections.
 - `components/sections/TreatmentSections.tsx`: the treatment template's sections.
-- `SANITY_API_URL` (build time, normally unset) points the queries at another host; it was used to build the site against a local GROQ mock of the seeded dataset and confirm all 73 pages render identically from the CMS and from the built-in data.
+- `SANITY_API_URL` (build time, normally unset) points the queries at another host; it was used to build the site against a local GROQ mock of the seeded dataset and confirm all 46 pages render identically from the CMS and from the built-in data.

@@ -23,10 +23,10 @@ export const fallbackMenu: MenuItem[] = [
         href: "/services/cosmetic-dentistry/",
         children: [
           { label: "Porcelain Veneers", href: "/services/cosmetic-dentistry/porcelain-veneers/" },
-          { label: "Smile Makeover", href: "/locations/mclean/smile-makeover-2/" },
+          { label: "Smile Makeover", href: "/services/cosmetic-dentistry/smile-makeover/" },
           { label: "Teeth Whitening", href: "/services/cosmetic-dentistry/teeth-whitening/" },
           { label: "Dental Bonding", href: "/services/cosmetic-dentistry/dental-bonding/" },
-          { label: "Clear Aligners", href: "/locations/mclean/clear-aligners/" },
+          { label: "Clear Aligners", href: "/services/cosmetic-dentistry/clear-aligners/" },
         ],
       },
       {
@@ -36,10 +36,10 @@ export const fallbackMenu: MenuItem[] = [
           { label: "Dental Fillings", href: "/services/restorative-dentistry/dental-fillings/" },
           { label: "Dental Bridges", href: "/services/restorative-dentistry/dental-bridges/" },
           { label: "Tooth Extractions", href: "/services/restorative-dentistry/tooth-extractions/" },
-          { label: "Porcelain Inlays & Onlays", href: "/locations/mclean/porcelain-inlays-onlays/" },
-          { label: "Root Canal Therapy", href: "/locations/mclean/root-canal-therapy-3/" },
-          { label: "Wisdom Teeth Extractions", href: "/locations/mclean/wisdom-teeth-extractions/" },
-          { label: "Partial Dentures", href: "/locations/mclean/partial-dentures/" },
+          { label: "Porcelain Inlays & Onlays", href: "/services/restorative-dentistry/porcelain-inlays-onlays/" },
+          { label: "Root Canal Therapy", href: "/services/restorative-dentistry/root-canal-therapy/" },
+          { label: "Wisdom Teeth Extractions", href: "/services/restorative-dentistry/wisdom-teeth-extractions/" },
+          { label: "Partial Dentures", href: "/services/restorative-dentistry/partial-dentures/" },
         ],
       },
       {
@@ -49,9 +49,9 @@ export const fallbackMenu: MenuItem[] = [
           { label: "Gum Disease Treatment", href: "/services/periodontic-dentistry/gum-disease-treatment/" },
           { label: "Crown Lengthening", href: "/services/periodontic-dentistry/crown-lengthening/" },
           { label: "Gum Graft Surgery", href: "/services/periodontic-dentistry/gum-graft-surgery/" },
-          { label: "Deep Cleanings (Scaling & Root Planing)", href: "/locations/mclean/deep-cleanings/" },
-          { label: "Laser Gum Treatments", href: "/locations/mclean/laser-gum-treatments/" },
-          { label: "Gum Contouring", href: "/locations/mclean/gum-contouring/" },
+          { label: "Deep Cleanings (Scaling & Root Planing)", href: "/services/periodontic-dentistry/deep-cleanings/" },
+          { label: "Laser Gum Treatments", href: "/services/periodontic-dentistry/laser-gum-treatments/" },
+          { label: "Gum Contouring", href: "/services/periodontic-dentistry/gum-contouring/" },
         ],
       },
       {
@@ -61,18 +61,18 @@ export const fallbackMenu: MenuItem[] = [
           { label: "Teeth Cleaning", href: "/services/preventive-dentistry/teeth-cleaning/" },
           { label: "Dental Sealants", href: "/services/preventive-dentistry/dental-sealants/" },
           { label: "Dental Checkups & Exams", href: "/services/preventive-dentistry/checkups-exams/" },
-          { label: "Night Guards", href: "/locations/mclean/night-guards/" },
-          { label: "Sleep Apnea Treatment", href: "/locations/mclean/sleep-apnea-treatment/" },
+          { label: "Night Guards", href: "/services/preventive-dentistry/night-guards/" },
+          { label: "Sleep Apnea Treatment", href: "/services/preventive-dentistry/sleep-apnea-treatment/" },
         ],
       },
       {
         label: "Dental Technology hub",
-        href: "/locations/mclean/dental-technology/",
+        href: "/services/dental-technology/",
         children: [
-          { label: "Ozone Therapy", href: "/locations/mclean/ozone-therapy/" },
-          { label: "Digital Scanner", href: "/locations/mclean/digital-scanner/" },
-          { label: "Digital X-Rays", href: "/locations/mclean/digital-x-rays/" },
-          { label: "3D CT Scans", href: "/locations/mclean/ct-scans/" },
+          { label: "Ozone Therapy", href: "/services/dental-technology/ozone-therapy/" },
+          { label: "Digital Scanner", href: "/services/dental-technology/digital-scanner/" },
+          { label: "Digital X-Rays", href: "/services/dental-technology/digital-x-rays/" },
+          { label: "3D CT Scans", href: "/services/dental-technology/ct-scans/" },
         ],
       },
     ],
@@ -144,12 +144,8 @@ export const fallbackTeam: TeamMember[] = [
     id: "thanys-m",
     name: "Thanys M.",
     heading: "Thanys M. — Practice Professional",
-    mobileHeading: "Thanys M.",
     bio: [
       "Thanys M., our practice professional, holds a Bachelor’s degree in Business and brings nearly a decade of experience across clinical support, office management, treatment coordination, billing, and patient relations. Currently pursuing a law degree focused on healthcare compliance and regulatory law, Thanys blends dentistry, business, and legal insight to strengthen patient care and practice operations.",
-    ],
-    mobileBio: [
-      "Thanys M. is a dental practice professional with nearly a decade of experience in clinical care, office management, treatment coordination, billing, and patient relations. With a Bachelor’s degree in Business and a background in dental practice administration, Thanys is currently pursuing a law degree with aspirations of specializing in healthcare compliance and regulatory law, combining a passion for dentistry, business, and the legal field to improve patient care and practice operations.",
     ],
     photo: images.thanysM,
     order: 3,
@@ -182,23 +178,27 @@ const galleryOrder = [
   images.case16, images.case17, images.case18, images.case19, images.case20, images.case21, images.case08B,
 ];
 
-/** Smile cases: the home / thank-you carousel, the before-after grid (desktop) and the before-after carousel (phones). */
+/**
+ * Smile cases. "results": the home / thank-you carousel (the old home page's six
+ * before-after lightbox images, then its three smile photos). "gallery": the
+ * before-after grid (desktop). "galleryMobile": the before-after carousel (phones).
+ */
 export const fallbackCases: BeforeAfterCase[] = [
+  ...[images.smile1, images.smile2, images.smile3, images.smile4, images.smile5, images.smile6].map((image, i) => ({
+    id: `gallery-mobile-${i + 1}`,
+    title: image.alt,
+    image,
+    groups: ["results" as const, "galleryMobile" as const],
+    order: i + 1,
+  })),
   ...[images.smileResult1, images.smileResult2, images.smileResult3].map((image, i) => ({
     id: `result-${i + 1}`,
     title: `Smile result ${i + 1}`,
     image,
     groups: ["results" as const],
-    order: i + 1,
+    order: 7 + i,
   })),
   ...galleryOrder.map((image, i) => ({ id: `gallery-${i + 1}`, title: image.alt, image, groups: ["gallery" as const], order: 10 + i })),
-  ...[images.smile1, images.smile2, images.smile3, images.smile4, images.smile5, images.smile6].map((image, i) => ({
-    id: `gallery-mobile-${i + 1}`,
-    title: image.alt,
-    image,
-    groups: ["galleryMobile" as const],
-    order: 40 + i,
-  })),
 ];
 
 /** The old site shows no patient reviews. Add real ones in /cms (Reviews); none are invented here. */

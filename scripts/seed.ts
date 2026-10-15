@@ -21,13 +21,10 @@ import {
   fallbackAppointment,
   fallbackBeforeAfter,
   fallbackHome,
-  fallbackLocationsHub,
-  fallbackMcleanHub,
   fallbackPrivacy,
   fallbackThankYou,
 } from "../lib/data/pages.ts";
 import { fallbackCategories, fallbackServices, fallbackServicesHub } from "../lib/data/services.ts";
-import { fallbackLocationPages } from "../lib/data/locations.ts";
 
 const root = new URL("..", import.meta.url).pathname;
 
@@ -101,8 +98,9 @@ async function section(s: Section): Promise<Record<string, unknown>> {
         heading: s.heading,
         text: s.text,
         image: await altImage(s.image),
-        items: s.items.map((it) => ({ _key: key(), _type: "accordionItem", title: it.title, body: it.body })),
+        items: s.items.map((it) => ({ _key: key(), _type: "accordionItem", title: it.title, body: it.body, href: it.href })),
         link: link(s.link),
+        tone: s.tone,
         textMaxWidth: s.textMaxWidth,
       };
     case "cardPair":
@@ -220,26 +218,17 @@ async function build() {
   const t = fallbackThankYou;
   docs.push({ _id: "thankYouPage", _type: "thankYouPage", heading: t.heading, text: t.text, seo: seo(t.seo) });
 
-  for (const [id, hub] of [
-    ["servicesPage", fallbackServicesHub],
-    ["locationsPage", fallbackLocationsHub],
-    ["mcleanPage", fallbackMcleanHub],
-  ] as const) {
-    docs.push({ _id: id, _type: id, title: hub.title, sections: await sections(hub.sections), seo: seo(hub.seo) });
-  }
+  const hub = fallbackServicesHub;
+  docs.push({ _id: "servicesPage", _type: "servicesPage", title: hub.title, sections: await sections(hub.sections), seo: seo(hub.seo) });
 
   docs.push({ _id: "privacyPage", _type: "privacyPage", title: fallbackPrivacy.title, body: fallbackPrivacy.body, seo: seo(fallbackPrivacy.seo) });
 
   for (const c of fallbackCategories) docs.push({ _id: `serviceCategory-${c.slug}`, _type: "serviceCategory", order: c.order, ...(await pageFields(c)) });
   for (const sv of fallbackServices)
     docs.push({ _id: `service-${sv.slug}`, _type: "service", order: sv.order, category: { _type: "reference", _ref: `serviceCategory-${sv.category}` }, ...(await pageFields(sv)) });
-  for (const l of fallbackLocationPages) {
-    const folder = l.basePath === "/locations/mclean/" ? "mclean" : l.basePath === "/locations/" ? "locations" : "root";
-    docs.push({ _id: `locationPage-${folder}-${l.slug}`, _type: "locationPage", basePath: l.basePath, order: l.order, ...(await pageFields(l)) });
-  }
 
   for (const m of fallbackTeam) {
-    docs.push({ _id: `teamMember-${m.id}`, _type: "teamMember", name: m.name, heading: m.heading, mobileHeading: m.mobileHeading, bio: m.bio, mobileBio: m.mobileBio, photo: await altImage(m.photo), order: m.order });
+    docs.push({ _id: `teamMember-${m.id}`, _type: "teamMember", name: m.name, heading: m.heading, bio: m.bio, photo: await altImage(m.photo), order: m.order });
   }
   for (const c of fallbackCases) docs.push({ _id: `beforeAfterCase-${c.id}`, _type: "beforeAfterCase", title: c.title, image: await altImage(c.image), groups: c.groups, order: c.order });
   fallbackTestimonials.forEach((x, n) => docs.push({ _id: `testimonial-${n + 1}`, _type: "testimonial", ...x }));

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import type {
   AccordionFeatureSection,
   CardPairSection,
@@ -20,7 +21,7 @@ import { CheckCircle } from "@/components/ui/Icons";
 
 /*
  * The section set of the old site's treatment template (every service,
- * category, McLean and location page). Spacing, colors and type follow the
+ * category and hub page). Spacing, colors and type follow the
  * old Elementor styles; text contrast on dark backgrounds is raised.
  */
 
@@ -74,12 +75,13 @@ export function TextBand({ s }: { s: TextBandSection }) {
 }
 
 export function AccordionFeature({ s }: { s: AccordionFeatureSection }) {
+  const dark = s.tone !== "light";
   return (
-    <section className="bg-night py-20 text-white">
+    <section className={`py-20 ${dark ? "bg-night text-white" : "bg-paper text-body"}`}>
       <div className="container-x">
-        <h2 className="h2 uppercase">{s.heading}</h2>
+        <h2 className={`h2 uppercase ${dark ? "" : "text-black"}`}>{s.heading}</h2>
         <div style={s.textMaxWidth ? { maxWidth: s.textMaxWidth } : undefined}>
-          <RichText paras={s.text} className="mt-5 text-white/75" />
+          <RichText paras={s.text} className={`mt-5 ${dark ? "text-white/75" : ""}`} />
         </div>
         <div className="mt-[50px] flex flex-col-reverse gap-10 lg:flex-row lg:gap-[92px]">
           {s.image ? (
@@ -89,15 +91,27 @@ export function AccordionFeature({ s }: { s: AccordionFeatureSection }) {
           ) : null}
           <div className="flex-1 lg:px-2.5">
             <Accordion
-              tone="dark"
+              tone={dark ? "dark" : "light"}
               items={s.items.map((it) => ({
                 title: it.title,
-                content: it.body.length ? <RichText paras={it.body} className="text-white/80" /> : undefined,
+                content:
+                  it.body.length || it.href ? (
+                    <>
+                      <RichText paras={it.body} className={dark ? "text-white/80" : ""} />
+                      {it.href ? (
+                        <p className="mt-4">
+                          <Link href={it.href} className={`text-cta font-semibold ${dark ? "text-white" : "text-brand"}`}>
+                            Learn more<span className="sr-only"> about {it.title}</span>
+                          </Link>
+                        </p>
+                      ) : null}
+                    </>
+                  ) : undefined,
               }))}
             />
             {s.link ? (
               <p className="mt-8">
-                <TextLink link={s.link} className="text-white" />
+                <TextLink link={s.link} className={dark ? "text-white" : "text-brand"} />
               </p>
             ) : null}
           </div>

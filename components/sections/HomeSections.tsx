@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import type { BeforeAfterCase, HomeContent } from "@/lib/types";
 import { RichText } from "@/components/ui/RichText";
-import { Carousel } from "@/components/ui/Carousel";
 import { TechSwitcher } from "@/components/sections/TechSwitcher";
 import { Slideshow } from "@/components/sections/Slideshow";
+import { WorkGallery } from "@/components/sections/WorkGallery";
 
 /** Full-screen video hero (muted, looping), with the poster frame while it loads. */
 export function HomeHero({ hero }: { hero: HomeContent["hero"] }) {
@@ -82,7 +82,7 @@ export function HomeTechnology({ technology }: { technology: HomeContent["techno
   return <TechSwitcher heading={technology.heading} text={technology.text} items={technology.items} />;
 }
 
-/** "Our Work": heading and the smile-result carousel (also used on the thank-you page). */
+/** "Our Work": heading and the smile carousel with a lightbox (also used on the thank-you page). */
 export function OurWork({ work, cases }: { work: HomeContent["work"]; cases: BeforeAfterCase[] }) {
   return (
     <section className="bg-white py-[60px]">
@@ -90,15 +90,7 @@ export function OurWork({ work, cases }: { work: HomeContent["work"]; cases: Bef
         <h2 className="h2 text-ink text-center">{work.heading}</h2>
         <p className="mb-[30px] mt-[30px] text-center">{work.text}</p>
         {cases.length ? (
-          <div>
-            <Carousel label={work.heading} perView="w-full md:w-[calc((100%-20px)/3)]" arrows="sides" tone="dark">
-              {cases.map((c) => (
-                <div key={c.id} className="relative aspect-square overflow-hidden rounded-[12px]">
-                  <Image src={c.image.src} alt={c.image.alt ?? ""} fill sizes="(min-width: 768px) 30vw, 90vw" className="object-cover" />
-                </div>
-              ))}
-            </Carousel>
-          </div>
+          <WorkGallery label={work.heading} cases={cases} />
         ) : null}
       </div>
     </section>

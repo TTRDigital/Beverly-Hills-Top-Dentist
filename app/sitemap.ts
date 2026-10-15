@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
-import { getCategories, getLocationPages, getPosts, getServices } from "@/lib/content";
+import { getCategories, getPosts, getServices } from "@/lib/content";
 import { absoluteUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
 
-/** Every indexable page, at the same paths as the old WordPress sitemap (thank-you and privacy are noindex). */
+/** Every indexable page (thank-you is noindex). Old McLean / Virginia URLs are 301 redirects in .htaccess, so they are not listed. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [categories, services, locations, posts] = await Promise.all([getCategories(), getServices(), getLocationPages(), getPosts()]);
+  const [categories, services, posts] = await Promise.all([getCategories(), getServices(), getPosts()]);
   const entry = (path: string, priority: number) => ({ url: absoluteUrl(path), changeFrequency: "monthly" as const, priority });
   return [
     entry("/", 1),
@@ -16,9 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...services.map((s) => entry(`/services/${s.category}/${s.slug}/`, 0.7)),
     entry("/before-after/", 0.7),
     entry("/appointment/", 0.8),
-    entry("/locations/", 0.5),
-    entry("/locations/mclean/", 0.5),
-    ...locations.map((l) => entry(`${l.basePath}${l.slug}/`, 0.6)),
+    entry("/privacy-policy/", 0.3),
     ...posts.map((p) => entry(`/blog/${p.slug}/`, 0.5)),
   ];
 }

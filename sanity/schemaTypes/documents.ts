@@ -190,14 +190,12 @@ const hubPage = (name: string, title: string) =>
   defineType({ name, title, type: "document", fields: [defineField({ name: "title", type: "string" }), sectionsField, seoField], preview: { prepare: () => ({ title }) } });
 
 export const servicesPage = hubPage("servicesPage", "Services hub");
-export const locationsPage = hubPage("locationsPage", "Locations hub");
-export const mcleanPage = hubPage("mcleanPage", "McLean hub");
 
 export const privacyPage = defineType({
   name: "privacyPage",
   title: "Privacy policy",
   type: "document",
-  fields: [defineField({ name: "title", type: "string" }), paragraphs("body", "Policy text"), seoField],
+  fields: [defineField({ name: "title", type: "string" }), paragraphs("body", "Policy text (a paragraph starting with ## is a heading)"), seoField],
   preview: { prepare: () => ({ title: "Privacy policy" }) },
 });
 
@@ -225,28 +223,6 @@ export const service = defineType({
     seoField,
   ],
   preview: { select: { title: "title", slug: "slug.current", cat: "category.slug.current" }, prepare: (v) => ({ title: v.title, subtitle: `/services/${v.cat}/${v.slug}/` }) },
-});
-
-export const locationPage = defineType({
-  name: "locationPage",
-  title: "Location page",
-  type: "document",
-  fields: [
-    defineField({ name: "title", type: "string", validation: (r) => r.required() }),
-    slugField,
-    defineField({
-      name: "basePath",
-      title: "Folder",
-      type: "string",
-      options: { list: [{ title: "/locations/mclean/", value: "/locations/mclean/" }, { title: "/locations/", value: "/locations/" }, { title: "Site root (/)", value: "/" }], layout: "radio" },
-      initialValue: "/locations/mclean/",
-      validation: (r) => r.required(),
-    }),
-    orderField,
-    sectionsField,
-    seoField,
-  ],
-  preview: { select: { title: "title", slug: "slug.current", base: "basePath" }, prepare: (v) => ({ title: v.title, subtitle: `${v.base}${v.slug}/` }) },
 });
 
 export const beforeAfterCase = defineType({
@@ -305,9 +281,7 @@ export const teamMember = defineType({
   fields: [
     defineField({ name: "name", type: "string", validation: (r) => r.required() }),
     defineField({ name: "heading", title: "Heading (name and role)", type: "string" }),
-    defineField({ name: "mobileHeading", title: "Shorter heading on phones (optional)", type: "string" }),
     paragraphs("bio", "Bio"),
-    paragraphs("mobileBio", "Shorter bio on phones (optional)"),
     defineField({ name: "photo", type: "altImage" }),
     orderField,
   ],
@@ -339,8 +313,6 @@ export const singletonTypes = new Set([
   "appointmentPage",
   "thankYouPage",
   "servicesPage",
-  "locationsPage",
-  "mcleanPage",
   "privacyPage",
 ]);
 
@@ -352,12 +324,9 @@ export const documentTypes = [
   appointmentPage,
   thankYouPage,
   servicesPage,
-  locationsPage,
-  mcleanPage,
   privacyPage,
   serviceCategory,
   service,
-  locationPage,
   beforeAfterCase,
   testimonial,
   faq,

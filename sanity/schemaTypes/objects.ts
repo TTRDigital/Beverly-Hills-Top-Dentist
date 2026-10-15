@@ -93,7 +93,7 @@ export const textBand = defineType({
 
 export const accordionFeature = defineType({
   name: "accordionFeature",
-  title: "Photo + accordion (dark)",
+  title: "Photo + accordion",
   type: "object",
   fields: [
     defineField({ name: "heading", type: "string", validation: (r) => r.required() }),
@@ -107,12 +107,17 @@ export const accordionFeature = defineType({
         defineArrayMember({
           type: "object",
           name: "accordionItem",
-          fields: [defineField({ name: "title", type: "string", validation: (r) => r.required() }), paragraphs("body", "Content")],
+          fields: [
+            defineField({ name: "title", type: "string", validation: (r) => r.required() }),
+            paragraphs("body", "Content"),
+            defineField({ name: "href", title: "Link (optional)", type: "string", description: "A page this item links to, e.g. /services/cosmetic-dentistry/porcelain-veneers/" }),
+          ],
           preview: { select: { title: "title" } },
         }),
       ],
     }),
     defineField({ name: "link", type: "link" }),
+    defineField({ name: "tone", type: "string", options: { list: ["dark", "light"], layout: "radio" }, initialValue: "dark" }),
     textMaxWidth,
   ],
   preview: { select: { title: "heading", media: "image" }, prepare: (v) => ({ title: v.title, subtitle: "Photo + accordion", media: v.media }) },

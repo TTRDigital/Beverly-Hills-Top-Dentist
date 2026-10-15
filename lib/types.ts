@@ -32,7 +32,10 @@ export type AccordionFeatureSection = {
   heading: string;
   text: Paragraphs;
   image?: Img;
-  items: { title: string; body: Paragraphs }[];
+  /** "dark" (default, as on the old treatment pages) or "light" (off-white band). */
+  tone?: "dark" | "light";
+  /** Each item can link to its own page (the services hub uses this). */
+  items: { title: string; body: Paragraphs; href?: string }[];
   link?: Link;
   textMaxWidth?: number;
 };
@@ -95,9 +98,6 @@ export type ServiceCategory = TreatmentPage & { order: number };
 export type Service = TreatmentPage & { category: string; order: number };
 
 /** McLean treatment pages and the other location-style pages, keyed by the folder they live in. */
-export type LocationBase = "/locations/mclean/" | "/locations/" | "/";
-export type LocationPage = TreatmentPage & { basePath: LocationBase; order: number };
-
 /* ---------- Site ---------- */
 
 export type MenuItem = { label: string; href: string; children?: MenuItem[] };
@@ -132,9 +132,7 @@ export type TeamMember = {
   name: string;
   heading: string;
   /** Phones show a shorter heading and bio for some members, exactly as on the old site. */
-  mobileHeading?: string;
   bio: Paragraphs;
-  mobileBio?: Paragraphs;
   photo?: Img;
   order: number;
 };

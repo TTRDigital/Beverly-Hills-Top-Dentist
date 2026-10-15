@@ -1,5 +1,5 @@
 /* Built-in page content, copied word for word from the old WordPress site. /cms values replace these. */
-import type { AboutContent, AppointmentContent, BeforeAfterContent, HomeContent, HubContent, LegalContent, ThankYouContent } from "../types";
+import type { AboutContent, AppointmentContent, BeforeAfterContent, HomeContent, LegalContent, ThankYouContent } from "../types";
 import { images } from "./images.ts";
 
 export const fallbackHome: HomeContent = {
@@ -151,7 +151,10 @@ export const fallbackAppointment: AppointmentContent = {
   image: images.teamPhoto,
   hoursLabel: "Office Hours",
   formButton: "Request an Appointment",
-  seo: { title: "Appointment - Beverly Hills Dental", description: "☎ (310) 274-7005" },
+  seo: {
+    title: "Appointment - Beverly Hills Dental",
+    description: "Request an appointment at Beverly Hills Dental Art Studio, 416 N. Bedford Dr., Suite 105, Beverly Hills. Call (310) 274-7005 or send the form and our team will reach out.",
+  },
 };
 
 export const fallbackThankYou: ThankYouContent = {
@@ -160,16 +163,44 @@ export const fallbackThankYou: ThankYouContent = {
   seo: { title: "Thank You - Beverly Hills Dental", description: "Someone on our team will reach out to you.", noIndex: true },
 };
 
-/** /locations/ and /locations/mclean/ are empty pages on the old site (header and footer only). */
-export const fallbackLocationsHub: HubContent = { title: "locations", sections: [], seo: { title: "locations - Beverly Hills Dental", description: "" } };
-export const fallbackMcleanHub: HubContent = { title: "Mclean", sections: [], seo: { title: "Mclean - Beverly Hills Dental", description: "" } };
-
 /**
- * The old site has no privacy policy page, but the appointment form links to one.
- * [PLACEHOLDER]: the practice must supply the policy text before launch.
+ * The old site had no privacy policy, but the appointment form's consent box
+ * (phone, text and email) links here. This text describes what this website
+ * actually does with form data; the practice should review it (with counsel)
+ * and edit it in /cms before launch. Paragraphs starting "## " are headings.
  */
 export const fallbackPrivacy: LegalContent = {
   title: "Privacy Policy",
-  body: ["[PLACEHOLDER: privacy policy text to be supplied by the practice]"],
-  seo: { title: "Privacy Policy - Beverly Hills Dental", description: "", noIndex: true },
+  body: [
+    "Last updated: October 15, 2026",
+    "This policy explains how Beverly Hills Dental Arts Studio (“we”, “us”), 416 N. Bedford Dr., Suite 105, Beverly Hills, CA 90210, collects and uses information through this website, beverlyhillstopdentist.com. It covers the website only. The health information in your patient record is handled under our Notice of Privacy Practices, which we provide at the office and on request.",
+    "## Information we collect",
+    "**Information you send us.** When you use the appointment form we receive your full name, email address, phone number and anything you write in the comment box. Please do not include detailed medical information in the comment box; we will discuss your health with you directly.",
+    "**Information sent automatically.** With a form request we also receive the page you sent it from, the page you first arrived on, the website that referred you, and any campaign tags in the link you followed (such as utm_source or gclid). Like any website, our hosting server records technical details of each visit, such as your IP address, browser type and the pages requested, for security and troubleshooting.",
+    "## How we use your information",
+    "We use the information you send us to answer your request, schedule and confirm appointments, and contact you about your request by phone, text message or email. We use the technical and referral information to protect the form from spam and abuse and to understand which pages and advertising bring patients to us.",
+    "## Phone, text message and email consent",
+    "By checking the consent box on the appointment form, you agree that we may contact you by phone, text message (SMS) and email about your appointment request. Message frequency varies with your request. Message and data rates may apply. You can reply **STOP** to any text message to stop receiving texts, or **HELP** for help, and you can ask us at any time to stop calling or emailing you. Consent is not a condition of receiving care.",
+    "We do not sell, rent or share your mobile phone number or your text message opt-in consent with third parties or affiliates for their marketing purposes.",
+    "## Who receives your information",
+    "We do not sell your personal information. Form requests are delivered to our patient communication system (GoHighLevel), which stores them and sends our calls, texts and emails on our behalf. Our website host, SiteGround, stores the website and its server logs. These service providers may use the information only to provide their services to us. We may also disclose information when the law requires it.",
+    "## Cookies and similar technologies",
+    "This website does not set advertising or analytics cookies. To credit a form request to the link you arrived from, the site keeps that link information in your browser’s session storage, which is cleared when you close the tab. If we add a chat tool or analytics later, we will update this policy.",
+    "## How long we keep information",
+    "We keep appointment requests for as long as needed to respond to you and to keep reasonable business records, and server logs for a limited period set by our host. If you become a patient, your patient record is kept as the law requires.",
+    "## Security",
+    "This website uses an encrypted (HTTPS) connection, and form requests are sent to our patient communication system over an encrypted connection. No method of sending or storing information is completely secure, so we cannot guarantee absolute security.",
+    "## Your choices and California privacy rights",
+    "You can ask us what personal information we hold about you from this website, ask us to correct or delete it, and opt out of texts, calls or emails at any time. We do not sell or share personal information for cross-context behavioral advertising. We will not treat you differently for making a request. To make a request, call us or write to us at the address below.",
+    "## Children",
+    "This website is not directed to children under 13, and we do not knowingly collect their information through it. A parent or guardian should request appointments for a child.",
+    "## Changes to this policy",
+    "We may update this policy. The date at the top shows when it last changed.",
+    "## Contact us",
+    "Beverly Hills Dental Arts Studio, 416 N. Bedford Dr., Suite 105, Beverly Hills, CA 90210. Phone: (310) 274-7005.",
+  ],
+  seo: {
+    title: "Privacy Policy - Beverly Hills Dental",
+    description: "How Beverly Hills Dental Arts Studio collects and uses the information you send through this website, including phone, text message and email consent.",
+  },
 };

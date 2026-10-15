@@ -8,13 +8,10 @@ import {
   fallbackAppointment,
   fallbackBeforeAfter,
   fallbackHome,
-  fallbackLocationsHub,
-  fallbackMcleanHub,
   fallbackPrivacy,
   fallbackThankYou,
 } from "@/lib/data/pages";
 import { fallbackCategories, fallbackServices, fallbackServicesHub } from "@/lib/data/services";
-import { fallbackLocationPages } from "@/lib/data/locations";
 import type {
   AboutContent,
   Img,
@@ -26,8 +23,6 @@ import type {
   HomeContent,
   HubContent,
   LegalContent,
-  LocationBase,
-  LocationPage,
   Post,
   Service,
   ServiceCategory,
@@ -56,7 +51,7 @@ const SECTIONS = `sections[]{
   "_type": select(_type == "faqSection" => "faq", _type), _key, heading, subheading, text, tone, overlay, overlayOpacity, textMaxWidth,
   "image": image${IMG},
   "link": link${LINK},
-  "items": items[]{ title, body, text, question, answer, "icon": icon${IMG} },
+  "items": items[]{ title, body, href, text, question, answer, "icon": icon${IMG} },
   "cards": cards[]{ title, text, "image": image${IMG} },
   "blocks": blocks[]{ heading, text },
   "columns": columns[].items,
@@ -85,7 +80,7 @@ function normalizeSection(raw: unknown): Section | null {
     case "textBand":
       return { tone: "light", ...base } as Section;
     case "accordionFeature":
-      return { ...base, items: arr<Loose>(s.items).map((it) => ({ ...it, title: String(it.title ?? ""), body: arr<string>(it.body) })) } as Section;
+      return { tone: "dark", ...base, items: arr<Loose>(s.items).map((it) => ({ ...it, title: String(it.title ?? ""), body: arr<string>(it.body) })) } as Section;
     case "cardPair":
       return { ...base, cards: arr<Loose>(s.cards).map((c) => ({ ...c, title: String(c.title ?? ""), text: arr<string>(c.text) })) } as Section;
     case "steps":
@@ -156,39 +151,18 @@ export const getServices = cache(async (): Promise<Service[]> => {
   return mergeBySlug(fallbackServices, cms, { ...blankPage, category: "", order: 99 });
 });
 
-export const getLocationPages = cache(async (): Promise<LocationPage[]> => {
-  const cms = await sanityFetch<Partial<LocationPage>[]>(
-    `*[_type == "locationPage" && defined(slug.current)] | order(order asc){ "slug": slug.current, basePath, title, order, ${SECTIONS}, ${SEO} }`,
-    {},
-    ["locationPage"],
-  );
-  if (!cms?.length) return fallbackLocationPages;
-  // Slugs repeat across folders (night-guards), so match on folder + slug.
-  const keyOf = (p: { basePath?: string; slug?: string }) => `${p.basePath}${p.slug}`;
-  const byKey = new Map(fallbackLocationPages.map((f) => [keyOf(f), f]));
-  const merged = cms.map((c) => normalizePage(merge(byKey.get(keyOf(c)) ?? { ...blankPage, basePath: (c.basePath ?? "/locations/mclean/") as LocationBase, order: 99 }, c)));
-  const missing = fallbackLocationPages.filter((f) => !cms.some((c) => keyOf(c) === keyOf(f)));
-  return [...merged, ...missing].sort((a, b) => a.order - b.order);
-});
-
-export async function getLocationPagesIn(basePath: LocationBase) {
-  return (await getLocationPages()).filter((p) => p.basePath === basePath);
-}
-
 async function hub(id: string, fallback: HubContent): Promise<HubContent> {
   const cms = await sanityFetch<Partial<HubContent>>(`*[_id == $id][0]{ title, ${SECTIONS}, ${SEO} }`, { id }, [id]);
   return normalizePage(merge(fallback, cms));
 }
 
 export const getServicesHub = cache(() => hub("servicesPage", fallbackServicesHub));
-export const getLocationsHub = cache(() => hub("locationsPage", fallbackLocationsHub));
-export const getMcleanHub = cache(() => hub("mcleanPage", fallbackMcleanHub));
 
 /* ---------- Collections ---------- */
 
 export const getTeam = cache(async (): Promise<TeamMember[]> => {
   const cms = await sanityFetch<TeamMember[]>(
-    `*[_type == "teamMember"] | order(order asc){ "id": _id, name, heading, mobileHeading, bio, mobileBio, order, "photo": photo${IMG} }`,
+    `*[_type == "teamMember"] | order(order asc){ "id": _id, name, heading, bio, order, "photo": photo${IMG} }`,
     {},
     ["teamMember"],
   );

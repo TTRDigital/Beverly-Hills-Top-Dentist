@@ -36,23 +36,9 @@ export default async function AboutPage() {
         <section key={m.id} aria-labelledby={`team-${m.id}`} className={`flex flex-col md:items-stretch ${i % 2 === 0 ? "md:flex-row-reverse" : "md:flex-row"}`}>
           <div className="flex flex-col justify-center bg-black p-[30px] text-center text-white md:w-1/2 md:px-20 md:text-left">
             <h2 id={`team-${m.id}`} className="h2">
-              {m.mobileHeading ? (
-                <>
-                  <span className="md:hidden">{m.mobileHeading}</span>
-                  <span className="hidden md:inline">{m.heading}</span>
-                </>
-              ) : (
-                m.heading
-              )}
+              {m.heading}
             </h2>
-            {m.mobileBio?.length ? (
-              <>
-                <RichText paras={m.mobileBio} className="mt-5 md:hidden" />
-                <RichText paras={m.bio} className="mt-5 hidden md:block" />
-              </>
-            ) : (
-              <RichText paras={m.bio} className="mt-5" />
-            )}
+            <RichText paras={m.bio} className="mt-5" />
           </div>
           {m.photo ? (
             <div className="md:w-1/2">
