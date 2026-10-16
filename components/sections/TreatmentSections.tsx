@@ -41,7 +41,7 @@ export function Hero({ s, first = true }: { s: HeroSection; first?: boolean }) {
   return (
     <section className="relative flex min-h-[637px] flex-col justify-end overflow-hidden py-[100px] md:aspect-video md:min-h-0">
       {s.image ? (
-        <Image src={s.image.src} alt={s.image.alt ?? ""} fill preload={first} sizes="100vw" className="object-cover" />
+        <Image src={s.image.src} alt={s.image.alt ?? ""} fill loading={first ? "eager" : "lazy"} fetchPriority={first ? "high" : undefined} sizes="100vw" className="object-cover" />
       ) : (
         <div className="absolute inset-0 bg-night" />
       )}

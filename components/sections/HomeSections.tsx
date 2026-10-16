@@ -5,18 +5,14 @@ import { RichText } from "@/components/ui/RichText";
 import { TechSwitcher } from "@/components/sections/TechSwitcher";
 import { Slideshow } from "@/components/sections/Slideshow";
 import { WorkGallery } from "@/components/sections/WorkGallery";
+import { HeroVideo } from "@/components/sections/HeroVideo";
 
-/** Full-screen video hero (muted, looping), with the poster frame while it loads. */
+/** Full-screen video hero (muted, looping) over the poster photo, which shows until the video starts. */
 export function HomeHero({ hero }: { hero: HomeContent["hero"] }) {
   return (
     <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden py-[100px] md:aspect-video md:min-h-0">
-      {hero.poster ? <Image src={hero.poster.src} alt="" fill preload sizes="100vw" className="object-cover" /> : <div className="absolute inset-0 bg-night" />}
-      {hero.videoMp4 || hero.videoWebm ? (
-        <video className="absolute inset-0 h-full w-full object-cover" autoPlay muted loop playsInline preload="metadata" poster={hero.poster?.src} aria-hidden="true">
-          {hero.videoWebm ? <source src={hero.videoWebm} type="video/webm" /> : null}
-          {hero.videoMp4 ? <source src={hero.videoMp4} type="video/mp4" /> : null}
-        </video>
-      ) : null}
+      {hero.poster ? <Image src={hero.poster.src} alt="" fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover" /> : <div className="absolute inset-0 bg-night" />}
+      {hero.videoMp4 || hero.videoWebm ? <HeroVideo mp4={hero.videoMp4} webm={hero.videoWebm} /> : null}
       {/* Light shade so the white headline reads on bright frames. */}
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
       <div className="container-x relative text-white">

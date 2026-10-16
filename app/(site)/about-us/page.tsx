@@ -17,7 +17,7 @@ export default async function AboutPage() {
     <>
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "About Us", path: "/about-us/" }])} />
       <section className="relative flex h-[350px] flex-col justify-end overflow-hidden py-6 md:aspect-video md:h-auto md:py-[100px]">
-        {about.hero.image ? <Image src={about.hero.image.src} alt={about.hero.image.alt ?? ""} fill preload sizes="100vw" className="object-cover object-top md:brightness-[1.2]" /> : null}
+        {about.hero.image ? <Image src={about.hero.image.src} alt={about.hero.image.alt ?? ""} fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover object-top md:brightness-[1.2]" /> : null}
         <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
         <div className="container-x relative text-white">
           <h1 className="text-h1 font-semibold md:max-w-[518px]">{about.hero.heading}</h1>

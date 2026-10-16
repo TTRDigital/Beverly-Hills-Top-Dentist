@@ -52,7 +52,7 @@ export function Header({ menu, cta, phone, phoneHref, logo, siteName }: { menu: 
     <header className="sticky top-0 z-50 bg-header">
       <div className="container-x flex h-20 items-center justify-between gap-6">
         <Link href="/" className="shrink-0" aria-label={`${siteName}, home`}>
-          <Image src={logo.src} alt={logo.alt || siteName} width={logo.width} height={logo.height} preload sizes="260px" className="h-auto max-h-[61px] w-[200px] object-contain object-left lg:w-[260px]" />
+          <Image src={logo.src} alt={logo.alt || siteName} width={logo.width} height={logo.height} loading="eager" sizes="(min-width: 1024px) 260px, 200px" className="h-auto max-h-[61px] w-[200px] object-contain object-left lg:w-[260px]" />
         </Link>
 
         {/* Desktop menu */}

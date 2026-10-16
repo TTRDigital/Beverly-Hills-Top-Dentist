@@ -16,8 +16,8 @@ export function Slideshow({ images, interval = 5000 }: { images: Img[]; interval
     <div className="absolute inset-0">
       {images.map((img, n) => (
         <div key={img.src} className={`absolute inset-0 transition-opacity duration-1000 ${n === i ? "opacity-100" : "opacity-0"}`}>
-          {/* Only the first slide loads up front; the rest load lazily. */}
-          <Image src={img.src} alt={img.alt ?? ""} fill sizes="100vw" className="object-cover" loading={n === 0 ? "eager" : "lazy"} />
+          {/* The band sits below the first screen, so every slide loads lazily. */}
+          <Image src={img.src} alt={img.alt ?? ""} fill sizes="100vw" className="object-cover" loading="lazy" />
         </div>
       ))}
     </div>
