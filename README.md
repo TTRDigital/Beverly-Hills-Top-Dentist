@@ -49,7 +49,7 @@ Automatic deploys (`.github/workflows/deploy-siteground.yml`) build and upload o
 |---|---|
 | `SG_FTP_SERVER` | FTP host (Site Tools > Site > FTP Accounts > Manage > FTP credentials) |
 | `SG_FTP_USERNAME` / `SG_FTP_PASSWORD` | an FTP account whose folder is the site's `public_html` |
-| `GHL_WEBHOOK_URL` | the GoHighLevel inbound webhook for the appointment form; the workflow writes it to `api/lead-config.php` (never served, see `.htaccess`) |
+| `GHL_WEBHOOK_URL` | optional: the appointment form's GoHighLevel webhook is already set in the workflow (`deploy-siteground.yml`); this secret overrides it. The workflow writes it to `api/lead-config.php` (never served, see `.htaccess`) |
 
 Optional repository **variables** (not secrets): `GHL_CHAT_WIDGET_ID` (shows the GoHighLevel chat, loaded after the first interaction or 4 s), `GA_ID`, `GTM_ID`. The old site's source had no GA4 or GTM tag, so none is set.
 
@@ -59,7 +59,7 @@ Optional repository **variables** (not secrets): `GHL_CHAT_WIDGET_ID` (shows the
 
 ## The appointment form
 
-Same fields as the old form (Full Name, Email Address, Phone Number, Comment) plus a consent checkbox (phone, text and email). Client and server validation, a hidden honeypot field plus a timing check (a request is dropped only when both say spam; one signal alone is delivered with a `suspected-spam` tag), a per-IP rate limit, UTM/gclid attribution, then a redirect to `/thank-you/`. Payload: flat JSON with `name`, `first_name`, `last_name`, `email`, `phone` (E.164), `phone_raw`, `message`, `consent`, `tags`, `spam_check`, `page_url`, `landing_page`, `referrer` and the UTM fields. **Without a webhook configured the form accepts requests but does not forward them** (the PHP error log says so).
+Same fields as the old form (Full Name, Email Address, Phone Number, Comment) plus a consent checkbox (phone, text and email). Client and server validation, a hidden honeypot field plus a timing check (a request is dropped only when both say spam; one signal alone is delivered with a `suspected-spam` tag), a per-IP rate limit, UTM/gclid attribution, then a redirect to `/thank-you/`. Payload: flat JSON with `name`, `first_name`, `last_name`, `email`, `phone` (E.164), `phone_raw`, `message`, `consent`, `tags`, `spam_check`, `page_url`, `landing_page`, `referrer` and the UTM fields. Leads go to the GoHighLevel webhook set in the deploy workflow. **Without a webhook configured the form accepts requests but does not forward them** (the PHP error log says so).
 
 ## Editing in /cms
 
