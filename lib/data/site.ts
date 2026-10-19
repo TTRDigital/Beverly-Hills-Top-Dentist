@@ -116,6 +116,9 @@ export const fallbackSettings: Omit<SiteSettings, "phoneHref"> = {
   logo: images.logo,
   footerLogo: images.logo300,
   privacyPolicyUrl: "/privacy-policy/",
+  // Trust strip spec: Google rating, years in practice, Dr. Shir's credentials, 3D CT / laser / ozone.
+  // No Google rating until the office confirms the current figure; years per the site's own copy ("over thirty years").
+  trustStrip: ["Dr. Nushin Shir, DDS, MPH", "Over 30 years in practice", "In-office 3D CT", "Soft-tissue lasers", "Ozone therapy"],
 };
 
 /** Team, in the order of the About page. */

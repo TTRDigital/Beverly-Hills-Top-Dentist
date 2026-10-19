@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getCaseGroup, getHome } from "@/lib/content";
+import { getAreasHub, getCaseGroup, getHome } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 import { HomeHero, HomeIntro, HomeStory, HomeTechnology, HomeValues, OurWork } from "@/components/sections/HomeSections";
 
@@ -9,7 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  const [home, results] = await Promise.all([getHome(), getCaseGroup("results")]);
+  const [home, results, areas] = await Promise.all([getHome(), getCaseGroup("results"), getAreasHub()]);
   return (
     <>
       <HomeHero hero={home.hero} />
@@ -17,7 +17,7 @@ export default async function HomePage() {
       <HomeStory story={home.story} />
       <HomeTechnology technology={home.technology} />
       <OurWork work={home.work} cases={results} />
-      <HomeValues values={home.values} />
+      <HomeValues values={home.values} areasLink={areas.approved} />
     </>
   );
 }

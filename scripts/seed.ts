@@ -25,6 +25,7 @@ import {
   fallbackThankYou,
 } from "../lib/data/pages.ts";
 import { fallbackCategories, fallbackServices, fallbackServicesHub } from "../lib/data/services.ts";
+import { fallbackAreaPages, fallbackAreasHub } from "../lib/data/areas.ts";
 
 const root = new URL("..", import.meta.url).pathname;
 
@@ -180,6 +181,7 @@ async function build() {
     longitude: s.longitude,
     mapsUrl: s.mapsUrl,
     privacyPolicyUrl: s.privacyPolicyUrl,
+    trustStrip: s.trustStrip,
     logo: await altImage(s.logo),
     footerLogo: await altImage(s.footerLogo),
     hoursLabel: s.hoursLabel,
@@ -222,6 +224,59 @@ async function build() {
   docs.push({ _id: "servicesPage", _type: "servicesPage", title: hub.title, sections: await sections(hub.sections), seo: seo(hub.seo) });
 
   docs.push({ _id: "privacyPage", _type: "privacyPage", title: fallbackPrivacy.title, body: fallbackPrivacy.body, seo: seo(fallbackPrivacy.seo) });
+
+  const faqItems = (faqs: { question: string; answer: string[] }[]) => faqs.map((f) => ({ _key: key(), _type: "faqItem", question: f.question, answer: f.answer }));
+  const whyItems = (items: { title: string; text: string }[]) => items.map((w) => ({ _key: key(), _type: "whyItem", title: w.title, text: w.text }));
+  const ah = fallbackAreasHub;
+  docs.push({
+    _id: "areasPage",
+    _type: "areasPage",
+    approved: ah.approved,
+    heading: ah.heading,
+    subhead: ah.subhead,
+    heroImage: await altImage(ah.heroImage),
+    intro: ah.intro,
+    mapEmbedUrl: ah.mapEmbedUrl,
+    mapCaption: ah.mapCaption,
+    cardsHeading: ah.cardsHeading,
+    whyHeading: ah.whyHeading,
+    whyItems: whyItems(ah.whyItems),
+    whyText: ah.whyText,
+    planHeading: ah.planHeading,
+    planText: ah.planText,
+    faqs: faqItems(ah.faqs),
+    zipsHeading: ah.zipsHeading,
+    zips: ah.zips,
+    ctaHeading: ah.ctaHeading,
+    ctaText: ah.ctaText,
+    seo: seo(ah.seo),
+  });
+  for (const a of fallbackAreaPages) {
+    docs.push({
+      _id: `areaPage-${a.slug}`,
+      _type: "areaPage",
+      approved: a.approved,
+      name: a.name,
+      slug: { _type: "slug", current: a.slug },
+      order: a.order,
+      zips: a.zips,
+      cardLine: a.cardLine,
+      heading: a.heading,
+      subhead: a.subhead,
+      heroImage: await altImage(a.heroImage),
+      intro: a.intro,
+      gettingHere: a.gettingHere,
+      mapFrom: a.mapFrom,
+      mapTitle: a.mapTitle,
+      treatmentsHeading: a.treatmentsHeading,
+      treatments: a.treatments.map((t) => ({ _key: key(), _type: "areaTreatment", title: t.title, text: t.text, links: t.links.map((l) => ({ _key: key(), ...link(l) })) })),
+      whyHeading: a.whyHeading,
+      whyItems: whyItems(a.whyItems),
+      whyText: a.whyText,
+      faqs: faqItems(a.faqs),
+      seo: seo(a.seo),
+    });
+  }
 
   for (const c of fallbackCategories) docs.push({ _id: `serviceCategory-${c.slug}`, _type: "serviceCategory", order: c.order, ...(await pageFields(c)) });
   for (const sv of fallbackServices)

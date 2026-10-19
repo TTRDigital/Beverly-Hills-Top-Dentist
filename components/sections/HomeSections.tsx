@@ -94,7 +94,7 @@ export function OurWork({ work, cases }: { work: HomeContent["work"]; cases: Bef
 }
 
 /** "Biological. Biomimetic. Holistic. Natural." with the consultation button and three photo cards. */
-export function HomeValues({ values }: { values: HomeContent["values"] }) {
+export function HomeValues({ values, areasLink = false }: { values: HomeContent["values"]; areasLink?: boolean }) {
   return (
     <section className="bg-white pt-[60px]">
       <div className="container-x text-center">
@@ -116,6 +116,12 @@ export function HomeValues({ values }: { values: HomeContent["values"] }) {
             <div className="relative">
               <h3 className="text-[20px] font-semibold leading-[1.5]">{c.title}</h3>
               <RichText paras={c.text} className="mt-4" />
+              {/* First card links to the Areas We Serve hub once it is approved. */}
+              {areasLink && i === 0 ? (
+                <Link href="/areas-we-serve/" className="mt-5 inline-block border-b-2 border-white px-3 py-2 text-[15px] font-semibold leading-none transition-colors duration-300 hover:border-brand-2 hover:bg-brand-2">
+                  See the areas we serve
+                </Link>
+              ) : null}
             </div>
           </article>
         ))}

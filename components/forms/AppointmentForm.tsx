@@ -26,7 +26,25 @@ const LABELS: Record<Field, string> = { full_name: "Full Name", email: "Email Ad
  * posted to /api/lead.php. Spam is filtered with a hidden field and a timing
  * check. On success the visitor lands on /thank-you/.
  */
-export function AppointmentForm({ buttonLabel, businessName, phone, phoneHref }: { buttonLabel: string; businessName: string; phone: string; phoneHref: string }) {
+export function AppointmentForm({
+  buttonLabel,
+  businessName,
+  phone,
+  phoneHref,
+  variant = "default",
+  trackPage,
+}: {
+  buttonLabel: string;
+  businessName: string;
+  phone: string;
+  phoneHref: string;
+  /** "area": the area pages' form (name, phone, email, reason for visit). */
+  variant?: "default" | "area";
+  /** Sent with the conversion event so each page can be reported on its own. */
+  trackPage?: string;
+}) {
+  const order: ("full_name" | "email" | "phone")[] = variant === "area" ? ["full_name", "phone", "email"] : ["full_name", "email", "phone"];
+  const labels: Record<Field, string> = variant === "area" ? { ...LABELS, full_name: "Name", email: "Email", phone: "Phone", comment: "Reason for visit" } : LABELS;
   const router = useRouter();
   const uid = useId();
   const formRef = useRef<HTMLFormElement>(null);
@@ -98,8 +116,9 @@ export function AppointmentForm({ buttonLabel, businessName, phone, phoneHref }:
       });
       if (!res.ok) throw new Error(String(res.status));
       const w = window as unknown as { gtag?: (...args: unknown[]) => void; dataLayer?: unknown[] };
-      w.gtag?.("event", "generate_lead", { form: "appointment" });
-      w.dataLayer?.push({ event: "generate_lead", form: "appointment" });
+      const params = { form: variant === "area" ? "area" : "appointment", ...(trackPage ? { page: trackPage } : {}) };
+      w.gtag?.("event", "generate_lead", params);
+      w.dataLayer?.push({ event: "generate_lead", ...params });
       router.push("/thank-you/");
     } catch {
       setStatus("error");
@@ -133,10 +152,10 @@ export function AppointmentForm({ buttonLabel, businessName, phone, phoneHref }:
         {summary}
       </p>
       <div className="space-y-[14px]">
-        {(["full_name", "email", "phone"] as const).map((f) => (
+        {order.map((f) => (
           <div key={f}>
             <label htmlFor={`${uid}-${f}`} className="mb-2 block text-[15px] font-semibold">
-              {LABELS[f]}
+              {labels[f]}
               <span className="sr-only"> (required)</span>
             </label>
             <input
@@ -153,7 +172,7 @@ export function AppointmentForm({ buttonLabel, businessName, phone, phoneHref }:
         ))}
         <div>
           <label htmlFor={`${uid}-comment`} className="mb-2 block text-[15px] font-semibold">
-            {LABELS.comment}
+            {labels.comment}
           </label>
           <textarea {...aria("comment")} rows={3} value={values.comment} onChange={(e) => setField("comment", e.target.value)} className={inputCls("comment")} />
           {err("comment")}

@@ -12,8 +12,11 @@ import {
   fallbackThankYou,
 } from "@/lib/data/pages";
 import { fallbackCategories, fallbackServices, fallbackServicesHub } from "@/lib/data/services";
+import { fallbackAreaPages, fallbackAreasHub } from "@/lib/data/areas";
 import type {
   AboutContent,
+  AreaPage,
+  AreasHub,
   Img,
   Section,
   AppointmentContent,
@@ -124,7 +127,7 @@ export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
       name, legalName, phone, phoneDisplay, street, city, region, postalCode, latitude, longitude, mapsUrl,
       hoursLabel, hours[]{ day, value, opens, closes }, social[]{ network, href }, headerCta${LINK},
       menu[]{ label, href, children[]{ label, href, children[]{ label, href } } },
-      privacyPolicyUrl, "logo": logo${IMG}, "footerLogo": footerLogo${IMG}
+      privacyPolicyUrl, trustStrip, "logo": logo${IMG}, "footerLogo": footerLogo${IMG}
     }`,
     {},
     ["siteSettings"],
@@ -157,6 +160,64 @@ async function hub(id: string, fallback: HubContent): Promise<HubContent> {
 }
 
 export const getServicesHub = cache(() => hub("servicesPage", fallbackServicesHub));
+
+/* ---------- Areas We Serve ---------- */
+
+const WHY = `whyItems[]{ title, "text": coalesce(text, "") }`;
+const FAQS = `faqs[]{ question, answer }`;
+
+/** Lists a component reads are always present, even when emptied in the CMS. */
+function normalizeArea<T>(page: T): T {
+  const p = page as Loose;
+  const out: Loose = {
+    ...p,
+    intro: arr<string>(p.intro),
+    whyText: arr<string>(p.whyText),
+    whyItems: arr<Loose>(p.whyItems).map((w) => ({ title: String(w.title ?? ""), text: String(w.text ?? "") })),
+    faqs: arr<Loose>(p.faqs).map((f) => ({ question: String(f.question ?? ""), answer: arr<string>(f.answer) })),
+  };
+  if ("treatments" in p) {
+    out.gettingHere = arr<string>(p.gettingHere);
+    out.zips = arr<string>(p.zips);
+    out.treatments = arr<Loose>(p.treatments).map((t) => ({ title: String(t.title ?? ""), text: String(t.text ?? ""), links: arr(t.links) }));
+  } else {
+    out.planText = arr<string>(p.planText);
+  }
+  return out as T;
+}
+
+export const getAreasHub = cache(async (): Promise<AreasHub> => {
+  const cms = await sanityFetch<Partial<AreasHub>>(
+    `*[_id == "areasPage"][0]{ approved, heading, subhead, "heroImage": heroImage${IMG}, intro, mapEmbedUrl, mapCaption, cardsHeading, whyHeading, ${WHY}, whyText, planHeading, planText, ${FAQS}, zipsHeading, zips, ctaHeading, ctaText, ${SEO} }`,
+    {},
+    ["areasPage"],
+  );
+  const hub = normalizeArea(merge(fallbackAreasHub, cms));
+  return { ...hub, approved: cms?.approved ?? fallbackAreasHub.approved };
+});
+
+export const getAreaPages = cache(async (): Promise<AreaPage[]> => {
+  const cms = await sanityFetch<Partial<AreaPage>[]>(
+    `*[_type == "areaPage" && defined(slug.current)] | order(order asc){
+      "slug": slug.current, order, approved, name, zips, cardLine, heading, subhead, "heroImage": heroImage${IMG},
+      intro, gettingHere, mapFrom, mapTitle, treatmentsHeading, treatments[]{ title, text, "links": links[]${LINK} },
+      whyHeading, ${WHY}, whyText, ${FAQS}, "reviews": reviews[]->{ quote, name, "rating": coalesce(rating, 5), source }, ${SEO}
+    }`,
+    {},
+    ["areaPage"],
+  );
+  if (!cms?.length) return fallbackAreaPages;
+  const bySlug = new Map(fallbackAreaPages.map((f) => [f.slug, f]));
+  const blank: AreaPage = { ...fallbackAreaPages[0], slug: "", name: "", treatments: [], faqs: [], reviews: [], approved: false, order: 99 };
+  // Treatment links and reviews may be emptied on purpose, so the CMS list replaces the built-in one.
+  const merged = cms.map((c) => {
+    const base = bySlug.get(c.slug ?? "") ?? { ...blank, slug: c.slug ?? "" };
+    const page = normalizeArea(merge(base, c));
+    return { ...page, approved: c.approved ?? base.approved, reviews: arr(c.reviews) as AreaPage["reviews"] };
+  });
+  const missing = fallbackAreaPages.filter((f) => !cms.some((c) => c.slug === f.slug));
+  return [...merged, ...missing].sort((a, b) => a.order - b.order);
+});
 
 /* ---------- Collections ---------- */
 

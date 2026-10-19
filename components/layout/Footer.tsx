@@ -10,7 +10,7 @@ const SOCIAL = {
 } as const;
 
 /** Dark footer from the old site: logo, address and phone, social squares, working hours. */
-export function Footer({ settings: s }: { settings: SiteSettings }) {
+export function Footer({ settings: s, areasLink = false }: { settings: SiteSettings; areasLink?: boolean }) {
   const address = `${s.street}, ${s.city}, ${s.region} ${s.postalCode}`;
   return (
     <footer className="mt-5 bg-ink text-white">
@@ -32,6 +32,15 @@ export function Footer({ settings: s }: { settings: SiteSettings }) {
                 {s.phoneDisplay}
               </a>
             </li>
+            {/* Shown once the Areas We Serve hub is approved (handoff: paused until then). */}
+            {areasLink ? (
+              <li>
+                <Link href="/areas-we-serve/" className="flex items-center gap-3 transition-colors hover:text-brand-2">
+                  <MapMarker className="h-[25px] w-[25px] shrink-0 p-[2px]" />
+                  Areas We Serve
+                </Link>
+              </li>
+            ) : null}
           </ul>
         </div>
         <ul className="flex gap-[5px] px-2.5 md:self-start md:py-2.5" aria-label="Social media">

@@ -15,6 +15,7 @@ Next.js 16 (App Router, static export) + Sanity Studio embedded at `/cms`, Tailw
 | `/services/` | services hub: one photo + accordion band per category, each service linking to its page |
 | `/services/<category>/` | `[category]`, 6 pages (implants, cosmetic, restorative, periodontic, preventive, dental technology) |
 | `/services/<category>/<service>/` | `[category]/[service]`, 29 pages |
+| `/areas-we-serve/` + 6 area pages (`beverly-grove`, `century-city`, `west-hollywood`, `culver-city`, `west-la-palms`, `hollywood`) | hub + `areas-we-serve/[slug]`, one shared template (see below) |
 | `/privacy-policy/` | draft awaiting the practice's approval: not linked from the site, not in the sitemap, noindex |
 | `/cms` | Sanity Studio |
 
@@ -30,6 +31,17 @@ The old site kept 16 menu pages under `/locations/mclean/...`, plus 21 more copi
 - the empty `/locations/` and `/locations/mclean/` hubs → `/`.
 
 Also redirected: every old `/wp-content/uploads/...` photo (any WordPress size) and the hero video to the new files, `?page_id=` / `?p=` short links to their page, the WordPress sitemaps to `/sitemap.xml`, and the author page to `/about-us/`. WordPress-only paths (`/feed/`, `/wp-json/`, `/wp-admin/`, `/wp-login.php`, `/xmlrpc.php`, theme and plugin files) answer **410 Gone**. The redirect block is generated from the old site's data; to change one, edit its line in `.htaccess` (keep it above the trailing-slash rule).
+
+## Areas We Serve
+
+Built from the handoff "BHDAS — Areas We Serve: Developer Build Handoff" (Oct 19, 2026); copy is word for word (`lib/data/areas.ts`, editable in /cms under Pages > Areas We Serve hub and Area pages).
+
+- **Template** (every area page): hero with a real office photo, H1, drive-time subhead, Book + Call → trust strip → intro → Getting here with a lazy-loaded Google route map → popular treatments (cards; "Learn more" only to the Beverly Hills pages the handoff marks OK) → CTA band → why patients make the trip (icon row) → reviews (hidden until reviews with written permission are added) → FAQ → final CTA with the 4-field form and office hours → sticky Call/Book bar on phones.
+- **Hub:** hero → trust strip → intro → office map → six area cards → why patients make the trip → planning your first visit → FAQ → zip list → final CTA. A custom map (e.g. Google My Maps with the six areas shaded) can be pasted into "Custom map embed URL".
+- **Not published until approved:** each page has an "Approved by Dr. Shir" switch. Off (the default): the page works at its address for review but is noindex and not in the sitemap, and the footer "Areas We Serve" link and the homepage "See the areas we serve" link stay hidden. Turn the hub on together with its area pages.
+- **Schema:** FAQPage (the five questions on the page, word for word) and BreadcrumbList on each page; `areaServed` added to the one site-wide Dentist entity; the address stays the Beverly Hills office.
+- **Tracking:** Book clicks send `book_appointment`, Call clicks `click_to_call`, form sends `generate_lead`, each with a `page` parameter (e.g. `area-culver-city`). Sent to GA4 or GTM once `GA_ID` / `GTM_ID` are set. The header button sends `book_appointment` too.
+- **Trust strip:** set in Site settings > Trust strip. The Google rating is left out until the office confirms the figure.
 
 ## Setup
 

@@ -32,6 +32,17 @@ export function businessSchema(s: SiteSettings, team: TeamMember[] = [], testimo
       const [opens, closes] = k.split("-");
       return { "@type": "OpeningHoursSpecification", dayOfWeek: days, opens, closes };
     }),
+    // Neighborhoods patients travel from (Areas We Serve). The address stays the Beverly Hills office.
+    areaServed: [
+      { "@type": "City", name: "Beverly Hills" },
+      { "@type": "Place", name: "Beverly Grove" },
+      { "@type": "Place", name: "Century City" },
+      { "@type": "City", name: "West Hollywood" },
+      { "@type": "City", name: "Culver City" },
+      { "@type": "Place", name: "West Los Angeles" },
+      { "@type": "Place", name: "Palms" },
+      { "@type": "Place", name: "Hollywood" },
+    ],
     sameAs: s.social.map((x) => x.href),
     ...(principal
       ? {

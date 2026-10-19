@@ -32,6 +32,7 @@ export const siteSettings = defineType({
     defineField({ name: "longitude", type: "number", group: "practice" }),
     defineField({ name: "mapsUrl", title: "Google Maps link", type: "url", group: "practice" }),
     defineField({ name: "privacyPolicyUrl", title: "Privacy policy link", type: "string", group: "practice", initialValue: "/privacy-policy/" }),
+    defineField({ name: "trustStrip", title: "Trust strip (under the buttons on area pages)", type: "array", group: "practice", of: [defineArrayMember({ type: "string" })], description: "Short points, e.g. Dr. Nushin Shir, DDS, MPH · In-office 3D CT. Add the Google rating once confirmed." }),
     defineField({ name: "logo", title: "Header logo", type: "altImage", group: "practice" }),
     defineField({ name: "footerLogo", title: "Footer logo", type: "altImage", group: "practice" }),
     defineField({ name: "hoursLabel", title: "Hours heading (footer)", type: "string", group: "hours" }),
@@ -191,6 +192,98 @@ const hubPage = (name: string, title: string) =>
 
 export const servicesPage = hubPage("servicesPage", "Services hub");
 
+/* ---------- Areas We Serve ---------- */
+
+const approvedField = defineField({
+  name: "approved",
+  title: "Approved by Dr. Shir (publish)",
+  type: "boolean",
+  initialValue: false,
+  description: "Off: the page works at its address for review but is hidden from Google and the sitemap. Turn on only after Dr. Shir approves it.",
+});
+const whyItems = defineField({
+  name: "whyItems",
+  title: "Why patients make the trip (icon row)",
+  type: "array",
+  of: [defineArrayMember({ type: "object", name: "whyItem", fields: [defineField({ name: "title", type: "string" }), defineField({ name: "text", title: "Line under the title (optional)", type: "text", rows: 2 })], preview: { select: { title: "title" } } })],
+});
+const faqsField = defineField({ name: "faqs", title: "FAQ (also marked up for Google, word for word)", type: "array", of: [defineArrayMember({ type: "faqItem" })] });
+
+export const areasPage = defineType({
+  name: "areasPage",
+  title: "Areas We Serve hub",
+  type: "document",
+  fields: [
+    approvedField,
+    defineField({ name: "heading", title: "H1", type: "string" }),
+    defineField({ name: "subhead", type: "string" }),
+    defineField({ name: "heroImage", title: "Hero photo (real office or Dr. Shir)", type: "altImage" }),
+    paragraphs("intro", "Intro"),
+    defineField({ name: "mapEmbedUrl", title: "Custom map embed URL (optional)", type: "url", description: "e.g. a Google My Maps embed with the six areas shaded. Empty: a map with the office pin." }),
+    defineField({ name: "mapCaption", type: "string" }),
+    defineField({ name: "cardsHeading", title: "Area cards heading", type: "string" }),
+    defineField({ name: "whyHeading", type: "string" }),
+    whyItems,
+    paragraphs("whyText", "Why patients make the trip (text)"),
+    defineField({ name: "planHeading", type: "string" }),
+    paragraphs("planText", "Planning your first visit"),
+    faqsField,
+    defineField({ name: "zipsHeading", type: "string" }),
+    defineField({ name: "zips", title: "Zip code list", type: "text", rows: 2 }),
+    defineField({ name: "ctaHeading", title: "Final call-to-action heading", type: "string" }),
+    defineField({ name: "ctaText", title: "Final call-to-action text", type: "text", rows: 2 }),
+    seoField,
+  ],
+  preview: { prepare: () => ({ title: "Areas We Serve hub" }) },
+});
+
+export const areaPage = defineType({
+  name: "areaPage",
+  title: "Area page",
+  type: "document",
+  fields: [
+    approvedField,
+    defineField({ name: "name", title: "Area name", type: "string", validation: (r) => r.required() }),
+    defineField({ ...slugField, options: { source: "name" } }),
+    orderField,
+    defineField({ name: "zips", title: "Zip codes", type: "array", of: [defineArrayMember({ type: "string" })] }),
+    defineField({ name: "cardLine", title: "Line on the hub card", type: "string" }),
+    defineField({ name: "heading", title: "H1", type: "string" }),
+    defineField({ name: "subhead", title: "Subhead (with the drive time)", type: "string" }),
+    defineField({ name: "heroImage", title: "Hero photo (real office or Dr. Shir)", type: "altImage" }),
+    paragraphs("intro", "Intro"),
+    paragraphs("gettingHere", "Getting here"),
+    defineField({ name: "mapFrom", title: "Route map: start address", type: "string", description: "The route ends at the office." }),
+    defineField({ name: "mapTitle", title: "Route map: label", type: "string" }),
+    defineField({ name: "treatmentsHeading", type: "string" }),
+    defineField({
+      name: "treatments",
+      title: "Popular treatments (cards)",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "areaTreatment",
+          fields: [
+            defineField({ name: "title", type: "string" }),
+            defineField({ name: "text", type: "text", rows: 4 }),
+            defineField({ name: "links", title: "Learn more links", type: "array", of: [defineArrayMember({ type: "link" })], description: "Only to live Beverly Hills service pages. Leave empty otherwise." }),
+          ],
+          preview: { select: { title: "title" } },
+        }),
+      ],
+    }),
+    defineField({ name: "whyHeading", type: "string" }),
+    whyItems,
+    paragraphs("whyText", "Why patients make the trip (text)"),
+    faqsField,
+    defineField({ name: "reviews", title: "Area reviews (written permission only)", type: "array", of: [defineArrayMember({ type: "reference", to: [{ type: "testimonial" }] })], description: "Hidden while empty." }),
+    seoField,
+  ],
+  orderings: [{ title: "Order", name: "order", by: [{ field: "order", direction: "asc" }] }],
+  preview: { select: { title: "name", subtitle: "slug.current", approved: "approved" }, prepare: (v) => ({ title: v.title, subtitle: `/areas-we-serve/${v.subtitle ?? ""}/${v.approved ? "" : " · not approved"}` }) },
+});
+
 export const privacyPage = defineType({
   name: "privacyPage",
   title: "Privacy policy",
@@ -314,6 +407,7 @@ export const singletonTypes = new Set([
   "thankYouPage",
   "servicesPage",
   "privacyPage",
+  "areasPage",
 ]);
 
 export const documentTypes = [
@@ -325,6 +419,8 @@ export const documentTypes = [
   thankYouPage,
   servicesPage,
   privacyPage,
+  areasPage,
+  areaPage,
   serviceCategory,
   service,
   beforeAfterCase,

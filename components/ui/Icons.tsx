@@ -87,3 +87,51 @@ export const Google = ({ className = "h-[25px] w-[25px]" }: P) => (
     <path d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z" />
   </svg>
 );
+
+/* Line icons for the area pages (24px grid, stroke follows the text color). */
+const Line = ({ className = "h-10 w-10", children }: P & { children: React.ReactNode }) => (
+  <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    {children}
+  </svg>
+);
+
+/** Ozone therapy: a drop with bubbles. */
+export const OzoneIcon = (p: P) => (
+  <Line {...p}>
+    <path d="M12 3.5c-3 3.6-5.5 6.7-5.5 9.9a5.5 5.5 0 0 0 11 0c0-3.2-2.5-6.3-5.5-9.9z" />
+    <circle cx="10.2" cy="14" r="1.2" />
+    <circle cx="13.6" cy="16.3" r="0.9" />
+  </Line>
+);
+
+/** 3D CT: a cube. */
+export const ScanIcon = (p: P) => (
+  <Line {...p}>
+    <path d="M12 3 4 7.5v9L12 21l8-4.5v-9L12 3z" />
+    <path d="M4 7.5 12 12l8-4.5M12 12v9" />
+  </Line>
+);
+
+/** Soft-tissue laser: a beam with sparks. */
+export const LaserIcon = (p: P) => (
+  <Line {...p}>
+    <path d="M4 20 14 10" />
+    <path d="m12.5 8.5 3 3 4-4-3-3-4 4z" />
+    <path d="M19 14.5v2M21 15.5h-2M8 4.5v2M9 5.5H7" />
+  </Line>
+);
+
+/** Holistic, biological approach: a leaf. */
+export const LeafIcon = (p: P) => (
+  <Line {...p}>
+    <path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14" />
+    <path d="M5 19c3-4 6-6.5 9.5-8.5" />
+  </Line>
+);
+
+/** Treatment cards: a tooth. */
+export const ToothIcon = (p: P) => (
+  <Line {...p}>
+    <path d="M7.5 3.5c-2.4 0-4 1.9-4 4.6 0 2.3.9 3.7 1.5 5.4.7 2 .9 6.9 2.6 6.9 1.6 0 1.5-4.6 2.4-5.9.4-.6 1.6-.6 2 0 .9 1.3.8 5.9 2.4 5.9 1.7 0 1.9-4.9 2.6-6.9.6-1.7 1.5-3.1 1.5-5.4 0-2.7-1.6-4.6-4-4.6-1.8 0-2.6.9-4.5.9s-2.7-.9-4.5-.9z" />
+  </Line>
+);

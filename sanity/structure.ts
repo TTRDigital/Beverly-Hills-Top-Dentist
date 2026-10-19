@@ -1,10 +1,10 @@
 import type { StructureResolver } from "sanity/structure";
-import { CalendarCheck, CircleCheck, CircleHelp, Cog, FileText, Home, Images, Info, Layers, MessageSquareQuote, Newspaper, Shield, Smile, Stethoscope, Users } from "lucide-react";
+import { CalendarCheck, CircleCheck, CircleHelp, Cog, FileText, Home, Images, Info, Layers, MapPin, MessageSquareQuote, Newspaper, Shield, Smile, Stethoscope, Users } from "lucide-react";
 
 const singleton = (S: Parameters<StructureResolver>[0], type: string, title: string, icon: React.ComponentType) =>
   S.listItem().title(title).id(type).icon(icon).child(S.document().schemaType(type).documentId(type).title(title));
 
-/** Grouped sidebar: Settings, Pages, Services, Before & after, Team, Reviews, FAQs, Blog. */
+/** Grouped sidebar: Settings, Pages, Services, Areas, Before & after, Team, Reviews, FAQs, Blog. */
 export const structure: StructureResolver = (S) =>
   S.list()
     .title("Beverly Hills Dental")
@@ -24,11 +24,13 @@ export const structure: StructureResolver = (S) =>
               singleton(S, "thankYouPage", "Thank you", CircleCheck),
               singleton(S, "servicesPage", "Services hub", Stethoscope),
               singleton(S, "privacyPage", "Privacy policy", Shield),
+              singleton(S, "areasPage", "Areas We Serve hub", MapPin),
             ]),
         ),
       S.divider(),
       S.listItem().title("Service categories").icon(Stethoscope).child(S.documentTypeList("serviceCategory").title("Service categories").defaultOrdering([{ field: "order", direction: "asc" }])),
       S.listItem().title("Services").icon(FileText).child(S.documentTypeList("service").title("Services").defaultOrdering([{ field: "order", direction: "asc" }])),
+      S.listItem().title("Area pages").icon(MapPin).child(S.documentTypeList("areaPage").title("Area pages").defaultOrdering([{ field: "order", direction: "asc" }])),
       S.divider(),
       S.listItem().title("Before & after cases").icon(Images).child(S.documentTypeList("beforeAfterCase").title("Before & after cases").defaultOrdering([{ field: "order", direction: "asc" }])),
       S.listItem().title("Team").icon(Users).child(S.documentTypeList("teamMember").title("Team").defaultOrdering([{ field: "order", direction: "asc" }])),

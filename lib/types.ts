@@ -125,6 +125,8 @@ export type SiteSettings = {
   logo: Img;
   footerLogo: Img;
   privacyPolicyUrl: string;
+  /** Short trust points shown under the call-to-action buttons (area pages). */
+  trustStrip: string[];
 };
 
 export type TeamMember = {
@@ -180,3 +182,59 @@ export type ThankYouContent = { heading: string; text: string; seo: Seo };
 export type HubContent = { title: string; sections: Section[]; seo: Seo };
 
 export type LegalContent = { title: string; body: Paragraphs; seo: Seo };
+
+/* ---------- Areas We Serve ---------- */
+
+export type AreaTreatment = { title: string; text: string; links: Link[] };
+export type AreaWhyItem = { title: string; text: string };
+
+/** One neighborhood page under /areas-we-serve/. approved: false = noindex, out of the sitemap. */
+export type AreaPage = {
+  slug: string;
+  order: number;
+  approved: boolean;
+  name: string;
+  zips: string[];
+  /** The line on this area's hub card. */
+  cardLine: string;
+  heading: string;
+  subhead: string;
+  heroImage?: Img;
+  intro: Paragraphs;
+  gettingHere: Paragraphs;
+  /** Start point of the route map; the end point is the office. */
+  mapFrom: string;
+  mapTitle: string;
+  treatmentsHeading: string;
+  treatments: AreaTreatment[];
+  whyHeading: string;
+  whyItems: AreaWhyItem[];
+  whyText: Paragraphs;
+  faqs: Faq[];
+  /** Shown only when real reviews with written permission are added. */
+  reviews: Testimonial[];
+  seo: Seo;
+};
+
+export type AreasHub = {
+  approved: boolean;
+  heading: string;
+  subhead: string;
+  heroImage?: Img;
+  intro: Paragraphs;
+  /** Optional custom map (e.g. Google My Maps with the six areas shaded); otherwise the office pin. */
+  mapEmbedUrl?: string;
+  mapCaption: string;
+  cardsHeading: string;
+  whyHeading: string;
+  whyItems: AreaWhyItem[];
+  whyText: Paragraphs;
+  planHeading: string;
+  planText: Paragraphs;
+  faqs: Faq[];
+  zipsHeading: string;
+  zips: string;
+  ctaHeading: string;
+  ctaText: string;
+  seo: Seo;
+};

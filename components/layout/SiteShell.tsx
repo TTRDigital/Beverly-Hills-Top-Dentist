@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { getSiteSettings, getTeam, getTestimonials } from "@/lib/content";
+import { getAreasHub, getSiteSettings, getTeam, getTestimonials } from "@/lib/content";
 import { businessSchema } from "@/lib/schema";
 import { revealScript } from "@/lib/reveal-script";
 import { JsonLd } from "@/components/ui/JsonLd";
@@ -12,7 +12,7 @@ import { AttributionCapture } from "@/components/forms/AttributionCapture";
 
 /** Header, footer and site-wide behaviors. Used by the site layout and the 404 page. */
 export async function SiteShell({ children }: { children: ReactNode }) {
-  const [settings, team, testimonials] = await Promise.all([getSiteSettings(), getTeam(), getTestimonials()]);
+  const [settings, team, testimonials, areas] = await Promise.all([getSiteSettings(), getTeam(), getTestimonials(), getAreasHub()]);
   return (
     <>
       <JsonLd data={businessSchema(settings, team, testimonials)} />
@@ -23,7 +23,7 @@ export async function SiteShell({ children }: { children: ReactNode }) {
       <main id="main" tabIndex={-1} className="outline-none">
         {children}
       </main>
-      <Footer settings={settings} />
+      <Footer settings={settings} areasLink={areas.approved} />
       <ChatWidget />
       <AttributionCapture />
       <HydrationSignal />

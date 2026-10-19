@@ -82,6 +82,7 @@ export function Header({ menu, cta, phone, phoneHref, logo, siteName }: { menu: 
             <li>
               <Link
                 href={cta.href}
+                data-track="book_appointment"
                 aria-current={norm(cta.href) === path ? "page" : undefined}
                 className={`block border-b-2 border-ink px-2 py-2 text-[15.1px] font-bold uppercase leading-[1.2] ${linkCls(norm(cta.href) === path)}`}
               >
@@ -134,7 +135,7 @@ export function Header({ menu, cta, phone, phoneHref, logo, siteName }: { menu: 
                 <MobileItem key={item.label} item={item} path={path} depth={0} expanded={expanded} setExpanded={setExpanded} onNavigate={() => setOpen(false)} />
               ))}
               <li>
-                <Link href={cta.href} onClick={() => setOpen(false)} className={`block py-1.5 text-lg font-bold ${linkCls(norm(cta.href) === path)}`}>
+                <Link href={cta.href} data-track="book_appointment" onClick={() => setOpen(false)} className={`block py-1.5 text-lg font-bold ${linkCls(norm(cta.href) === path)}`}>
                   {cta.label}
                 </Link>
               </li>
