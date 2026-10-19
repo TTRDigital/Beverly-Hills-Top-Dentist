@@ -9,7 +9,7 @@ const SOCIAL = {
   google: { Icon: Google, bg: "bg-google", label: "Google" },
 } as const;
 
-/** Dark footer from the old site: logo, address and phone, social squares, working hours; plus a privacy policy link. */
+/** Dark footer from the old site: logo, address and phone, social squares, working hours. */
 export function Footer({ settings: s }: { settings: SiteSettings }) {
   const address = `${s.street}, ${s.city}, ${s.region} ${s.postalCode}`;
   return (
@@ -56,13 +56,6 @@ export function Footer({ settings: s }: { settings: SiteSettings }) {
               </li>
             ))}
           </ul>
-        </div>
-      </div>
-      <div className="border-t border-white/10">
-        <div className="container-x px-2.5 py-4 text-sm">
-          <Link href={s.privacyPolicyUrl || "/privacy-policy/"} className="text-white/80 underline-offset-2 transition-colors hover:text-brand-2 hover:underline">
-            Privacy Policy
-          </Link>
         </div>
       </div>
     </footer>

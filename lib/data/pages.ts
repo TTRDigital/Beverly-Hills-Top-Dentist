@@ -202,5 +202,7 @@ export const fallbackPrivacy: LegalContent = {
   seo: {
     title: "Privacy Policy - Beverly Hills Dental",
     description: "How Beverly Hills Dental Arts Studio collects and uses the information you send through this website, including phone, text message and email consent.",
+    // Draft awaiting the practice's approval: not linked anywhere, kept out of search.
+    noIndex: true,
   },
 };

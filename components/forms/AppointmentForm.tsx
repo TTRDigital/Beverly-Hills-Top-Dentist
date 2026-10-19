@@ -26,7 +26,7 @@ const LABELS: Record<Field, string> = { full_name: "Full Name", email: "Email Ad
  * posted to /api/lead.php. Spam is filtered with a hidden field and a timing
  * check. On success the visitor lands on /thank-you/.
  */
-export function AppointmentForm({ buttonLabel, businessName, phone, phoneHref, privacyUrl }: { buttonLabel: string; businessName: string; phone: string; phoneHref: string; privacyUrl: string }) {
+export function AppointmentForm({ buttonLabel, businessName, phone, phoneHref }: { buttonLabel: string; businessName: string; phone: string; phoneHref: string }) {
   const router = useRouter();
   const uid = useId();
   const formRef = useRef<HTMLFormElement>(null);
@@ -174,11 +174,7 @@ export function AppointmentForm({ buttonLabel, businessName, phone, phoneHref, p
               className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-[#31794b]"
             />
             <span>
-              I agree to be contacted by {businessName} by phone, text or email about my appointment request, and I have read the{" "}
-              <a href={privacyUrl} className="font-semibold underline underline-offset-2 hover:text-white">
-                Privacy Policy
-              </a>
-              . Message and data rates may apply. Reply STOP to opt out.
+              I agree to be contacted by {businessName} by phone, text or email about my appointment request. Message and data rates may apply. Reply STOP to opt out.
             </span>
           </label>
           {err("consent")}

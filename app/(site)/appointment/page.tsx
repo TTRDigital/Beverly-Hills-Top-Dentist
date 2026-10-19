@@ -48,7 +48,7 @@ export default async function AppointmentPage() {
             </ul>
           </div>
           <div className="md:w-[60%] md:px-[28px]">
-            <AppointmentForm buttonLabel={page.formButton} businessName={s.name} phone={s.phone} phoneHref={s.phoneHref} privacyUrl={s.privacyPolicyUrl} />
+            <AppointmentForm buttonLabel={page.formButton} businessName={s.name} phone={s.phone} phoneHref={s.phoneHref} />
           </div>
         </div>
       </section>
