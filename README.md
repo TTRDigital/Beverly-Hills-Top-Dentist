@@ -36,7 +36,13 @@ Also redirected: every old `/wp-content/uploads/...` photo (any WordPress size) 
 1. **Sanity project:** `q5yxih7t`, dataset `production` (defaults in `sanity/env.ts`).
 2. **CORS:** in sanity.io/manage > project q5yxih7t > API > CORS origins, add `https://beverlyhillstopdentist.com`, `https://www.beverlyhillstopdentist.com` and `http://localhost:3000`, each with "Allow credentials". Without it, /cms shows "Add CORS origin".
 3. **Local env:** copy `.env.example` to `.env.local`.
-4. **Load the content into Sanity (once):** create an Editor token (sanity.io/manage > API > Tokens), put it in `.env.local` as `SANITY_WRITE_TOKEN`, then `npm install && npm run seed`. It uploads 96 files (photos, icons and the hero video) and writes 78 documents. Running it again only adds missing documents; `npm run seed -- --force` overwrites the CMS with the built-in content; `npm run seed -- --dry-run` checks everything without writing. Delete or rotate the token afterwards.
+4. **Load the content into Sanity (once), all in the browser:**
+   1. Create an Editor token: sanity.io/manage > project q5yxih7t > API > Tokens > Add API token (permission: Editor).
+   2. Add it on GitHub: this repo > Settings > Secrets and variables > Actions > New repository secret, name `SANITY_WRITE_TOKEN`.
+   3. Run it: Actions > "Load content into Sanity" > Run workflow (on this branch), mode **add-missing**. It uploads 96 files (photos, icons and the hero video) and writes 78 documents. **overwrite** replaces the CMS with the built-in content; **dry-run** checks without writing.
+   4. Delete or rotate the token afterwards (sanity.io/manage > API > Tokens).
+
+   On a computer instead: put the token in `.env.local` as `SANITY_WRITE_TOKEN`, then `npm install && npm run seed` (`-- --force` to overwrite, `-- --dry-run` to check).
 5. **Run:** `npm run dev`, then http://localhost:3000 and http://localhost:3000/cms.
 
 ## Hosting on SiteGround
