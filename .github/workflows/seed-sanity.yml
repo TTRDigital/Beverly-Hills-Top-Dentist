@@ -15,6 +15,10 @@ on:
         type: choice
         options: [add-missing, overwrite, dry-run]
         default: add-missing
+      only:
+        description: "Optional: only documents whose ID starts with these, comma-separated (e.g. areasPage,areaPage-). Empty = everything."
+        type: string
+        default: ""
 
 permissions:
   contents: read
@@ -37,13 +41,14 @@ jobs:
         env:
           SANITY_WRITE_TOKEN: ${{ secrets.SANITY_WRITE_TOKEN }}
           MODE: ${{ inputs.mode }}
+          ONLY: ${{ inputs.only }}
         run: |
           if [ -z "$SANITY_WRITE_TOKEN" ] && [ "$MODE" != "dry-run" ]; then
             echo "::error::Add the SANITY_WRITE_TOKEN secret first (Settings > Secrets and variables > Actions)."
             exit 1
           fi
           case "$MODE" in
-            overwrite) npm run seed -- --force ;;
-            dry-run) npm run seed -- --dry-run ;;
-            *) npm run seed ;;
+            overwrite) npm run seed -- --force ${ONLY:+--only=$ONLY} ;;
+            dry-run) npm run seed -- --dry-run ${ONLY:+--only=$ONLY} ;;
+            *) npm run seed -- ${ONLY:+--only=$ONLY} ;;
           esac

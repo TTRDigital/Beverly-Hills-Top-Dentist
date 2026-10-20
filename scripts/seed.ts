@@ -5,6 +5,7 @@
  *   npm run seed            # create documents that don't exist yet
  *   npm run seed -- --force # overwrite everything with the built-in content
  *   npm run seed -- --dry-run  # build every document without uploading or writing
+ *   npm run seed -- --force --only=areasPage,areaPage-  # only documents whose ID starts with these
  *
  * Writes to project q5yxih7t / production unless NEXT_PUBLIC_SANITY_PROJECT_ID /
  * NEXT_PUBLIC_SANITY_DATASET say otherwise (environment or .env.local). Needs
@@ -42,6 +43,8 @@ const { dataset, projectId } = await import("../sanity/env.ts");
 const token = process.env.SANITY_WRITE_TOKEN;
 const force = process.argv.includes("--force");
 const dryRun = process.argv.includes("--dry-run");
+// --only=areasPage,areaPage- limits the run to documents whose ID starts with one of these.
+const only = (process.argv.find((a) => a.startsWith("--only="))?.slice(7) ?? "").split(",").map((x) => x.trim()).filter(Boolean);
 
 if (!dryRun && (!projectId || !token)) {
   console.error("Set SANITY_WRITE_TOKEN in .env.local (Editor token from sanity.io/manage > API > Tokens).");
@@ -301,7 +304,7 @@ const clean = (v: unknown): unknown =>
       : v;
 
 console.log(`Seeding ${projectId}/${dataset}${force ? " (overwriting)" : " (keeping existing documents)"}${dryRun ? " [dry run]" : ""}. Uploading photos`);
-const docs = (await build()).map((d) => clean(d) as { _id: string; _type: string });
+const docs = (await build()).map((d) => clean(d) as { _id: string; _type: string }).filter((d) => !only.length || only.some((p) => d._id.startsWith(p)));
 console.log(`\n${uploaded.size} files ${dryRun ? "checked" : "uploaded"}. Writing ${docs.length} documents…`);
 if (dryRun) {
   const counts = docs.reduce<Record<string, number>>((acc, d) => ((acc[d._type] = (acc[d._type] ?? 0) + 1), acc), {});

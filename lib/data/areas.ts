@@ -5,6 +5,7 @@
  *
  * approved: false keeps a page out of search (noindex) and out of the sitemap,
  * and hides the site-wide links to the hub, until Dr. Shir approves it.
+ * All seven were approved for publishing on Oct 20, 2026.
  * Statements marked [confirm] in the handoff are kept as written and listed in
  * the README; they need Dr. Shir's sign-off before approval.
  */
@@ -29,7 +30,7 @@ const L = {
 const learn = (href: string) => [{ label: "Learn more", href }];
 
 export const fallbackAreasHub: AreasHub = {
-  approved: false,
+  approved: true,
   heading: "Areas We Serve From Our Beverly Hills Office",
   subhead: "One office at 416 N. Bedford Drive, a short drive from six West LA neighborhoods.",
   heroImage: images.hallwayWide2,
@@ -72,7 +73,7 @@ export const fallbackAreaPages: AreaPage[] = [
   {
     slug: "beverly-grove",
     order: 1,
-    approved: false,
+    approved: true,
     name: "Beverly Grove",
     zips: ["90048"],
     cardLine: "About 10 minutes via Beverly Blvd. Popular: veneers, crowns, TMJ care.",
@@ -121,7 +122,7 @@ export const fallbackAreaPages: AreaPage[] = [
   {
     slug: "century-city",
     order: 2,
-    approved: false,
+    approved: true,
     name: "Century City",
     zips: ["90067"],
     cardLine: "About 8 minutes via Santa Monica Blvd. Popular: sleep care, night guards, TMJ.",
@@ -166,7 +167,7 @@ export const fallbackAreaPages: AreaPage[] = [
   {
     slug: "west-hollywood",
     order: 3,
-    approved: false,
+    approved: true,
     name: "West Hollywood",
     zips: ["90069", "90046"],
     cardLine: "About 10 minutes via Santa Monica Blvd. Popular: gum contouring, veneers, whitening.",
@@ -211,7 +212,7 @@ export const fallbackAreaPages: AreaPage[] = [
   {
     slug: "culver-city",
     order: 4,
-    approved: false,
+    approved: true,
     name: "Culver City",
     zips: ["90230", "90232", "90231", "90233"],
     cardLine: "About 20 minutes via Robertson Blvd. Popular: bridges, restorative care.",
@@ -256,7 +257,7 @@ export const fallbackAreaPages: AreaPage[] = [
   {
     slug: "west-la-palms",
     order: 5,
-    approved: false,
+    approved: true,
     name: "West LA & Palms",
     zips: ["90064", "90034"],
     cardLine: "About 18 minutes via Robertson Blvd. Popular: family checkups, fillings, aligners.",
@@ -309,7 +310,7 @@ export const fallbackAreaPages: AreaPage[] = [
   {
     slug: "hollywood",
     order: 6,
-    approved: false,
+    approved: true,
     name: "Hollywood",
     zips: ["90038"],
     cardLine: "About 20 minutes via Melrose Ave. Popular: veneers, whitening, bonding.",
