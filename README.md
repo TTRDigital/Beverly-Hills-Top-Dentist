@@ -38,6 +38,7 @@ Built from the handoff "BHDAS — Areas We Serve: Developer Build Handoff" (Oct 
 
 - **Template** (every area page): hero with a real office photo, H1, drive-time subhead, Book + Call → trust strip → intro → Getting here with a lazy-loaded Google route map → popular treatments (cards; "Learn more" only to the Beverly Hills pages the handoff marks OK) → CTA band → why patients make the trip (icon row) → reviews (hidden until reviews with written permission are added) → FAQ → final CTA with the 4-field form and office hours → sticky Call/Book bar on phones.
 - **Hub:** hero → trust strip → intro → office map → six area cards → why patients make the trip → planning your first visit → FAQ → zip list → final CTA. A custom map (e.g. Google My Maps with the six areas shaded) can be pasted into "Custom map embed URL".
+- **Published Oct 20, 2026** (all seven approved).
 - **Not published until approved:** each page has an "Approved by Dr. Shir" switch. Off (the default): the page works at its address for review but is noindex and not in the sitemap, and the footer "Areas We Serve" link and the homepage "See the areas we serve" link stay hidden. Turn the hub on together with its area pages.
 - **Schema:** FAQPage (the five questions on the page, word for word) and BreadcrumbList on each page; `areaServed` added to the one site-wide Dentist entity; the address stays the Beverly Hills office.
 - **Tracking:** Book clicks send `book_appointment`, Call clicks `click_to_call`, form sends `generate_lead`, each with a `page` parameter (e.g. `area-culver-city`). Sent to GA4 or GTM once `GA_ID` / `GTM_ID` are set. The header button sends `book_appointment` too.
@@ -51,7 +52,7 @@ Built from the handoff "BHDAS — Areas We Serve: Developer Build Handoff" (Oct 
 4. **Load the content into Sanity (once), all in the browser:**
    1. Create an Editor token: sanity.io/manage > project q5yxih7t > API > Tokens > Add API token (permission: Editor).
    2. Add it on GitHub: this repo > Settings > Secrets and variables > Actions > New repository secret, name `SANITY_WRITE_TOKEN`.
-   3. Run it: Actions > "Load content into Sanity" > Run workflow (on this branch), mode **add-missing**. It uploads 96 files (photos, icons and the hero video) and writes 78 documents. **overwrite** replaces the CMS with the built-in content; **dry-run** checks without writing.
+   3. Run it: Actions > "Load content into Sanity" > Run workflow (on this branch), mode **add-missing**. It uploads 96 files (photos, icons and the hero video) and writes 78 documents. **overwrite** replaces the CMS with the built-in content; **dry-run** checks without writing. The optional **only** box limits a run to documents whose ID starts with the given text, e.g. `areasPage,areaPage-` for the Areas We Serve pages.
    4. Delete or rotate the token afterwards (sanity.io/manage > API > Tokens).
 
    On a computer instead: put the token in `.env.local` as `SANITY_WRITE_TOKEN`, then `npm install && npm run seed` (`-- --force` to overwrite, `-- --dry-run` to check).
