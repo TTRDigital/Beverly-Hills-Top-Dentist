@@ -19,7 +19,7 @@ function isActive(item: MenuItem, path: string): boolean {
 /**
  * Sticky header like the old Blocksy header: sage bar, logo left, uppercase
  * menu right. Services opens a dropdown whose items open a second level to
- * the left. Below 1000px a hamburger opens a side panel with accordion menus.
+ * the left. Below 1200px a hamburger opens a side panel with accordion menus.
  */
 export function Header({ menu, cta, phone, phoneHref, logo, siteName }: { menu: MenuItem[]; cta: LinkT; phone: string; phoneHref: string; logo: Img; siteName: string }) {
   const path = norm(usePathname() || "/");
@@ -56,7 +56,7 @@ export function Header({ menu, cta, phone, phoneHref, logo, siteName }: { menu: 
         </Link>
 
         {/* Desktop menu */}
-        <nav aria-label="Main menu" className="hidden min-[1000px]:block">
+        <nav aria-label="Main menu" className="hidden min-[1200px]:block">
           <ul className="flex items-center gap-[10px]">
             {menu.map((item) => (
               <li key={item.label} className="group/top relative">
@@ -65,7 +65,7 @@ export function Header({ menu, cta, phone, phoneHref, logo, siteName }: { menu: 
                     <button
                       type="button"
                       aria-haspopup="true"
-                      className={`flex items-center gap-2 px-[7.5px] py-3 text-[15.1px] font-bold uppercase leading-[1.2] ${linkCls(isActive(item, path))}`}
+                      className={`flex items-center gap-2 whitespace-nowrap px-[7.5px] py-3 text-[15.1px] font-bold uppercase leading-[1.2] ${linkCls(isActive(item, path))}`}
                     >
                       {item.label}
                       <ChevronDown className="h-2 w-2 transition-transform duration-200 group-hover/top:rotate-180" />
@@ -73,7 +73,7 @@ export function Header({ menu, cta, phone, phoneHref, logo, siteName }: { menu: 
                     <Dropdown items={item.children} path={path} />
                   </>
                 ) : (
-                  <Link href={item.href} aria-current={isActive(item, path) ? "page" : undefined} className={`block px-[7.5px] py-3 text-[15.1px] font-bold uppercase leading-[1.2] ${linkCls(isActive(item, path))}`}>
+                  <Link href={item.href} aria-current={isActive(item, path) ? "page" : undefined} className={`block whitespace-nowrap px-[7.5px] py-3 text-[15.1px] font-bold uppercase leading-[1.2] ${linkCls(isActive(item, path))}`}>
                     {item.label}
                   </Link>
                 )}
@@ -84,13 +84,13 @@ export function Header({ menu, cta, phone, phoneHref, logo, siteName }: { menu: 
                 href={cta.href}
                 data-track="book_appointment"
                 aria-current={norm(cta.href) === path ? "page" : undefined}
-                className={`block border-b-2 border-ink px-2 py-2 text-[15.1px] font-bold uppercase leading-[1.2] ${linkCls(norm(cta.href) === path)}`}
+                className={`block whitespace-nowrap border-b-2 border-ink px-2 py-2 text-[15.1px] font-bold uppercase leading-[1.2] ${linkCls(norm(cta.href) === path)}`}
               >
                 {cta.label}
               </Link>
             </li>
             <li>
-              <a href={phoneHref} data-track="click_to_call" className="block px-[7.5px] py-3 text-[15.1px] font-bold leading-[1.2] text-ink transition-colors hover:text-brand-2">
+              <a href={phoneHref} data-track="click_to_call" className="block whitespace-nowrap px-[7.5px] py-3 text-[15.1px] font-bold leading-[1.2] text-ink transition-colors hover:text-brand-2">
                 {phone}
               </a>
             </li>
@@ -105,14 +105,14 @@ export function Header({ menu, cta, phone, phoneHref, logo, siteName }: { menu: 
           aria-expanded={open}
           aria-controls="offcanvas"
           aria-label="Open menu"
-          className="-mr-2 flex h-11 w-11 items-center justify-center text-ink min-[1000px]:hidden"
+          className="-mr-2 flex h-11 w-11 items-center justify-center text-ink min-[1200px]:hidden"
         >
           <MenuIcon />
         </button>
       </div>
 
       {/* Mobile side panel */}
-      <div className={`fixed inset-0 z-[60] min-[1000px]:hidden ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
+      <div className={`fixed inset-0 z-[60] min-[1200px]:hidden ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
         <div className={`absolute inset-0 bg-black/30 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0"}`} onClick={close} />
         <div
           id="offcanvas"

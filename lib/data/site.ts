@@ -77,6 +77,19 @@ export const fallbackMenu: MenuItem[] = [
       },
     ],
   },
+  {
+    label: "Areas We Serve",
+    href: "/areas-we-serve/",
+    children: [
+      { label: "All Areas We Serve", href: "/areas-we-serve/" },
+      { label: "Beverly Grove", href: "/areas-we-serve/beverly-grove/" },
+      { label: "Century City", href: "/areas-we-serve/century-city/" },
+      { label: "West Hollywood", href: "/areas-we-serve/west-hollywood/" },
+      { label: "Culver City", href: "/areas-we-serve/culver-city/" },
+      { label: "West LA & Palms", href: "/areas-we-serve/west-la-palms/" },
+      { label: "Hollywood", href: "/areas-we-serve/hollywood/" },
+    ],
+  },
 ];
 
 export const fallbackSettings: Omit<SiteSettings, "phoneHref"> = {
