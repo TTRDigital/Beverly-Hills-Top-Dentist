@@ -12,7 +12,8 @@ ErrorDocument 404 /404.html
 
   # One address: https://beverlyhillstopdentist.com (no www), like the old site's canonical URLs.
   # (turn on "HTTPS Enforce" in SiteGround Site Tools > Security > SSL Manager too)
-  RewriteCond %{HTTP_HOST} ^www\.beverlyhillstopdentist\.com$ [NC]
+  # The SiteGround temporary address (kiarashk2.sg-host.com) also goes to the main domain.
+  RewriteCond %{HTTP_HOST} ^(www\.beverlyhillstopdentist\.com|kiarashk2\.sg-host\.com)$ [NC]
   RewriteRule ^(.*)$ https://beverlyhillstopdentist.com/$1 [R=301,L]
 
   # ---- Old WordPress URLs (generated from the old site; keep above the slash rule) ----
