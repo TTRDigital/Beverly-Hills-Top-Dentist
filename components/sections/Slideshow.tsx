@@ -17,7 +17,7 @@ export function Slideshow({ images, interval = 5000, sizes = "100vw" }: { images
       {images.map((img, n) => (
         <div key={img.src} className={`absolute inset-0 transition-opacity duration-1000 ${n === i ? "opacity-100" : "opacity-0"}`}>
           {/* The band sits below the first screen, so every slide loads lazily. */}
-          <Image src={img.src} alt={img.alt ?? ""} fill sizes={sizes} className="object-cover" loading="lazy" />
+          <Image src={img.src} alt={img.alt || "Beverly Hills Dental Arts Studio office"} fill sizes={sizes} className="object-cover" loading="lazy" />
         </div>
       ))}
     </div>

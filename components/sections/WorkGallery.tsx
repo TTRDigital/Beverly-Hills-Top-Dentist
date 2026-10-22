@@ -34,7 +34,7 @@ export function WorkGallery({ label, cases }: { label: string; cases: BeforeAfte
             aria-label={`Enlarge: ${c.image.alt || c.title}`}
             className="relative block aspect-square w-full cursor-zoom-in overflow-hidden rounded-[12px] focus-visible:outline-offset-4"
           >
-            <Image src={c.image.src} alt={c.image.alt ?? ""} fill sizes="(min-width: 768px) 30vw, 90vw" className="object-cover" />
+            <Image src={c.image.src} alt={c.image.alt || `${c.title}: before and after`} fill sizes="(min-width: 768px) 30vw, 90vw" className="object-cover" />
           </button>
         ))}
       </Carousel>
@@ -53,7 +53,7 @@ export function WorkGallery({ label, cases }: { label: string; cases: BeforeAfte
           <div className="relative flex h-[100svh] w-screen items-center justify-center p-4 md:p-16">
             <Image
               src={current.image.src}
-              alt={current.image.alt ?? ""}
+              alt={current.image.alt || `${current.title}: before and after`}
               width={current.image.width}
               height={current.image.height}
               sizes="(min-width: 768px) 80vw, 100vw"

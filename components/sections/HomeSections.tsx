@@ -40,7 +40,7 @@ export function HomeIntro({ intro }: { intro: HomeContent["intro"] }) {
           <article key={i} className="flex flex-col" data-reveal style={{ "--i": i } as React.CSSProperties}>
             {c.image ? (
               <div className="relative aspect-video overflow-hidden">
-                <Image src={c.image.src} alt={c.image.alt ?? ""} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+                <Image src={c.image.src} alt={c.image.alt || c.title} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
               </div>
             ) : null}
             <div className="flex-1 bg-paper p-5">
@@ -111,7 +111,7 @@ export function HomeValues({ values, areasLink = false }: { values: HomeContent[
       <div className="mt-[60px] grid md:grid-cols-3">
         {values.cards.map((c, i) => (
           <article key={i} className="relative flex min-h-[650px] flex-col justify-end overflow-hidden p-10 text-white">
-            {c.image ? <Image src={c.image.src} alt={c.image.alt ?? ""} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" /> : null}
+            {c.image ? <Image src={c.image.src} alt={c.image.alt || c.title} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" /> : null}
             <div aria-hidden="true" className="absolute inset-0 bg-black/25" />
             <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/45 to-transparent" />
             <div className="relative">

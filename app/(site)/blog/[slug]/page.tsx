@@ -39,7 +39,7 @@ export default async function PostPage({ params }: Props) {
       <div className="container-box max-w-[820px]">
         <p className="text-sm text-sage">{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}</p>
         <h1 className="mt-2 text-h1 font-semibold">{post.title}</h1>
-        {post.image ? <Image src={post.image.src} alt={post.image.alt ?? ""} width={post.image.width} height={post.image.height} sizes="820px" className="mt-8 h-auto w-full" /> : null}
+        {post.image ? <Image src={post.image.src} alt={post.image.alt || post.title} width={post.image.width} height={post.image.height} sizes="820px" className="mt-8 h-auto w-full" /> : null}
         <RichText paras={post.body} className="mt-8" />
       </div>
     </article>

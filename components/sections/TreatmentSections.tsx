@@ -41,7 +41,7 @@ export function Hero({ s, first = true }: { s: HeroSection; first?: boolean }) {
   return (
     <section className="relative flex min-h-[637px] flex-col justify-end overflow-hidden py-[100px] md:aspect-video md:min-h-0">
       {s.image ? (
-        <Image src={s.image.src} alt={s.image.alt ?? ""} fill loading={first ? "eager" : "lazy"} fetchPriority={first ? "high" : undefined} sizes="100vw" className="object-cover" />
+        <Image src={s.image.src} alt={s.image.alt || s.heading} fill loading={first ? "eager" : "lazy"} fetchPriority={first ? "high" : undefined} sizes="100vw" className="object-cover" />
       ) : (
         <div className="absolute inset-0 bg-night" />
       )}
@@ -86,7 +86,7 @@ export function AccordionFeature({ s }: { s: AccordionFeatureSection }) {
         <div className="mt-[50px] flex flex-col-reverse gap-10 lg:flex-row lg:gap-[92px]">
           {s.image ? (
             <div className="relative h-[337px] lg:h-[700px] lg:w-[48.6%] lg:shrink-0">
-              <Image src={s.image.src} alt={s.image.alt ?? ""} fill sizes="(min-width: 1024px) 55vw, 90vw" className="object-cover" />
+              <Image src={s.image.src} alt={s.image.alt || s.heading} fill sizes="(min-width: 1024px) 55vw, 90vw" className="object-cover" />
             </div>
           ) : null}
           <div className="flex-1 lg:px-2.5">
@@ -140,7 +140,7 @@ export function CardPair({ s }: { s: CardPairSection }) {
               <div key={i}>
                 {c.image ? (
                   <div className="relative h-[270px]">
-                    <Image src={c.image.src} alt={c.image.alt ?? ""} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" className="object-cover" />
+                    <Image src={c.image.src} alt={c.image.alt || c.title} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" className="object-cover" />
                   </div>
                 ) : null}
                 <h3 className="mb-2.5 mt-[25px] text-h3 font-semibold uppercase text-black">{c.title}</h3>
@@ -200,7 +200,7 @@ export function Steps({ s }: { s: StepsSection }) {
 export function ImageBand({ s }: { s: ImageBandSection }) {
   return (
     <section className="relative flex min-h-[400px] flex-col justify-end overflow-hidden p-5 md:aspect-video md:min-h-0 md:px-[90px] md:py-20">
-      {s.image ? <Image src={s.image.src} alt={s.image.alt ?? ""} fill sizes="100vw" className="object-cover" /> : <div className="absolute inset-0 bg-night" />}
+      {s.image ? <Image src={s.image.src} alt={s.image.alt || s.heading} fill sizes="100vw" className="object-cover" /> : <div className="absolute inset-0 bg-night" />}
       <Shade overlay={s.overlay} opacity={s.overlayOpacity} side="left" />
       <div className="relative text-white">
         <h2 className="h2 uppercase">{s.heading}</h2>
@@ -259,7 +259,7 @@ export function Topics({ s }: { s: TopicsSection }) {
           <ul className="mt-16 grid grid-cols-2 items-center gap-8 sm:grid-cols-3 lg:grid-cols-5" aria-label="Insurance accepted">
             {s.logos.map((l) => (
               <li key={l.src} className="flex justify-center">
-                <Image src={l.src} alt={l.alt ?? ""} width={l.width} height={l.height} sizes="224px" className="h-auto max-h-16 w-auto max-w-[210px] object-contain opacity-80 grayscale" />
+                <Image src={l.src} alt={l.alt || "Insurance plan accepted"} width={l.width} height={l.height} sizes="224px" className="h-auto max-h-16 w-auto max-w-[210px] object-contain opacity-80 grayscale" />
               </li>
             ))}
           </ul>
@@ -280,7 +280,7 @@ export function IconFeatures({ s }: { s: IconFeaturesSection }) {
         <div className="mt-12 grid gap-12 md:mt-0 md:grid-cols-3 md:gap-[50px] md:pt-20">
           {s.items.map((it, i) => (
             <div key={i} className="text-center">
-              {it.icon ? <Image src={it.icon.src} alt={it.icon.alt ?? ""} width={96} height={96} className="mx-auto h-20 w-20 md:h-[100px] md:w-[100px]" /> : null}
+              {it.icon ? <Image src={it.icon.src} alt={it.icon.alt || it.title} width={96} height={96} className="mx-auto h-20 w-20 md:h-[100px] md:w-[100px]" /> : null}
               <h3 className="mt-5 text-h3 font-semibold">{it.title}</h3>
               <p className="mt-2">{it.text}</p>
             </div>

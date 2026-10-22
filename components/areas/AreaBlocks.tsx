@@ -47,7 +47,7 @@ export function AreaHero({ s, page, heading, subhead, image }: { s: SiteSettings
   return (
     <section className="relative flex min-h-[460px] flex-col justify-end overflow-hidden py-12 md:min-h-[560px] md:py-20">
       {image ? (
-        <Image src={image.src} alt={image.alt ?? ""} fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover" />
+        <Image src={image.src} alt={image.alt || heading} fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover" />
       ) : (
         <div className="absolute inset-0 bg-night" />
       )}

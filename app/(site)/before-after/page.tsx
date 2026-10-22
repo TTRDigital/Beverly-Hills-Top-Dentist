@@ -36,7 +36,7 @@ export default async function BeforeAfterPage() {
           <ul className="hidden grid-cols-3 gap-[15px] lg:grid">
             {grid.map((c) => (
               <li key={c.id} className="relative aspect-square overflow-hidden">
-                <Image src={c.image.src} alt={c.image.alt ?? ""} fill sizes="(min-width: 1024px) 430px, 33vw" className="object-cover" />
+                <Image src={c.image.src} alt={c.image.alt || `${c.title}: before and after`} fill sizes="(min-width: 1024px) 430px, 33vw" className="object-cover" />
               </li>
             ))}
           </ul>
@@ -44,7 +44,7 @@ export default async function BeforeAfterPage() {
             <Carousel label={page.gallery.heading} perView="w-full md:w-[calc(50%-5px)]" tone="dark">
               {mobile.map((c) => (
                 <div key={c.id} className="relative min-h-[400px] overflow-hidden">
-                  <Image src={c.image.src} alt={c.image.alt ?? ""} fill sizes="(min-width: 768px) 50vw, 90vw" className="object-cover" />
+                  <Image src={c.image.src} alt={c.image.alt || `${c.title}: before and after`} fill sizes="(min-width: 768px) 50vw, 90vw" className="object-cover" />
                 </div>
               ))}
             </Carousel>

@@ -17,7 +17,7 @@ export default async function AppointmentPage() {
     <div className="bg-paper">
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Appointment", path: "/appointment/" }])} />
       <section className="relative flex min-h-[260px] flex-col justify-end overflow-hidden py-10 md:min-h-[450px] md:py-[60px]">
-        {page.image ? <Image src={page.image.src} alt={page.image.alt ?? ""} fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover object-left-top md:object-[50%_18%]" /> : null}
+        {page.image ? <Image src={page.image.src} alt={page.image.alt || page.heading} fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover object-left-top md:object-[50%_18%]" /> : null}
         <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
         <div className="container-x relative">
           <h1 className="text-h1 font-semibold uppercase text-white">{page.heading}</h1>

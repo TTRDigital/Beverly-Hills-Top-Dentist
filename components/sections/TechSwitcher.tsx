@@ -45,7 +45,7 @@ export function TechSwitcher({ heading, text, items }: Props) {
               <Image
                 key={it.title}
                 src={it.image.src}
-                alt={it.image.alt ?? ""}
+                alt={it.image.alt || it.title}
                 fill
                 sizes="(min-width: 768px) 60vw, 100vw"
                 className={`object-cover transition-[opacity,transform] duration-500 ${active === i ? "scale-100 opacity-100" : "invisible scale-[0.97] opacity-0"}`}
