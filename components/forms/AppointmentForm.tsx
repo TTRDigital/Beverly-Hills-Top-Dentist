@@ -100,7 +100,7 @@ export function AppointmentForm({
     const honeypot = (formRef.current?.elements.namedItem("website_url") as HTMLInputElement | null)?.value ?? "";
 
     try {
-      const res = await fetch("/api/lead.php", {
+      const res = await fetch(process.env.NEXT_PUBLIC_LEAD_ENDPOINT ?? "/api/lead.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

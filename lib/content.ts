@@ -45,7 +45,7 @@ import type {
 
 /* ---------- GROQ fragments ---------- */
 
-const IMG = `{ "src": asset->url, "alt": coalesce(alt, ""), "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height }`;
+const IMG = `{ "src": asset->url, "alt": coalesce(alt, asset->altText, asset->title, ""), "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height }`;
 const SEO = `seo{ title, description, noIndex, "image": ogImage${IMG} }`;
 const LINK = `{ label, href }`;
 
