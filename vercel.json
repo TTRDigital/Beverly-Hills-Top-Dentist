@@ -430,6 +430,306 @@
       "source": "/wp-content/uploads/2026/08/11702_Dr._Daniel_Charlton_Beverly_Hills_Dentist_Art_Studio_v2.mp4/",
       "destination": "/video/home-hero.mp4",
       "statusCode": 301
+    },
+    {
+      "source": "/dental-services/general-family-dentistry/tmj-treatment",
+      "destination": "/services/preventive-dentistry/night-guards/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/general-family-dentistry/tmj-treatment/",
+      "destination": "/services/preventive-dentistry/night-guards/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/cosmetic-dentist/dental-veneers",
+      "destination": "/services/cosmetic-dentistry/porcelain-veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/cosmetic-dentist/dental-veneers/",
+      "destination": "/services/cosmetic-dentistry/porcelain-veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/dental-crowns",
+      "destination": "/services/restorative-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/dental-crowns/",
+      "destination": "/services/restorative-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/periodontal-treatments/gum-contouring",
+      "destination": "/services/periodontic-dentistry/gum-contouring/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/periodontal-treatments/gum-contouring/",
+      "destination": "/services/periodontic-dentistry/gum-contouring/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/cosmetic-dentist/smile-makeover",
+      "destination": "/services/cosmetic-dentistry/smile-makeover/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/cosmetic-dentist/smile-makeover/",
+      "destination": "/services/cosmetic-dentistry/smile-makeover/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/cosmetic-dentist/teeth-whitening",
+      "destination": "/services/cosmetic-dentistry/teeth-whitening/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/cosmetic-dentist/teeth-whitening/",
+      "destination": "/services/cosmetic-dentistry/teeth-whitening/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/periodontal-treatments",
+      "destination": "/services/periodontic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/periodontal-treatments/",
+      "destination": "/services/periodontic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/periodontal-treatments/laser-gum-treatments",
+      "destination": "/services/periodontic-dentistry/laser-gum-treatments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/periodontal-treatments/laser-gum-treatments/",
+      "destination": "/services/periodontic-dentistry/laser-gum-treatments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/cosmetic-dentist",
+      "destination": "/services/cosmetic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/cosmetic-dentist/",
+      "destination": "/services/cosmetic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/dental-bridges",
+      "destination": "/services/restorative-dentistry/dental-bridges/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/dental-bridges/",
+      "destination": "/services/restorative-dentistry/dental-bridges/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/dental-implants",
+      "destination": "/services/dental-implants-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/dental-implants/",
+      "destination": "/services/dental-implants-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/meet-our-team",
+      "destination": "/about-us/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/meet-our-team/",
+      "destination": "/about-us/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/general-family-dentistry/night-guards",
+      "destination": "/services/preventive-dentistry/night-guards/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/general-family-dentistry/night-guards/",
+      "destination": "/services/preventive-dentistry/night-guards/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/root-canal-therapy",
+      "destination": "/services/restorative-dentistry/root-canal-therapy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/root-canal-therapy/",
+      "destination": "/services/restorative-dentistry/root-canal-therapy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/cosmetic-dentist/clear-aligner-therapy",
+      "destination": "/services/cosmetic-dentistry/clear-aligners/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/cosmetic-dentist/clear-aligner-therapy/",
+      "destination": "/services/cosmetic-dentistry/clear-aligners/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/dentures-partials",
+      "destination": "/services/restorative-dentistry/partial-dentures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/dentures-partials/",
+      "destination": "/services/restorative-dentistry/partial-dentures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/general-family-dentistry/emergency-dentist",
+      "destination": "/appointment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/general-family-dentistry/emergency-dentist/",
+      "destination": "/appointment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact",
+      "destination": "/appointment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact/",
+      "destination": "/appointment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/general-family-dentistry/tooth-extractions",
+      "destination": "/services/restorative-dentistry/tooth-extractions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/general-family-dentistry/tooth-extractions/",
+      "destination": "/services/restorative-dentistry/tooth-extractions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/general-family-dentistry/wisdom-teeth-removal",
+      "destination": "/services/restorative-dentistry/wisdom-teeth-extractions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/general-family-dentistry/wisdom-teeth-removal/",
+      "destination": "/services/restorative-dentistry/wisdom-teeth-extractions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/general-family-dentistry/sleep-apnea-treatment",
+      "destination": "/services/preventive-dentistry/sleep-apnea-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/general-family-dentistry/sleep-apnea-treatment/",
+      "destination": "/services/preventive-dentistry/sleep-apnea-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/dental-inlays-onlays",
+      "destination": "/services/restorative-dentistry/porcelain-inlays-onlays/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/dental-inlays-onlays/",
+      "destination": "/services/restorative-dentistry/porcelain-inlays-onlays/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/cosmetic-dentist/enamel-microabrasion",
+      "destination": "/services/cosmetic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/cosmetic-dentist/enamel-microabrasion/",
+      "destination": "/services/cosmetic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry",
+      "destination": "/services/restorative-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/",
+      "destination": "/services/restorative-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/composite-dental-fillings",
+      "destination": "/services/restorative-dentistry/dental-fillings/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/restorative-dentistry/composite-dental-fillings/",
+      "destination": "/services/restorative-dentistry/dental-fillings/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/tour-our-office",
+      "destination": "/about-us/",
+      "statusCode": 301
+    },
+    {
+      "source": "/about-us/tour-our-office/",
+      "destination": "/about-us/",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-resources/patient-forms",
+      "destination": "/appointment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/our-resources/patient-forms/",
+      "destination": "/appointment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/aesthetic-treatments",
+      "destination": "/services/cosmetic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/aesthetic-treatments/",
+      "destination": "/services/cosmetic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/general-family-dentistry",
+      "destination": "/services/preventive-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/general-family-dentistry/",
+      "destination": "/services/preventive-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services",
+      "destination": "/services/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-services/",
+      "destination": "/services/",
+      "statusCode": 301
     }
   ],
   "headers": [
