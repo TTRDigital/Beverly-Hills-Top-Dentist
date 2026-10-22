@@ -6,6 +6,8 @@
  *   npm run seed -- --force # overwrite everything with the built-in content
  *   npm run seed -- --dry-run  # build every document without uploading or writing
  *   npm run seed -- --force --only=areasPage,areaPage-  # only documents whose ID starts with these
+ *   npm run seed -- --seo-only --dry-run  # list the SEO titles and descriptions in Sanity that differ from the built-in ones
+ *   npm run seed -- --seo-only  # set only the SEO title and description of documents already in Sanity (text and photos untouched)
  *
  * Writes to project q5yxih7t / production unless NEXT_PUBLIC_SANITY_PROJECT_ID /
  * NEXT_PUBLIC_SANITY_DATASET say otherwise (environment or .env.local). Needs
@@ -43,6 +45,9 @@ const { dataset, projectId } = await import("../sanity/env.ts");
 const token = process.env.SANITY_WRITE_TOKEN;
 const force = process.argv.includes("--force");
 const dryRun = process.argv.includes("--dry-run");
+// --seo-only sets just the seo field (title, description, noIndex) of documents that already exist in Sanity. It uploads
+// nothing and changes no other field, so approved titles and descriptions can go live without touching text an editor changed.
+const seoOnly = process.argv.includes("--seo-only");
 // --only=areasPage,areaPage- limits the run to documents whose ID starts with one of these.
 const only = (process.argv.find((a) => a.startsWith("--only="))?.slice(7) ?? "").split(",").map((x) => x.trim()).filter(Boolean);
 
@@ -63,7 +68,7 @@ async function asset(src: string, kind: "image" | "file" = "image") {
   if (uploaded.has(src)) return uploaded.get(src)!;
   const file = join(root, "public", src);
   if (!existsSync(file)) throw new Error(`Missing file: ${file}`);
-  if (dryRun) {
+  if (dryRun || seoOnly) {
     uploaded.set(src, `${kind}-dry-${uploaded.size}`);
     return uploaded.get(src)!;
   }
@@ -303,8 +308,40 @@ const clean = (v: unknown): unknown =>
       ? Object.fromEntries(Object.entries(v).filter(([, x]) => x !== undefined && x !== "").map(([k, x]) => [k, clean(x)]))
       : v;
 
-console.log(`Seeding ${projectId}/${dataset}${force ? " (overwriting)" : " (keeping existing documents)"}${dryRun ? " [dry run]" : ""}. Uploading photos`);
+const mode = seoOnly ? " (SEO fields only)" : force ? " (overwriting)" : " (keeping existing documents)";
+console.log(`Seeding ${projectId}/${dataset}${mode}${dryRun ? " [dry run]" : ""}. ${seoOnly ? "Building documents" : "Uploading photos"}`);
 const docs = (await build()).map((d) => clean(d) as { _id: string; _type: string }).filter((d) => !only.length || only.some((p) => d._id.startsWith(p)));
+
+type SeoDoc = { _id: string; seo?: { title?: string; description?: string; noIndex?: boolean } };
+if (seoOnly) {
+  // Only documents that already exist in Sanity are touched, and only where their SEO text differs from the built-in copy.
+  const wanted = docs.filter((d) => "seo" in d) as SeoDoc[];
+  const current = await client.fetch<SeoDoc[]>(`*[_id in $ids]{ _id, seo }`, { ids: wanted.map((d) => d._id) });
+  const byId = new Map(current.map((c) => [c._id, c.seo]));
+  const same = (a?: SeoDoc["seo"], b?: SeoDoc["seo"]) =>
+    (a?.title ?? "") === (b?.title ?? "") && (a?.description ?? "") === (b?.description ?? "") && !!a?.noIndex === !!b?.noIndex;
+  const missing = wanted.filter((d) => !byId.has(d._id)).map((d) => d._id);
+  const changes = wanted.filter((d) => byId.has(d._id) && !same(byId.get(d._id), d.seo));
+  for (const d of changes) {
+    const was = byId.get(d._id);
+    console.log(`\n${d._id}`);
+    if ((was?.title ?? "") !== (d.seo?.title ?? "")) console.log(`  title: ${was?.title ?? "(none)"}\n     -> ${d.seo?.title}`);
+    if ((was?.description ?? "") !== (d.seo?.description ?? "")) console.log(`  description: ${was?.description ?? "(none)"}\n     -> ${d.seo?.description}`);
+  }
+  console.log(`\n${changes.length} of ${wanted.length} documents differ${missing.length ? `; not in Sanity, skipped: ${missing.join(", ")}` : ""}.`);
+  if (dryRun) {
+    console.log("Dry run, nothing written.");
+    process.exit(0);
+  }
+  for (let i = 0; i < changes.length; i += 20) {
+    const tx = client.transaction();
+    for (const d of changes.slice(i, i + 20)) tx.patch(d._id, (p) => p.set({ seo: d.seo }));
+    await tx.commit({ visibility: "async" });
+  }
+  console.log(`Done: SEO fields set on ${changes.length} documents. The site picks them up on its next build.`);
+  process.exit(0);
+}
+
 console.log(`\n${uploaded.size} files ${dryRun ? "checked" : "uploaded"}. Writing ${docs.length} documents…`);
 if (dryRun) {
   const counts = docs.reduce<Record<string, number>>((acc, d) => ((acc[d._type] = (acc[d._type] ?? 0) + 1), acc), {});

@@ -10,7 +10,7 @@ import { AUTHORS, CATEGORIES, authorFor, DEFAULT_AUTHOR } from "@/lib/data/blog"
 export async function generateMetadata(): Promise<Metadata> {
   const posts = await getPosts();
   return {
-    title: { absolute: "Dental Health Blog by Dr. Nushin Shir | Beverly Hills Dental Arts Studio" },
+    title: { absolute: "Dental Health Blog | Dr. Nushin Shir, DDS, Beverly Hills" },
     description: "Plain answers about implants, cosmetic dentistry, clear aligners, gum care and prevention from Dr. Nushin Shir, DDS, MPH, in Beverly Hills.",
     alternates: { canonical: "/blog/" },
     ...(posts.length ? {} : { robots: { index: false, follow: true } }),

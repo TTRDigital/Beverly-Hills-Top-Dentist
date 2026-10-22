@@ -11,9 +11,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "add-missing: only create what is not in Sanity yet. overwrite: replace everything with the built-in content. dry-run: check only, write nothing."
+        description: "add-missing: only create what is not in Sanity yet. overwrite: replace everything with the built-in content. dry-run: check only, write nothing. seo-only: set only the SEO title and description of documents already in Sanity (seo-only-dry-run lists them first)."
         type: choice
-        options: [add-missing, overwrite, dry-run]
+        options: [add-missing, overwrite, dry-run, seo-only, seo-only-dry-run]
         default: add-missing
       only:
         description: "Optional: only documents whose ID starts with these, comma-separated (e.g. areasPage,areaPage-). Empty = everything."
@@ -43,12 +43,14 @@ jobs:
           MODE: ${{ inputs.mode }}
           ONLY: ${{ inputs.only }}
         run: |
-          if [ -z "$SANITY_WRITE_TOKEN" ] && [ "$MODE" != "dry-run" ]; then
+          if [ -z "$SANITY_WRITE_TOKEN" ] && [ "$MODE" != "dry-run" ] && [ "$MODE" != "seo-only-dry-run" ]; then
             echo "::error::Add the SANITY_WRITE_TOKEN secret first (Settings > Secrets and variables > Actions)."
             exit 1
           fi
           case "$MODE" in
             overwrite) npm run seed -- --force ${ONLY:+--only=$ONLY} ;;
             dry-run) npm run seed -- --dry-run ${ONLY:+--only=$ONLY} ;;
+            seo-only) npm run seed -- --seo-only ${ONLY:+--only=$ONLY} ;;
+            seo-only-dry-run) npm run seed -- --seo-only --dry-run ${ONLY:+--only=$ONLY} ;;
             *) npm run seed -- ${ONLY:+--only=$ONLY} ;;
           esac

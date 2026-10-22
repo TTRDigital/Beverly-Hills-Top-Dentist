@@ -64,7 +64,7 @@ export const fallbackAreasHub: AreasHub = {
   ctaHeading: "Ready to book?",
   ctaText: "Call 310-274-7005 or book an appointment online. We're open Monday to Thursday 8:00 to 5:30 and Friday 8:00 to 1:00.",
   seo: {
-    title: "Dentist Serving West LA & Beverly Hills Neighborhoods | Dr. Nushin Shir",
+    title: "Dentist Serving West LA & Beverly Hills | Dr. Nushin Shir",
     description: "Patients from Beverly Grove, Century City, West Hollywood, Culver City, West LA and Hollywood see Dr. Nushin Shir in Beverly Hills. Call 310-274-7005.",
   },
 };
@@ -303,7 +303,7 @@ export const fallbackAreaPages: AreaPage[] = [
     ],
     reviews: [],
     seo: {
-      title: "Dentist Near West LA & Palms, 90064 & 90034 | Dr. Nushin Shir",
+      title: "Dentist Near West LA & Palms | Dr. Nushin Shir, DDS",
       description: "West LA and Palms patients reach Dr. Shir in about 18 minutes. Gentle preventive care, fillings, aligners and implants. Call 310-274-7005.",
     },
   },
@@ -347,7 +347,7 @@ export const fallbackAreaPages: AreaPage[] = [
     ],
     reviews: [],
     seo: {
-      title: "Dentist Near Hollywood, 90038 | Dr. Nushin Shir",
+      title: "Dentist Near Hollywood, 90038 | Dr. Nushin Shir, DDS",
       description: "Hollywood patients travel about 20 minutes to Dr. Shir in Beverly Hills for veneers, whitening, bonding and natural cosmetic dentistry.",
     },
   },
