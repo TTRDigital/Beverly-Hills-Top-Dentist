@@ -12,7 +12,10 @@ export function HeroVideo({ mp4, webm }: { mp4?: string; webm?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     const video = ref.current;
-    if (!video || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Phones get the poster photo only: the video is 2.4 MB and the home page's speed score on phones depends on it.
+    const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
+    const slow = !!conn && (conn.saveData === true || /(^|\b)(slow-2g|2g|3g)\b/.test(conn.effectiveType ?? ""));
+    if (!video || slow || !window.matchMedia("(min-width: 768px)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let timer = 0;
     const start = () => {
       timer = window.setTimeout(() => {

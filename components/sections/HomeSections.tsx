@@ -58,7 +58,8 @@ export function HomeIntro({ intro }: { intro: HomeContent["intro"] }) {
 export function HomeStory({ story }: { story: HomeContent["story"] }) {
   return (
     <section className="relative mt-[90px] flex min-h-[850px] flex-col justify-end overflow-hidden py-[150px]">
-      <Slideshow images={story.slides} />
+      {/* A full-width band; 1200 px is plenty under the dark gradient, and saves about a third of each photo on desktop. */}
+      <Slideshow images={story.slides} sizes="(min-width: 1200px) 1200px, 100vw" />
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/15 to-transparent" />
       <div className="container-x relative text-white">
         <h2 className="h2">{story.heading}</h2>
