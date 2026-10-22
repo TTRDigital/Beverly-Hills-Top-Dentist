@@ -86,7 +86,7 @@ Same fields as the old form (Full Name, Email Address, Phone Number, Comment) pl
 - **Pages:** Home, About, Before & after, Appointment, Thank you, Services hub, Privacy policy (a paragraph starting with `## ` is a heading).
 - **Service categories / Services:** each page is a list of sections (Banner, Text band, Photo + accordion (dark or light, items can link to a page), Intro + photo cards, Steps, Photo band, FAQ, Topics checklist + insurance logos, Icon features) that can be edited, reordered, added or removed.
 - **Before & after cases** (with where each one shows), **Team**, **Reviews**, **FAQs** (shared questions an FAQ section can include), **Blog posts**.
-- Paragraph fields: one box per paragraph; `**double asterisks**` make text bold.
+- Paragraph fields: one box per paragraph; `**double asterisks**` make text bold, `[words](/page/)` makes a link, and a box starting with `## ` is a heading (`### ` a smaller one).
 
 ## Development
 

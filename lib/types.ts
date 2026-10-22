@@ -4,7 +4,7 @@ export type Img = { src: string; alt: string; width: number; height: number };
 export type Link = { label: string; href: string };
 export type Seo = { title: string; description: string; noIndex?: boolean; image?: Img };
 
-/** Paragraphs are plain strings; **double asterisks** mark bold text (see components/ui/RichText.tsx). */
+/** Paragraphs are plain strings; **double asterisks** mark bold text, [text](/path/) is a link, and a paragraph starting "## " or "### " is a heading (see components/ui/RichText.tsx). */
 export type Paragraphs = string[];
 
 /* ---------- Sections of the treatment template (services, categories, McLean and root pages) ---------- */

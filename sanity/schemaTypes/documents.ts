@@ -3,7 +3,7 @@ import { sectionsField } from "./objects";
 
 const seoField = defineField({ name: "seo", title: "SEO", type: "seo" });
 const paragraphs = (name = "text", title = "Text") =>
-  defineField({ name, title, type: "array", of: [defineArrayMember({ type: "text", rows: 4 })], description: "One box per paragraph. **Double asterisks** make text bold." });
+  defineField({ name, title, type: "array", of: [defineArrayMember({ type: "text", rows: 4 })], description: "One box per paragraph. **Double asterisks** make text bold, [words](/page/) makes a link, and a box starting with ## is a heading (### a smaller one)." });
 const slugField = defineField({ name: "slug", title: "URL slug", type: "slug", options: { source: "title" }, validation: (r) => r.required(), description: "Changing it changes the page address. Keep the old one unless you add a redirect." });
 const orderField = defineField({ name: "order", title: "Order", type: "number" });
 
