@@ -1,0 +1,454 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/services/restorative-dentistry/tmj-tmd-treatments",
+      "destination": "/services/restorative-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/restorative-dentistry/tmj-tmd-treatments/",
+      "destination": "/services/restorative-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/dental-implant-dentistry",
+      "destination": "/services/dental-implants-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/dental-implant-dentistry/",
+      "destination": "/services/dental-implants-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/porcelain-dental-veneers",
+      "destination": "/services/cosmetic-dentistry/porcelain-veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/porcelain-dental-veneers/",
+      "destination": "/services/cosmetic-dentistry/porcelain-veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/wisdom-teeth-extractions",
+      "destination": "/services/restorative-dentistry/wisdom-teeth-extractions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/wisdom-teeth-extractions/",
+      "destination": "/services/restorative-dentistry/wisdom-teeth-extractions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/preventive-dentistry-in-northern-virginia",
+      "destination": "/services/preventive-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/preventive-dentistry-in-northern-virginia/",
+      "destination": "/services/preventive-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/porcelain-inlays-onlays",
+      "destination": "/services/restorative-dentistry/porcelain-inlays-onlays/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/porcelain-inlays-onlays/",
+      "destination": "/services/restorative-dentistry/porcelain-inlays-onlays/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/restorative-dentistry/dentures",
+      "destination": "/services/restorative-dentistry/partial-dentures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/restorative-dentistry/dentures/",
+      "destination": "/services/restorative-dentistry/partial-dentures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/gum-disease-treatment",
+      "destination": "/services/periodontic-dentistry/gum-disease-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/gum-disease-treatment/",
+      "destination": "/services/periodontic-dentistry/gum-disease-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/periodontal-dentistry",
+      "destination": "/services/periodontic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/periodontal-dentistry/",
+      "destination": "/services/periodontic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/restorative-dentistry",
+      "destination": "/services/restorative-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/restorative-dentistry/",
+      "destination": "/services/restorative-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/single-tooth-implants",
+      "destination": "/services/dental-implants-dentistry/single-tooth-implants/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/single-tooth-implants/",
+      "destination": "/services/dental-implants-dentistry/single-tooth-implants/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/sleep-apnea-treatment",
+      "destination": "/services/preventive-dentistry/sleep-apnea-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/sleep-apnea-treatment/",
+      "destination": "/services/preventive-dentistry/sleep-apnea-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/cosmetic-dentistry/invisalign",
+      "destination": "/services/cosmetic-dentistry/clear-aligners/",
+      "statusCode": 301
+    },
+    {
+      "source": "/services/cosmetic-dentistry/invisalign/",
+      "destination": "/services/cosmetic-dentistry/clear-aligners/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/laser-gum-treatments",
+      "destination": "/services/periodontic-dentistry/laser-gum-treatments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/laser-gum-treatments/",
+      "destination": "/services/periodontic-dentistry/laser-gum-treatments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/preventive-dentistry",
+      "destination": "/services/preventive-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/preventive-dentistry/",
+      "destination": "/services/preventive-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/root-canal-therapy-2",
+      "destination": "/services/restorative-dentistry/root-canal-therapy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/root-canal-therapy-2/",
+      "destination": "/services/restorative-dentistry/root-canal-therapy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/root-canal-therapy-3",
+      "destination": "/services/restorative-dentistry/root-canal-therapy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/root-canal-therapy-3/",
+      "destination": "/services/restorative-dentistry/root-canal-therapy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/full-arch-implants",
+      "destination": "/services/dental-implants-dentistry/full-arch-implants/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/full-arch-implants/",
+      "destination": "/services/dental-implants-dentistry/full-arch-implants/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/root-canal-therapy",
+      "destination": "/services/restorative-dentistry/root-canal-therapy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/root-canal-therapy/",
+      "destination": "/services/restorative-dentistry/root-canal-therapy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/soft-tissue-lasers",
+      "destination": "/services/periodontic-dentistry/laser-gum-treatments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/soft-tissue-lasers/",
+      "destination": "/services/periodontic-dentistry/laser-gum-treatments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/tmj-tmd-treatments",
+      "destination": "/services/restorative-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/tmj-tmd-treatments/",
+      "destination": "/services/restorative-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/dental-technology",
+      "destination": "/services/dental-technology/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/dental-technology/",
+      "destination": "/services/dental-technology/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/gum-graft-surgery",
+      "destination": "/services/periodontic-dentistry/gum-graft-surgery/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/gum-graft-surgery/",
+      "destination": "/services/periodontic-dentistry/gum-graft-surgery/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/partial-dentures",
+      "destination": "/services/restorative-dentistry/partial-dentures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/partial-dentures/",
+      "destination": "/services/restorative-dentistry/partial-dentures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/porcelain-crowns",
+      "destination": "/services/restorative-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/porcelain-crowns/",
+      "destination": "/services/restorative-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/smile-makeover-2",
+      "destination": "/services/cosmetic-dentistry/smile-makeover/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/smile-makeover-2/",
+      "destination": "/services/cosmetic-dentistry/smile-makeover/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/digital-scanner",
+      "destination": "/services/dental-technology/digital-scanner/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/digital-scanner/",
+      "destination": "/services/dental-technology/digital-scanner/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/teeth-whitening",
+      "destination": "/services/cosmetic-dentistry/teeth-whitening/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/teeth-whitening/",
+      "destination": "/services/cosmetic-dentistry/teeth-whitening/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/clear-aligners",
+      "destination": "/services/cosmetic-dentistry/clear-aligners/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/clear-aligners/",
+      "destination": "/services/cosmetic-dentistry/clear-aligners/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/deep-cleanings",
+      "destination": "/services/periodontic-dentistry/deep-cleanings/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/deep-cleanings/",
+      "destination": "/services/periodontic-dentistry/deep-cleanings/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/digital-x-rays",
+      "destination": "/services/dental-technology/digital-x-rays/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/digital-x-rays/",
+      "destination": "/services/dental-technology/digital-x-rays/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/gum-contouring",
+      "destination": "/services/periodontic-dentistry/gum-contouring/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/gum-contouring/",
+      "destination": "/services/periodontic-dentistry/gum-contouring/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-fillings-in-mclean-va-2",
+      "destination": "/services/restorative-dentistry/dental-fillings/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-fillings-in-mclean-va-2/",
+      "destination": "/services/restorative-dentistry/dental-fillings/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/ozone-therapy",
+      "destination": "/services/dental-technology/ozone-therapy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/ozone-therapy/",
+      "destination": "/services/dental-technology/ozone-therapy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/night-guards",
+      "destination": "/services/preventive-dentistry/night-guards/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/night-guards/",
+      "destination": "/services/preventive-dentistry/night-guards/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-fillings-in-mclean-va",
+      "destination": "/services/restorative-dentistry/dental-fillings/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-fillings-in-mclean-va/",
+      "destination": "/services/restorative-dentistry/dental-fillings/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-bridges-in-mclean-va",
+      "destination": "/services/restorative-dentistry/dental-bridges/",
+      "statusCode": 301
+    },
+    {
+      "source": "/dental-bridges-in-mclean-va/",
+      "destination": "/services/restorative-dentistry/dental-bridges/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/invisalign",
+      "destination": "/services/cosmetic-dentistry/clear-aligners/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/invisalign/",
+      "destination": "/services/cosmetic-dentistry/clear-aligners/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/ct-scans",
+      "destination": "/services/dental-technology/ct-scans/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/ct-scans/",
+      "destination": "/services/dental-technology/ct-scans/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/night-guards",
+      "destination": "/services/preventive-dentistry/night-guards/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/night-guards/",
+      "destination": "/services/preventive-dentistry/night-guards/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/mclean/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/locations/",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/11702_Dr._Daniel_Charlton_Beverly_Hills_Dentist_Art_Studio_v2.mp4",
+      "destination": "/video/home-hero.mp4",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/11702_Dr._Daniel_Charlton_Beverly_Hills_Dentist_Art_Studio_v2.mp4/",
+      "destination": "/video/home-hero.mp4",
+      "statusCode": 301
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}
