@@ -254,7 +254,7 @@ export const getFaqs = cache(async (): Promise<Faq[]> => {
 
 export const getPosts = cache(async (): Promise<Post[]> => {
   const cms = await sanityFetch<Post[]>(
-    `*[_type == "post" && defined(slug.current)] | order(date desc){ "slug": slug.current, title, date, excerpt, body, "image": image${IMG}, ${SEO} }`,
+    `*[_type == "post" && defined(slug.current)] | order(date desc){ "slug": slug.current, title, date, author, category, service, excerpt, body, "image": image${IMG}, ${SEO} }`,
     {},
     ["post"],
   );

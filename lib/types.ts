@@ -150,7 +150,7 @@ export type BeforeAfterCase = {
 
 export type Testimonial = { quote: string; name: string; rating: number; source?: string };
 
-export type Post = { slug: string; title: string; date: string; excerpt?: string; body: Paragraphs; image?: Img; seo: Seo };
+export type Post = { slug: string; title: string; date: string; author?: string; category?: string; service?: string; excerpt?: string; body: Paragraphs; image?: Img; seo: Seo };
 
 /* ---------- Page singletons ---------- */
 

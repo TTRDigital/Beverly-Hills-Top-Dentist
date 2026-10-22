@@ -1,4 +1,5 @@
-import type { Faq, SiteSettings, TeamMember, Testimonial } from "@/lib/types";
+import type { Faq, Post, SiteSettings, TeamMember, Testimonial } from "@/lib/types";
+import { authorFor, categoryFor } from "@/lib/data/blog";
 import { absoluteUrl, siteUrl } from "@/lib/site";
 import { images } from "@/lib/data/images";
 import { plainText } from "@/lib/text";
@@ -103,3 +104,23 @@ export function serviceSchema(name: string, description: string, path: string) {
 }
 
 export const defaultShareImage = images.teamPhoto;
+
+/** A blog post: who wrote it (with the author page), when, what it is about and which part of the site it supports. */
+export function postSchema(post: Post) {
+  const a = authorFor(post.author), c = categoryFor(post.category);
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${absoluteUrl(`/blog/${post.slug}/`)}#article`,
+    mainEntityOfPage: absoluteUrl(`/blog/${post.slug}/`),
+    headline: post.title,
+    ...(post.excerpt ? { description: plainText([post.excerpt]) } : {}),
+    datePublished: post.date,
+    dateModified: post.date,
+    ...(post.image ? { image: abs(post.image.src) } : {}),
+    author: { "@type": "Person", name: `${a.name}, ${a.credentials}`, jobTitle: a.jobTitle, url: absoluteUrl(a.url), image: abs(a.image.src), worksFor: { "@id": `${siteUrl}/#dentist` } },
+    publisher: { "@id": `${siteUrl}/#dentist` },
+    ...(c ? { articleSection: c.name, about: { "@type": "Thing", name: c.name, url: absoluteUrl(post.service || c.path) } } : {}),
+    inLanguage: "en-US",
+  };
+}
