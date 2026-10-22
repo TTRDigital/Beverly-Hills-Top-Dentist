@@ -2,6 +2,28 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "beverly-hills-top-dentist.vercel.app"
+        }
+      ],
+      "destination": "https://beverlyhillstopdentist.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "bhda.vercel.app"
+        }
+      ],
+      "destination": "https://beverlyhillstopdentist.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/services/restorative-dentistry/tmj-tmd-treatments",
       "destination": "/services/restorative-dentistry/",
       "statusCode": 301
