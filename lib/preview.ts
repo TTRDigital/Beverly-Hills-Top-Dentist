@@ -3,8 +3,8 @@ import { createHmac, timingSafeEqual } from "node:crypto";
 
 /*
  * Draft previews for TTR OS (TTR-566). TTR OS saves a page update as a Sanity draft and sends Kia, then the client, a signed
- * link: /api/preview?path=<page>&exp=<unix seconds>&sig=<hex HMAC-SHA256 of "<path>\n<exp>" with SANITY_PREVIEW_SECRET>.
- * The same secret is saved (encrypted) in TTR OS. A valid link turns on Next.js draft mode for that browser and opens the
+ * link: /api/preview?path=<page>&exp=<unix seconds>&sig=<hex HMAC-SHA256 of "<path>\n<exp>" with PREVIEW_SECRET>.
+ * The same secret is saved (encrypted) in TTR OS, which tells Kia to name it PREVIEW_SECRET in Vercel. A valid link turns on Next.js draft mode for that browser and opens the
  * page; while it is on, Sanity reads use the drafts (SANITY_READ_TOKEN, a Viewer token). Vercel only: the SiteGround static
  * export has no server, so it never previews.
  */
