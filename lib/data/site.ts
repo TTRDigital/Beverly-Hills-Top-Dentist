@@ -233,7 +233,7 @@ export const fallbackPosts: Post[] = [
     category: "implants",
     service: "/services/dental-implants-dentistry/",
     excerpt: "Dr. Nushin Shir walks through a dental implant from the first scan to the final crown: how long each stage takes, what recovery feels like and how to care for it.",
-    image: images.biomimetic,
+    image: images.seniorPatientMirror,
     cta: "The first visit includes the exam and, where an implant is planned, the 3D scan, so you will know your timeline before anything starts.",
     figures: [
       { beforeHeading: "What happens on the day of surgery?", image: images.dentistsTreatingPatient, alt: "Two clinicians treating a patient in a treatment room at the Bedford Drive office", caption: "Two of our clinicians at work in the treatment room on Bedford Drive.", position: "center 40%" },
@@ -305,10 +305,11 @@ export const fallbackPosts: Post[] = [
     category: "restorative",
     service: "/services/restorative-dentistry/dental-bridges/",
     excerpt: "Dr. Nushin Shir on how she helps patients choose between a dental bridge and an implant: the teeth beside the gap, the bone, your health and your timeline.",
-    image: images.treatmentChair,
+    image: images.dentalModels,
     cta: "Not sure which is right for you? At your consult, Dr. Shir checks the teeth beside the gap, the bone and your health, and goes through both options with you, with no pressure to decide that day.",
     figures: [
-      { beforeHeading: "What decides between a bridge and an implant?", image: images.digitalXRayRoom, alt: "Treatment room on Bedford Drive with the digital X-ray monitor used to check the teeth beside a gap", caption: "Regular X-rays are usually the first look at the teeth on either side of a gap.", position: "center 45%" },
+      { beforeHeading: "What decides between a bridge and an implant?", image: images.patientReviewingXRay, alt: "Patient looking at a dental X-ray with the dentist before choosing between a bridge and an implant", caption: "Regular X-rays are usually the first look at the teeth on either side of a gap.", position: "center 40%" },
+      { beforeHeading: "When is a bridge the better choice?", image: images.shadeGuideSmile, alt: "Shade guide held up to a smile to match a bridge to the natural teeth", caption: "A bridge is shaded to match your own teeth, so the replacement tooth blends in.", position: "center 55%" },
       { beforeHeading: "When is a 3D scan needed?", image: images.cbctScanner, alt: "Cone beam CT scanner in the imaging room, used when X-rays cannot show enough of the bone", caption: "The 3D scanner in our imaging room, used when regular X-rays cannot show enough of the bone or roots.", position: "center 35%" },
     ],
     blocks: [
