@@ -151,7 +151,7 @@ export type BeforeAfterCase = {
 export type Testimonial = { quote: string; name: string; rating: number; source?: string };
 
 /** A photo inside a blog post, shown above the H2 whose text is beforeHeading (as written in the body, without "## "), with a caption. position is an optional CSS object-position for the crop, for example "center 30%". */
-export type PostFigure = { _key?: string; beforeHeading: string; image: Img; caption: string; position?: string };
+export type PostFigure = { _key?: string; beforeHeading: string; image: Img; caption: string; position?: string; alt?: string };
 
 /**
  * A visual block inside a blog post, built in HTML so Google and AI tools read every word: quick facts (label and value),

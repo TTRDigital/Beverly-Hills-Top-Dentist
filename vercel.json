@@ -1,6 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
+    { "source": "/blog/dental-bridges-beverly-hills", "destination": "/blog/bridge-or-implant-beverly-hills/", "permanent": true },
+    { "source": "/blog/dental-bridges-beverly-hills/", "destination": "/blog/bridge-or-implant-beverly-hills/", "permanent": true },
     {
       "source": "/:path*",
       "has": [
