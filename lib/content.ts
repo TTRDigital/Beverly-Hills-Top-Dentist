@@ -133,6 +133,8 @@ export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
     ["siteSettings"],
   );
   const s = merge({ ...fallbackSettings, menu: fallbackMenu }, cms);
+  // The blog is always in the top menu (Kia, Oct 23), even when the menu saved in Sanity was made before it existed.
+  if (!s.menu.some((m) => m.href === "/blog/")) s.menu = [...s.menu, { label: "Blog", href: "/blog/" }];
   // tel: link always follows the displayed phone number.
   const digits = s.phone.replace(/\D/g, "");
   return { ...s, phoneHref: `tel:+${digits.length === 10 ? `1${digits}` : digits}` };
