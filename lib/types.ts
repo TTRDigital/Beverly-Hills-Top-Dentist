@@ -150,7 +150,38 @@ export type BeforeAfterCase = {
 
 export type Testimonial = { quote: string; name: string; rating: number; source?: string };
 
-export type Post = { slug: string; title: string; date: string; author?: string; category?: string; service?: string; excerpt?: string; body: Paragraphs; image?: Img; seo: Seo };
+/** A photo inside a blog post, shown above the H2 whose text is beforeHeading (as written in the body, without "## "), with a caption. position is an optional CSS object-position for the crop, for example "center 30%". */
+export type PostFigure = { _key?: string; beforeHeading: string; image: Img; caption: string; position?: string };
+
+/**
+ * A visual block inside a blog post, built in HTML so Google and AI tools read every word: quick facts (label and value),
+ * numbered steps, or option cards with a line icon by name (components/blog/BlogIcons.tsx). It sits above the H2 named in
+ * beforeHeading; a block without one, or whose heading is not found, sits under the opening answer.
+ */
+export type PostBlock =
+  | { _type: "facts"; _key?: string; beforeHeading?: string; heading?: string; items: { icon?: string; label: string; value: string }[] }
+  | { _type: "steps"; _key?: string; beforeHeading?: string; heading?: string; items: { title: string; text: string }[] }
+  | { _type: "options"; _key?: string; beforeHeading?: string; heading?: string; items: { icon?: string; title: string; text: string }[] };
+
+export type Post = {
+  slug: string;
+  title: string;
+  date: string;
+  author?: string;
+  category?: string;
+  service?: string;
+  excerpt?: string;
+  /** The approved text, paragraph by paragraph. The design around it (photos, blocks) lives in the fields below. */
+  body: Paragraphs;
+  image?: Img;
+  /** Photos between the sections, each above the heading it names. */
+  figures?: PostFigure[];
+  /** Quick facts, numbered steps and option cards between the sections. */
+  blocks?: PostBlock[];
+  /** One sentence for the call-to-action band in the middle of the article. */
+  cta?: string;
+  seo: Seo;
+};
 
 /* ---------- Page singletons ---------- */
 

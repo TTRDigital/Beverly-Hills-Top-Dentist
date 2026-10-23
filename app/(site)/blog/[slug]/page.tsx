@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getPosts } from "@/lib/content";
+import { getCategories, getPosts, getServices, getSiteSettings } from "@/lib/content";
+import type { Service, ServiceCategory } from "@/lib/types";
 import { pageMetadata } from "@/lib/seo";
-import { breadcrumbSchema, postSchema } from "@/lib/schema";
-import { authorFor, categoryFor } from "@/lib/data/blog";
-import Link from "next/link";
+import { breadcrumbSchema, faqPageSchema, postSchema } from "@/lib/schema";
+import { authorFor, categoryFor, CATEGORIES } from "@/lib/data/blog";
+import { linkedPaths, outlinePost, placeExtras } from "@/lib/blog-post";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { RichText } from "@/components/ui/RichText";
+import { InShort, PostHero, ReadingProgress, SideCta, Toc } from "@/components/blog/PostHeader";
+import { ExtrasView, PostBody } from "@/components/blog/PostBody";
+import { AuthorCard, MoreFromBlog, RelatedCard, type RelatedPage } from "@/components/blog/PostFooter";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -31,40 +33,73 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return post ? pageMetadata(post.seo, `/blog/${post.slug}/`, post.image) : { robots: { index: false } };
 }
 
+/** The service or category page at a site path, with its title, banner photo and one line (for the related cards). */
+function relatedPage(path: string, categories: ServiceCategory[], services: Service[]): RelatedPage | null {
+  const m = path.match(/^\/services\/([^/]+)\/(?:([^/]+)\/)?$/);
+  if (!m) {
+    const c = CATEGORIES.find((x) => x.path === path);
+    return c ? { title: c.name, path, line: c.blurb } : null;
+  }
+  const [, cat, svc] = m;
+  const page = svc ? services.find((s) => s.category === cat && s.slug === svc) : categories.find((c) => c.slug === cat);
+  if (!page) return null;
+  const blogCategory = svc ? null : CATEGORIES.find((x) => x.path === path);
+  const hero = page.sections[0]?._type === "hero" ? page.sections[0] : null;
+  return { title: blogCategory?.name ?? page.title, path, line: blogCategory?.blurb ?? page.seo.description, image: hero?.image };
+}
+
+/*
+ * A post, top to bottom: hero (category, title, byline, photo), the direct answer in the In-short box, jump links, quick
+ * facts, the sections with photos and visual blocks, a call-to-action band, the FAQ as cards, the closing invitation, the
+ * related page and services, the author, then more posts. Structured data: BlogPosting (with word count and reading time)
+ * and FAQPage. Everything reads without JavaScript; the motion is a gentle extra.
+ */
 export default async function PostPage({ params }: Props) {
-  const post = await load(params);
+  const [post, posts, settings, categories, services] = await Promise.all([load(params), getPosts(), getSiteSettings(), getCategories(), getServices()]);
   if (!post) notFound();
-  const author = authorFor(post.author), category = categoryFor(post.category);
+  const author = authorFor(post.author);
+  const category = categoryFor(post.category);
+  const outline = outlinePost(post.body);
+  const extras = placeExtras(post, outline);
   const supports = post.service || category?.path || null;
-  const date = new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+  const related = supports ? relatedPage(supports, categories, services) : null;
+  const more = linkedPaths(post.body)
+    .filter((p) => p !== supports && p.startsWith("/services/"))
+    .map((p) => relatedPage(p, categories, services))
+    .filter((p): p is RelatedPage => !!p)
+    .slice(0, 3);
+  const others = posts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const cta = {
+    text: post.cta || `Have a question about ${category ? category.name.toLowerCase() : "your teeth"}? Dr. Shir will go through your options with you at the first visit.`,
+    phone: settings.phone,
+    phoneHref: settings.phoneHref,
+  };
   return (
-    <article className="bg-paper py-20">
+    <>
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Blog", path: "/blog/" }, { name: post.title, path: `/blog/${post.slug}/` }])} />
       <JsonLd data={postSchema(post)} />
-      <div className="container-box max-w-[820px]">
-        {category ? <p className="text-sm uppercase tracking-wide text-sage"><Link href="/blog/" className="hover:underline">Blog</Link> · {category.name}</p> : null}
-        <h1 className="mt-2 text-h1 font-semibold">{post.title}</h1>
-        <p className="mt-4 flex items-center gap-3 text-sm text-sage">
-          <Image src={author.image.src} alt={author.image.alt} width={40} height={40} className="h-10 w-10 rounded-full object-cover object-top" />
-          <span>By <Link href={author.url} className="font-semibold text-black hover:underline">{author.name}, {author.credentials}</Link>, {author.jobTitle} · {date}</span>
-        </p>
-        {post.image ? <Image src={post.image.src} alt={post.image.alt || post.title} width={post.image.width} height={post.image.height} sizes="820px" className="mt-8 h-auto w-full" /> : null}
-        <RichText paras={post.body} className="mt-8" />
-        {supports && category ? (
-          <aside className="mt-10 rounded-lg border border-black/10 bg-white p-6">
-            <p className="text-sm uppercase tracking-wide text-sage">Related</p>
-            <p className="mt-2 text-lg font-semibold"><Link href={supports} className="hover:underline">{category.name} at Beverly Hills Dental Arts Studio</Link></p>
-            <p className="mt-2 text-sm">{category.blurb}</p>
-          </aside>
-        ) : null}
-        <aside className="mt-8 flex items-start gap-4 rounded-lg bg-white p-6">
-          <Image src={author.image.src} alt={author.image.alt} width={64} height={64} className="h-16 w-16 rounded-full object-cover object-top" />
-          <div>
-            <p className="font-semibold"><Link href={author.url} className="hover:underline">{author.name}, {author.credentials}</Link></p>
-            <p className="mt-1 text-sm">{author.blurb}</p>
+      {outline.faq?.items.length ? <JsonLd data={faqPageSchema(outline.faq.items)} /> : null}
+      <article data-post className="bg-paper">
+        <PostHero post={post} author={author} category={category} minutes={outline.minutes} />
+        <div className="container-box grid gap-10 py-10 lg:grid-cols-[minmax(0,1fr)_280px] lg:gap-16 lg:py-16">
+          <div className="min-w-0 lg:max-w-[720px]">
+            <InShort paragraph={outline.intro[0]} />
+            <Toc outline={outline} collapsible className="mt-5 lg:hidden" />
+            <ExtrasView extras={extras.top} />
+            <PostBody outline={outline} extras={extras} cta={cta} />
+            {related ? <RelatedCard page={related} more={more} /> : null}
+            <AuthorCard author={author} />
           </div>
-        </aside>
-      </div>
-    </article>
+          <aside className="hidden lg:block">
+            <div className="sticky top-28 space-y-5">
+              <Toc outline={outline} />
+              <SideCta phone={settings.phone} phoneHref={settings.phoneHref} />
+            </div>
+          </aside>
+        </div>
+        <ReadingProgress />
+      </article>
+      <MoreFromBlog posts={others} />
+    </>
   );
 }

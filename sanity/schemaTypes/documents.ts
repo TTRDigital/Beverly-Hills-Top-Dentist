@@ -382,6 +382,9 @@ export const teamMember = defineType({
   preview: { select: { title: "name", subtitle: "heading", media: "photo" } },
 });
 
+/** Line icons for the blog's visual blocks (components/blog/BlogIcons.tsx). */
+const postIcons = ["clock", "calendar", "shield", "pin", "scan", "layers", "tooth", "implant", "bridge", "arch", "wing", "anchor", "smile"];
+
 export const post = defineType({
   name: "post",
   title: "Blog post",
@@ -404,6 +407,112 @@ export const post = defineType({
     defineField({ name: "excerpt", type: "text", rows: 3 }),
     defineField({ name: "image", type: "altImage" }),
     paragraphs("body", "Body"),
+    // The design around the text: photos and visual blocks sit above the heading they name, so the body stays as written.
+    defineField({
+      name: "figures",
+      title: "Photos inside the article",
+      type: "array",
+      description: "Each photo sits above the heading named in “Before heading” (copy the ## heading text exactly). Real office photos only, each with alt text and a caption.",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "postFigure",
+          title: "Photo",
+          fields: [
+            defineField({ name: "beforeHeading", title: "Before heading", type: "string", validation: (r) => r.required() }),
+            defineField({ name: "image", title: "Photo", type: "altImage", validation: (r) => r.required() }),
+            defineField({ name: "caption", type: "string" }),
+            defineField({ name: "position", title: "Crop focus (optional)", type: "string", description: "Where the photo is centered in its 3:2 frame, e.g. center 30%. Empty: the middle." }),
+          ],
+          preview: { select: { title: "beforeHeading", subtitle: "caption", media: "image" } },
+        }),
+      ],
+    }),
+    defineField({
+      name: "blocks",
+      title: "Visual blocks",
+      type: "array",
+      description: "Quick facts, numbered steps and option cards, built as real text so Google can read them. Each sits above the heading named in “Before heading”; Quick facts without one sit under the opening answer.",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "postFacts",
+          title: "Quick facts",
+          fields: [
+            defineField({ name: "heading", type: "string", initialValue: "Quick facts" }),
+            defineField({ name: "beforeHeading", title: "Before heading (optional)", type: "string" }),
+            defineField({
+              name: "items",
+              type: "array",
+              of: [
+                defineArrayMember({
+                  type: "object",
+                  name: "postFact",
+                  fields: [
+                    defineField({ name: "icon", type: "string", options: { list: postIcons } }),
+                    defineField({ name: "label", type: "string", validation: (r) => r.required() }),
+                    defineField({ name: "value", type: "string", validation: (r) => r.required() }),
+                  ],
+                  preview: { select: { title: "label", subtitle: "value" } },
+                }),
+              ],
+            }),
+          ],
+          preview: { select: { title: "heading" }, prepare: (v) => ({ title: v.title || "Quick facts", subtitle: "Quick facts" }) },
+        }),
+        defineArrayMember({
+          type: "object",
+          name: "postSteps",
+          title: "Numbered steps",
+          fields: [
+            defineField({ name: "heading", type: "string" }),
+            defineField({ name: "beforeHeading", title: "Before heading", type: "string", validation: (r) => r.required() }),
+            defineField({
+              name: "items",
+              title: "Steps",
+              type: "array",
+              of: [
+                defineArrayMember({
+                  type: "object",
+                  name: "postStep",
+                  fields: [defineField({ name: "title", type: "string", validation: (r) => r.required() }), defineField({ name: "text", type: "text", rows: 3 })],
+                  preview: { select: { title: "title", subtitle: "text" } },
+                }),
+              ],
+            }),
+          ],
+          preview: { select: { title: "heading" }, prepare: (v) => ({ title: v.title || "Numbered steps", subtitle: "Numbered steps" }) },
+        }),
+        defineArrayMember({
+          type: "object",
+          name: "postOptions",
+          title: "Option cards",
+          fields: [
+            defineField({ name: "heading", type: "string" }),
+            defineField({ name: "beforeHeading", title: "Before heading", type: "string", validation: (r) => r.required() }),
+            defineField({
+              name: "items",
+              title: "Cards",
+              type: "array",
+              of: [
+                defineArrayMember({
+                  type: "object",
+                  name: "postOption",
+                  fields: [
+                    defineField({ name: "icon", type: "string", options: { list: postIcons } }),
+                    defineField({ name: "title", type: "string", validation: (r) => r.required() }),
+                    defineField({ name: "text", type: "text", rows: 3 }),
+                  ],
+                  preview: { select: { title: "title", subtitle: "text" } },
+                }),
+              ],
+            }),
+          ],
+          preview: { select: { title: "heading" }, prepare: (v) => ({ title: v.title || "Option cards", subtitle: "Option cards" }) },
+        }),
+      ],
+    }),
+    defineField({ name: "cta", title: "Call to action in the middle of the article (one sentence)", type: "string", description: "Shown on a green band with the Request an appointment button after the third or fourth section." }),
     seoField,
   ],
   preview: { select: { title: "title", subtitle: "author", media: "image" } },

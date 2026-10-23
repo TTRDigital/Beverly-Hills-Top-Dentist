@@ -3,6 +3,7 @@ import { authorFor, categoryFor } from "@/lib/data/blog";
 import { absoluteUrl, siteUrl } from "@/lib/site";
 import { images } from "@/lib/data/images";
 import { plainText } from "@/lib/text";
+import { outlinePost } from "@/lib/blog-post";
 
 const abs = (src: string) => (src.startsWith("http") ? src : absoluteUrl(src));
 
@@ -108,6 +109,7 @@ export const defaultShareImage = images.teamPhoto;
 /** A blog post: who wrote it (with the author page), when, what it is about and which part of the site it supports. */
 export function postSchema(post: Post) {
   const a = authorFor(post.author), c = categoryFor(post.category);
+  const { words, minutes } = outlinePost(post.body);
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -118,6 +120,8 @@ export function postSchema(post: Post) {
     datePublished: post.date,
     dateModified: post.date,
     ...(post.image ? { image: abs(post.image.src) } : {}),
+    wordCount: words,
+    timeRequired: `PT${minutes}M`,
     author: { "@type": "Person", name: `${a.name}, ${a.credentials}`, jobTitle: a.jobTitle, url: absoluteUrl(a.url), image: abs(a.image.src), worksFor: { "@id": `${siteUrl}/#dentist` } },
     publisher: { "@id": `${siteUrl}/#dentist` },
     ...(c ? { articleSection: c.name, about: { "@type": "Thing", name: c.name, url: absoluteUrl(post.service || c.path) } } : {}),

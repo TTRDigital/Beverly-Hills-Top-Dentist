@@ -234,6 +234,47 @@ export const fallbackPosts: Post[] = [
     service: "/services/dental-implants-dentistry/",
     excerpt: "Dr. Nushin Shir explains each step of getting a dental implant in Beverly Hills: the 3D scan, the surgery, the months of healing and the final crown.",
     image: images.biomimetic,
+    cta: "The first visit includes the exam and the 3D scan, so you will know whether an implant is right for you before anything starts.",
+    // Real photos of the office, each above the section it illustrates.
+    figures: [
+      { beforeHeading: "What happens at the first visit?", image: images.cbctScanner, caption: "The cone beam CT scanner in our imaging room. Every implant is planned on a 3D scan taken here, in the office.", position: "center 35%" },
+      { beforeHeading: "What does the implant surgery feel like?", image: images.dentistsTreatingPatient, caption: "Two of our clinicians at work in the treatment room on Bedford Drive.", position: "center 40%" },
+      { beforeHeading: "Why the wait between the implant and the crown?", image: images.iteroScanner, caption: "Our digital scanner records your teeth as a 3D model, with no impression trays. We scan again once the implant is ready for its crown.", position: "center 30%" },
+    ],
+    // Short summaries of what the text says, as real text (facts, steps and option cards).
+    blocks: [
+      {
+        _type: "facts",
+        heading: "Quick facts",
+        items: [
+          { icon: "clock", label: "From the first scan to the finished tooth", value: "3 to 9 months" },
+          { icon: "shield", label: "Bone healing around the implant", value: "3 to 6 months" },
+          { icon: "scan", label: "Planning", value: "In-office 3D CT scan" },
+          { icon: "pin", label: "Scan, surgery and crown", value: "All at one office" },
+        ],
+      },
+      {
+        _type: "steps",
+        beforeHeading: "What happens at the first visit?",
+        heading: "The four stages of an implant",
+        items: [
+          { title: "First visit", text: "Exam, medical history, the 3D CT scan and a digital scan. You leave with a written plan and a timeline." },
+          { title: "Implant surgery", text: "The area is numbed, the post is placed in the bone and the gum is closed with a few stitches." },
+          { title: "Healing", text: "Three to six months while the bone grows onto the post. A temporary tooth can cover the gap." },
+          { title: "Abutment and crown", text: "A small connector goes on, the gum heals around it, and the final crown is shaded to match your teeth." },
+        ],
+      },
+      {
+        _type: "options",
+        beforeHeading: "How do I take care of an implant?",
+        heading: "One tooth, a few, or all of them",
+        items: [
+          { icon: "implant", title: "Single tooth implant", text: "One post and one crown, with the neighboring teeth left untouched." },
+          { icon: "bridge", title: "Implant-supported bridge", text: "Three or more missing teeth in a row, carried by fewer posts than teeth." },
+          { icon: "arch", title: "Full arch on implants", text: "A fixed set of teeth on four or more implants spread around the jaw." },
+        ],
+      },
+    ],
     body: [
       "A dental implant replaces a missing tooth from the root up. A small titanium post is placed in the jawbone, the bone heals around it over several months, and a custom crown is then attached on top. From the first scan to the finished tooth, most patients are looking at three to nine months, depending on their bone and on whether a tooth has to come out first.",
       "Patients ask me about implants more than any other treatment, often with a mix of stories from friends. So here is what actually happens when you come to us for [dental implants in Beverly Hills](/services/dental-implants-dentistry/), step by step.",
@@ -280,6 +321,45 @@ export const fallbackPosts: Post[] = [
     service: "/services/restorative-dentistry/dental-bridges/",
     excerpt: "Dr. Nushin Shir on when a fixed dental bridge is the better choice than an implant, the types of bridges, what the visits involve and how to care for one.",
     image: images.treatmentChair,
+    cta: "Dr. Shir will look at the neighboring teeth, the bone and your health with you, so you can weigh a bridge against an implant with no pressure.",
+    figures: [
+      { beforeHeading: "When is an implant the better choice?", image: images.cbctScanner, caption: "The 3D CT scan shows how much bone sits under the gap, which is often what decides between a bridge and an implant.", position: "center 35%" },
+      { beforeHeading: "What happens at the visits?", image: images.digitalXRayRoom, caption: "One of our treatment rooms on Bedford Drive, where the teeth are shaped and scanned at the first visit.", position: "center 45%" },
+      { beforeHeading: "How long does a bridge last, and how do I care for it?", image: images.hygienistTreatingPatient, caption: "Regular checkups let us look at the edges of the crowns and the teeth that carry the bridge.", position: "center 35%" },
+    ],
+    blocks: [
+      {
+        _type: "facts",
+        heading: "Quick facts",
+        items: [
+          { icon: "clock", label: "Time to finish", value: "2 to 4 weeks" },
+          { icon: "calendar", label: "Visits", value: "Two, a few weeks apart" },
+          { icon: "shield", label: "Typical lifespan", value: "5 to 15 years, often longer" },
+          { icon: "layers", label: "Materials", value: "Porcelain, zirconia or metal" },
+        ],
+      },
+      {
+        _type: "options",
+        beforeHeading: "What happens at the visits?",
+        heading: "The four types of bridges",
+        items: [
+          { icon: "bridge", title: "Traditional bridge", text: "A crown on each side of the gap holds the replacement tooth. The most common design." },
+          { icon: "anchor", title: "Cantilever bridge", text: "Anchored on one side of the gap only. Not as strong, so it is used sparingly." },
+          { icon: "wing", title: "Maryland bridge", text: "Thin wings bonded to the back of the neighboring teeth, mostly for front teeth." },
+          { icon: "implant", title: "Implant-supported bridge", text: "Rests on implants rather than natural teeth, for longer gaps." },
+        ],
+      },
+      {
+        _type: "steps",
+        beforeHeading: "How long does a bridge last, and how do I care for it?",
+        heading: "A bridge in two visits",
+        items: [
+          { title: "Exam and X-rays", text: "The teeth either side of the gap are checked, with a 3D scan where the roots and bone need a closer look." },
+          { title: "Shaping and scanning", text: "The anchor teeth are numbed and shaped, the digital scanner records them, and you leave with a temporary bridge." },
+          { title: "Fitting", text: "Two to four weeks later the finished bridge is checked for fit, color and bite, then cemented in place." },
+        ],
+      },
+    ],
     body: [
       "A dental bridge is a fixed row of teeth that closes a gap: crowns on the teeth either side hold a replacement tooth in the middle. It is the right fix when the neighboring teeth already need crowns, when there is not enough bone for an implant or surgery is unwise for you, or when you want the gap closed in weeks rather than months.",
       "Implants get most of the attention these days, and often deserve it, but I still make bridges every month because for some patients a bridge is simply the better answer. Here is how I decide, what the visits involve and how to make a [dental bridge in Beverly Hills](/services/restorative-dentistry/dental-bridges/) last.",
