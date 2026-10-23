@@ -107,8 +107,8 @@ export const fallbackHome: HomeContent = {
     ],
   },
   seo: {
-    title: "Dentist in Beverly Hills | Dr. Nushin Shir, DDS",
-    description: "Dr. Nushin Shir, DDS, MPH, over 30 years in practice. Implants, cosmetic, restorative and gum care with in-office 3D CT, lasers and ozone in Beverly Hills.",
+    title: "Home - Beverly Hills Dental",
+    description: "Dr. Shir has spent over thirty years refining an approach that protects your health while it rebuilds your smile.",
   },
 };
 
@@ -140,9 +140,9 @@ export const fallbackBeforeAfter: BeforeAfterContent = {
   },
   gallery: { heading: "Before and After Photos", text: "More than transforming teeth, we help inspire a more confident way of living." },
   seo: {
-    title: "Before and After Smiles in Beverly Hills | Dr. Nushin Shir",
+    title: "Before/After Page - Beverly Hills Dental",
     description:
-      "Before and after photos from Beverly Hills Dental Arts Studio, where Dr. Nushin Shir preserves as much of your natural tooth structure as possible.",
+      "We focus on preserving as much of your natural tooth structure as possible, helping minimize discomfort and shorten recovery time. Using advanced techniques",
   },
 };
 
@@ -152,8 +152,8 @@ export const fallbackAppointment: AppointmentContent = {
   hoursLabel: "Office Hours",
   formButton: "Request an Appointment",
   seo: {
-    title: "Dentist Appointment in Beverly Hills | Dr. Nushin Shir, DDS",
-    description: "Request an appointment at Beverly Hills Dental Art Studio, 416 N. Bedford Dr., Suite 105, Beverly Hills. Call (310) 274-7005 or send the form.",
+    title: "Appointment - Beverly Hills Dental",
+    description: "Request an appointment at Beverly Hills Dental Art Studio, 416 N. Bedford Dr., Suite 105, Beverly Hills. Call (310) 274-7005 or send the form and our team will reach out.",
   },
 };
 

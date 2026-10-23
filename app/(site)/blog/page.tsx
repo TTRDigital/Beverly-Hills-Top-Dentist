@@ -15,7 +15,7 @@ const css = (i: number) => ({ "--i": i }) as React.CSSProperties;
 export async function generateMetadata(): Promise<Metadata> {
   const posts = await getPosts();
   return {
-    title: { absolute: "Dental Health Blog | Dr. Nushin Shir, DDS, Beverly Hills" },
+    title: { absolute: "Dental Health Blog by Dr. Nushin Shir | Beverly Hills Dental Arts Studio" },
     description: "Plain answers about implants, cosmetic dentistry, clear aligners, gum care and prevention from Dr. Nushin Shir, DDS, MPH, in Beverly Hills.",
     alternates: { canonical: "/blog/" },
     ...(posts.length ? {} : { robots: { index: false, follow: true } }),

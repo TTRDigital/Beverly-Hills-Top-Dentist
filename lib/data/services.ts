@@ -309,7 +309,7 @@ export const fallbackServicesHub: HubContent = {
     }
   ],
   seo: {
-    title: "Dental Services in Beverly Hills | Dr. Nushin Shir, DDS",
+    title: "Services - Beverly Hills Dental",
     description: "Implant, cosmetic, restorative, periodontal and preventive dentistry, plus in-office dental technology, at Beverly Hills Dental Art Studio."
   }
 };
@@ -876,7 +876,7 @@ export const fallbackCategories: ServiceCategory[] = [
       }
     ],
     seo: {
-      title: "Restorative Dentistry in Beverly Hills | Dr. Nushin Shir",
+      title: "Restorative Dentistry - Beverly Hills Dental",
       description: "Repair and rebuild damaged or missing teeth, restoring both function and appearance. Planned with 3D imaging taken in this office and carried out by Dr. Shir."
     }
   },
@@ -1064,8 +1064,8 @@ export const fallbackCategories: ServiceCategory[] = [
       }
     ],
     seo: {
-      title: "Periodontic Dentistry in Beverly Hills | Dr. Nushin Shir",
-      description: "Treatment for gum disease, recession and the tissue that supports your teeth in Beverly Hills. Gum health is checked at every visit with Dr. Nushin Shir, DDS."
+      title: "Periodontic Dentistry - Beverly Hills Dental",
+      description: "Treatment for gum disease, recession and the tissue that supports your teeth. Gum health is the foundation everything else in dentistry sits on, and it is"
     }
   },
   {
@@ -1236,8 +1236,8 @@ export const fallbackCategories: ServiceCategory[] = [
       }
     ],
     seo: {
-      title: "Preventive Dentistry in Beverly Hills | Dr. Nushin Shir, DDS",
-      description: "Preventive dentistry in Beverly Hills: regular checkups, cleanings, sealants, night guards and sleep apnea appliances that catch problems early."
+      title: "Preventive Dentistry - Beverly Hills Dental",
+      description: "Preventive dentistry focuses on maintaining your oral health by preventing dental problems before they start. Our proactive approach includes regular"
     }
   },
   {
@@ -1434,8 +1434,8 @@ export const fallbackCategories: ServiceCategory[] = [
       }
     ],
     seo: {
-      title: "Dental Technology in Beverly Hills | Dr. Nushin Shir, DDS",
-      description: "3D CT imaging, digital scanning, soft tissue lasers and ozone therapy, all in one Beverly Hills office, so planning and treatment happen in the same place."
+      title: "Dental Technology hub - Beverly Hills Dental",
+      description: "3D imaging, digital scanning, soft tissue lasers and ozone, all in this office. Equipment most general practices refer out for, so planning and treatment"
     }
   }
 ];
@@ -1631,7 +1631,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Single Tooth Implants in Beverly Hills | Dr. Nushin Shir",
+      title: "Single Tooth Implants - Beverly Hills Dental",
       description: "Replace one missing tooth without touching the teeth either side. Planned on a 3D scan taken in this office, then placed and restored by Dr. Shir."
     }
   },
@@ -1822,7 +1822,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Full Arch Implants in Beverly Hills | Dr. Nushin Shir, DDS",
+      title: "Full Arch Implants - Beverly Hills Dental",
       description: "A fixed set of teeth carried by a small number of implants, for patients missing most or all of an arch or living with a denture that will not stay put."
     }
   },
@@ -2211,8 +2211,8 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Smile Makeovers in Beverly Hills | Dr. Nushin Shir, DDS",
-      description: "Smile makeovers in Beverly Hills: several treatments planned as one result, designed digitally against your own face and previewed before any tooth is prepared."
+      title: "Smile Makeover - Beverly Hills Dental",
+      description: "Several treatments planned as one result rather than booked one at a time. Designed digitally against your own face, previewed before anything is prepared,"
     }
   },
   {
@@ -2590,8 +2590,8 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Dental Bonding in Beverly Hills | Dr. Nushin Shir, DDS",
-      description: "Dental bonding in Beverly Hills repairs chips, small gaps and worn edges in one visit, usually with little or no enamel removed, by Dr. Nushin Shir."
+      title: "Dental Bonding - Beverly Hills Dental",
+      description: "Chips, small gaps and worn edges repaired in a single visit, usually with little or no enamel removed. The most conservative cosmetic treatment we offer, and"
     }
   },
   {
@@ -2803,8 +2803,8 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Clear Aligners in Beverly Hills | Dr. Nushin Shir, DDS",
-      description: "Clear aligners in Beverly Hills: straighten your teeth with removable aligners planned digitally from an in-office scan. No brackets, no wires."
+      title: "Clear Aligners - Beverly Hills Dental",
+      description: "Straighten your teeth with a series of removable clear aligners, planned digitally from a scan taken in this office. No brackets, no wires, and you can see"
     }
   },
   {
@@ -2993,7 +2993,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Dental Fillings in Beverly Hills | Dr. Nushin Shir, DDS",
+      title: "Dental Fillings - Beverly Hills Dental",
       description: "Tooth-coloured fillings that bond to your own tooth structure, placed conservatively so as little healthy enamel is removed as the situation allows."
     }
   },
@@ -3183,8 +3183,8 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Dental Bridges in Beverly Hills | Dr. Nushin Shir, DDS",
-      description: "Replace one or more missing teeth with a fixed dental bridge, custom made and shaded to your own teeth. A non-surgical option in Beverly Hills."
+      title: "Dental Bridges - Beverly Hills Dental",
+      description: "Replace one or more missing teeth with a fixed bridge, custom made and shaded to your own teeth. A non-surgical option, completed in a few weeks rather than a"
     }
   },
   {
@@ -3350,8 +3350,8 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Tooth Extractions in Beverly Hills | Dr. Nushin Shir, DDS",
-      description: "Tooth extractions in Beverly Hills, planned in 3D and carried out gently, with site preservation so your options for replacing the tooth stay open."
+      title: "Tooth Extractions - Beverly Hills Dental",
+      description: "Removal planned in 3D, carried out gently, and finished with site preservation so your options for replacement stay open. Dr. Shir will also tell you when a"
     }
   },
   {
@@ -3551,7 +3551,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Porcelain Inlays & Onlays in Beverly Hills | Dr. Nushin Shir",
+      title: "Porcelain Inlays & Onlays - Beverly Hills Dental",
       description: "A conservative alternative to a full crown. Custom porcelain that covers only the damaged part of the tooth, so more of your own structure stays where it is."
     }
   },
@@ -3770,8 +3770,8 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Root Canal Therapy in Beverly Hills | Dr. Nushin Shir, DDS",
-      description: "Root canal therapy in Beverly Hills: treat the infection inside the tooth and keep the tooth. Canals mapped in 3D when needed, crown made in the same office."
+      title: "Root Canal Therapy - Beverly Hills Dental",
+      description: "Treat the infection inside the tooth and keep the tooth itself. Canal anatomy mapped in 3D where the case calls for it, and the protective crown afterwards"
     }
   },
   {
@@ -3984,7 +3984,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Wisdom Teeth Extractions in Beverly Hills | Dr. Nushin Shir",
+      title: "Wisdom Teeth Extractions - Beverly Hills Dental",
       description: "Removal planned on a 3D scan taken in this office, so nerve position and root anatomy are known before we begin rather than discovered during."
     }
   },
@@ -4200,7 +4200,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Partial Dentures in Beverly Hills | Dr. Nushin Shir, DDS",
+      title: "Partial Dentures - Beverly Hills Dental",
       description: "A removable replacement for several missing teeth, designed around the teeth you still have so those are protected rather than overloaded."
     }
   },
@@ -4371,8 +4371,8 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Gum Disease Treatment in Beverly Hills | Dr. Nushin Shir",
-      description: "Gum disease treatment in Beverly Hills for every stage, starting with the least invasive option that works: deep cleaning with laser therapy and ozone."
+      title: "Gum Disease Treatment - Beverly Hills Dental",
+      description: "Treatment for every stage of gum disease, starting with the least invasive option that works. Laser therapy and ozone used alongside deep cleaning, with"
     }
   },
   {
@@ -4561,7 +4561,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Crown Lengthening in Beverly Hills | Dr. Nushin Shir, DDS",
+      title: "Crown Lengthening - Beverly Hills Dental",
       description: "Reshaping the gum line to expose more of the natural tooth, either to give a restoration something to hold onto or to correct a gummy smile."
     }
   },
@@ -4709,7 +4709,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Gum Graft Surgery in Beverly Hills | Dr. Nushin Shir, DDS",
+      title: "Gum Graft Surgery - Beverly Hills Dental",
       description: "Rebuilding gum tissue where recession has exposed the roots of your teeth, to reduce sensitivity, protect the root surface and stop the recession progressing."
     }
   },
@@ -4907,7 +4907,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Deep Cleanings in Beverly Hills | Dr. Nushin Shir, DDS",
+      title: "Deep Cleanings (Scaling & Root Planing) - Beverly Hills Dental",
       description: "Cleaning below the gum line to remove what a routine cleaning cannot reach. Carried out under local anaesthetic, supported by laser therapy and ozone."
     }
   },
@@ -5106,8 +5106,8 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Laser Gum Treatments in Beverly Hills | Dr. Nushin Shir, DDS",
-      description: "Laser gum treatments in Beverly Hills: a soft tissue laser used with deep cleaning to treat gum disease and reshape gum tissue, often with less bleeding."
+      title: "Laser Gum Treatments - Beverly Hills Dental",
+      description: "A soft tissue laser used alongside deep cleaning to treat gum disease, and to reshape gum tissue. For many patients it is an alternative to surgery, with less"
     }
   },
   {
@@ -5305,7 +5305,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Gum Contouring in Beverly Hills | Dr. Nushin Shir, DDS",
+      title: "Gum Contouring - Beverly Hills Dental",
       description: "Reshaping the gum line so it frames your teeth evenly. Carried out with a soft tissue laser, and planned before any veneers or crowns are designed to it."
     }
   },
@@ -5487,7 +5487,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Teeth Cleaning in Beverly Hills | Dr. Nushin Shir, DDS",
+      title: "Teeth Cleaning - Beverly Hills Dental",
       description: "Routine cleanings, deep cleanings and periodontal maintenance. Which one you need is decided by measurements, not by a standard schedule."
     }
   },
@@ -5674,8 +5674,8 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Dental Sealants in Beverly Hills | Dr. Nushin Shir, DDS",
-      description: "Dental sealants in Beverly Hills: a thin protective coating bonded into the deep grooves of back teeth, where a toothbrush cannot reach. No drilling."
+      title: "Dental Sealants - Beverly Hills Dental",
+      description: "A thin protective coating bonded into the deep grooves of back teeth, where a toothbrush bristle physically cannot reach. Quick to place, no drilling, no"
     }
   },
   {
@@ -5856,8 +5856,8 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Dental Checkups & Exams in Beverly Hills | Dr. Nushin Shir",
-      description: "Dental checkups and exams in Beverly Hills: teeth, gums, bite, old fillings and soft tissues all checked, with digital imaging that finds problems early."
+      title: "Dental Checkups & Exams - Beverly Hills Dental",
+      description: "A thorough examination rather than a quick look. Teeth, gums, bite, existing restorations and soft tissues all checked, with digital imaging that finds"
     }
   },
   {
@@ -6054,7 +6054,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Night Guards in Beverly Hills | Dr. Nushin Shir, DDS",
+      title: "Night Guards - Beverly Hills Dental",
       description: "A precision-fitted guard that absorbs the force of nightly grinding, protects your teeth from wear, and relieves the morning jaw ache that comes with it."
     }
   },
@@ -6252,8 +6252,8 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Sleep Apnea Treatment in Beverly Hills | Dr. Nushin Shir",
-      description: "Sleep apnea treatment in Beverly Hills: a custom oral appliance for diagnosed obstructive sleep apnea, fitted here and managed alongside your physician."
+      title: "Sleep Apnea Treatment - Beverly Hills Dental",
+      description: "A custom oral appliance for diagnosed obstructive sleep apnea, fitted and adjusted here and managed alongside your physician. Quiet, portable, and worn by"
     }
   },
   {
@@ -6448,7 +6448,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Ozone Therapy in Beverly Hills | Dr. Nushin Shir, DDS",
+      title: "Ozone Therapy - Beverly Hills Dental",
       description: "An adjunct we use alongside conventional treatment, as part of a biological and minimally invasive approach to dentistry."
     }
   },
@@ -6647,8 +6647,8 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Digital Dental Scanning in Beverly Hills | Dr. Nushin Shir",
-      description: "Digital dental scanning in Beverly Hills: a small wand captures your teeth as an accurate 3D model in minutes, with no impression trays."
+      title: "Digital Scanner - Beverly Hills Dental",
+      description: "A small wand captures your teeth as an accurate 3D model in a few minutes. No trays, no material setting in your mouth, and a better fit on everything we make"
     }
   },
   {
@@ -6844,7 +6844,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Digital X-Rays in Beverly Hills | Dr. Nushin Shir, DDS",
+      title: "Digital X-Rays - Beverly Hills Dental",
       description: "Imaging at a considerably lower radiation dose than film, appearing on screen instantly. This is how decay between teeth is found while it is still a filling."
     }
   },
@@ -7042,7 +7042,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "3D CT Scans in Beverly Hills | Dr. Nushin Shir, DDS",
+      title: "3D CT Scans - Beverly Hills Dental",
       description: "Cone beam imaging taken in this office. Bone measured in three dimensions, nerve position located, and root anatomy seen properly before treatment begins."
     }
   }
