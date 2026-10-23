@@ -47,7 +47,7 @@ const paragraphs = (name = "text", title = "Text") =>
     title,
     type: "array",
     of: [defineArrayMember({ type: "text", rows: 4 })],
-    description: "One box per paragraph. Wrap words in **double asterisks** to make them bold.",
+    description: "One box per paragraph. Wrap words in **double asterisks** to make them bold, write [words](/page/) for a link, and start a box with ## for a heading (### for a smaller one).",
   });
 
 const overlay = defineField({

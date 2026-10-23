@@ -3,7 +3,7 @@ import { sectionsField } from "./objects";
 
 const seoField = defineField({ name: "seo", title: "SEO", type: "seo" });
 const paragraphs = (name = "text", title = "Text") =>
-  defineField({ name, title, type: "array", of: [defineArrayMember({ type: "text", rows: 4 })], description: "One box per paragraph. **Double asterisks** make text bold." });
+  defineField({ name, title, type: "array", of: [defineArrayMember({ type: "text", rows: 4 })], description: "One box per paragraph. **Double asterisks** make text bold, [words](/page/) makes a link, and a box starting with ## is a heading (### a smaller one)." });
 const slugField = defineField({ name: "slug", title: "URL slug", type: "slug", options: { source: "title" }, validation: (r) => r.required(), description: "Changing it changes the page address. Keep the old one unless you add a redirect." });
 const orderField = defineField({ name: "order", title: "Order", type: "number" });
 
@@ -382,6 +382,9 @@ export const teamMember = defineType({
   preview: { select: { title: "name", subtitle: "heading", media: "photo" } },
 });
 
+/** Line icons for the blog's visual blocks (components/blog/BlogIcons.tsx). */
+const postIcons = ["clock", "calendar", "shield", "pin", "scan", "layers", "tooth", "implant", "bridge", "arch", "wing", "anchor", "smile"];
+
 export const post = defineType({
   name: "post",
   title: "Blog post",
@@ -390,12 +393,129 @@ export const post = defineType({
     defineField({ name: "title", type: "string", validation: (r) => r.required() }),
     slugField,
     defineField({ name: "date", type: "date", validation: (r) => r.required() }),
+    // Every post is written by a named dentist (Dr. Shir by default) and supports one category of the site: the byline
+    // links to the author page and the article's structured data names the author, the category and the related page.
+    defineField({ name: "author", title: "Author", type: "string", initialValue: "Dr. Nushin Shir",
+      options: { list: [{ title: "Dr. Nushin Shir", value: "Dr. Nushin Shir" }, { title: "Dr. Daniel Charlton", value: "Dr. Daniel Charlton" }] } }),
+    defineField({ name: "category", title: "Category (the part of the site this post supports)", type: "string", initialValue: "cosmetic",
+      options: { list: [
+        { title: "Dental implants", value: "implants" }, { title: "Cosmetic dentistry and clear aligners", value: "cosmetic" },
+        { title: "Restorative dentistry", value: "restorative" }, { title: "Periodontics (gum care)", value: "periodontics" },
+        { title: "Preventive dentistry", value: "preventive" }, { title: "Dental technology", value: "technology" }, { title: "Areas we serve", value: "areas" } ] } }),
+    defineField({ name: "service", title: "Page this post supports (path, for example /services/cosmetic-dentistry/clear-aligners/)", type: "string",
+      validation: (r) => r.custom((v) => (!v || /^\/[^\s]*\/$/.test(String(v)) ? true : "A path on this site, starting and ending with /")) }),
     defineField({ name: "excerpt", type: "text", rows: 3 }),
     defineField({ name: "image", type: "altImage" }),
     paragraphs("body", "Body"),
+    // The design around the text: photos and visual blocks sit above the heading they name, so the body stays as written.
+    defineField({
+      name: "figures",
+      title: "Photos inside the article",
+      type: "array",
+      description: "Each photo sits above the heading named in “Before heading” (copy the ## heading text exactly). Real office photos only, each with alt text and a caption.",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "postFigure",
+          title: "Photo",
+          fields: [
+            defineField({ name: "beforeHeading", title: "Before heading", type: "string", validation: (r) => r.required() }),
+            defineField({ name: "image", title: "Photo", type: "altImage", validation: (r) => r.required() }),
+            defineField({ name: "caption", type: "string" }),
+            defineField({ name: "position", title: "Crop focus (optional)", type: "string", description: "Where the photo is centered in its 3:2 frame, e.g. center 30%. Empty: the middle." }),
+          ],
+          preview: { select: { title: "beforeHeading", subtitle: "caption", media: "image" } },
+        }),
+      ],
+    }),
+    defineField({
+      name: "blocks",
+      title: "Visual blocks",
+      type: "array",
+      description: "Quick facts, numbered steps and option cards, built as real text so Google can read them. Each sits above the heading named in “Before heading”; Quick facts without one sit under the opening answer.",
+      of: [
+        defineArrayMember({
+          type: "object",
+          name: "postFacts",
+          title: "Quick facts",
+          fields: [
+            defineField({ name: "heading", type: "string", initialValue: "Quick facts" }),
+            defineField({ name: "beforeHeading", title: "Before heading (optional)", type: "string" }),
+            defineField({
+              name: "items",
+              type: "array",
+              of: [
+                defineArrayMember({
+                  type: "object",
+                  name: "postFact",
+                  fields: [
+                    defineField({ name: "icon", type: "string", options: { list: postIcons } }),
+                    defineField({ name: "label", type: "string", validation: (r) => r.required() }),
+                    defineField({ name: "value", type: "string", validation: (r) => r.required() }),
+                  ],
+                  preview: { select: { title: "label", subtitle: "value" } },
+                }),
+              ],
+            }),
+          ],
+          preview: { select: { title: "heading" }, prepare: (v) => ({ title: v.title || "Quick facts", subtitle: "Quick facts" }) },
+        }),
+        defineArrayMember({
+          type: "object",
+          name: "postSteps",
+          title: "Numbered steps",
+          fields: [
+            defineField({ name: "heading", type: "string" }),
+            defineField({ name: "beforeHeading", title: "Before heading", type: "string", validation: (r) => r.required() }),
+            defineField({
+              name: "items",
+              title: "Steps",
+              type: "array",
+              of: [
+                defineArrayMember({
+                  type: "object",
+                  name: "postStep",
+                  fields: [defineField({ name: "title", type: "string", validation: (r) => r.required() }), defineField({ name: "text", type: "text", rows: 3 })],
+                  preview: { select: { title: "title", subtitle: "text" } },
+                }),
+              ],
+            }),
+          ],
+          preview: { select: { title: "heading" }, prepare: (v) => ({ title: v.title || "Numbered steps", subtitle: "Numbered steps" }) },
+        }),
+        defineArrayMember({
+          type: "object",
+          name: "postOptions",
+          title: "Option cards",
+          fields: [
+            defineField({ name: "heading", type: "string" }),
+            defineField({ name: "beforeHeading", title: "Before heading", type: "string", validation: (r) => r.required() }),
+            defineField({
+              name: "items",
+              title: "Cards",
+              type: "array",
+              of: [
+                defineArrayMember({
+                  type: "object",
+                  name: "postOption",
+                  fields: [
+                    defineField({ name: "icon", type: "string", options: { list: postIcons } }),
+                    defineField({ name: "title", type: "string", validation: (r) => r.required() }),
+                    defineField({ name: "text", type: "text", rows: 3 }),
+                  ],
+                  preview: { select: { title: "title", subtitle: "text" } },
+                }),
+              ],
+            }),
+          ],
+          preview: { select: { title: "heading" }, prepare: (v) => ({ title: v.title || "Option cards", subtitle: "Option cards" }) },
+        }),
+      ],
+    }),
+    defineField({ name: "cta", title: "Call to action in the middle of the article (one sentence)", type: "string", description: "Shown on a green band with the Request an appointment button after the third or fourth section." }),
     seoField,
   ],
-  preview: { select: { title: "title", subtitle: "date", media: "image" } },
+  preview: { select: { title: "title", subtitle: "author", media: "image" } },
 });
 
 export const singletonTypes = new Set([

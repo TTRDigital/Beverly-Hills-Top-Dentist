@@ -133,6 +133,8 @@ export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
     ["siteSettings"],
   );
   const s = merge({ ...fallbackSettings, menu: fallbackMenu }, cms);
+  // The blog is always in the top menu (Kia, Oct 23), even when the menu saved in Sanity was made before it existed.
+  if (!s.menu.some((m) => m.href === "/blog/")) s.menu = [...s.menu, { label: "Blog", href: "/blog/" }];
   // tel: link always follows the displayed phone number.
   const digits = s.phone.replace(/\D/g, "");
   return { ...s, phoneHref: `tel:+${digits.length === 10 ? `1${digits}` : digits}` };
@@ -254,7 +256,10 @@ export const getFaqs = cache(async (): Promise<Faq[]> => {
 
 export const getPosts = cache(async (): Promise<Post[]> => {
   const cms = await sanityFetch<Post[]>(
-    `*[_type == "post" && defined(slug.current)] | order(date desc){ "slug": slug.current, title, date, excerpt, body, "image": image${IMG}, ${SEO} }`,
+    `*[_type == "post" && defined(slug.current)] | order(date desc){ "slug": slug.current, title, date, author, category, service, excerpt, body, "image": image${IMG}, cta,
+      "figures": figures[]{ _key, beforeHeading, "image": image${IMG}, caption, position },
+      "blocks": blocks[]{ "_type": select(_type == "postFacts" => "facts", _type == "postSteps" => "steps", _type == "postOptions" => "options", _type), _key, beforeHeading, heading, items[]{ icon, label, value, title, text } },
+      ${SEO} }`,
     {},
     ["post"],
   );

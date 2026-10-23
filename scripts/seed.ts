@@ -291,7 +291,21 @@ async function build() {
   for (const c of fallbackCases) docs.push({ _id: `beforeAfterCase-${c.id}`, _type: "beforeAfterCase", title: c.title, image: await altImage(c.image), groups: c.groups, order: c.order });
   fallbackTestimonials.forEach((x, n) => docs.push({ _id: `testimonial-${n + 1}`, _type: "testimonial", ...x }));
   fallbackFaqs.forEach((f, n) => docs.push({ _id: `faq-${n + 1}`, _type: "faq", question: f.question, answer: f.answer, order: n + 1 }));
-  for (const p of fallbackPosts) docs.push({ _id: `post-${p.slug}`, _type: "post", title: p.title, slug: { _type: "slug", current: p.slug }, date: p.date, excerpt: p.excerpt, body: p.body, image: await altImage(p.image), seo: seo(p.seo) });
+  for (const p of fallbackPosts)
+    docs.push({
+      _id: `post-${p.slug}`,
+      _type: "post",
+      title: p.title,
+      slug: { _type: "slug", current: p.slug },
+      date: p.date,
+      author: p.author,
+      category: p.category,
+      service: p.service,
+      excerpt: p.excerpt,
+      body: p.body,
+      image: await altImage(p.image),
+      seo: seo(p.seo),
+    });
 
   return docs;
 }

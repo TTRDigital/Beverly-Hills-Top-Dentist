@@ -166,3 +166,96 @@ details[open] .acc-plus {
 details:not([open]) .acc-minus {
   display: none;
 }
+
+/* ---------- Blog (editorial reading page) ---------- */
+/* The hero text fades and rises on load; a CSS animation, so it runs without JavaScript and ends at once with reduced motion. */
+@keyframes post-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* The hero photo settles from a slight zoom; no opacity change, so it still counts as the first big paint. */
+@keyframes post-settle {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: none;
+  }
+}
+@layer components {
+  .post-rise {
+    animation: post-rise 0.8s var(--ease-out-expo) both;
+    animation-delay: calc(var(--i, 0) * 110ms);
+  }
+  .post-settle {
+    animation: post-settle 1.4s var(--ease-out-expo) both;
+  }
+  /* Reading measure: 17px on phones, 18px on desktop, line height 1.7. */
+  .post-body {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-body);
+  }
+  @media (min-width: 768px) {
+    .post-body {
+      font-size: 1.125rem;
+    }
+  }
+  .post-body > p,
+  .post-body > section > p {
+    margin-top: 1.25em;
+  }
+  .post-body h2 + p,
+  .post-body h3 + p {
+    margin-top: 1rem;
+  }
+  .post-body a {
+    color: var(--color-brand);
+    text-decoration-color: color-mix(in srgb, var(--color-brand) 40%, transparent);
+  }
+  /* Section headings with a short brand rule above. */
+  .post-h2 {
+    position: relative;
+    padding-top: 1rem;
+    font-size: 1.625rem;
+    line-height: 1.25;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+  .post-h2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2.5rem;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--color-brand);
+  }
+  @media (min-width: 768px) {
+    .post-h2 {
+      font-size: 1.875rem;
+    }
+  }
+  /* Reading progress bar at the very top (above the sticky header). */
+  .post-progress {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 60;
+    height: 3px;
+    pointer-events: none;
+  }
+  .post-progress-bar {
+    height: 100%;
+    background: var(--color-brand-2);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.1s linear;
+  }
+}
