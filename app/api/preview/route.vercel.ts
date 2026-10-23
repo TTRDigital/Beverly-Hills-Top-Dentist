@@ -9,7 +9,7 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const r = checkPreviewLink(
     { path: url.searchParams.get("path"), exp: url.searchParams.get("exp"), sig: url.searchParams.get("sig") },
-    process.env.SANITY_PREVIEW_SECRET || "",
+    process.env.PREVIEW_SECRET || process.env.SANITY_PREVIEW_SECRET || "",
     new Date(),
   );
   if (!r.ok) return plain(r.why.startsWith("Previews are not") ? 503 : 401, r.why);
