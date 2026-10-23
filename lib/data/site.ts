@@ -90,6 +90,7 @@ export const fallbackMenu: MenuItem[] = [
       { label: "Hollywood", href: "/areas-we-serve/hollywood/" },
     ],
   },
+  { label: "Blog", href: "/blog/" },
 ];
 
 export const fallbackSettings: Omit<SiteSettings, "phoneHref"> = {
