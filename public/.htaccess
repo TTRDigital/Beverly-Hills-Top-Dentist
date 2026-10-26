@@ -202,6 +202,8 @@ ErrorDocument 404 /404.html
   # Old uploaded photos (any WordPress size, e.g. -1024x1024 or -scaled) to their new files.
   # Old smile-case photos (taken down Oct 26, 2026: not this practice's cases) go to the Before & After page.
   RewriteRule ^(?:_img/)?images/before-after/ https://%{HTTP_HOST}/before-after/ [R=301,L,NC]
+  # The repo's old Dr. Shir photo (an AI-edited copy) now points at her original headshot.
+  RewriteRule ^(?:_img/)?images/team/dr-nushin-shir(?:-\d+)?\.(?:jpg|webp)$ https://%{HTTP_HOST}/images/team/dr-nushin-shir-headshot.png [R=301,L,NC]
   RewriteRule ^wp-content/uploads/2026/05/2c4351b6-4301-4974-a83c-26fa58c39c86(?:-scaled|-e\d+)?(?:-\d+x\d+)?\.png$ https://%{HTTP_HOST}/images/insurance/cigna.png [R=301,L,NC]
   RewriteRule ^wp-content/uploads/2026/05/53a63448-05dc-4859-ad81-b51350aaeb61(?:-scaled|-e\d+)?(?:-\d+x\d+)?\.png$ https://%{HTTP_HOST}/images/insurance/delta-dental.png [R=301,L,NC]
   RewriteRule ^wp-content/uploads/2026/05/bh-logo-dark-transparent(?:-scaled|-e\d+)?(?:-\d+x\d+)?\.png$ https://%{HTTP_HOST}/images/brand/logo.png [R=301,L,NC]
@@ -257,7 +259,7 @@ ErrorDocument 404 /404.html
   RewriteRule ^wp-content/uploads/2026/09/20260902_122323-scaled(?:-scaled|-e\d+)?(?:-\d+x\d+)?\.jpg$ https://%{HTTP_HOST}/images/office/hygienist-treating-patient.jpg [R=301,L,NC]
   RewriteRule ^wp-content/uploads/2026/09/20260902_165622-scaled(?:-scaled|-e\d+)?(?:-\d+x\d+)?\.jpg$ https://%{HTTP_HOST}/images/office/dentists-treating-patient.jpg [R=301,L,NC]
   RewriteRule ^wp-content/uploads/2026/09/481078235_618586414369480_290212468408429265_n-2(?:-scaled|-e\d+)?(?:-\d+x\d+)?\.jpg$ https://%{HTTP_HOST}/images/office/hallway-wide-2.jpg [R=301,L,NC]
-  RewriteRule ^wp-content/uploads/2026/09/ChatGPT-Image-Sep-3-2026-01_48_43-AM(?:-scaled|-e\d+)?(?:-\d+x\d+)?\.png$ https://%{HTTP_HOST}/images/team/dr-nushin-shir.jpg [R=301,L,NC]
+  RewriteRule ^wp-content/uploads/2026/09/ChatGPT-Image-Sep-3-2026-01_48_43-AM(?:-scaled|-e\d+)?(?:-\d+x\d+)?\.png$ https://%{HTTP_HOST}/images/team/dr-nushin-shir-headshot.png [R=301,L,NC]
   RewriteRule ^wp-content/uploads/2026/09/IMG_1600(?:-scaled|-e\d+)?(?:-\d+x\d+)?\.jpg$ https://%{HTTP_HOST}/images/results/smile-result-1.jpg [R=301,L,NC]
   RewriteRule ^wp-content/uploads/2026/09/IMG_3286(?:-scaled|-e\d+)?(?:-\d+x\d+)?\.jpg$ https://%{HTTP_HOST}/images/results/smile-result-2.jpg [R=301,L,NC]
   RewriteRule ^wp-content/uploads/2026/09/IMG_3292(?:-scaled|-e\d+)?(?:-\d+x\d+)?\.jpg$ https://%{HTTP_HOST}/images/results/smile-result-3.jpg [R=301,L,NC]

@@ -33,7 +33,7 @@ export default async function DrShirPage() {
 
       <section className="relative overflow-hidden bg-header">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_90%_at_85%_10%,rgb(214_234_221_/_0.95),transparent_70%)]" />
-        <div className="container-box relative grid gap-10 py-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,360px)] lg:items-center lg:gap-16 lg:py-16">
+        <div className="container-box relative grid gap-10 py-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,280px)] lg:items-center lg:gap-16 lg:py-16">
           <div>
             <p className="post-rise flex flex-wrap items-center gap-3 text-sm" style={css(0)}>
               <Link href="/about-us/" className="font-semibold text-ink/70 transition-colors hover:text-brand">
@@ -65,10 +65,10 @@ export default async function DrShirPage() {
               </a>
             </div>
           </div>
-          <div className="relative mx-auto w-full max-w-[360px]">
+          <div className="relative mx-auto w-full max-w-[280px]">
             <div aria-hidden="true" className="absolute -bottom-3 -right-3 h-full w-full rounded-xl border border-brand/25" />
-            <div className="relative aspect-[690/1024] overflow-hidden rounded-xl bg-dropdown shadow-[0_24px_60px_rgb(33_29_29_/_0.18)]">
-              <Image src={p.photo.src} alt={p.photo.alt} fill loading="eager" fetchPriority="high" sizes="(min-width: 1024px) 360px, 90vw" className="post-settle object-cover object-top" />
+            <div className="relative aspect-[216/320] overflow-hidden rounded-xl bg-dropdown shadow-[0_24px_60px_rgb(33_29_29_/_0.18)]">
+              <Image src={p.photo.src} alt={p.photo.alt} fill loading="eager" fetchPriority="high" sizes="280px" className="post-settle object-cover object-top" />
             </div>
           </div>
         </div>

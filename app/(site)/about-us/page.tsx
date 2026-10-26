@@ -54,9 +54,14 @@ export default async function AboutPage() {
               </p>
             ) : null}
           </div>
-          {m.photo ? (
+          {m.photo && /shir/i.test(m.name) ? (
+            // Her original headshot is small (216 x 320), so it is shown near its real size on a light panel, not stretched.
+            <div className="flex items-center justify-center bg-paper px-6 py-12 md:w-1/2">
+              <Image src={m.photo.src} alt={drShirProfile.photo.alt} width={m.photo.width} height={m.photo.height} sizes="280px" className="h-auto w-full max-w-[280px] rounded-xl shadow-[0_24px_60px_rgb(33_29_29_/_0.18)]" />
+            </div>
+          ) : m.photo ? (
             <div className="md:w-1/2">
-              <Image src={m.photo.src} alt={/shir/i.test(m.name) ? drShirProfile.photo.alt : m.photo.alt || m.name} width={m.photo.width} height={m.photo.height} sizes="(min-width: 768px) 50vw, 100vw" className="h-auto w-full" />
+              <Image src={m.photo.src} alt={m.photo.alt || m.name} width={m.photo.width} height={m.photo.height} sizes="(min-width: 768px) 50vw, 100vw" className="h-auto w-full" />
             </div>
           ) : null}
         </section>
