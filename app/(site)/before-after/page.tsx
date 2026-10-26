@@ -49,6 +49,7 @@ export default async function BeforeAfterPage() {
               ))}
             </Carousel>
           </div>
+          <p className="mt-10 text-center">More of Dr. Shir&apos;s cases coming soon.</p>
         </div>
       </section>
     </>

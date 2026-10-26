@@ -1,6 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
+    { "source": "/images/before-after/:file*", "destination": "/before-after/", "statusCode": 301 },
+    { "source": "/_img/images/before-after/:file*", "destination": "/before-after/", "statusCode": 301 },
     { "source": "/blog/dental-bridges-beverly-hills", "destination": "/blog/bridge-or-implant-beverly-hills/", "permanent": true },
     { "source": "/blog/dental-bridges-beverly-hills/", "destination": "/blog/bridge-or-implant-beverly-hills/", "permanent": true },
     {
@@ -842,32 +844,32 @@
     },
     {
       "source": "/wp-content/uploads/2026/06/before-after-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/before-after/smile-1.webp",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/06/before-after-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/before-after/smile-2.webp",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/06/before-after-3((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/before-after/smile-3.webp",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/06/before-after-4((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/before-after/smile-4.webp",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/06/before-after-5((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/before-after/smile-5.webp",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/06/before-after-6((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/before-after/smile-6.webp",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
@@ -1012,112 +1014,112 @@
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-01\\.-png-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-01.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-02-1-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-02.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-03-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-03.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-04-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-04.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-05-1-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-05.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-06-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-06.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-07\\.-png-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-07.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-08-1-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-08.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-08-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-08-b.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-09-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-09.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-10-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-10.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-11-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-11.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-12-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-12.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-13-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-13.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-15-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-15.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-16-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-16.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-17-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-17.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-18-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-18.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-19-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-19.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-20-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-20.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-21((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-21-1024.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
       "source": "/wp-content/uploads/2026/07/ba-21-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/before-after/case-21.jpg",
+      "destination": "/before-after/",
       "statusCode": 301
     },
     {
