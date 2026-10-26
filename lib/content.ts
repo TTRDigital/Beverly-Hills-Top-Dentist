@@ -311,7 +311,10 @@ export const getAboutPage = cache(async (): Promise<AboutContent> => {
 
 export const getBeforeAfterPage = cache(async (): Promise<BeforeAfterContent> => {
   const cms = await sanityFetch<Partial<BeforeAfterContent>>(`*[_id == "beforeAfterPage"][0]{ hero{ heading, text, "image": image${IMG} }, gallery{ heading, text }, ${SEO} }`, {}, ["beforeAfterPage"]);
-  return merge(fallbackBeforeAfter, cms);
+  const page = merge(fallbackBeforeAfter, cms);
+  // The hero photo saved in /cms was another practice's (Oct 26, 2026): the practice's own photo is used whatever the CMS
+  // holds, until the CMS copy is replaced (docs/photo-swap/SANITY-EDITS.md). It is also the page's share image.
+  return { ...page, hero: { ...page.hero, image: fallbackBeforeAfter.hero.image } };
 });
 
 export const getAppointmentPage = cache(async (): Promise<AppointmentContent> => {

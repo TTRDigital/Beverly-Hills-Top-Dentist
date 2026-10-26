@@ -768,23 +768,8 @@
       "statusCode": 301
     },
     {
-      "source": "/wp-content/uploads/2026/05/8b88abfc-8705-4c39-a5b3-62533d4ba5be((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/treatments/dentist-reviewing-scan.png",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/05/ac9f6370-40c1-4117-98f7-830bca302edd((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/treatments/patient-reviewing-x-ray.png",
-      "statusCode": 301
-    },
-    {
       "source": "/wp-content/uploads/2026/05/bh-logo-dark-transparent((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
       "destination": "/images/brand/logo.png",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/05/c33ffa60-3d6f-49da-89b0-585080de396e((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/treatments/patient-dental-exam-closeup.jpg",
       "statusCode": 301
     },
     {
@@ -800,46 +785,6 @@
     {
       "source": "/wp-content/uploads/2026/05/eb48049c-f08c-435d-bc7e-7dba002dcf86((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
       "destination": "/images/insurance/aetna.png",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/05/f27652e6-1b34-4494-a431-a20933a947bc-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/treatments/dentist-showing-x-ray.jpg",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/05/f882c745-32bf-499e-b44d-ee6f186e85ab((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/treatments/patient-tooth-exam.png",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/1-1-1024x1024-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/toothache.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/11-1024x1024-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/smile-mirror-exam.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/2-1-1024x1024-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/dental-models.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/4-1-1024x1024-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/patient-smiling-mirror.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/Rectangle-3149-1024x764-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/dental-team-ok.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/Rectangle-4386-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/patient-smiling-chair.webp",
       "statusCode": 301
     },
     {
@@ -870,146 +815,6 @@
     {
       "source": "/wp-content/uploads/2026/06/before-after-6((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
       "destination": "/before-after/",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/cosmetic-dentistry-image((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/shade-guide-smile.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/dental-bonding-image((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/tooth-polishing.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/dental-image-1024x1024-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/gum-line-closeup.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/dental-patient-image-863x1024-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/smiling-woman-portrait.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/gum-graft-banner-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/gum-procedure.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/idealdentalsolutions-image-11((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/bleeding-gums.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/idealdentalsolutions-image-13-1024x682-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/dentist-patient-chat.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/idealdentalsolutions-image-8-1024x682-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/senior-patient-mirror.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/idealdentalsolutions-image-9-1024x682-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/senior-woman-chair.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/image-slider-small-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/dental-microscope.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/img-1236553((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/dentist-patient-chat-2.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/img-238461((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/clear-aligner.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/img-6523432((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/dental-laser-treatment.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/img-712637((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/shade-guide-smile-2.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/img-7234((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/dental-team-ok-2.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/img-76234((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/dental-microscope-2.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/img-7868234((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/senior-woman-chair-2.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/img-8234((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/patient-smiling-chair-2.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/img-823433-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/gum-procedure-2.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/img-83234((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/toothache-2.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/img-8982346((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/dental-models-2.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/img-9034312((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/bleeding-gums-2.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/img-96234((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/dental-team-ok-3.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/ing-12653((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/senior-patient-mirror-2.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/smile-makeover-image((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/bright-smile.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/06/tooth-extrach-image-1024x1024-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
-      "destination": "/images/treatments/extraction-forceps.webp",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/07/20240806-DSC_4722((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
-      "destination": "/images/treatments/smiling-woman-profile.jpg",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_elznlyelznlyelzn((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/treatments/laser-gum-treatment.jpg",
       "statusCode": 301
     },
     {
@@ -1123,21 +928,6 @@
       "statusCode": 301
     },
     {
-      "source": "/wp-content/uploads/2026/07/separated-bottom((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/treatments/dentist-reviewing-scan-2.jpg",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/07/separated-top((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/treatments/veneer-shade-match.jpg",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/08/1-biological-BIO-5((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
-      "destination": "/images/home/biological.jpg",
-      "statusCode": 301
-    },
-    {
       "source": "/wp-content/uploads/2026/08/20260827_140645((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
       "destination": "/images/office/reception-desk-portrait.jpg",
       "statusCode": 301
@@ -1203,16 +993,6 @@
       "statusCode": 301
     },
     {
-      "source": "/wp-content/uploads/2026/08/bim-4-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
-      "destination": "/images/home/biomimetic.jpg",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/08/hol-6-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
-      "destination": "/images/home/holistic.jpg",
-      "statusCode": 301
-    },
-    {
       "source": "/wp-content/uploads/2026/09/20260827_141218-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
       "destination": "/images/technology/digital-x-ray-room.jpg",
       "statusCode": 301
@@ -1258,11 +1038,6 @@
       "statusCode": 301
     },
     {
-      "source": "/wp-content/uploads/2026/09/ChatGPT-Image-Sep-3-2026-06_25_55-PM((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
-      "destination": "/images/treatments/dentist-with-patient.jpg",
-      "statusCode": 301
-    },
-    {
       "source": "/wp-content/uploads/2026/09/IMG_1600((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
       "destination": "/images/results/smile-result-1.jpg",
       "statusCode": 301
@@ -1275,16 +1050,6 @@
     {
       "source": "/wp-content/uploads/2026/09/IMG_3292((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
       "destination": "/images/results/smile-result-3.jpg",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/09/Patient5((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
-      "destination": "/images/office/dentist-examining-patient-683.jpg",
-      "statusCode": 301
-    },
-    {
-      "source": "/wp-content/uploads/2026/09/Patient5-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
-      "destination": "/images/office/dentist-examining-patient.jpg",
       "statusCode": 301
     },
     {

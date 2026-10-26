@@ -11,8 +11,9 @@ export const fallbackServicesHub: HubContent = {
       text: [
         "Dr. Shir has spent over thirty years refining an approach that protects your health while it rebuilds your smile."
       ],
-      image: images.patientDentalExamCloseup,
-      overlay: "none"
+      image: images.dentistsTreatingPatient,
+      overlay: "left",
+        overlayOpacity: 0.7
     },
     {
       _type: "accordionFeature",
@@ -21,7 +22,7 @@ export const fallbackServicesHub: HubContent = {
       text: [
         "Replace missing teeth with implants planned using in-office 3D imaging and placed and restored by the same dentist. Dr. Shir rebuilds the whole tooth, root included, so your bite, your bone and your appearance are all protected."
       ],
-      image: images.dentalTeamOk3,
+      image: images.teamPhoto,
       items: [
         {
           title: "Single Tooth Implants",
@@ -50,7 +51,7 @@ export const fallbackServicesHub: HubContent = {
       text: [
         "Veneers, whitening, bonding and full smile design, planned digitally and previewed before any tooth is prepared. Dr. Shir has spent more than thirty years refining an approach that conserves natural tooth structure while it changes how a smile looks."
       ],
-      image: images.dentalTeamOk,
+      image: images.teamPhoto,
       items: [
         {
           title: "Porcelain Veneers",
@@ -100,7 +101,7 @@ export const fallbackServicesHub: HubContent = {
       text: [
         "Repair and rebuild damaged or missing teeth, restoring both function and appearance. Planned with 3D imaging taken in this office and carried out by Dr. Shir."
       ],
-      image: images.dentistExaminingPatient,
+      image: images.hygienistTreatingPatient,
       items: [
         {
           title: "Dental Fillings",
@@ -164,7 +165,7 @@ export const fallbackServicesHub: HubContent = {
       text: [
         "Treatment for gum disease, recession and the tissue that supports your teeth. Gum health is the foundation everything else in dentistry sits on, and it is assessed at every visit here."
       ],
-      image: images.dentalTeamOk,
+      image: images.teamPhoto,
       items: [
         {
           title: "Gum Disease Treatment",
@@ -221,7 +222,7 @@ export const fallbackServicesHub: HubContent = {
       text: [
         "Preventive dentistry focuses on maintaining your oral health by preventing dental problems before they start. Our proactive approach includes regular checkups, cleanings, and treatments designed to keep your smile healthy for life."
       ],
-      image: images.dentalMicroscope,
+      image: images.ozoneUnit,
       items: [
         {
           title: "Teeth Cleaning",
@@ -271,7 +272,7 @@ export const fallbackServicesHub: HubContent = {
       text: [
         "3D imaging, digital scanning, soft tissue lasers and ozone, all in this office. Equipment most general practices refer out for, so planning and treatment happen in the same place."
       ],
-      image: images.dentalTeamOk2,
+      image: images.teamPhoto,
       items: [
         {
           title: "Ozone Therapy",
@@ -327,8 +328,9 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "Replace missing teeth with implants planned using in-office 3D imaging and placed and restored by the same dentist. Dr. Shir rebuilds the whole tooth, root included, so your bite, your bone and your appearance are all protected."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none",
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -346,7 +348,7 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "An implant is three separate components working as one tooth. Here is what each part does, and what the options are."
         ],
-        image: images.dentalTeamOk3,
+        image: images.teamPhoto,
         items: [
           {
             title: "What Are Dental Implants?",
@@ -412,14 +414,14 @@ export const fallbackCategories: ServiceCategory[] = [
         ],
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "Expertise & Experience:",
             text: [
               "More than thirty years of restorative practice, including complex and aesthetic implant cases. Dr. Shir handles both the surgical placement and the restoration, so nothing is referred out and nothing is lost between two providers."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "State-of-the-Art Technology:",
             text: [
               "Cone beam CT and an intraoral scanner in this office. Bone height and width, nerve position and sinus floor are measured on our own scan before planning, and the crown is made from a digital scan rather than an impression tray."
@@ -518,8 +520,9 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "Veneers, whitening, bonding and full smile design, planned digitally and previewed before any tooth is prepared. Dr. Shir has spent more than thirty years refining an approach that conserves natural tooth structure while it changes how a smile looks."
         ],
-        image: images.patientSmilingChair,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -535,7 +538,7 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "The treatments we provide, and what each one is genuinely suited to. Often the right answer is the most conservative one on this list."
         ],
-        image: images.dentalTeamOk,
+        image: images.teamPhoto,
         items: [
           {
             title: "Teeth Whitening",
@@ -601,14 +604,14 @@ export const fallbackCategories: ServiceCategory[] = [
         ],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "Experienced Cosmetic Dentistry Team:",
             text: [
               "More than thirty years of restorative and aesthetic practice. Design decisions are made against your facial proportions, your lip line and your smile line, not against a stock template, and you see the proposed result before committing to it."
             ]
           },
           {
-            image: images.dentistReviewingScan2,
+            image: images.iteroScanner,
             title: "Advanced Dental Technology:",
             text: [
               "Digital scanning, digital imaging and a soft tissue laser in this office. Restorations are made from an accurate digital record of your teeth, and gum work is sequenced ahead of porcelain so the frame is right before the teeth are made."
@@ -707,8 +710,9 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "Repair and rebuild damaged or missing teeth, restoring both function and appearance. Planned with 3D imaging taken in this office and carried out by Dr. Shir."
         ],
-        image: images.patientSmilingChair,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -724,7 +728,7 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "Nine treatments, from the smallest repair to full reconstruction. Which one your case calls for is decided at the examination, not before."
         ],
-        image: images.dentistExaminingPatient,
+        image: images.hygienistTreatingPatient,
         items: [
           {
             title: "Dental Fillings",
@@ -790,14 +794,14 @@ export const fallbackCategories: ServiceCategory[] = [
         ],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "SINGLE TOOTH IMPLANTS",
             text: [
               "One implant replacing one missing tooth, without involving the teeth either side. Those neighbours stay untouched, which a bridge cannot offer since it requires preparing both for crowns."
             ]
           },
           {
-            image: images.dentistReviewingScan2,
+            image: images.iteroScanner,
             title: "FULL ARCH IMPLANTS",
             text: [
               "A fixed set of teeth carried by a small number of implants, for patients missing most or all of an arch. Fixed in place with no adhesive, so it does not move while you eat or speak."
@@ -892,8 +896,9 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "Treatment for gum disease, recession and the tissue that supports your teeth. Gum health is the foundation everything else in dentistry sits on, and it is assessed at every visit here."
         ],
-        image: images.patientSmilingChair,
-        overlay: "none",
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -910,7 +915,7 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "Gum disease rarely hurts until it is advanced. These are the signs that show up first, and the treatments that address them."
         ],
-        image: images.dentalTeamOk,
+        image: images.teamPhoto,
         items: [
           {
             title: "Red, Swollen, or Tender Gums",
@@ -977,14 +982,14 @@ export const fallbackCategories: ServiceCategory[] = [
         ],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "GUM DISEASE TREATMENT",
             text: [
               "Deep cleaning below the gum line, known as scaling and root planing, removes the hardened deposits that inflammation feeds on. A soft tissue laser is used to treat the pocket lining and ozone as an adjunct to reduce bacterial levels. Most cases respond to this without surgery, and success depends heavily on the maintenance visits that follow."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "COSMETIC GUM PROCEDURES",
             text: [
               "Crown lengthening, gum contouring and gum grafting reshape the gum line where recession has exposed roots or where an uneven gum makes teeth look mismatched. Carried out with a soft tissue laser where appropriate, which usually means less bleeding and a more comfortable recovery than a scalpel."
@@ -1080,8 +1085,9 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "Preventive dentistry focuses on maintaining your oral health by preventing dental problems before they start. Our proactive approach includes regular checkups, cleanings, and treatments designed to keep your smile healthy for life."
         ],
-        image: images.patientSmilingChair,
-        overlay: "none",
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -1098,7 +1104,7 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "Our preventive dentistry services are designed to maintain your oral health and stop dental problems before they require more extensive treatment."
         ],
-        image: images.dentalMicroscope,
+        image: images.ozoneUnit,
         items: [
           {
             title: "Regular Oral Exams and Cleanings",
@@ -1147,14 +1153,14 @@ export const fallbackCategories: ServiceCategory[] = [
         ],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "Early Detection of Issues",
             text: [
               "Routine checkups help detect problems like cavities, gum disease, and oral cancer in their early stages, allowing for simpler and less invasive treatments."
             ]
           },
           {
-            image: images.dentistExaminingPatient683,
+            image: images.hygienistTreatingPatient,
             title: "Cost Savings",
             text: [
               "Preventive care reduces the need for expensive restorative procedures by addressing issues before they become serious and costly."
@@ -1252,8 +1258,9 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "3D imaging, digital scanning, soft tissue lasers and ozone, all in this office. Equipment most general practices refer out for, so planning and treatment happen in the same place."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none",
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -1268,7 +1275,7 @@ export const fallbackCategories: ServiceCategory[] = [
         _type: "accordionFeature",
         heading: "THE TECHNOLOGY WE USE AND WHY",
         text: ["Five pieces of equipment and what each one changes about the treatment you receive."],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "3D Cone Beam CT Scanning",
@@ -1343,14 +1350,14 @@ export const fallbackCategories: ServiceCategory[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "MORE ACCURATE DIAGNOSIS:",
             text: [
               "Cone beam imaging measures bone in three dimensions where a flat X-ray only approximates height. Digital X-rays find decay between teeth years before it becomes visible or uncomfortable. An intraoral camera shows you what we are describing rather than asking you to take our word for it."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "MORE COMFORTABLE TREATMENT:",
             text: [
               "Digital scanning removes impression trays and the material that sets in your mouth. Laser treatment usually means less bleeding, fewer sutures and a quicker recovery than a scalpel. Planning from a 3D scan means procedures run to a plan rather than adapting to what is found partway through."
@@ -1454,8 +1461,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Replace one missing tooth without touching the teeth either side. Planned on a 3D scan taken in this office, then placed and restored by Dr. Shir."
         ],
-        image: images.patientDentalExamCloseup,
-        overlay: "none",
+        image: images.dentistsTreatingPatient,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -1472,7 +1480,7 @@ export const fallbackServices: Service[] = [
         text: [
           "Dr. Shir invested in the equipment most general practices refer out for, so imaging, planning and treatment all happen here. This is what each piece contributes to a single tooth case."
         ],
-        image: images.patientReviewingXRay,
+        image: images.digitalXRayRoom,
         items: [
           {
             title: "3D Imaging and Digital X-Rays",
@@ -1539,14 +1547,14 @@ export const fallbackServices: Service[] = [
         ],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "Healthy Gums & Sufficient Bone:",
             text: [
               "Gum disease needs treating before an implant goes in, since the tissue around an implant behaves much like tissue around a tooth. Where bone volume is short, a graft can often rebuild the site first, though not in every case, and the scan tells us which applies."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "Good Overall Health:",
             text: [
               "Well-controlled diabetes is generally compatible with treatment, while poorly controlled diabetes is associated with slower healing. Smoking is associated with higher failure rates. Some medications, particularly certain osteoporosis drugs, need discussing before any surgery."
@@ -1648,8 +1656,9 @@ export const fallbackServices: Service[] = [
         text: [
           "A fixed set of teeth carried by a small number of implants, for patients missing most or all of an arch or living with a denture that will not stay put. Planned on a 3D scan taken in this office."
         ],
-        image: images.seniorPatientMirror,
-        overlay: "none"
+        image: images.imagingArea,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -1665,7 +1674,7 @@ export const fallbackServices: Service[] = [
         text: [
           "A full arch case depends more on planning than on any single step in the surgery. This is what each part of the process contributes."
         ],
-        image: images.seniorWomanChair,
+        image: images.cbctScanner,
         items: [
           {
             title: "3D Imaging and Digital Scans",
@@ -1731,14 +1740,14 @@ export const fallbackServices: Service[] = [
         ],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "CONSULTATION AND PLANNING:",
             text: [
               "Dr. Shir assesses your oral health and general health, takes a cone beam CT scan here in the office, and builds a plan from it. That plan covers how many implants your case calls for, where the bone supports them, and the sequence and timeline for the whole treatment. You receive it in writing with the cost before anything begins."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "IMPLANT PLACEMENT:",
             text: [
               "A small number of implants are placed into the jawbone in the positions the scan identified, under local anaesthetic with sedation available. Angled placement is often used to reach denser bone, which in many cases avoids grafting. A healing period follows before the final arch is fitted."
@@ -1839,8 +1848,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Designed digitally, previewed in your own mouth, and only then made. You see the result before any tooth is prepared."
         ],
-        image: images.patientSmilingChair,
-        overlay: "none",
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -1855,7 +1865,7 @@ export const fallbackServices: Service[] = [
         _type: "accordionFeature",
         heading: "Benefits & Care of Porcelain Veneers",
         text: ["What veneers can and cannot do, and what keeps them looking right over the years."],
-        image: images.shadeGuideSmile,
+        image: images.hallwayFlowers,
         items: [
           {
             title: "What Are Porcelain Dental Veneers?",
@@ -1922,14 +1932,14 @@ export const fallbackServices: Service[] = [
         ],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "Initial Consultation & Custom Planning",
             text: [
               "A conversation about what you want to change, a full assessment of your teeth, gums and bite, photographs and a digital scan. Gum health and bite stability come first, since veneers placed over either problem will not hold. The proposed result is then designed against your facial proportions and shown to you, and where appropriate a trial version is placed over your teeth so you can see the shape and length in your own mouth."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "Tooth Preparation & Final Placement",
             text: [
               "A conservative amount of enamel is prepared under local anaesthetic, guided by the agreed design rather than removed and then designed around. Well-made temporaries follow the approved shape and are worn during the lab period, which is a genuine test drive. The finished veneers are then tried in, checked with you for shade and shape in natural light, bonded, and the bite adjusted."
@@ -2027,8 +2037,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Several treatments planned as one result rather than booked one at a time. Designed digitally against your own face, previewed before anything is prepared, and sequenced so each stage supports the next."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none",
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -2045,7 +2056,7 @@ export const fallbackServices: Service[] = [
         text: [
           "Your plan uses only what your case calls for. These are the components we draw from, and what each one is genuinely suited to."
         ],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "Professional Whitening",
@@ -2120,7 +2131,7 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "CONSULTATION, RECORDS & DESIGN",
             text: [
               "A conversation about what you want to change, a full assessment of your teeth, gums and bite, photographs and a digital scan. Gum health and bite stability come first, since cosmetic work placed over either problem will not hold. The proposed result is then designed against your facial proportions, your lip line and your smile line, and shown to you. Where appropriate, a trial version is placed over your teeth so you can see the shape and length in your own mouth. Changes at this stage cost nothing but time."
@@ -2228,8 +2239,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Professional whitening supervised by a dentist, in-office for a faster result or with custom-fitted take-home trays. Your teeth are checked first, because whitening over untreated decay or exposed roots causes problems rather than solving them."
         ],
-        image: images.patientSmilingChair,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -2243,7 +2255,7 @@ export const fallbackServices: Service[] = [
         _type: "accordionFeature",
         heading: "Our Whitening Expertise & Services",
         text: ["What professional whitening involves here, and what each option is suited to."],
-        image: images.dentalTeamOk,
+        image: images.teamPhoto,
         items: [
           {
             title: "Expertise You Can Trust",
@@ -2313,14 +2325,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "In-Office Teeth Whitening:",
             text: [
               "One appointment of about an hour. Your gums and any exposed root surfaces are isolated and protected, then professional-grade gel is applied in stages under supervision. Suited to patients with a date to work toward, or anyone who would rather not manage trays at home. Some sensitivity for a day or two afterwards is common and settles."
             ]
           },
           {
-            image: images.dentistWithPatient,
+            image: images.dentistsTreatingPatient,
             title: "Take-Home Whitening Kits:",
             text: [
               "Custom trays made from a digital scan of your teeth, fitted closely so the gel stays on the teeth rather than leaking onto the gums. Worn for a set period each day across roughly two weeks. Many patients find the gradual approach more comfortable, and you keep the trays for occasional top-ups later."
@@ -2421,8 +2433,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Chips, small gaps and worn edges repaired in a single visit, usually with little or no enamel removed. The most conservative cosmetic treatment we offer, and often the right one."
         ],
-        image: images.patientSmilingChair,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -2437,7 +2450,7 @@ export const fallbackServices: Service[] = [
         _type: "accordionFeature",
         heading: "Benefits of Dental Bonding",
         text: ["What bonding does well, where its limits are, and how to make it last."],
-        image: images.toothPolishing,
+        image: images.hygienistTreatingPatient,
         items: [
           {
             title: "What is Dental Bonding?",
@@ -2503,7 +2516,7 @@ export const fallbackServices: Service[] = [
         ],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "COMPOSITE RESIN SHADE MATCHING",
             text: [
               "The shade is selected against your own teeth in natural light before anything is applied, and the resin is layered rather than placed as a single block so light passes through it the way it does through enamel. If whitening is part of your plan, it happens first, because composite will not lighten afterwards."
@@ -2607,8 +2620,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Straighten your teeth with a series of removable clear aligners, planned digitally from a scan taken in this office. No brackets, no wires, and you can see the projected result before you start."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none"
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -2623,7 +2637,7 @@ export const fallbackServices: Service[] = [
         _type: "accordionFeature",
         heading: "CLEAR ALIGNERS: WHAT TO KNOW",
         text: ["What aligners do well, what they do not, and what treatment actually asks of you."],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "Removable and Discreet",
@@ -2695,14 +2709,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "CONSULTATION & DIGITAL PLANNING",
             text: [
               "Dr. Shir assesses your teeth, gums and bite, and takes a digital scan here in the office. Gum health comes first, since moving teeth through inflamed tissue causes problems. From the scan, the full sequence of movements is planned and the projected result is shown to you, along with the expected number of trays and the timeline, before you decide anything."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "WEARING YOUR ALIGNERS & REVIEWS",
             text: [
               "You move through the trays in sequence, each worn for the period your plan sets, around twenty to twenty-two hours a day. Review appointments check that the teeth are tracking as planned and that the aligners are seating fully. Where a tooth is lagging, the plan is adjusted. At the end, attachments are removed and a retainer is fitted."
@@ -2820,8 +2834,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Tooth-coloured fillings that bond to your own tooth structure, placed conservatively so as little healthy enamel is removed as the situation allows."
         ],
-        image: images.patientSmilingChair,
-        overlay: "none",
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -2838,7 +2853,7 @@ export const fallbackServices: Service[] = [
         text: [
           "Decay is often well established before it becomes uncomfortable. These are the signs worth acting on, and what treating them early protects."
         ],
-        image: images.patientSmilingMirror,
+        image: images.treatmentChair,
         items: [
           {
             title: "Tooth Sensitivity",
@@ -2905,14 +2920,14 @@ export const fallbackServices: Service[] = [
         ],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "Composite Resin:",
             text: [
               "A tooth-coloured material bonded directly to the tooth and built up in layers, cured as it goes. Suited to small and moderate cavities and to repairs on front teeth, where the shade and translucency can be matched closely. Placed in a single visit."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "Ceramic Fillings:",
             text: [
               "Durable and stain-resistant, and better suited to larger cavities and to back teeth under heavy chewing pressure. Where a cavity is too large for composite but the tooth does not warrant a full crown, a ceramic inlay or onlay covers only the part that needs covering."
@@ -3010,8 +3025,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Replace one or more missing teeth with a fixed bridge, custom made and shaded to your own teeth. A non-surgical option, completed in a few weeks rather than a few months."
         ],
-        image: images.patientSmilingChair,
-        overlay: "none",
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -3028,7 +3044,7 @@ export const fallbackServices: Service[] = [
         text: [
           "Four types of bridge and what each one suits, followed by what a bridge does for you beyond filling the gap."
         ],
-        image: images.dentalTeamOk,
+        image: images.teamPhoto,
         items: [
           {
             title: "Traditional Dental Bridges",
@@ -3095,7 +3111,7 @@ export const fallbackServices: Service[] = [
         ],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "Traditional Bridge:",
             text: [
               "Suited to patients with healthy teeth on both sides of the gap, particularly where those teeth already need crowning. The anchors are prepared and the replacement fixed between them, with the whole thing completed in a few weeks and no surgery involved."
@@ -3200,8 +3216,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Removal planned in 3D, carried out gently, and finished with site preservation so your options for replacement stay open. Dr. Shir will also tell you when a tooth others have written off can still be saved."
         ],
-        image: images.patientSmilingChair,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -3215,7 +3232,7 @@ export const fallbackServices: Service[] = [
         _type: "accordionFeature",
         heading: "Our Comprehensive Tooth Extraction Services",
         text: ["The types of extraction we carry out, and the situations that call for one."],
-        image: images.extractionForceps,
+        image: images.dentistsTreatingPatient,
         items: [
           {
             title: "Simple Tooth Extractions",
@@ -3367,8 +3384,9 @@ export const fallbackServices: Service[] = [
         text: [
           "A conservative alternative to a full crown. Custom porcelain that covers only the damaged part of the tooth, so more of your own structure stays where it is."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none",
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -3385,7 +3403,7 @@ export const fallbackServices: Service[] = [
         text: [
           "What they are, when they suit a tooth better than the alternatives, and what to expect from them."
         ],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "What Is a Dental Inlay?",
@@ -3460,14 +3478,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "PORCELAIN INLAY:",
             text: [
               "Fits within the cusps of the tooth, replacing the chewing surface between them. Suited to a large cavity where the surrounding cusps are still strong. Less tooth is prepared than for an onlay, and considerably less than for a crown."
             ]
           },
           {
-            image: images.dentistWithPatient,
+            image: images.dentistsTreatingPatient,
             title: "PORCELAIN ONLAY:",
             text: [
               "Extends over one or more cusps to protect them. Suited to a tooth with a cracked or weakened cusp, or one that has been root treated and needs the chewing load spread across the whole tooth. It does the protective job of a crown while keeping more of your tooth intact."
@@ -3568,8 +3586,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Treat the infection inside the tooth and keep the tooth itself. Canal anatomy mapped in 3D where the case calls for it, and the protective crown afterwards completed in the same office."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none",
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -3586,7 +3605,7 @@ export const fallbackServices: Service[] = [
         text: [
           "Several of these warrant a prompt appointment rather than a routine one. If more than one applies, call rather than wait."
         ],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "Persistent, Throbbing Toothache",
@@ -3661,14 +3680,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "ROOT CANAL AND CROWN:",
             text: [
               "Keeps your natural root, which maintains bone and bite position in a way replacements only approximate. No surgery, and treatment is usually completed within two to four weeks. Suited to a tooth with enough sound structure remaining to be restored."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "EXTRACTION AND REPLACEMENT:",
             text: [
               "The right answer where the tooth is fractured below the gum line or too little structure remains to build on. It involves surgery and takes several months if an implant follows, and it usually costs more than the root canal and crown together once replacement is accounted for."
@@ -3787,8 +3806,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Removal planned on a 3D scan taken in this office, so nerve position and root anatomy are known before we begin rather than discovered during."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none"
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -3802,7 +3822,7 @@ export const fallbackServices: Service[] = [
         _type: "accordionFeature",
         heading: "WHEN WISDOM TEETH NEED REMOVING",
         text: ["The situations that call for removal, and what the planning involves."],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "Impaction Against the Tooth in Front",
@@ -3876,14 +3896,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "SIMPLE EXTRACTION:",
             text: [
               "For a wisdom tooth that has erupted fully and is accessible. After thorough anaesthesia the tooth is gently loosened within its socket and removed. A short appointment, and most patients manage afterwards on over-the-counter pain relief."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "SURGICAL EXTRACTION:",
             text: [
               "For teeth that are impacted, partly buried, or have curved or spread roots. A small incision is made and the tooth is often sectioned into pieces so it can be removed without stressing the surrounding bone. Sutures are usually placed, and healing follows a predictable course with the aftercare provided."
@@ -4001,8 +4021,9 @@ export const fallbackServices: Service[] = [
         text: [
           "A removable replacement for several missing teeth, designed around the teeth you still have so those are protected rather than overloaded."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none"
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -4018,7 +4039,7 @@ export const fallbackServices: Service[] = [
         text: [
           "The types available, what a partial does for you, and what to expect from living with one."
         ],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "Cast Metal Framework Partials",
@@ -4092,14 +4113,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "REMOVABLE PARTIAL DENTURE:",
             text: [
               "No surgery, a shorter treatment time of roughly four to eight weeks, and the lowest cost of the options. It replaces several teeth across the arch at once, including gaps that are far apart, which a bridge cannot do. It comes out for cleaning and needs relining as the tissue changes."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "IMPLANTS OR A FIXED BRIDGE:",
             text: [
               "Fixed in place, so nothing moves while you eat and nothing comes out at night. Implants also help maintain the bone at the site, which a partial does not. Both take longer, and implants involve surgery. Where bone volume, health or budget rule those out, a partial is a sound choice rather than a compromise."
@@ -4217,8 +4238,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Treatment for every stage of gum disease, starting with the least invasive option that works. Laser therapy and ozone used alongside deep cleaning, with surgery reserved for cases that need it."
         ],
-        image: images.bleedingGums,
-        overlay: "none",
+        image: images.hygienistTreatingPatient,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -4235,7 +4257,7 @@ export const fallbackServices: Service[] = [
         text: [
           "Six treatments, ordered from least to most invasive. Most patients are treated without surgery, and that is where we always start."
         ],
-        image: images.dentistPatientChat,
+        image: images.dentistsTreatingPatient,
         items: [
           {
             title: "Scaling and Root Planing",
@@ -4284,14 +4306,14 @@ export const fallbackServices: Service[] = [
         ],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "COMPREHENSIVE ASSESSMENT",
             text: [
               "A full periodontal examination measuring the pocket depth around every tooth, checking for bleeding and recession, and X-rays to assess the bone level. That gives an objective record of where you are, which is what the treatment plan is built on and what later visits are measured against."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "TREATMENT AND ONGOING MAINTENANCE",
             text: [
               "Treatment appropriate to the stage, followed by maintenance visits usually every three to four months rather than every six. Periodontal disease returns when the bacterial load builds back up, and the maintenance interval is what keeps it in check. This phase determines whether the treatment holds."
@@ -4388,8 +4410,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Reshaping the gum line to expose more of the natural tooth, either to give a restoration something to hold onto or to correct a gummy smile."
         ],
-        image: images.patientSmilingChair,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -4403,7 +4426,7 @@ export const fallbackServices: Service[] = [
         _type: "accordionFeature",
         heading: "Benefits of Crown Lengthening",
         text: ["What the procedure achieves, and what treatment involves from assessment to healing."],
-        image: images.gumLineCloseup,
+        image: images.softTissueLaser,
         items: [
           {
             title: "Improved Oral Health",
@@ -4471,14 +4494,14 @@ export const fallbackServices: Service[] = [
         text: ["Two groups of patients, with quite different reasons for having the same procedure."],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "RESTORING THE GUM LINE:",
             text: [
               "Where excess gum tissue makes teeth of a normal size look short, or where the gum line is uneven from one tooth to the next. Reshaping creates balanced proportions without altering the teeth themselves. Often planned alongside veneers or bonding, and always allowed to settle before those are designed."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "IMPROVING GUM HEALTH:",
             text: [
               "Where a tooth has decayed or fractured close to the gum line and there is not enough sound structure above the tissue for a crown to seal against. Lengthening exposes that structure, which frequently means a tooth can be restored rather than removed."
@@ -4578,8 +4601,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Rebuilding gum tissue where recession has exposed the roots of your teeth, to reduce sensitivity, protect the root surface and stop the recession progressing."
         ],
-        image: images.gumProcedure,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -4595,7 +4619,7 @@ export const fallbackServices: Service[] = [
         text: [
           "Three techniques, chosen by how much recession there is, where it sits and how much tissue you have to work with. Dr. Shir will explain which applies to your case at the assessment."
         ],
-        image: images.laserGumTreatment,
+        image: images.softTissueLaser,
         items: [
           {
             title: "Connective Tissue Graft",
@@ -4625,14 +4649,14 @@ export const fallbackServices: Service[] = [
         ],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "Initial Consultation:",
             text: [
               "Dr. Shir measures the extent of recession at each affected tooth, checks the thickness of the remaining tissue, and looks for the cause. Aggressive brushing, grinding and untreated gum disease all cause recession, and grafting over an unaddressed cause means the problem returns. The technique is chosen from that assessment."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "Grafting Procedure:",
             text: [
               "Carried out under local anaesthetic, with sedation available. Healthy tissue is positioned over the exposed root and secured with fine sutures so it stays in close contact while it integrates. You are given written aftercare, and a review appointment follows to check the graft is taking as expected."
@@ -4726,8 +4750,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Cleaning below the gum line to remove what a routine cleaning cannot reach. Carried out under local anaesthetic, supported by laser therapy and ozone."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none"
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -4743,7 +4768,7 @@ export const fallbackServices: Service[] = [
         text: [
           "Why it is recommended, what happens during the appointment, and what to expect afterwards."
         ],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "Why a Routine Cleaning Is Not Enough",
@@ -4817,14 +4842,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "ROUTINE CLEANING:",
             text: [
               "A preventive procedure for patients with healthy gums and shallow pockets. It removes plaque and hardened deposits from the tooth surfaces and just below the gum margin, and it is generally done every six months without anaesthetic. It maintains health rather than treating disease."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "DEEP CLEANING:",
             text: [
               "A treatment for patients with periodontal disease and pockets deeper than normal. It reaches below the gum line to the root surface, needs local anaesthetic, and is usually done across one or two appointments. It is followed by more frequent maintenance visits rather than a return to six-monthly cleanings."
@@ -4924,8 +4949,9 @@ export const fallbackServices: Service[] = [
         text: [
           "A soft tissue laser used alongside deep cleaning to treat gum disease, and to reshape gum tissue. For many patients it is an alternative to surgery, with less bleeding and a more comfortable recovery."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none",
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -4940,7 +4966,7 @@ export const fallbackServices: Service[] = [
         _type: "accordionFeature",
         heading: "WHERE WE USE THE LASER",
         text: ["The applications we use it for, and what the laser contributes in each."],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "Treating Periodontal Pockets",
@@ -5015,14 +5041,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "LASER PERIODONTAL THERAPY:",
             text: [
               "Used alongside scaling and root planing to treat the pocket lining and reduce bacteria. Typically less bleeding, often no sutures, and a more comfortable recovery. Suited to most patients with moderate periodontal disease, and generally the first thing we try where non-surgical treatment alone has not been enough."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "CONVENTIONAL FLAP SURGERY:",
             text: [
               "The gum is lifted back so the root surfaces and bone can be accessed directly, then repositioned and sutured. It remains the appropriate option for advanced disease with deep pockets or where bone needs reshaping or grafting. Longer recovery, and reserved for cases that genuinely need it."
@@ -5123,8 +5149,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Reshaping the gum line so it frames your teeth evenly. Carried out with a soft tissue laser, and planned before any veneers or crowns are designed to it."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none",
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -5141,7 +5168,7 @@ export const fallbackServices: Service[] = [
         text: [
           "The situations it addresses, how it is carried out, and where it sits in a wider treatment plan."
         ],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "A Gummy Smile",
@@ -5216,14 +5243,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "GUM CONTOURING:",
             text: [
               "Reshapes gum tissue only, where the tissue itself is the reason the gum line sits where it does. A short single appointment, usually with a laser, minimal recovery, and generally classed as cosmetic. Suited to correcting a gummy smile or evening out an uneven contour."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "CROWN LENGTHENING:",
             text: [
               "Involves removing a small amount of bone as well as gum, where the bone level is what determines the tissue position. Also used functionally, to expose enough sound tooth for a crown to seal against. A longer recovery, and often covered by insurance when done for restorative reasons."
@@ -5322,8 +5349,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Routine cleanings, deep cleanings and periodontal maintenance. Which one you need is decided by measurements, not by a standard schedule."
         ],
-        image: images.patientSmilingChair,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -5337,7 +5365,7 @@ export const fallbackServices: Service[] = [
         _type: "accordionFeature",
         heading: "TYPES OF CLEANING AND WHAT IS INCLUDED",
         text: ["The three types of cleaning, and everything included in a preventive visit here."],
-        image: images.smileMirrorExam,
+        image: images.hygienistTreatingPatient,
         items: [
           {
             title: "Standard Dental Cleaning (Prophylaxis)",
@@ -5401,14 +5429,14 @@ export const fallbackServices: Service[] = [
         text: ["Two things a cleaning is actually protecting you from, both of which develop silently."],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "PREVENT CAVITIES",
             text: [
               "Plaque left undisturbed produces acid that dissolves enamel. Removing it, along with the hardened tartar that brushing cannot shift, reduces the rate at which new decay starts. Digital X-rays at the same visit find early decay between teeth, where a toothbrush never reaches and where you would not notice it for years."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "STOP GUM DISEASE EARLY",
             text: [
               "Gingivitis is reversible. Periodontitis is not, because it destroys bone that does not grow back. The difference between the two is caught at a routine visit through pocket measurements and bleeding points, usually well before you would notice anything beyond occasional bleeding when brushing."
@@ -5504,8 +5532,9 @@ export const fallbackServices: Service[] = [
         text: [
           "A thin protective coating bonded into the deep grooves of back teeth, where a toothbrush bristle physically cannot reach. Quick to place, no drilling, no anaesthetic."
         ],
-        image: images.patientSmilingChair,
-        overlay: "none",
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -5520,7 +5549,7 @@ export const fallbackServices: Service[] = [
         _type: "accordionFeature",
         heading: "SEALANTS: WHAT THEY DO AND WHO NEEDS THEM",
         text: ["What sealants protect against, who benefits most, and what to expect from them over time."],
-        image: images.brightSmile,
+        image: images.treatmentChair,
         items: [
           {
             title: "Protect Against Cavities",
@@ -5587,14 +5616,14 @@ export const fallbackServices: Service[] = [
         ],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "CLEANING & PREPARING",
             text: [
               "The tooth is thoroughly cleaned so the sealant bonds to clean enamel rather than sealing anything in, then dried and treated with a conditioning gel that gives the surface texture for the resin to grip. The gel is rinsed away and the tooth dried again. Keeping the surface dry through this stage is what determines how well the sealant holds."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "APPLYING & HARDENING",
             text: [
               "The sealant is painted into the grooves and hardened with a curing light in a few seconds. Your bite is checked so the sealant is not sitting high, and it is adjusted if needed. You can eat straight away, and there is nothing to avoid afterwards."
@@ -5691,8 +5720,9 @@ export const fallbackServices: Service[] = [
         text: [
           "A thorough examination rather than a quick look. Teeth, gums, bite, existing restorations and soft tissues all checked, with digital imaging that finds problems while they are still small."
         ],
-        image: images.patientSmilingChair,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -5706,7 +5736,7 @@ export const fallbackServices: Service[] = [
         _type: "accordionFeature",
         heading: "WHAT A DENTAL EXAM COVERS",
         text: ["Nine things checked at a full examination, and what each one is looking for."],
-        image: images.smilingWomanPortrait,
+        image: images.dentistsTreatingPatient,
         items: [
           {
             title: "Thorough Check of Teeth and Gums",
@@ -5770,14 +5800,14 @@ export const fallbackServices: Service[] = [
         text: ["Two things that shape how this appointment goes, particularly if it has been a while."],
         cards: [
           {
-            image: images.veneerShadeMatch,
+            image: images.treatmentChair,
             title: "PERSONALIZED FOR EVERY PATIENT",
             text: [
               "Your history, your risk factors and your existing dental work all shape what gets checked most carefully and how often you should be seen. A patient with several large restorations needs a different level of monitoring from one with an untouched mouth, and the plan reflects that."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "NO LECTURES, NO PRESSURE",
             text: [
               "If it has been years since your last visit, that is a common situation and it is not something you will be told off about. We tell you what we find, explain what needs doing now and what can wait, and give it to you in writing. What happens next is your decision."
@@ -5873,8 +5903,9 @@ export const fallbackServices: Service[] = [
         text: [
           "A precision-fitted guard that absorbs the force of nightly grinding, protects your teeth from wear, and relieves the morning jaw ache that comes with it."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none"
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -5890,7 +5921,7 @@ export const fallbackServices: Service[] = [
         text: [
           "Grinding is diagnosed from evidence rather than memory, since you are asleep for all of it. These are the signals we look for."
         ],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "Waking With a Sore, Tight Jaw",
@@ -5964,14 +5995,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "CUSTOM NIGHT GUARD:",
             text: [
               "Made from a digital scan of your teeth, with the material and thickness chosen for how heavily you grind, from thin for light clenching to rigid for heavy bruxism. The bite is adjusted at delivery so it meets evenly. It stays in place without being bitten onto and typically serves for several years."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "BOIL-AND-BITE GUARDS:",
             text: [
               "Over-the-counter guards are soft and generic. Soft material tends to invite chewing rather than discourage it, which increases muscle activity in some patients. The fit is approximate, so it moves during the night, and an appliance that shifts puts uneven force on individual teeth. Better than nothing in an emergency, and worse than a proper guard in every other respect."
@@ -6071,8 +6102,9 @@ export const fallbackServices: Service[] = [
         text: [
           "A custom oral appliance for diagnosed obstructive sleep apnea, fitted and adjusted here and managed alongside your physician. Quiet, portable, and worn by patients who could not tolerate CPAP."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none"
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -6088,7 +6120,7 @@ export const fallbackServices: Service[] = [
         text: [
           "The signs worth getting tested for, and what appliance therapy involves once a diagnosis is in place."
         ],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "Loud, Habitual Snoring",
@@ -6162,14 +6194,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "ORAL APPLIANCE THERAPY:",
             text: [
               "Recognised for mild to moderate obstructive sleep apnea, and for more severe cases where CPAP cannot be tolerated. No power required, fits in a pocket, and silent. The practical advantage is consistency, since an appliance worn every night is treating the condition every night."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "CPAP:",
             text: [
               "Generally more effective, particularly for severe apnea, and it remains the first-line treatment where a patient can use it consistently. The difficulty is tolerance. A machine that sits unused in a cupboard treats nothing, which is where appliance therapy becomes the better practical option."
@@ -6269,8 +6301,9 @@ export const fallbackServices: Service[] = [
         text: [
           "An adjunct we use alongside conventional treatment, as part of a biological and minimally invasive approach to dentistry."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none"
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -6286,7 +6319,7 @@ export const fallbackServices: Service[] = [
         text: [
           "In every case below, ozone is an additional step within a conventional procedure rather than a treatment on its own."
         ],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "Preparing a Cavity Before Filling",
@@ -6360,14 +6393,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "WHAT WE WILL TELL YOU:",
             text: [
               "What the conventional treatment for your situation is, and what ozone adds to it. Where decay needs a filling, you get a filling. Where an infection needs systemic treatment, that judgement is made on your case and an antibiotic may still be appropriate. Ozone is discussed as part of the plan rather than sold as a headline."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "WHY WE OFFER IT:",
             text: [
               "Decay and gum disease are both driven by bacterial activity, and any step that reduces bacterial load at the site being treated is worth considering within a wider protocol. It also fits an approach that favours removing as little healthy tooth structure as the situation allows and treating early lesions conservatively where that is clinically appropriate."
@@ -6465,8 +6498,9 @@ export const fallbackServices: Service[] = [
         text: [
           "A small wand captures your teeth as an accurate 3D model in a few minutes. No trays, no material setting in your mouth, and a better fit on everything we make from it."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none",
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -6483,7 +6517,7 @@ export const fallbackServices: Service[] = [
         text: [
           "Where digital scanning replaces conventional impressions, and what it changes about each treatment."
         ],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "Crowns, Onlays and Inlays",
@@ -6558,14 +6592,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "DIGITAL SCANNING:",
             text: [
               "A few minutes with a small wand, nothing setting in your mouth, and no tray to tolerate. Errors are visible immediately and corrected by rescanning a small area. The file goes to the laboratory the same day, and it is stored so your teeth can be compared over the years."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "CONVENTIONAL IMPRESSIONS:",
             text: [
               "A tray of material held in place for several minutes while it sets, which many patients find unpleasant and some cannot tolerate at all. Material can distort in transit, and a flaw is often only discovered at the laboratory, which means repeating the appointment. Still occasionally the better option in specific situations, and we will tell you if yours is one."
@@ -6664,8 +6698,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Imaging at a considerably lower radiation dose than film, appearing on screen instantly. This is how decay between teeth is found while it is still a filling."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none",
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -6680,7 +6715,7 @@ export const fallbackServices: Service[] = [
         _type: "accordionFeature",
         heading: "WHAT DIGITAL X-RAYS SHOW US",
         text: ["What imaging reveals that an examination cannot, and how we use it."],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "Decay Between Teeth",
@@ -6753,14 +6788,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "DIGITAL X-RAYS:",
             text: [
               "A considerably lower radiation dose, an image on screen within seconds, and the ability to enlarge, adjust contrast and compare against your previous images side by side. Files are stored digitally, shared instantly with a specialist if needed, and never lost in an envelope. No chemicals and no developing."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "CONVENTIONAL FILM:",
             text: [
               "A higher radiation dose, several minutes of chemical developing before anyone can look at the result, and a fixed image that cannot be adjusted. Comparing against past images means finding the physical films. Retakes mean repeating the exposure. There is no clinical advantage that would justify continuing with it."
@@ -6861,8 +6896,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Cone beam imaging taken in this office. Bone measured in three dimensions, nerve position located, and root anatomy seen properly before treatment begins."
         ],
-        image: images.patientSmilingChair2,
-        overlay: "none"
+        image: images.receptionDesk,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -6878,7 +6914,7 @@ export const fallbackServices: Service[] = [
         text: [
           "A cone beam scan is not taken routinely. These are the situations that genuinely call for it."
         ],
-        image: images.dentalTeamOk2,
+        image: images.teamPhoto,
         items: [
           {
             title: "Dental Implant Planning",
@@ -6952,14 +6988,14 @@ export const fallbackServices: Service[] = [
         },
         cards: [
           {
-            image: images.patientToothExam,
+            image: images.digitalXRayRoom,
             title: "STANDARD DIGITAL X-RAYS:",
             text: [
               "The routine imaging used at examinations. They show decay between teeth, failing margins under existing fillings, bone levels and infection at root tips, at a very low radiation dose. This is what the overwhelming majority of patients need, and nothing more."
             ]
           },
           {
-            image: images.dentistExaminingPatient,
+            image: images.hygienistTreatingPatient,
             title: "CONE BEAM CT:",
             text: [
               "Used where a two-dimensional image is genuinely not enough: implant planning, wisdom teeth close to the nerve, complex or previously treated root canals, and upper molars sitting against the sinus. Higher dose than a standard X-ray and far lower than a medical CT, and taken only when the clinical situation requires it."
