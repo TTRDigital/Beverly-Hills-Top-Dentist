@@ -18,7 +18,7 @@ export function RelatedCard({ page, more }: { page: RelatedPage; more: RelatedPa
       <div className={`mt-3 overflow-hidden ${card} ${cardLift} sm:grid sm:grid-cols-[240px_minmax(0,1fr)]`}>
         {page.image ? (
           <Link href={page.path} tabIndex={-1} aria-hidden="true" className="relative block aspect-[16/10] bg-dropdown sm:aspect-auto sm:h-full sm:min-h-[220px]">
-            <Image src={page.image.src} alt="" fill sizes="(min-width: 640px) 240px, 100vw" className="object-cover" />
+            <Image src={page.image.src} alt={page.image.alt || page.title} fill sizes="(min-width: 640px) 240px, 100vw" className="object-cover" />
           </Link>
         ) : null}
         <div className="p-6">

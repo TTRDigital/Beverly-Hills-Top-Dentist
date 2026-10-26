@@ -18,7 +18,7 @@ export default async function BeforeAfterPage() {
       <JsonLd data={breadcrumbSchema([{ name: "Home", path: "/" }, { name: "Before & After", path: "/before-after/" }])} />
       <section className="relative flex min-h-[400px] flex-col justify-center overflow-hidden py-10 md:aspect-video md:min-h-0 md:justify-end md:pb-[110px]">
         {/* Mirrored, as on the old site. */}
-        {page.hero.image ? <Image src={page.hero.image.src} alt="" fill loading="eager" fetchPriority="high" sizes="100vw" className="-scale-x-100 object-cover" /> : null}
+        {page.hero.image ? <Image src={page.hero.image.src} alt={page.hero.image.alt || "Close-up of a smiling woman"} fill loading="eager" fetchPriority="high" sizes="100vw" className="-scale-x-100 object-cover" /> : null}
         <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
         <div className="container-x relative text-white md:pl-5">
           <h1 className="text-h1 font-semibold">{page.hero.heading}</h1>

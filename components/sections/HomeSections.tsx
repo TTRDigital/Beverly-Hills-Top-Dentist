@@ -11,7 +11,7 @@ import { HeroVideo } from "@/components/sections/HeroVideo";
 export function HomeHero({ hero }: { hero: HomeContent["hero"] }) {
   return (
     <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden py-[100px] md:aspect-video md:min-h-0">
-      {hero.poster ? <Image src={hero.poster.src} alt="" fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover" /> : <div className="absolute inset-0 bg-night" />}
+      {hero.poster ? <Image src={hero.poster.src} alt={hero.poster.alt} fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover" /> : <div className="absolute inset-0 bg-night" />}
       {hero.videoMp4 || hero.videoWebm ? <HeroVideo mp4={hero.videoMp4} webm={hero.videoWebm} /> : null}
       {/* Light shade so the white headline reads on bright frames. */}
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />

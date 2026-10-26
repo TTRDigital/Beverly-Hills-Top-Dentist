@@ -41,7 +41,7 @@ export const images = {
   siteIcon32: { src: "/images/brand/site-icon-32.png", alt: "", width: 32, height: 32 },
   biological: { src: "/images/home/biological.jpg", alt: "Bamboo toothbrush, rosemary and natural tooth powder on linen", width: 1536, height: 1024 },
   biomimetic: { src: "/images/home/biomimetic.jpg", alt: "3D dental scan of a skull on a monitor", width: 1536, height: 1024 },
-  heroPoster: { src: "/images/home/hero-poster.jpg", alt: "", width: 960, height: 404 },
+  heroPoster: { src: "/images/home/hero-poster.jpg", alt: "Palm trees against a blue sky with the Beverly Hills Dental Arts Studio logo", width: 960, height: 404 },
   holistic: { src: "/images/home/holistic.jpg", alt: "Green leaf with water drops in soft light", width: 1536, height: 1024 },
   carecredit: { src: "/images/icons/carecredit.svg", alt: "CareCredit", width: 96, height: 96 },
   financing: { src: "/images/icons/financing.svg", alt: "", width: 96, height: 96 },
