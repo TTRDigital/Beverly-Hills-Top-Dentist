@@ -12,7 +12,7 @@ export const addedServiceLinks: { category: string; title: string; body: string[
     category: "preventive-dentistry",
     title: "No-Drill Cavity Care",
     body: [
-      "Early decay caught at the white-spot stage can often be stopped, and sometimes reversed, with fluoride varnish, sealants and other treatments that need no drilling. Lost enamel does not grow back, so finding decay early matters."
+      "Early decay caught at the white-spot stage can often be stopped, and sometimes reversed, with treatments such as fluoride varnish and sealants that need no drilling. Lost enamel does not grow back, so finding decay early matters."
     ],
     href: "/services/preventive-dentistry/no-drill-cavity-care/"
   },
@@ -20,7 +20,7 @@ export const addedServiceLinks: { category: string; title: string; body: string[
     category: "preventive-dentistry",
     title: "Biofilm Therapy",
     body: [
-      "A professional cleaning that colors plaque with a disclosing dye so none is missed, then removes it with air polishing and ultrasonic instruments."
+      "A professional cleaning that colors plaque with a disclosing dye so it is easy to see, then removes it, usually with air polishing and ultrasonic instruments."
     ],
     href: "/services/preventive-dentistry/biofilm-therapy/"
   }
@@ -6298,7 +6298,7 @@ export const fallbackServices: Service[] = [
         heading: "No-Drill Cavity Care in Beverly Hills",
         subheading: "Preventive Dentistry",
         text: [
-          "Early tooth decay can often be stopped, and sometimes reversed, before it becomes a cavity, with no drilling. These treatments put minerals back into weakened enamel and keep small lesions from growing. Enamel that is already lost does not grow back, so the aim is to find decay early and stop it there."
+          "Early tooth decay can often be stopped, and sometimes reversed, before it becomes a cavity, with no drilling. These treatments help put minerals back into weakened enamel or seal it off from acid, and keep small lesions from growing. Enamel that is already lost does not grow back, so the aim is to find decay early and stop it there."
         ],
         image: images.smilingWomanProfile,
         overlay: "none",
@@ -6309,7 +6309,7 @@ export const fallbackServices: Service[] = [
         heading: "What No-Drill Cavity Care Can and Cannot Do",
         text: [
           "Tooth decay is a tug of war. Acid made by the bacteria in plaque pulls minerals out of enamel, and saliva and fluoride put them back. When minerals are lost faster than they return, a chalky white spot can appear. At that stage, decay can be stopped or reversed. Once it breaks through the surface and forms a cavity, the damage stays, and a dentist has to repair it with a filling ([NIDCR](https://www.nidcr.nih.gov/health-info/tooth-decay/more-info/tooth-decay-process)).",
-          "That is why we never promise to regrow enamel: once it is lost, it cannot grow back ([Cleveland Clinic](https://my.clevelandclinic.org/health/diseases/tooth-erosion)). What these treatments can do is harden weakened enamel by putting minerals back into it, seal early lesions so acid cannot reach them, and stop many lesions from getting bigger. An American Dental Association expert panel reviewed the research on no-drill treatments and recommends several of them for stopping or reversing decay in children and adults ([ADA guideline, 2018](https://pubmed.ncbi.nlm.nih.gov/30261951/))."
+          "That is why we never promise to regrow enamel: once it is lost, it cannot grow back ([Cleveland Clinic](https://my.clevelandclinic.org/health/diseases/tooth-erosion)). What these treatments can do is harden weakened enamel by helping put minerals back into it, seal early lesions so acid cannot reach them, and stop many lesions from getting bigger. An American Dental Association expert panel reviewed the research on no-drill treatments and recommends several of them for stopping or reversing decay in children and adults ([ADA guideline, 2018](https://pubmed.ncbi.nlm.nih.gov/30261951/))."
         ],
         tone: "light"
       },
@@ -6331,7 +6331,7 @@ export const fallbackServices: Service[] = [
           {
             title: "Prescription Fluoride Toothpaste",
             body: [
-              "For people more likely to get decay, a toothpaste or gel with 5,000 ppm fluoride, used at home, can help stop early lesions, especially on exposed roots. It is one of the treatments the ADA panel recommends ([ADA guideline](https://pubmed.ncbi.nlm.nih.gov/30261951/))."
+              "For adults with decay starting on exposed roots, a prescription toothpaste or gel with 5,000 ppm fluoride, used every day at home, can help stop it. The ADA panel recommends it for root decay ([ADA guideline](https://pubmed.ncbi.nlm.nih.gov/30261951/))."
             ]
           },
           {
@@ -6349,7 +6349,7 @@ export const fallbackServices: Service[] = [
           {
             title: "Resin Infiltration",
             body: [
-              "For early lesions between teeth that have not broken through the surface. The surface is prepared with a gel, with no drilling, and a very thin liquid resin soaks into the weakened enamel and is hardened with a light, blocking the paths acid travels through. A review of randomized trials found that treated lesions were less likely to get worse ([Cebula and colleagues, 2023](https://pubmed.ncbi.nlm.nih.gov/36675656/)). Some of that review's authors work with the company that makes the material."
+              "For early lesions between teeth that have not broken through the surface. The surface is prepared with a gel, with no drilling, and a very thin liquid resin soaks into the weakened enamel and is hardened with a light, blocking the paths acid travels through. The ADA panel suggests it for early lesions between teeth ([ADA guideline](https://pubmed.ncbi.nlm.nih.gov/30261951/)), and a review of randomized trials found that treated lesions were less likely to get worse ([Cebula and colleagues, 2023](https://pubmed.ncbi.nlm.nih.gov/36675656/)). Some of that review's authors work with the company that makes the material."
             ]
           },
           {
@@ -6484,7 +6484,7 @@ export const fallbackServices: Service[] = [
         subheading: "Preventive Dentistry",
         // TODO(TTR-910): name the system (for example Guided Biofilm Therapy) once Dr. Shir confirms it.
         text: [
-          "Plaque is a biofilm: a sticky film of bacteria on your teeth and gums. Biofilm therapy is a professional cleaning that first colors the biofilm so it can be seen, then removes it with air polishing and ultrasonic instruments, to help keep your teeth and gums healthy."
+          "Plaque is a biofilm: a sticky film of bacteria on your teeth and gums. Biofilm therapy is a professional cleaning that first colors the biofilm so it can be seen, then removes it, usually with air polishing and ultrasonic instruments, to help keep your teeth and gums healthy."
         ],
         image: images.gumProcedure2,
         overlay: "none",
@@ -6495,14 +6495,14 @@ export const fallbackServices: Service[] = [
         heading: "What Biofilm Therapy Is",
         text: [
           "Plaque is a sticky film of bacteria, and the bacteria in plaque and tartar can trigger the inflammation that damages the gums ([NIDCR](https://www.nidcr.nih.gov/health-info/gum-disease)). Biofilm therapy is a way of doing the professional cleaning that removes them. One well-known version is called Guided Biofilm Therapy.",
-          "First, a disclosing solution colors the biofilm so it shows up. Most of it is then removed with air polishing, a fine spray of water, air and a very fine powder. Ultrasonic instruments remove any hard tartar that remains. In a randomized trial, a cleaning guided by the disclosing dye left about half as much plaque behind as the same cleaning without it ([Mensi and colleagues, 2020](https://pubmed.ncbi.nlm.nih.gov/32348624/))."
+          "First, a disclosing solution colors the biofilm so it shows up. Most of it is then usually removed with air polishing, a fine spray of water, air and a very fine powder. Ultrasonic instruments remove any hard tartar that remains. In a small randomized trial, a cleaning guided by the disclosing dye left about half as much plaque at the gumline as the same cleaning without it, and less still on the rest of the tooth ([Mensi and colleagues, 2020](https://pubmed.ncbi.nlm.nih.gov/32348624/))."
         ],
         tone: "light"
       },
       {
         _type: "accordionFeature",
         heading: "What Happens During Biofilm Therapy",
-        text: ["Each step has a purpose, and you can see the difference in the mirror."],
+        text: ["A typical visit, step by step. Each step has a purpose, and you can see the difference in the mirror."],
         image: images.hygienistTreatingPatient,
         items: [
           {
@@ -6567,7 +6567,7 @@ export const fallbackServices: Service[] = [
             image: images.treatmentChair,
             title: "WHAT THE RESEARCH SHOWS:",
             text: [
-              "Diabetes is a risk factor for gum disease, and heart and blood vessel disease is among the illnesses associated with it ([NIDCR](https://www.nidcr.nih.gov/health-info/gum-disease)). The American Heart Association found that studies support a link between gum disease and heart and blood vessel disease, but do not show that gum disease causes it, or that treating gum disease prevents it ([AHA, 2012](https://pubmed.ncbi.nlm.nih.gov/22514251/))."
+              "Diabetes is a risk factor for gum disease, and heart and blood vessel disease is also linked with a higher chance of having it ([NIDCR](https://www.nidcr.nih.gov/health-info/gum-disease)). The American Heart Association found that studies support a link between gum disease and heart and blood vessel disease, but do not show that gum disease causes it, or that treating gum disease prevents it ([AHA, 2012](https://pubmed.ncbi.nlm.nih.gov/22514251/))."
             ]
           },
           {
@@ -6631,7 +6631,7 @@ export const fallbackServices: Service[] = [
           {
             question: "Can biofilm therapy improve my heart health or diabetes?",
             answer: [
-              "We cannot promise that. Gum disease is linked with heart disease, but the research shows a link, not proof that gum disease causes heart disease or that treating it prevents heart disease ([AHA, 2012](https://pubmed.ncbi.nlm.nih.gov/22514251/)). In people with diabetes and gum disease, treating the gum disease with deep cleaning improved blood sugar control in clinical trials ([Simpson and colleagues, 2022](https://pubmed.ncbi.nlm.nih.gov/35420698/)). Your doctor stays in charge of your heart and diabetes care."
+              "We cannot promise that. Gum disease is linked with heart disease, but the research shows a link, not proof that gum disease causes heart disease or that treating it prevents heart disease ([AHA, 2012](https://pubmed.ncbi.nlm.nih.gov/22514251/)). In people with diabetes and gum disease, treating the gum disease with deep cleaning improved blood sugar control in clinical trials ([Simpson and colleagues, 2022](https://pubmed.ncbi.nlm.nih.gov/35420698/)). That research was on deep cleaning for gum disease, not on biofilm therapy, so biofilm therapy is not a treatment for diabetes. Your doctor stays in charge of your heart and diabetes care."
             ]
           },
           {

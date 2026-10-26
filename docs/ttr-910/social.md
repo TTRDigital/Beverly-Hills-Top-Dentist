@@ -58,7 +58,7 @@ Links (live once the pages are approved and published):
 
 **Caption**
 
-> Plaque is a biofilm, a sticky film of bacteria that is hard to see. In biofilm therapy we first color it with a disclosing dye, so you can see exactly where it builds up. Then we clean it away with air polishing and ultrasonic instruments, and check that nothing is missed.
+> Plaque is a biofilm, a sticky film of bacteria that is hard to see. In biofilm therapy we first color it with a disclosing dye, so you can see exactly where it builds up. Then we clean it away, usually with air polishing and ultrasonic instruments, and check that nothing is missed.
 >
 > You leave knowing where to focus when you brush and floss. Ask about it when you book your next cleaning: (310) 274-7005.
 >
