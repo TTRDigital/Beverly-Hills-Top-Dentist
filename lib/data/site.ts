@@ -189,34 +189,19 @@ export const fallbackTeam: TeamMember[] = [
   },
 ];
 
-const galleryOrder = [
-  images.case01, images.case02, images.case05, images.case03, images.case04, images.case06, images.case07,
-  images.case08, images.case09, images.case10, images.case11, images.case12, images.case13, images.case15,
-  images.case16, images.case17, images.case18, images.case19, images.case20, images.case21, images.case08B,
-];
-
 /**
- * Smile cases. "results": the home / thank-you carousel (the old home page's six
- * before-after lightbox images, then its three smile photos). "gallery": the
- * before-after grid (desktop). "galleryMobile": the before-after carousel (phones).
+ * Smile cases: Dr. Shir's own patients only (TTR, Oct 26, 2026). The old site's gallery photos were another practice's
+ * cases (watermarked "ideal") or could not be traced to this practice, so they were taken down. The same three cases show
+ * in every place: the home and thank-you carousel ("results"), the before-after grid ("gallery") and its phone carousel
+ * ("galleryMobile"). Add a case only with the patient's written consent.
  */
-export const fallbackCases: BeforeAfterCase[] = [
-  ...[images.smile1, images.smile2, images.smile3, images.smile4, images.smile5, images.smile6].map((image, i) => ({
-    id: `gallery-mobile-${i + 1}`,
-    title: image.alt,
-    image,
-    groups: ["results" as const, "galleryMobile" as const],
-    order: i + 1,
-  })),
-  ...[images.smileResult1, images.smileResult2, images.smileResult3].map((image, i) => ({
-    id: `result-${i + 1}`,
-    title: `Smile result ${i + 1}`,
-    image,
-    groups: ["results" as const],
-    order: 7 + i,
-  })),
-  ...galleryOrder.map((image, i) => ({ id: `gallery-${i + 1}`, title: image.alt, image, groups: ["gallery" as const], order: 10 + i })),
-];
+export const fallbackCases: BeforeAfterCase[] = [images.smileResult1, images.smileResult2, images.smileResult3].map((image, i) => ({
+  id: `result-${i + 1}`,
+  title: `Smile result ${i + 1}`,
+  image,
+  groups: ["results" as const, "gallery" as const, "galleryMobile" as const],
+  order: i + 1,
+}));
 
 /** The old site shows no patient reviews. Add real ones in /cms (Reviews); none are invented here. */
 export const fallbackTestimonials: Testimonial[] = [];
