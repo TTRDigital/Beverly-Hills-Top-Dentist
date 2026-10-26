@@ -297,7 +297,7 @@ export const fallbackPosts: Post[] = [
       "Often, yes. The bone shrinks where a tooth is missing, most in the first months, so a graft may be needed, which can add a few months, sometimes more. The 3D scan shows how much bone is there before anything starts.",
       "If you are missing a tooth and want to know what an implant would involve for you, come and see us. The first visit includes the exam and, if an implant is planned, the 3D scan, and you will leave with a clear plan and a timeline. Our office is at 416 N. Bedford Dr. in Beverly Hills, a short drive from [Century City](/areas-we-serve/century-city/) and [West Hollywood](/areas-we-serve/west-hollywood/). [Request an appointment](/appointment/), or call us.",
     ],
-    seo: { title: "Dental Implant Timeline & Recovery | Beverly Hills Dentist Dr. Shir", description: "The dental implant timeline in Beverly Hills: the first visit, surgery, recovery, the months of healing and the final crown, and how to care for it." },
+    seo: { title: "Dental Implant Timeline & Recovery | Dr. Shir, Beverly Hills", description: "The dental implant timeline in Beverly Hills: the first visit, surgery, recovery, the months of healing and the final crown, and how to care for it." },
   },
   {
     slug: "bridge-or-implant-beverly-hills",
