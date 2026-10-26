@@ -6285,7 +6285,9 @@ export const fallbackServices: Service[] = [
       description: "A custom oral appliance for diagnosed obstructive sleep apnea, fitted and adjusted here and managed alongside your physician. Quiet, portable, and worn by"
     }
   },
-  // TTR-910 (Oct 26, 2026): two services Dr. Shir now offers. Written so they hold for any of the methods she may use;
+  // TTR-910 (Oct 26, 2026): two services Dr. Shir now offers. Photos: only the practice's own (the Aug 27 to Sep 2 office
+  // photos in the client's Drive library, as traced in public/.htaccess); no template or other clients' images.
+  // Written so they hold for any of the methods she may use;
   // each "TODO(TTR-910)" marks a line to update once she answers which products she uses, who they are for and the cost.
   {
     slug: "no-drill-cavity-care",
@@ -6300,8 +6302,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Early tooth decay can often be stopped, and sometimes reversed, before it becomes a cavity, with no drilling. These treatments help put minerals back into weakened enamel or seal it off from acid, and keep small lesions from growing. Enamel that is already lost does not grow back, so the aim is to find decay early and stop it there."
         ],
-        image: images.smilingWomanProfile,
-        overlay: "none",
+        image: images.digitalXRayRoom,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -6320,7 +6323,7 @@ export const fallbackServices: Service[] = [
         text: [
           "Which option fits depends on where the lesion is, how deep it goes and how likely you are to get new decay. Often two are combined."
         ],
-        image: images.smileMirrorExam,
+        image: images.ozoneUnit,
         items: [
           {
             title: "Fluoride Varnish",
@@ -6381,7 +6384,7 @@ export const fallbackServices: Service[] = [
         ],
         cards: [
           {
-            image: images.digitalXRayRoom,
+            image: images.imagingArea,
             title: "A GOOD FIT:",
             // TODO(TTR-910): confirm who Dr. Shir offers this to (children, adults, seniors, braces or aligner wearers).
             text: [
@@ -6389,7 +6392,7 @@ export const fallbackServices: Service[] = [
             ]
           },
           {
-            image: images.dentistExaminingPatient683,
+            image: images.treatmentChair,
             title: "WHEN A FILLING IS STILL NEEDED:",
             text: [
               "When decay has made a hole in the tooth, reaches deep inside it, or keeps growing despite no-drill care. Then a filling protects the tooth, and we keep it as small as the tooth allows."
@@ -6486,8 +6489,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Plaque is a biofilm: a sticky film of bacteria on your teeth and gums. Biofilm therapy is a professional cleaning that first colors the biofilm so it can be seen, then removes it, usually with air polishing and ultrasonic instruments, to help keep your teeth and gums healthy."
         ],
-        image: images.gumProcedure2,
-        overlay: "none",
+        image: images.hygienistTreatingPatient,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -6503,7 +6507,7 @@ export const fallbackServices: Service[] = [
         _type: "accordionFeature",
         heading: "What Happens During Biofilm Therapy",
         text: ["A typical visit, step by step. Each step has a purpose, and you can see the difference in the mirror."],
-        image: images.hygienistTreatingPatient,
+        image: images.digitalXRayRoom,
         items: [
           {
             title: "Your Gums and Health History",
@@ -6571,7 +6575,7 @@ export const fallbackServices: Service[] = [
             ]
           },
           {
-            image: images.dentistPatientChat,
+            image: images.receptionDesk,
             title: "WHAT IT MEANS FOR YOU:",
             text: [
               "In people with both diabetes and gum disease, a Cochrane review found that treating the gum disease with deep cleaning improved blood sugar control over the following months ([Simpson and colleagues, 2022](https://pubmed.ncbi.nlm.nih.gov/35420698/)). Healthy gums are worth having for their own sake, but biofilm therapy is not a treatment for heart disease or diabetes, and your doctor's care stays just as important."

@@ -10,7 +10,7 @@ Links (live once the pages are approved and published):
 
 ## Rules for this pack
 
-- **Photos: the practice's real photos only.** No stock patients, no AI images. Every photo below is already in the site repo (`public/images/...`) or is a new photo the office takes. Any photo showing a patient needs that patient's written consent.
+- **Photos: the practice's real photos only.** No stock patients, no AI images, no photos from other clients. Every repo photo below traces to the client's Drive library (Visuals folder, office photos taken Aug 27 to Sep 2, 2026, and the team photos), or is a new photo the office takes. Any photo showing a patient needs that patient's written consent.
 - **Wording:** no "painless", "guaranteed", "best" or "permanent", and no em dashes. Never say enamel "regrows" or that biofilm therapy improves heart health or diabetes. Gum health and whole-body health are linked; that is an association, not a promise.
 - **Spots to update once Dr. Shir answers** are marked `TODO(TTR-910)`: product names, who it is for, cost or insurance.
 
@@ -30,7 +30,7 @@ Links (live once the pages are approved and published):
 
 **Photo ideas (real photos only)**
 - `public/images/team/team-photo.jpg` (the team), or
-- `public/images/team/dr-nushin-shir.jpg` with a text overlay: "Now offering: no-drill cavity care + biofilm therapy".
+- Dr. Shir's own headshot from the client's Drive library (Visuals folder, "Shir Headshot.PNG") with a text overlay: "Now offering: no-drill cavity care + biofilm therapy". Do not use `public/images/team/dr-nushin-shir.jpg`: it came to the old site as a file named "ChatGPT-Image...", so it may be AI-edited.
 
 ---
 
