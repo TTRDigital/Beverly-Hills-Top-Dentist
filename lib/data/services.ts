@@ -12,7 +12,8 @@ export const fallbackServicesHub: HubContent = {
         "Dr. Shir has spent over thirty years refining an approach that protects your health while it rebuilds your smile."
       ],
       image: images.dentistsTreatingPatient,
-      overlay: "none"
+      overlay: "left",
+        overlayOpacity: 0.7
     },
     {
       _type: "accordionFeature",
@@ -328,7 +329,8 @@ export const fallbackCategories: ServiceCategory[] = [
           "Replace missing teeth with implants planned using in-office 3D imaging and placed and restored by the same dentist. Dr. Shir rebuilds the whole tooth, root included, so your bite, your bone and your appearance are all protected."
         ],
         image: images.receptionDesk,
-        overlay: "none",
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -518,8 +520,9 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "Veneers, whitening, bonding and full smile design, planned digitally and previewed before any tooth is prepared. Dr. Shir has spent more than thirty years refining an approach that conserves natural tooth structure while it changes how a smile looks."
         ],
-        image: images.hallwayWide,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -707,8 +710,9 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "Repair and rebuild damaged or missing teeth, restoring both function and appearance. Planned with 3D imaging taken in this office and carried out by Dr. Shir."
         ],
-        image: images.hallwayWide,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -892,8 +896,9 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "Treatment for gum disease, recession and the tissue that supports your teeth. Gum health is the foundation everything else in dentistry sits on, and it is assessed at every visit here."
         ],
-        image: images.hallwayWide,
-        overlay: "none",
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -1080,8 +1085,9 @@ export const fallbackCategories: ServiceCategory[] = [
         text: [
           "Preventive dentistry focuses on maintaining your oral health by preventing dental problems before they start. Our proactive approach includes regular checkups, cleanings, and treatments designed to keep your smile healthy for life."
         ],
-        image: images.hallwayWide,
-        overlay: "none",
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -1253,7 +1259,8 @@ export const fallbackCategories: ServiceCategory[] = [
           "3D imaging, digital scanning, soft tissue lasers and ozone, all in this office. Equipment most general practices refer out for, so planning and treatment happen in the same place."
         ],
         image: images.receptionDesk,
-        overlay: "none",
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -1455,7 +1462,8 @@ export const fallbackServices: Service[] = [
           "Replace one missing tooth without touching the teeth either side. Planned on a 3D scan taken in this office, then placed and restored by Dr. Shir."
         ],
         image: images.dentistsTreatingPatient,
-        overlay: "none",
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -1649,7 +1657,8 @@ export const fallbackServices: Service[] = [
           "A fixed set of teeth carried by a small number of implants, for patients missing most or all of an arch or living with a denture that will not stay put. Planned on a 3D scan taken in this office."
         ],
         image: images.imagingArea,
-        overlay: "none"
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -1839,8 +1848,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Designed digitally, previewed in your own mouth, and only then made. You see the result before any tooth is prepared."
         ],
-        image: images.hallwayWide,
-        overlay: "none",
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -2028,7 +2038,8 @@ export const fallbackServices: Service[] = [
           "Several treatments planned as one result rather than booked one at a time. Designed digitally against your own face, previewed before anything is prepared, and sequenced so each stage supports the next."
         ],
         image: images.receptionDesk,
-        overlay: "none",
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -2228,8 +2239,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Professional whitening supervised by a dentist, in-office for a faster result or with custom-fitted take-home trays. Your teeth are checked first, because whitening over untreated decay or exposed roots causes problems rather than solving them."
         ],
-        image: images.hallwayWide,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -2421,8 +2433,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Chips, small gaps and worn edges repaired in a single visit, usually with little or no enamel removed. The most conservative cosmetic treatment we offer, and often the right one."
         ],
-        image: images.hallwayWide,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -2608,7 +2621,8 @@ export const fallbackServices: Service[] = [
           "Straighten your teeth with a series of removable clear aligners, planned digitally from a scan taken in this office. No brackets, no wires, and you can see the projected result before you start."
         ],
         image: images.receptionDesk,
-        overlay: "none"
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -2820,8 +2834,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Tooth-coloured fillings that bond to your own tooth structure, placed conservatively so as little healthy enamel is removed as the situation allows."
         ],
-        image: images.hallwayWide,
-        overlay: "none",
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -3010,8 +3025,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Replace one or more missing teeth with a fixed bridge, custom made and shaded to your own teeth. A non-surgical option, completed in a few weeks rather than a few months."
         ],
-        image: images.hallwayWide,
-        overlay: "none",
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -3200,8 +3216,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Removal planned in 3D, carried out gently, and finished with site preservation so your options for replacement stay open. Dr. Shir will also tell you when a tooth others have written off can still be saved."
         ],
-        image: images.hallwayWide,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -3368,7 +3385,8 @@ export const fallbackServices: Service[] = [
           "A conservative alternative to a full crown. Custom porcelain that covers only the damaged part of the tooth, so more of your own structure stays where it is."
         ],
         image: images.receptionDesk,
-        overlay: "none",
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -3569,7 +3587,8 @@ export const fallbackServices: Service[] = [
           "Treat the infection inside the tooth and keep the tooth itself. Canal anatomy mapped in 3D where the case calls for it, and the protective crown afterwards completed in the same office."
         ],
         image: images.receptionDesk,
-        overlay: "none",
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -3788,7 +3807,8 @@ export const fallbackServices: Service[] = [
           "Removal planned on a 3D scan taken in this office, so nerve position and root anatomy are known before we begin rather than discovered during."
         ],
         image: images.receptionDesk,
-        overlay: "none"
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -4002,7 +4022,8 @@ export const fallbackServices: Service[] = [
           "A removable replacement for several missing teeth, designed around the teeth you still have so those are protected rather than overloaded."
         ],
         image: images.receptionDesk,
-        overlay: "none"
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -4218,7 +4239,8 @@ export const fallbackServices: Service[] = [
           "Treatment for every stage of gum disease, starting with the least invasive option that works. Laser therapy and ozone used alongside deep cleaning, with surgery reserved for cases that need it."
         ],
         image: images.hygienistTreatingPatient,
-        overlay: "none",
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -4388,8 +4410,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Reshaping the gum line to expose more of the natural tooth, either to give a restoration something to hold onto or to correct a gummy smile."
         ],
-        image: images.hallwayWide,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -4579,7 +4602,8 @@ export const fallbackServices: Service[] = [
           "Rebuilding gum tissue where recession has exposed the roots of your teeth, to reduce sensitivity, protect the root surface and stop the recession progressing."
         ],
         image: images.hallwayWide2,
-        overlay: "none"
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -4727,7 +4751,8 @@ export const fallbackServices: Service[] = [
           "Cleaning below the gum line to remove what a routine cleaning cannot reach. Carried out under local anaesthetic, supported by laser therapy and ozone."
         ],
         image: images.receptionDesk,
-        overlay: "none"
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -4925,7 +4950,8 @@ export const fallbackServices: Service[] = [
           "A soft tissue laser used alongside deep cleaning to treat gum disease, and to reshape gum tissue. For many patients it is an alternative to surgery, with less bleeding and a more comfortable recovery."
         ],
         image: images.receptionDesk,
-        overlay: "none",
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -5124,7 +5150,8 @@ export const fallbackServices: Service[] = [
           "Reshaping the gum line so it frames your teeth evenly. Carried out with a soft tissue laser, and planned before any veneers or crowns are designed to it."
         ],
         image: images.receptionDesk,
-        overlay: "none",
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -5322,8 +5349,9 @@ export const fallbackServices: Service[] = [
         text: [
           "Routine cleanings, deep cleanings and periodontal maintenance. Which one you need is decided by measurements, not by a standard schedule."
         ],
-        image: images.hallwayWide,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -5504,8 +5532,9 @@ export const fallbackServices: Service[] = [
         text: [
           "A thin protective coating bonded into the deep grooves of back teeth, where a toothbrush bristle physically cannot reach. Quick to place, no drilling, no anaesthetic."
         ],
-        image: images.hallwayWide,
-        overlay: "none",
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -5691,8 +5720,9 @@ export const fallbackServices: Service[] = [
         text: [
           "A thorough examination rather than a quick look. Teeth, gums, bite, existing restorations and soft tissues all checked, with digital imaging that finds problems while they are still small."
         ],
-        image: images.hallwayWide,
-        overlay: "none"
+        image: images.hallwayWide2,
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -5874,7 +5904,8 @@ export const fallbackServices: Service[] = [
           "A precision-fitted guard that absorbs the force of nightly grinding, protects your teeth from wear, and relieves the morning jaw ache that comes with it."
         ],
         image: images.receptionDesk,
-        overlay: "none"
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -6072,7 +6103,8 @@ export const fallbackServices: Service[] = [
           "A custom oral appliance for diagnosed obstructive sleep apnea, fitted and adjusted here and managed alongside your physician. Quiet, portable, and worn by patients who could not tolerate CPAP."
         ],
         image: images.receptionDesk,
-        overlay: "none"
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -6270,7 +6302,8 @@ export const fallbackServices: Service[] = [
           "An adjunct we use alongside conventional treatment, as part of a biological and minimally invasive approach to dentistry."
         ],
         image: images.receptionDesk,
-        overlay: "none"
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",
@@ -6466,7 +6499,8 @@ export const fallbackServices: Service[] = [
           "A small wand captures your teeth as an accurate 3D model in a few minutes. No trays, no material setting in your mouth, and a better fit on everything we make from it."
         ],
         image: images.receptionDesk,
-        overlay: "none",
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -6665,7 +6699,8 @@ export const fallbackServices: Service[] = [
           "Imaging at a considerably lower radiation dose than film, appearing on screen instantly. This is how decay between teeth is found while it is still a filling."
         ],
         image: images.receptionDesk,
-        overlay: "none",
+        overlay: "left",
+        overlayOpacity: 0.7,
         textMaxWidth: 630
       },
       {
@@ -6862,7 +6897,8 @@ export const fallbackServices: Service[] = [
           "Cone beam imaging taken in this office. Bone measured in three dimensions, nerve position located, and root anatomy seen properly before treatment begins."
         ],
         image: images.receptionDesk,
-        overlay: "none"
+        overlay: "left",
+        overlayOpacity: 0.7
       },
       {
         _type: "textBand",

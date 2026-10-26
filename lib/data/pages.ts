@@ -44,7 +44,7 @@ export const fallbackHome: HomeContent = {
       images.imagingArea,
       images.frontOffice,
       images.hallwayFlowers,
-      images.hallwayWide,
+      images.hallwayWide2,
     ],
   },
   technology: {
