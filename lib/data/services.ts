@@ -6300,7 +6300,7 @@ export const fallbackServices: Service[] = [
         text: [
           "Early tooth decay can often be stopped, and sometimes reversed, before it becomes a cavity, with no drilling. These treatments put minerals back into weakened enamel and keep small lesions from growing. Enamel that is already lost does not grow back, so the aim is to find decay early and stop it there."
         ],
-        image: images.dentistShowingXRay,
+        image: images.smilingWomanProfile,
         overlay: "none",
         textMaxWidth: 630
       },
@@ -6503,7 +6503,7 @@ export const fallbackServices: Service[] = [
         _type: "accordionFeature",
         heading: "What Happens During Biofilm Therapy",
         text: ["Each step has a purpose, and you can see the difference in the mirror."],
-        image: images.toothPolishing,
+        image: images.hygienistTreatingPatient,
         items: [
           {
             title: "Your Gums and Health History",
@@ -6564,7 +6564,7 @@ export const fallbackServices: Service[] = [
         ],
         cards: [
           {
-            image: images.hygienistTreatingPatient,
+            image: images.treatmentChair,
             title: "WHAT THE RESEARCH SHOWS:",
             text: [
               "Diabetes is a risk factor for gum disease, and heart and blood vessel disease is among the illnesses associated with it ([NIDCR](https://www.nidcr.nih.gov/health-info/gum-disease)). The American Heart Association found that studies support a link between gum disease and heart and blood vessel disease, but do not show that gum disease causes it, or that treating gum disease prevents it ([AHA, 2012](https://pubmed.ncbi.nlm.nih.gov/22514251/))."
