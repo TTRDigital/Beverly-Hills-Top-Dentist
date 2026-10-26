@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { preconnect } from "react-dom";
 import { getAreasHub, getSiteSettings, getTeam, getTestimonials } from "@/lib/content";
 import { businessSchema } from "@/lib/schema";
 import { revealScript } from "@/lib/reveal-script";
@@ -13,6 +14,8 @@ import { AttributionCapture } from "@/components/forms/AttributionCapture";
 /** Header, footer and site-wide behaviors. Used by the site layout and the 404 page. */
 export async function SiteShell({ children }: { children: ReactNode }) {
   const [settings, team, testimonials, areas] = await Promise.all([getSiteSettings(), getTeam(), getTestimonials(), getAreasHub()]);
+  // The logo and most hero photos come from Sanity's image CDN: open that connection early.
+  preconnect("https://cdn.sanity.io");
   return (
     <>
       <JsonLd data={businessSchema(settings, team, testimonials)} />
