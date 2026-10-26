@@ -11,7 +11,7 @@ import { HeroVideo } from "@/components/sections/HeroVideo";
 export function HomeHero({ hero }: { hero: HomeContent["hero"] }) {
   return (
     <section className="relative flex min-h-[100svh] flex-col justify-end overflow-hidden py-[100px] md:aspect-video md:min-h-0">
-      {hero.poster ? <Image src={hero.poster.src} alt="" fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover" /> : <div className="absolute inset-0 bg-night" />}
+      {hero.poster ? <Image src={hero.poster.src} alt={hero.poster.alt} fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover" /> : <div className="absolute inset-0 bg-night" />}
       {hero.videoMp4 || hero.videoWebm ? <HeroVideo mp4={hero.videoMp4} webm={hero.videoWebm} /> : null}
       {/* Light shade so the white headline reads on bright frames. */}
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
@@ -84,7 +84,12 @@ export function OurWork({ work, cases }: { work: HomeContent["work"]; cases: Bef
   return (
     <section className="bg-white py-[60px]">
       <div className="container-x">
-        <h2 className="h2 text-ink text-center">{work.heading}</h2>
+        <h2 className="h2 text-ink text-center">
+          {/* Links the Before & After page, which is not in the menu. */}
+          <Link href="/before-after/" className="transition-colors hover:text-brand-2">
+            {work.heading}
+          </Link>
+        </h2>
         <p className="mb-[30px] mt-[30px] text-center">{work.text}</p>
         {cases.length ? (
           <WorkGallery label={work.heading} cases={cases} />

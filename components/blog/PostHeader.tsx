@@ -63,7 +63,7 @@ export function PostHero({ post, author, category, minutes }: { post: Post; auth
           <div className="relative">
             <div aria-hidden="true" className="absolute -bottom-3 -right-3 h-full w-full rounded-xl border border-brand/25" />
             <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-dropdown shadow-[0_24px_60px_rgb(33_29_29_/_0.18)] lg:aspect-[5/4]">
-              <Image src={post.image.src} alt={post.image.alt || post.title} fill priority sizes="(min-width: 1024px) 520px, 100vw" className="post-settle object-cover" />
+              <Image src={post.image.src} alt={post.image.alt || post.title} fill loading="eager" fetchPriority="high" sizes="(min-width: 1024px) 520px, 100vw" className="post-settle object-cover" />
             </div>
           </div>
         ) : null}
