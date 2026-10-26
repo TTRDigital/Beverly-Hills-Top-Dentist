@@ -1,0 +1,1320 @@
+{
+ "name": "photo-swap",
+ "source": "docs/photo-swap/SANITY-EDITS.md (PR #9)",
+ "edits": [
+  {
+   "doc": "beforeAfterPage",
+   "path": "hero.image",
+   "from": "image-d171d0dff60f156f466ec247a769c27357a7a0d0-2400x1598-jpg",
+   "to": "image-cfe0ca8dff7467abad14effd8384b532123b474b-2400x1800-jpg",
+   "alt": "Cosmetic Dentistry sign with flowers and a mosaic mirror",
+   "fromFile": "smiling-woman-profile.jpg",
+   "toFile": "cosmetic-dentistry-sign.jpg"
+  },
+  {
+   "doc": "homePage",
+   "path": "intro.cards[_key==\"k1c\"].image",
+   "from": "image-9efc8a9fefca6bc3eaae542a866f2c281d8b4149-1536x1024-jpg",
+   "to": "image-7e2fb336da931780820ac8add96ca9f98a79fa0b-1920x2560-jpg",
+   "alt": "Ozone tooth and gum irrigator on the treatment tray",
+   "fromFile": "biological.jpg",
+   "toFile": "ozone-unit.jpg"
+  },
+  {
+   "doc": "homePage",
+   "path": "intro.cards[_key==\"k1d\"].image",
+   "from": "image-8a058a22e512536f200cc2240950e957cc04124b-1536x1024-jpg",
+   "to": "image-cc1196b69c944452ed902eea9b0334c2013e71ba-1920x2560-jpg",
+   "alt": "iTero digital intraoral scanner",
+   "fromFile": "biomimetic.jpg",
+   "toFile": "itero-scanner.jpg"
+  },
+  {
+   "doc": "homePage",
+   "path": "intro.cards[_key==\"k1e\"].image",
+   "from": "image-41c7c2d969106af74b3bdf71b283c2146705b06b-1536x1024-jpg",
+   "to": "image-1286bc75292060ac71374f3398fac10cf7c9c412-1920x2560-jpg",
+   "alt": "Office hallway with blossom flowers and a glass partition",
+   "fromFile": "holistic.jpg",
+   "toFile": "hallway-flowers.jpg"
+  },
+  {
+   "doc": "service-checkups-exams",
+   "path": "sections[_key==\"kn1\"].image",
+   "from": "image-3598ac0292ea13b8093f79ee4025715ac4c7d6d5-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "patient-smiling-chair.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "service-checkups-exams",
+   "path": "sections[_key==\"kn3\"].image",
+   "from": "image-b3b89f42f9df5dfce15e9780997fd300e64a5bba-863x1024-webp",
+   "to": "image-594e51a7f3b1bee0f401c05c3f6fe866e1c394dc-1920x2560-jpg",
+   "alt": "Two clinicians treating a patient in the treatment room",
+   "fromFile": "smiling-woman-portrait.webp",
+   "toFile": "dentists-treating-patient.jpg"
+  },
+  {
+   "doc": "service-checkups-exams",
+   "path": "sections[_key==\"kn4\"].cards[_key==\"kn5\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-checkups-exams",
+   "path": "sections[_key==\"kn4\"].cards[_key==\"kn6\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-clear-aligners",
+   "path": "sections[_key==\"kbg\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-clear-aligners",
+   "path": "sections[_key==\"kbi\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-clear-aligners",
+   "path": "sections[_key==\"kbj\"].cards[_key==\"kbk\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-clear-aligners",
+   "path": "sections[_key==\"kbj\"].cards[_key==\"kbl\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-crown-lengthening",
+   "path": "sections[_key==\"ki5\"].image",
+   "from": "image-3598ac0292ea13b8093f79ee4025715ac4c7d6d5-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "patient-smiling-chair.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "service-crown-lengthening",
+   "path": "sections[_key==\"ki7\"].image",
+   "from": "image-9770210f2379a20d86f81a40369533e61e5b2041-1024x1024-webp",
+   "to": "image-f9a5c35d73f65a0572e02f55ebf625fb9f33df4b-1920x2560-jpg",
+   "alt": "Soft tissue dental laser",
+   "fromFile": "gum-line-closeup.webp",
+   "toFile": "soft-tissue-laser.jpg"
+  },
+  {
+   "doc": "service-crown-lengthening",
+   "path": "sections[_key==\"ki8\"].cards[_key==\"ki9\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-crown-lengthening",
+   "path": "sections[_key==\"ki8\"].cards[_key==\"kia\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-ct-scans",
+   "path": "sections[_key==\"krd\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-ct-scans",
+   "path": "sections[_key==\"krf\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-ct-scans",
+   "path": "sections[_key==\"krg\"].cards[_key==\"krh\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-ct-scans",
+   "path": "sections[_key==\"krg\"].cards[_key==\"kri\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-deep-cleanings",
+   "path": "sections[_key==\"kjf\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-deep-cleanings",
+   "path": "sections[_key==\"kjh\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-deep-cleanings",
+   "path": "sections[_key==\"kji\"].cards[_key==\"kjj\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-deep-cleanings",
+   "path": "sections[_key==\"kji\"].cards[_key==\"kjk\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-dental-bonding",
+   "path": "sections[_key==\"kaq\"].image",
+   "from": "image-3598ac0292ea13b8093f79ee4025715ac4c7d6d5-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "patient-smiling-chair.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "service-dental-bonding",
+   "path": "sections[_key==\"kas\"].image",
+   "from": "image-2dfb3bfc8d493670caa9af7db80b730084a5fb9b-1080x1080-webp",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "tooth-polishing.webp",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-dental-bonding",
+   "path": "sections[_key==\"kat\"].cards[_key==\"kau\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-dental-bridges",
+   "path": "sections[_key==\"kcz\"].image",
+   "from": "image-3598ac0292ea13b8093f79ee4025715ac4c7d6d5-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "patient-smiling-chair.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "service-dental-bridges",
+   "path": "sections[_key==\"kd1\"].image",
+   "from": "image-017303fc15b1c46766316b3035aa5f7ae58a19e3-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-dental-bridges",
+   "path": "sections[_key==\"kd2\"].cards[_key==\"kd3\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-dental-fillings",
+   "path": "sections[_key==\"kc9\"].image",
+   "from": "image-3598ac0292ea13b8093f79ee4025715ac4c7d6d5-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "patient-smiling-chair.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "service-dental-fillings",
+   "path": "sections[_key==\"kcb\"].image",
+   "from": "image-78e488741031a7d0fd402f9fa4a4d5621d5c3e9c-1024x1024-webp",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "patient-smiling-mirror.webp",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-dental-fillings",
+   "path": "sections[_key==\"kcc\"].cards[_key==\"kcd\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-dental-fillings",
+   "path": "sections[_key==\"kcc\"].cards[_key==\"kce\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-dental-sealants",
+   "path": "sections[_key==\"kmb\"].image",
+   "from": "image-3598ac0292ea13b8093f79ee4025715ac4c7d6d5-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "patient-smiling-chair.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "service-dental-sealants",
+   "path": "sections[_key==\"kmd\"].image",
+   "from": "image-8f0c9d4a5fd68debbeecc564436a303bfe789fac-1080x1080-webp",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "bright-smile.webp",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-dental-sealants",
+   "path": "sections[_key==\"kme\"].cards[_key==\"kmf\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-dental-sealants",
+   "path": "sections[_key==\"kme\"].cards[_key==\"kmg\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-digital-scanner",
+   "path": "sections[_key==\"kpx\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-digital-scanner",
+   "path": "sections[_key==\"kpz\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-digital-scanner",
+   "path": "sections[_key==\"kq0\"].cards[_key==\"kq1\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-digital-scanner",
+   "path": "sections[_key==\"kq0\"].cards[_key==\"kq2\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-digital-x-rays",
+   "path": "sections[_key==\"kqn\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-digital-x-rays",
+   "path": "sections[_key==\"kqp\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-digital-x-rays",
+   "path": "sections[_key==\"kqq\"].cards[_key==\"kqr\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-digital-x-rays",
+   "path": "sections[_key==\"kqq\"].cards[_key==\"kqs\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-full-arch-implants",
+   "path": "sections[_key==\"k7u\"].image",
+   "from": "image-a996dec564293d9bcd0e480fa3330f6385ef0a2e-1024x682-webp",
+   "to": "image-c0a3e833f4bafe3eef7235321ff5be8570e86294-1920x2560-jpg",
+   "alt": "Imaging area with the CT scanner and flowers",
+   "fromFile": "senior-patient-mirror.webp",
+   "toFile": "imaging-area.jpg"
+  },
+  {
+   "doc": "service-full-arch-implants",
+   "path": "sections[_key==\"k7w\"].image",
+   "from": "image-e66fad31331d5f305f785d866c1be5dccb8c844f-1024x682-webp",
+   "to": "image-72226e0573653453bddbcd9973240dcc23b17a66-1920x2560-jpg",
+   "alt": "Cone beam CT scanner in the imaging room",
+   "fromFile": "senior-woman-chair.webp",
+   "toFile": "cbct-scanner.jpg"
+  },
+  {
+   "doc": "service-full-arch-implants",
+   "path": "sections[_key==\"k7x\"].cards[_key==\"k7y\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-full-arch-implants",
+   "path": "sections[_key==\"k7x\"].cards[_key==\"k7z\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-gum-contouring",
+   "path": "sections[_key==\"kkv\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-gum-contouring",
+   "path": "sections[_key==\"kkx\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-gum-contouring",
+   "path": "sections[_key==\"kky\"].cards[_key==\"kkz\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-gum-contouring",
+   "path": "sections[_key==\"kky\"].cards[_key==\"kl0\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-gum-disease-treatment",
+   "path": "sections[_key==\"khi\"].image",
+   "from": "image-b8db4f2a6938a4e10cb2bef8e8b34edbd514f3ef-1280x853-webp",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "bleeding-gums.webp",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-gum-disease-treatment",
+   "path": "sections[_key==\"khk\"].image",
+   "from": "image-58563556f4b8811dbb92b1ca2670b8c2940adb88-1024x682-webp",
+   "to": "image-594e51a7f3b1bee0f401c05c3f6fe866e1c394dc-1920x2560-jpg",
+   "alt": "Two clinicians treating a patient in the treatment room",
+   "fromFile": "dentist-patient-chat.webp",
+   "toFile": "dentists-treating-patient.jpg"
+  },
+  {
+   "doc": "service-gum-disease-treatment",
+   "path": "sections[_key==\"khl\"].cards[_key==\"khm\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-gum-disease-treatment",
+   "path": "sections[_key==\"khl\"].cards[_key==\"khn\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-gum-graft-surgery",
+   "path": "sections[_key==\"kiv\"].image",
+   "from": "image-18fe0351ecc97e68d49a9d3d898dde940182b027-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "gum-procedure.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "service-gum-graft-surgery",
+   "path": "sections[_key==\"kix\"].image",
+   "from": "image-fe6538d802ef84e20233b52568cac84cf300139e-1129x928-jpg",
+   "to": "image-f9a5c35d73f65a0572e02f55ebf625fb9f33df4b-1920x2560-jpg",
+   "alt": "Soft tissue dental laser",
+   "fromFile": "laser-gum-treatment.jpg",
+   "toFile": "soft-tissue-laser.jpg"
+  },
+  {
+   "doc": "service-gum-graft-surgery",
+   "path": "sections[_key==\"kiy\"].cards[_key==\"kiz\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-gum-graft-surgery",
+   "path": "sections[_key==\"kiy\"].cards[_key==\"kj0\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-laser-gum-treatments",
+   "path": "sections[_key==\"kk5\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-laser-gum-treatments",
+   "path": "sections[_key==\"kk7\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-laser-gum-treatments",
+   "path": "sections[_key==\"kk8\"].cards[_key==\"kk9\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-laser-gum-treatments",
+   "path": "sections[_key==\"kk8\"].cards[_key==\"kka\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-night-guards",
+   "path": "sections[_key==\"knr\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-night-guards",
+   "path": "sections[_key==\"knt\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-night-guards",
+   "path": "sections[_key==\"knu\"].cards[_key==\"knv\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-night-guards",
+   "path": "sections[_key==\"knu\"].cards[_key==\"knw\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-ozone-therapy",
+   "path": "sections[_key==\"kp7\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-ozone-therapy",
+   "path": "sections[_key==\"kp9\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-ozone-therapy",
+   "path": "sections[_key==\"kpa\"].cards[_key==\"kpb\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-ozone-therapy",
+   "path": "sections[_key==\"kpa\"].cards[_key==\"kpc\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-partial-dentures",
+   "path": "sections[_key==\"kgp\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-partial-dentures",
+   "path": "sections[_key==\"kgr\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-partial-dentures",
+   "path": "sections[_key==\"kgs\"].cards[_key==\"kgt\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-partial-dentures",
+   "path": "sections[_key==\"kgs\"].cards[_key==\"kgu\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-porcelain-inlays-onlays",
+   "path": "sections[_key==\"ked\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-porcelain-inlays-onlays",
+   "path": "sections[_key==\"kef\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-porcelain-inlays-onlays",
+   "path": "sections[_key==\"keg\"].cards[_key==\"keh\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-porcelain-inlays-onlays",
+   "path": "sections[_key==\"keg\"].cards[_key==\"kei\"].image",
+   "from": "image-a06ed658d00fa893ddcb055b5069485865a741c7-1536x1024-jpg",
+   "to": "image-594e51a7f3b1bee0f401c05c3f6fe866e1c394dc-1920x2560-jpg",
+   "alt": "Two clinicians treating a patient in the treatment room",
+   "fromFile": "dentist-with-patient.jpg",
+   "toFile": "dentists-treating-patient.jpg"
+  },
+  {
+   "doc": "service-porcelain-veneers",
+   "path": "sections[_key==\"k8k\"].image",
+   "from": "image-3598ac0292ea13b8093f79ee4025715ac4c7d6d5-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "patient-smiling-chair.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "service-porcelain-veneers",
+   "path": "sections[_key==\"k8m\"].image",
+   "from": "image-f0591db7bffd1f44ac1976fe5c0498bb6272ba3e-1080x1080-webp",
+   "to": "image-1286bc75292060ac71374f3398fac10cf7c9c412-1920x2560-jpg",
+   "alt": "Office hallway with blossom flowers and a glass partition",
+   "fromFile": "shade-guide-smile.webp",
+   "toFile": "hallway-flowers.jpg"
+  },
+  {
+   "doc": "service-porcelain-veneers",
+   "path": "sections[_key==\"k8n\"].cards[_key==\"k8o\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-porcelain-veneers",
+   "path": "sections[_key==\"k8n\"].cards[_key==\"k8p\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-root-canal-therapy",
+   "path": "sections[_key==\"kf3\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-root-canal-therapy",
+   "path": "sections[_key==\"kf5\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-root-canal-therapy",
+   "path": "sections[_key==\"kf6\"].cards[_key==\"kf7\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-root-canal-therapy",
+   "path": "sections[_key==\"kf6\"].cards[_key==\"kf8\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-single-tooth-implants",
+   "path": "sections[_key==\"k74\"].image",
+   "from": "image-1415cec95adffc79e32719007bc386f5d4700da8-1696x2498-jpg",
+   "to": "image-594e51a7f3b1bee0f401c05c3f6fe866e1c394dc-1920x2560-jpg",
+   "alt": "Two clinicians treating a patient in the treatment room",
+   "fromFile": "patient-dental-exam-closeup.jpg",
+   "toFile": "dentists-treating-patient.jpg"
+  },
+  {
+   "doc": "service-single-tooth-implants",
+   "path": "sections[_key==\"k76\"].image",
+   "from": "image-abba7d2c6836d740299a29f1006db75a262eb4ac-578x708-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-reviewing-x-ray.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-single-tooth-implants",
+   "path": "sections[_key==\"k77\"].cards[_key==\"k78\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-single-tooth-implants",
+   "path": "sections[_key==\"k77\"].cards[_key==\"k79\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-sleep-apnea-treatment",
+   "path": "sections[_key==\"koh\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-sleep-apnea-treatment",
+   "path": "sections[_key==\"koj\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-sleep-apnea-treatment",
+   "path": "sections[_key==\"kok\"].cards[_key==\"kol\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-sleep-apnea-treatment",
+   "path": "sections[_key==\"kok\"].cards[_key==\"kom\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-smile-makeover",
+   "path": "sections[_key==\"k9a\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-smile-makeover",
+   "path": "sections[_key==\"k9c\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-smile-makeover",
+   "path": "sections[_key==\"k9d\"].cards[_key==\"k9e\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-teeth-cleaning",
+   "path": "sections[_key==\"kll\"].image",
+   "from": "image-3598ac0292ea13b8093f79ee4025715ac4c7d6d5-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "patient-smiling-chair.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "service-teeth-cleaning",
+   "path": "sections[_key==\"kln\"].image",
+   "from": "image-cf3472fe1de9b4b6a8e00cf004ca8c69512c1270-1024x1024-webp",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "smile-mirror-exam.webp",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-teeth-cleaning",
+   "path": "sections[_key==\"klo\"].cards[_key==\"klp\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-teeth-cleaning",
+   "path": "sections[_key==\"klo\"].cards[_key==\"klq\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "service-teeth-whitening",
+   "path": "sections[_key==\"ka0\"].image",
+   "from": "image-3598ac0292ea13b8093f79ee4025715ac4c7d6d5-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "patient-smiling-chair.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "service-teeth-whitening",
+   "path": "sections[_key==\"ka2\"].image",
+   "from": "image-017303fc15b1c46766316b3035aa5f7ae58a19e3-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-teeth-whitening",
+   "path": "sections[_key==\"ka3\"].cards[_key==\"ka4\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "service-teeth-whitening",
+   "path": "sections[_key==\"ka3\"].cards[_key==\"ka5\"].image",
+   "from": "image-a06ed658d00fa893ddcb055b5069485865a741c7-1536x1024-jpg",
+   "to": "image-594e51a7f3b1bee0f401c05c3f6fe866e1c394dc-1920x2560-jpg",
+   "alt": "Two clinicians treating a patient in the treatment room",
+   "fromFile": "dentist-with-patient.jpg",
+   "toFile": "dentists-treating-patient.jpg"
+  },
+  {
+   "doc": "service-tooth-extractions",
+   "path": "sections[_key==\"kdp\"].image",
+   "from": "image-3598ac0292ea13b8093f79ee4025715ac4c7d6d5-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "patient-smiling-chair.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "service-tooth-extractions",
+   "path": "sections[_key==\"kdr\"].image",
+   "from": "image-2a4be061dbef8c11f36ad1f1fd5c0d6999a91a24-1024x1024-webp",
+   "to": "image-594e51a7f3b1bee0f401c05c3f6fe866e1c394dc-1920x2560-jpg",
+   "alt": "Two clinicians treating a patient in the treatment room",
+   "fromFile": "extraction-forceps.webp",
+   "toFile": "dentists-treating-patient.jpg"
+  },
+  {
+   "doc": "service-wisdom-teeth-extractions",
+   "path": "sections[_key==\"kfw\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "service-wisdom-teeth-extractions",
+   "path": "sections[_key==\"kfy\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "service-wisdom-teeth-extractions",
+   "path": "sections[_key==\"kfz\"].cards[_key==\"kg0\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "service-wisdom-teeth-extractions",
+   "path": "sections[_key==\"kfz\"].cards[_key==\"kg1\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "serviceCategory-cosmetic-dentistry",
+   "path": "sections[_key==\"k3l\"].image",
+   "from": "image-3598ac0292ea13b8093f79ee4025715ac4c7d6d5-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "patient-smiling-chair.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "serviceCategory-cosmetic-dentistry",
+   "path": "sections[_key==\"k3n\"].image",
+   "from": "image-017303fc15b1c46766316b3035aa5f7ae58a19e3-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "serviceCategory-cosmetic-dentistry",
+   "path": "sections[_key==\"k3o\"].cards[_key==\"k3p\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "serviceCategory-cosmetic-dentistry",
+   "path": "sections[_key==\"k3o\"].cards[_key==\"k3q\"].image",
+   "from": "image-f4fa29d6e63d6ac04a9e503c93fa1b93a16fb145-720x728-jpg",
+   "to": "image-cc1196b69c944452ed902eea9b0334c2013e71ba-1920x2560-jpg",
+   "alt": "iTero digital intraoral scanner",
+   "fromFile": "dentist-reviewing-scan-2.jpg",
+   "toFile": "itero-scanner.jpg"
+  },
+  {
+   "doc": "serviceCategory-dental-implants-dentistry",
+   "path": "sections[_key==\"k2v\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "serviceCategory-dental-implants-dentistry",
+   "path": "sections[_key==\"k2x\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "serviceCategory-dental-implants-dentistry",
+   "path": "sections[_key==\"k2y\"].cards[_key==\"k2z\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "serviceCategory-dental-implants-dentistry",
+   "path": "sections[_key==\"k2y\"].cards[_key==\"k30\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "serviceCategory-dental-technology",
+   "path": "sections[_key==\"k6e\"].image",
+   "from": "image-928b1e58fb1e3f2726e121297b29120ca97fe954-2400x889-webp",
+   "to": "image-34bd2d7b446b22c2e4e8d2c22bf8e9c7aee53466-1920x2560-jpg",
+   "alt": "Reception desk and waiting area with the Cosmetic Dentistry sign",
+   "fromFile": "patient-smiling-chair-2.webp",
+   "toFile": "reception-desk.jpg"
+  },
+  {
+   "doc": "serviceCategory-dental-technology",
+   "path": "sections[_key==\"k6g\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "serviceCategory-dental-technology",
+   "path": "sections[_key==\"k6h\"].cards[_key==\"k6i\"].image",
+   "from": "image-b40a2269b4c0bafa0026f5557b853c3589e0ece2-1214x764-png",
+   "to": "image-40cfc7e5f28d1197884a2d9808cfe3bf7acd4f0a-1920x2560-jpg",
+   "alt": "Treatment room with a dental chair and digital X-ray monitor",
+   "fromFile": "patient-tooth-exam.png",
+   "toFile": "digital-x-ray-room.jpg"
+  },
+  {
+   "doc": "serviceCategory-dental-technology",
+   "path": "sections[_key==\"k6h\"].cards[_key==\"k6j\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "serviceCategory-periodontic-dentistry",
+   "path": "sections[_key==\"k51\"].image",
+   "from": "image-3598ac0292ea13b8093f79ee4025715ac4c7d6d5-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "patient-smiling-chair.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "serviceCategory-periodontic-dentistry",
+   "path": "sections[_key==\"k53\"].image",
+   "from": "image-017303fc15b1c46766316b3035aa5f7ae58a19e3-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "serviceCategory-periodontic-dentistry",
+   "path": "sections[_key==\"k54\"].cards[_key==\"k55\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "serviceCategory-periodontic-dentistry",
+   "path": "sections[_key==\"k54\"].cards[_key==\"k56\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "serviceCategory-preventive-dentistry",
+   "path": "sections[_key==\"k5r\"].image",
+   "from": "image-3598ac0292ea13b8093f79ee4025715ac4c7d6d5-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "patient-smiling-chair.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "serviceCategory-preventive-dentistry",
+   "path": "sections[_key==\"k5t\"].image",
+   "from": "image-0522b4cbaacf6b1d3c5e9793d20a69bf1ea5bfc5-890x639-webp",
+   "to": "image-7e2fb336da931780820ac8add96ca9f98a79fa0b-1920x2560-jpg",
+   "alt": "Ozone tooth and gum irrigator on the treatment tray",
+   "fromFile": "dental-microscope.webp",
+   "toFile": "ozone-unit.jpg"
+  },
+  {
+   "doc": "serviceCategory-preventive-dentistry",
+   "path": "sections[_key==\"k5u\"].cards[_key==\"k5v\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "serviceCategory-preventive-dentistry",
+   "path": "sections[_key==\"k5u\"].cards[_key==\"k5w\"].image",
+   "from": "image-79feb3a674ee87288b75f8c12253be5f4aa3bcc4-683x1024-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient-683.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "serviceCategory-restorative-dentistry",
+   "path": "sections[_key==\"k4b\"].image",
+   "from": "image-3598ac0292ea13b8093f79ee4025715ac4c7d6d5-2400x889-webp",
+   "to": "image-75906aad77ce2746ccaa5012be8f896882680b3b-2048x1367-jpg",
+   "alt": "Wide view of the office hallway with framed photographs",
+   "fromFile": "patient-smiling-chair.webp",
+   "toFile": "hallway-wide-2.jpg"
+  },
+  {
+   "doc": "serviceCategory-restorative-dentistry",
+   "path": "sections[_key==\"k4d\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "serviceCategory-restorative-dentistry",
+   "path": "sections[_key==\"k4e\"].cards[_key==\"k4f\"].image",
+   "from": "image-c7cb9cfe7e9be50be65331514bc7d6c4f987b850-720x728-jpg",
+   "to": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "alt": "Treatment room with a dental chair and sculpture on the wall",
+   "fromFile": "veneer-shade-match.jpg",
+   "toFile": "treatment-chair.jpg"
+  },
+  {
+   "doc": "serviceCategory-restorative-dentistry",
+   "path": "sections[_key==\"k4e\"].cards[_key==\"k4g\"].image",
+   "from": "image-f4fa29d6e63d6ac04a9e503c93fa1b93a16fb145-720x728-jpg",
+   "to": "image-cc1196b69c944452ed902eea9b0334c2013e71ba-1920x2560-jpg",
+   "alt": "iTero digital intraoral scanner",
+   "fromFile": "dentist-reviewing-scan-2.jpg",
+   "toFile": "itero-scanner.jpg"
+  },
+  {
+   "doc": "servicesPage",
+   "path": "sections[_key==\"k1v\"].image",
+   "from": "image-1415cec95adffc79e32719007bc386f5d4700da8-1696x2498-jpg",
+   "to": "image-594e51a7f3b1bee0f401c05c3f6fe866e1c394dc-1920x2560-jpg",
+   "alt": "Two clinicians treating a patient in the treatment room",
+   "fromFile": "patient-dental-exam-closeup.jpg",
+   "toFile": "dentists-treating-patient.jpg"
+  },
+  {
+   "doc": "servicesPage",
+   "path": "sections[_key==\"k1w\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "servicesPage",
+   "path": "sections[_key==\"k1x\"].image",
+   "from": "image-017303fc15b1c46766316b3035aa5f7ae58a19e3-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "servicesPage",
+   "path": "sections[_key==\"k1y\"].image",
+   "from": "image-381105b77a7b88a3f0976072b65e990fae5b5d42-1707x2560-jpg",
+   "to": "image-b756af6f62ded68d7b8ec6401632e6acd3df9c01-1920x2560-jpg",
+   "alt": "Clinician treating a patient in the dental chair",
+   "fromFile": "dentist-examining-patient.jpg",
+   "toFile": "hygienist-treating-patient.jpg"
+  },
+  {
+   "doc": "servicesPage",
+   "path": "sections[_key==\"k1z\"].image",
+   "from": "image-017303fc15b1c46766316b3035aa5f7ae58a19e3-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok.webp",
+   "toFile": "team-photo.jpg"
+  },
+  {
+   "doc": "servicesPage",
+   "path": "sections[_key==\"k20\"].image",
+   "from": "image-0522b4cbaacf6b1d3c5e9793d20a69bf1ea5bfc5-890x639-webp",
+   "to": "image-7e2fb336da931780820ac8add96ca9f98a79fa0b-1920x2560-jpg",
+   "alt": "Ozone tooth and gum irrigator on the treatment tray",
+   "fromFile": "dental-microscope.webp",
+   "toFile": "ozone-unit.jpg"
+  },
+  {
+   "doc": "servicesPage",
+   "path": "sections[_key==\"k21\"].image",
+   "from": "image-10b87df9eeeb932ccf4f658443cf5874bb124961-1024x764-webp",
+   "to": "image-3d9e0cf3a7bcb8e830b72449732aa72a12c87c9d-1536x1024-jpg",
+   "alt": "The Beverly Hills Dental Art Studio team",
+   "fromFile": "dental-team-ok-2.webp",
+   "toFile": "team-photo.jpg"
+  }
+ ]
+}
