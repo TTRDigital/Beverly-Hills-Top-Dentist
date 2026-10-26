@@ -26,6 +26,8 @@ export const drShirProfile: {
   name: "Dr. Nushin Shir",
   credentials: "DDS, MPH",
   role: "Principal Dentist, Beverly Hills Dental Arts Studio",
+  // TODO(TTR-921): Kia to confirm the photo. This file reached the old site as "ChatGPT-Image-Sep-3-2026…"; her original is
+  // "Shir Headshot.PNG" in the client's Drive (Visuals).
   photo: { ...images.drNushinShir, alt: "Dr. Nushin Shir, DDS, MPH" },
   intro: [
     "Dr. Nushin Shir, DDS, MPH, is the principal dentist at Beverly Hills Dental Arts Studio, 416 N. Bedford Dr., Suite 105, in Beverly Hills. She graduated from the UCLA School of Dentistry in 1993, holds two master's degrees in public health from UCLA, and has practiced general, restorative and cosmetic dentistry for over 30 years.",
@@ -44,6 +46,7 @@ export const drShirProfile: {
         { title: "Doctor of Dental Surgery (DDS)", text: "UCLA School of Dentistry, 1993." },
         { title: "Two master's degrees in public health", text: "UCLA, in epidemiology and in health care policy." },
         { title: "Bachelor's degree in biological sciences", text: "University of California, Irvine." },
+        { title: "Licensed by the Dental Board of California", text: "License 41042, first issued in 1993 and active, with her practice location on Bedford Drive." },
       ],
     },
     {
