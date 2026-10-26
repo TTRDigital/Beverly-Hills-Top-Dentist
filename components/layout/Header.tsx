@@ -62,14 +62,15 @@ export function Header({ menu, cta, phone, phoneHref, logo, siteName }: { menu: 
               <li key={item.label} className="group/top relative">
                 {item.children?.length ? (
                   <>
-                    <button
-                      type="button"
-                      aria-haspopup="true"
+                    {/* A link (not a button) so the hub page, e.g. /services/, is linked from every page; hover and focus still open the dropdown. */}
+                    <Link
+                      href={item.href}
+                      aria-current={norm(item.href) === path ? "page" : undefined}
                       className={`flex items-center gap-2 whitespace-nowrap px-[7.5px] py-3 text-[15.1px] font-bold uppercase leading-[1.2] ${linkCls(isActive(item, path))}`}
                     >
                       {item.label}
                       <ChevronDown className="h-2 w-2 transition-transform duration-200 group-hover/top:rotate-180" />
-                    </button>
+                    </Link>
                     <Dropdown items={item.children} path={path} />
                   </>
                 ) : (

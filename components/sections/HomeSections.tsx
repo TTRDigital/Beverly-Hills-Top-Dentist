@@ -84,7 +84,12 @@ export function OurWork({ work, cases }: { work: HomeContent["work"]; cases: Bef
   return (
     <section className="bg-white py-[60px]">
       <div className="container-x">
-        <h2 className="h2 text-ink text-center">{work.heading}</h2>
+        <h2 className="h2 text-ink text-center">
+          {/* Links the Before & After page, which is not in the menu. */}
+          <Link href="/before-after/" className="transition-colors hover:text-brand-2">
+            {work.heading}
+          </Link>
+        </h2>
         <p className="mb-[30px] mt-[30px] text-center">{work.text}</p>
         {cases.length ? (
           <WorkGallery label={work.heading} cases={cases} />
