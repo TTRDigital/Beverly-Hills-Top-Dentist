@@ -84,7 +84,7 @@ Same fields as the old form (Full Name, Email Address, Phone Number, Comment) pl
 
 `POST /api/ttr/sanity-edits/` (Vercel only) applies a reviewed list of Sanity edits from `lib/sanity-edits/<set>.json`, e.g. the photo swap (`photo-swap`, 146 fields in 38 documents, listed in `docs/photo-swap/SANITY-EDITS.md`).
 
-- Header `Authorization: Bearer <TTR agent key>`; the key is checked against TTR OS (`ttr-portal /api/v1/me`).
+- Header `Authorization: Bearer <TTR agent key>`; the key is checked against TTR OS (`ttr-portal /api/v1/me`). Only kind `owner`, or kind `agent` with role `build_lead`, may use it; any other key gets 403.
 - Body `{ "set": "photo-swap" }` is a **dry run**: it reports, field by field, what would change, what is already done and what would be skipped (a field is only changed while it still holds the expected old photo). `{ "set": "photo-swap", "apply": true }` writes everything in one transaction, which fails as a whole if a document changed meanwhile.
 - Writing needs `SANITY_WRITE_TOKEN` (Editor token) in Vercel > Settings > Environment Variables (Production). Remove or rotate it afterwards.
 - Redeploy on Vercel afterwards; the pages read Sanity at build time.

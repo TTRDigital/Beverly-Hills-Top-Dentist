@@ -4,7 +4,8 @@
  *
  *   POST /api/ttr/sanity-edits/   Authorization: Bearer <TTR agent key>   body: { "set": "photo-swap", "apply": false }
  *
- * - The key is checked against TTR OS (GET ttr-portal /api/v1/me); anything but a 2xx answer is refused.
+ * - The key is checked against TTR OS (GET ttr-portal /api/v1/me), as on Ideal's seed route: only kind "owner", or kind
+ *   "agent" with role "build_lead", may use it (403 for any other agent); a missing or unknown key is a 401.
  * - Dry run by default: it reads the documents and reports, field by field, what would change, what is already done and
  *   what it would skip. Only { "apply": true } writes, in one transaction that fails if a document changed meanwhile.
  * - Writes need SANITY_WRITE_TOKEN (an Editor token) in Vercel > Settings > Environment Variables, Production only.
@@ -29,12 +30,15 @@ async function agent(request: Request): Promise<Record<string, unknown> | null> 
   try {
     const res = await fetch(`${PORTAL}/api/v1/me`, { headers: { Authorization: auth, Accept: "application/json" }, cache: "no-store" });
     if (!res.ok) return null;
-    const me = (await res.json().catch(() => ({}))) as Record<string, unknown>;
-    return me && typeof me === "object" ? me : {};
+    const me = (await res.json().catch(() => null)) as Record<string, unknown> | null;
+    return me && typeof me === "object" && !Array.isArray(me) ? me : null;
   } catch {
     return null;
   }
 }
+
+/** A valid key is not enough: only the owner or a build lead may change the live CMS (social, browser and other agents may not). */
+const mayEdit = (me: Record<string, unknown>) => me.kind === "owner" || (me.kind === "agent" && me.role === "build_lead");
 
 async function query<T>(groq: string, params: Record<string, unknown>, token?: string): Promise<T> {
   const search = new URLSearchParams({ query: groq, perspective: "raw" });
@@ -50,6 +54,7 @@ async function query<T>(groq: string, params: Record<string, unknown>, token?: s
 export async function POST(request: Request) {
   const me = await agent(request);
   if (!me) return reply(401, { ok: false, error: "A TTR agent key is required (Authorization: Bearer <key>)." });
+  if (!mayEdit(me)) return reply(403, { ok: false, error: "This key may not change the CMS: only the owner or a build lead can." });
 
   let body: { set?: unknown; apply?: unknown };
   try {
