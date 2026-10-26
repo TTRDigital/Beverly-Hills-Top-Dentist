@@ -4,6 +4,7 @@ import { absoluteUrl, siteUrl } from "@/lib/site";
 import { images } from "@/lib/data/images";
 import { plainText } from "@/lib/text";
 import { outlinePost } from "@/lib/blog-post";
+import { PROFILE_PATH, drShirProfile } from "@/lib/data/profile";
 
 const abs = (src: string) => (src.startsWith("http") ? src : absoluteUrl(src));
 
@@ -46,21 +47,8 @@ export function businessSchema(s: SiteSettings, team: TeamMember[] = [], testimo
       { "@type": "Place", name: "Hollywood" },
     ],
     sameAs: s.social.map((x) => x.href),
-    ...(principal
-      ? {
-          employee: {
-            "@type": "Person",
-            name: principal.name,
-            jobTitle: "Dentist",
-            honorificSuffix: "DDS, MPH",
-            alumniOf: [
-              { "@type": "CollegeOrUniversity", name: "UCLA School of Dentistry" },
-              { "@type": "CollegeOrUniversity", name: "University of California, Irvine" },
-            ],
-            ...(principal.photo ? { image: abs(principal.photo.src) } : {}),
-          },
-        }
-      : {}),
+    // Dr. Shir is the same Person as on her profile page (one @id), so search engines tie her to this practice.
+    ...(principal ? { employee: drShirSchema(principal.photo, false) } : {}),
     // Only real reviews entered in /cms are listed; the old site has none.
     ...(testimonials.length
       ? {
@@ -72,6 +60,56 @@ export function businessSchema(s: SiteSettings, team: TeamMember[] = [], testimo
           })),
         }
       : {}),
+  };
+}
+
+export const drShirId = `${siteUrl}/#dr-nushin-shir`;
+
+/**
+ * Dr. Shir as a Person: education, credentials, awards and her current practice (worksFor the Dentist entity), with sameAs
+ * only to her current profiles. Used on her profile page and inside the site-wide Dentist entity (without worksFor there).
+ */
+export function drShirSchema(photo = drShirProfile.photo, withContext = true) {
+  const p = drShirProfile;
+  return {
+    ...(withContext ? { "@context": "https://schema.org" } : {}),
+    "@type": "Person",
+    "@id": drShirId,
+    name: "Nushin Shir",
+    honorificPrefix: "Dr.",
+    honorificSuffix: p.credentials,
+    jobTitle: "Dentist",
+    description: p.intro[0],
+    url: absoluteUrl(PROFILE_PATH),
+    image: { "@type": "ImageObject", url: abs(photo.src), caption: p.photo.alt },
+    ...(withContext ? { worksFor: { "@id": `${siteUrl}/#dentist` }, workLocation: { "@id": `${siteUrl}/#dentist` } } : {}),
+    alumniOf: [
+      { "@type": "CollegeOrUniversity", name: "UCLA School of Dentistry" },
+      { "@type": "CollegeOrUniversity", name: "University of California, Los Angeles" },
+      { "@type": "CollegeOrUniversity", name: "University of California, Irvine" },
+    ],
+    hasCredential: [
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "degree", name: "Doctor of Dental Surgery (DDS)", recognizedBy: { "@type": "CollegeOrUniversity", name: "UCLA School of Dentistry" } },
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "degree", name: "Master of Public Health (MPH), epidemiology", recognizedBy: { "@type": "CollegeOrUniversity", name: "University of California, Los Angeles" } },
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "degree", name: "Master of Public Health (MPH), health care policy", recognizedBy: { "@type": "CollegeOrUniversity", name: "University of California, Los Angeles" } },
+      { "@type": "EducationalOccupationalCredential", credentialCategory: "degree", name: "Bachelor's degree, biological sciences", recognizedBy: { "@type": "CollegeOrUniversity", name: "University of California, Irvine" } },
+    ],
+    award: ["America's Top Dentist (2010, 2011, 2012, 2013, 2015)", "Top Southern California Dentists (2014)"],
+    knowsAbout: ["General dentistry", "Restorative dentistry", "Cosmetic dentistry", "Dental implants", "Public health"],
+    sameAs: p.sameAs,
+  };
+}
+
+/** The profile page itself, about Dr. Shir. */
+export function profilePageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": `${absoluteUrl(PROFILE_PATH)}#page`,
+    url: absoluteUrl(PROFILE_PATH),
+    name: drShirProfile.seo.title,
+    mainEntity: { "@id": drShirId },
+    about: { "@id": drShirId },
   };
 }
 
@@ -122,7 +160,15 @@ export function postSchema(post: Post) {
     ...(post.image ? { image: abs(post.image.src) } : {}),
     wordCount: words,
     timeRequired: `PT${minutes}M`,
-    author: { "@type": "Person", name: `${a.name}, ${a.credentials}`, jobTitle: a.jobTitle, url: absoluteUrl(a.url), image: abs(a.image.src), worksFor: { "@id": `${siteUrl}/#dentist` } },
+    author: {
+      "@type": "Person",
+      ...(a.url === PROFILE_PATH ? { "@id": drShirId } : {}),
+      name: `${a.name}, ${a.credentials}`,
+      jobTitle: a.jobTitle,
+      url: absoluteUrl(a.url),
+      image: abs(a.image.src),
+      worksFor: { "@id": `${siteUrl}/#dentist` },
+    },
     publisher: { "@id": `${siteUrl}/#dentist` },
     ...(c ? { articleSection: c.name, about: { "@type": "Thing", name: c.name, url: absoluteUrl(post.service || c.path) } } : {}),
     inLanguage: "en-US",
