@@ -2,6 +2,33 @@
 import type { HubContent, Service, ServiceCategory } from "../types";
 import { images } from "./images.ts";
 
+/**
+ * Services added after the content was loaded into Sanity (TTR-910, Oct 26, 2026). They are listed here once and used by
+ * the main menu, the Services hub and their category page. lib/content.ts also adds them to the copies of those pages saved
+ * in /cms, until they are entered there.
+ */
+export const addedServiceLinks: { category: string; title: string; body: string[]; href: string }[] = [
+  {
+    category: "preventive-dentistry",
+    title: "No-Drill Cavity Care",
+    body: [
+      "Early decay caught at the white-spot stage can often be stopped, and sometimes reversed, with fluoride varnish, sealants and other treatments that need no drilling. Lost enamel does not grow back, so finding decay early matters."
+    ],
+    href: "/services/preventive-dentistry/no-drill-cavity-care/"
+  },
+  {
+    category: "preventive-dentistry",
+    title: "Biofilm Therapy",
+    body: [
+      "A professional cleaning that colors plaque with a disclosing dye so none is missed, then removes it with air polishing and ultrasonic instruments."
+    ],
+    href: "/services/preventive-dentistry/biofilm-therapy/"
+  }
+];
+
+/** The added services of one category, as accordion items. */
+export const addedServiceItems = (category: string) => addedServiceLinks.filter((a) => a.category === category).map(({ title, body, href }) => ({ title, body, href }));
+
 export const fallbackServicesHub: HubContent = {
   title: "Services",
   sections: [
@@ -257,7 +284,8 @@ export const fallbackServicesHub: HubContent = {
             "A custom oral appliance for diagnosed obstructive sleep apnea, fitted and adjusted here and managed alongside your physician. Quiet, portable, and worn by patients who could not tolerate CPAP."
           ],
           href: "/services/preventive-dentistry/sleep-apnea-treatment/"
-        }
+        },
+        ...addedServiceItems("preventive-dentistry")
       ],
       link: {
         label: "More about preventive dentistry",
@@ -1135,7 +1163,8 @@ export const fallbackCategories: ServiceCategory[] = [
             body: [
               "Night guards are custom-made oral appliances designed to protect your teeth from grinding and clenching while you sleep. They help reduce tooth wear, jaw discomfort, headaches, and damage caused by bruxism. A properly fitted night guard provides comfort and long-term protection for your smile and oral health."
             ]
-          }
+          },
+          ...addedServiceItems("preventive-dentistry")
         ],
         textMaxWidth: 814
       },
@@ -6254,6 +6283,376 @@ export const fallbackServices: Service[] = [
     seo: {
       title: "Sleep Apnea Treatment - Beverly Hills Dental",
       description: "A custom oral appliance for diagnosed obstructive sleep apnea, fitted and adjusted here and managed alongside your physician. Quiet, portable, and worn by"
+    }
+  },
+  // TTR-910 (Oct 26, 2026): two services Dr. Shir now offers. Written so they hold for any of the methods she may use;
+  // each "TODO(TTR-910)" marks a line to update once she answers which products she uses, who they are for and the cost.
+  {
+    slug: "no-drill-cavity-care",
+    title: "No-Drill Cavity Care",
+    category: "preventive-dentistry",
+    order: 25.1,
+    sections: [
+      {
+        _type: "hero",
+        heading: "No-Drill Cavity Care in Beverly Hills",
+        subheading: "Preventive Dentistry",
+        text: [
+          "Early tooth decay can often be stopped, and sometimes reversed, before it becomes a cavity, with no drilling. These treatments put minerals back into weakened enamel and keep small lesions from growing. Enamel that is already lost does not grow back, so the aim is to find decay early and stop it there."
+        ],
+        image: images.dentistShowingXRay,
+        overlay: "none",
+        textMaxWidth: 630
+      },
+      {
+        _type: "textBand",
+        heading: "What No-Drill Cavity Care Can and Cannot Do",
+        text: [
+          "Tooth decay is a tug of war. Acid made by the bacteria in plaque pulls minerals out of enamel, and saliva and fluoride put them back. When minerals are lost faster than they return, a chalky white spot can appear. At that stage, decay can be stopped or reversed. Once it breaks through the surface and forms a cavity, the damage stays, and a dentist has to repair it with a filling ([NIDCR](https://www.nidcr.nih.gov/health-info/tooth-decay/more-info/tooth-decay-process)).",
+          "That is why we never promise to regrow enamel: once it is lost, it cannot grow back ([Cleveland Clinic](https://my.clevelandclinic.org/health/diseases/tooth-erosion)). What these treatments can do is harden weakened enamel by putting minerals back into it, seal early lesions so acid cannot reach them, and stop many lesions from getting bigger. An American Dental Association expert panel reviewed the research on no-drill treatments and recommends several of them for stopping or reversing decay in children and adults ([ADA guideline, 2018](https://pubmed.ncbi.nlm.nih.gov/30261951/))."
+        ],
+        tone: "light"
+      },
+      {
+        _type: "accordionFeature",
+        heading: "No-Drill Options We May Use",
+        // TODO(TTR-910): keep only the options Dr. Shir uses, and name the product where she wants it named.
+        text: [
+          "Which option fits depends on where the lesion is, how deep it goes and how likely you are to get new decay. Often two are combined."
+        ],
+        image: images.smileMirrorExam,
+        items: [
+          {
+            title: "Fluoride Varnish",
+            body: [
+              "A thin coat of concentrated fluoride painted on the teeth in a few minutes. It helps put minerals back into early white spots and makes enamel more resistant to acid. The ADA panel lists 5% sodium fluoride varnish among the most effective no-drill treatments ([ADA guideline](https://pubmed.ncbi.nlm.nih.gov/30261951/))."
+            ]
+          },
+          {
+            title: "Prescription Fluoride Toothpaste",
+            body: [
+              "For people more likely to get decay, a toothpaste or gel with 5,000 ppm fluoride, used at home, can help stop early lesions, especially on exposed roots. It is one of the treatments the ADA panel recommends ([ADA guideline](https://pubmed.ncbi.nlm.nih.gov/30261951/))."
+            ]
+          },
+          {
+            title: "Sealants Over Early Lesions",
+            body: [
+              "A thin coating bonded into the grooves of back teeth. Placed over an early lesion in a groove, a sealant can help stop it from getting worse ([ADA guideline](https://pubmed.ncbi.nlm.nih.gov/30261951/)). More on our [dental sealants](/services/preventive-dentistry/dental-sealants/) page."
+            ]
+          },
+          {
+            title: "Silver Diamine Fluoride (SDF)",
+            body: [
+              "A liquid brushed onto decay that can stop it from getting worse, with no drilling. The trade-off is that it turns the decayed area black, and the stain stays. In the US, SDF is cleared by the FDA for tooth sensitivity, and using it to stop decay is an off-label use. The ADA notes that it is usually reapplied twice a year to keep the benefit ([ADA](https://www.ada.org/resources/ada-library/oral-health-topics/silver-diamine-fluoride))."
+            ]
+          },
+          {
+            title: "Resin Infiltration",
+            body: [
+              "For early lesions between teeth that have not broken through the surface. The surface is prepared with a gel, with no drilling, and a very thin liquid resin soaks into the weakened enamel and is hardened with a light, blocking the paths acid travels through. A review of randomized trials found that treated lesions were less likely to get worse ([Cebula and colleagues, 2023](https://pubmed.ncbi.nlm.nih.gov/36675656/)). Some of that review's authors work with the company that makes the material."
+            ]
+          },
+          {
+            title: "Self-Assembling Peptide (P11-4)",
+            body: [
+              "A liquid applied to an early white spot. It forms a framework inside the weakened enamel that minerals from saliva can build on. A 2023 review of six clinical trials found it likely helps stop early lesions and makes them smaller, though the trials had weaknesses and the authors call for longer studies ([Keeper and colleagues, 2023](https://pubmed.ncbi.nlm.nih.gov/37245138/))."
+            ]
+          },
+          {
+            title: "Checking Progress",
+            body: [
+              "No-drill care is not a one-time fix. We record each lesion and recheck it at your visits with an exam and, when needed, [digital X-rays](/services/dental-technology/digital-x-rays/). If a lesion keeps growing or breaks through the surface, a small [filling](/services/restorative-dentistry/dental-fillings/) is the right treatment."
+            ]
+          },
+          {
+            title: "Where Ozone Fits",
+            body: [
+              "Our [ozone therapy](/services/dental-technology/ozone-therapy/) page explains how we use ozone. For early lesions it is only ever an extra step alongside fluoride and monitoring, because the evidence for ozone on its own is weak."
+            ]
+          }
+        ],
+        textMaxWidth: 814
+      },
+      {
+        _type: "cardPair",
+        heading: "Who It Is For",
+        text: [
+          "No-drill care works when decay is found early, which is one more reason regular [checkups](/services/preventive-dentistry/checkups-exams/) matter."
+        ],
+        cards: [
+          {
+            image: images.digitalXRayRoom,
+            title: "A GOOD FIT:",
+            // TODO(TTR-910): confirm who Dr. Shir offers this to (children, adults, seniors, braces or aligner wearers).
+            text: [
+              "White spots or early lesions that have not broken through the enamel, decay starting on exposed roots, and children and adults who are more likely to get decay. With silver diamine fluoride, some cavities can also be stopped when avoiding a filling matters more than how the tooth looks."
+            ]
+          },
+          {
+            image: images.dentistExaminingPatient683,
+            title: "WHEN A FILLING IS STILL NEEDED:",
+            text: [
+              "When decay has made a hole in the tooth, reaches deep inside it, or keeps growing despite no-drill care. Then a filling protects the tooth, and we keep it as small as the tooth allows."
+            ]
+          }
+        ]
+      },
+      {
+        _type: "steps",
+        heading: "How No-Drill Cavity Care Works",
+        text: ["Many of these treatments take only a few minutes and can be done at a regular checkup."],
+        items: [
+          {
+            title: "Find Lesions Early",
+            text: "An exam, and X-rays when needed, show where enamel has lost minerals and how deep the lesion goes.",
+            icon: images.stepConsultation
+          },
+          {
+            title: "Look at the Cause",
+            text: "We go through what drives your decay: sugary snacks and drinks, dry mouth, brushing and flossing, and how much fluoride you get.",
+            icon: images.stepPreparation
+          },
+          {
+            title: "Treat Without Drilling",
+            text: "We use the option that fits each lesion, often more than one, and tell you why.",
+            icon: images.stepTreatment
+          },
+          {
+            title: "Recheck and Repeat",
+            text: "We check the lesions at your next visits and repeat treatments such as fluoride varnish when needed.",
+            icon: images.stepAftercare
+          }
+        ]
+      },
+      {
+        _type: "imageBand",
+        heading: "Catch Decay While It Can Still Be Stopped",
+        text: [
+          "If you have white spots on your teeth, or were told a tooth is one to watch, book a visit with Dr. Shir. We will show you what we see and go through your no-drill and filling options with you."
+        ],
+        image: images.dentistsTreatingPatient,
+        overlay: "none",
+        textMaxWidth: 728
+      },
+      {
+        _type: "faq",
+        heading: "Frequently Asked Questions About No-Drill Cavity Care",
+        text: ["The questions patients ask most often, answered plainly."],
+        items: [
+          {
+            question: "Can tooth enamel grow back?",
+            answer: [
+              "No. Once enamel is lost, it cannot grow back ([Cleveland Clinic](https://my.clevelandclinic.org/health/diseases/tooth-erosion)). Weakened enamel in an early lesion can take minerals back in from saliva and fluoride, which can stop or reverse early decay ([NIDCR](https://www.nidcr.nih.gov/health-info/tooth-decay/more-info/tooth-decay-process)). That is what no-drill care aims for."
+            ]
+          },
+          {
+            question: "Does this mean I will not need a filling?",
+            answer: [
+              "Not always. No-drill care can stop many early lesions, but a cavity that has broken through the surface is lasting damage, and a filling is how a dentist repairs it ([NIDCR](https://www.nidcr.nih.gov/health-info/tooth-decay/more-info/tooth-decay-process)). We tell you which one you need and why."
+            ]
+          },
+          {
+            question: "Does silver diamine fluoride stain teeth?",
+            answer: [
+              "Yes. It turns the decayed part of the tooth black, and the stain stays ([ADA](https://www.ada.org/resources/ada-library/oral-health-topics/silver-diamine-fluoride)). We talk it through with you before using it, especially on a tooth that shows when you smile."
+            ]
+          },
+          {
+            question: "Is no-drill cavity care covered by insurance?",
+            // TODO(TTR-910): replace with Dr. Shir's cost or insurance note, or keep this neutral answer.
+            answer: [
+              "Coverage depends on your plan and on the treatment, so we check your plan and give you the cost before we start. We accept Aetna, Cigna, Delta Dental, MetLife and UnitedHealthcare, and offer payment plans through Cherry and CareCredit."
+            ]
+          }
+        ]
+      }
+    ],
+    seo: {
+      title: "No-Drill Cavity Care - Beverly Hills Dental",
+      description: "Early tooth decay can often be stopped without drilling. How no-drill cavity care works at our Beverly Hills office, and when a filling is still needed."
+    }
+  },
+  {
+    slug: "biofilm-therapy",
+    title: "Biofilm Therapy",
+    category: "preventive-dentistry",
+    order: 25.2,
+    sections: [
+      {
+        _type: "hero",
+        heading: "Biofilm Therapy in Beverly Hills",
+        subheading: "Preventive Dentistry",
+        // TODO(TTR-910): name the system (for example Guided Biofilm Therapy) once Dr. Shir confirms it.
+        text: [
+          "Plaque is a biofilm: a sticky film of bacteria on your teeth and gums. Biofilm therapy is a professional cleaning that first colors the biofilm so it can be seen, then removes it with air polishing and ultrasonic instruments, to help keep your teeth and gums healthy."
+        ],
+        image: images.gumProcedure2,
+        overlay: "none",
+        textMaxWidth: 630
+      },
+      {
+        _type: "textBand",
+        heading: "What Biofilm Therapy Is",
+        text: [
+          "Plaque is a sticky film of bacteria, and the bacteria in plaque and tartar can trigger the inflammation that damages the gums ([NIDCR](https://www.nidcr.nih.gov/health-info/gum-disease)). Biofilm therapy is a way of doing the professional cleaning that removes them. One well-known version is called Guided Biofilm Therapy.",
+          "First, a disclosing solution colors the biofilm so it shows up. Most of it is then removed with air polishing, a fine spray of water, air and a very fine powder. Ultrasonic instruments remove any hard tartar that remains. In a randomized trial, a cleaning guided by the disclosing dye left about half as much plaque behind as the same cleaning without it ([Mensi and colleagues, 2020](https://pubmed.ncbi.nlm.nih.gov/32348624/))."
+        ],
+        tone: "light"
+      },
+      {
+        _type: "accordionFeature",
+        heading: "What Happens During Biofilm Therapy",
+        text: ["Each step has a purpose, and you can see the difference in the mirror."],
+        image: images.toothPolishing,
+        items: [
+          {
+            title: "Your Gums and Health History",
+            body: [
+              "We start with your medical history, an exam and gum measurements, so we know whether a regular cleaning is enough or you need treatment for gum disease."
+            ]
+          },
+          {
+            title: "Coloring the Biofilm",
+            body: [
+              "A disclosing solution stains plaque so it can be seen. We show you where it builds up, which also shows where to focus when you brush and floss at home."
+            ]
+          },
+          {
+            title: "Air Polishing",
+            body: [
+              "A fine spray of water, air and a very fine powder lifts the colored biofilm off the teeth and along the gumline, including around fillings, crowns and implants."
+            ]
+          },
+          {
+            title: "Removing Tartar",
+            body: [
+              "Air polishing removes soft biofilm, not hardened tartar. Where tartar remains, it is removed with ultrasonic or hand instruments."
+            ]
+          },
+          {
+            title: "A Final Check",
+            body: [
+              "We look again for any colored areas left behind, then go through your home care and agree when you should come back."
+            ]
+          },
+          {
+            title: "Around Dental Implants",
+            body: [
+              "Implants need regular professional cleaning too, because the gum and bone around them can become inflamed. Air-polishing powders are one of the tools studied for cleaning below the gumline, including around implants ([Gheorghe and colleagues, 2023](https://pubmed.ncbi.nlm.nih.gov/37959401/))."
+            ]
+          },
+          {
+            title: "What the Research Shows",
+            body: [
+              "A 2026 review of five studies comparing Guided Biofilm Therapy with standard scaling found that patients reported less pain and the treatment took less time, but the effect on gum measurements such as bleeding and pocket depth was mixed. The authors concluded that the evidence does not show it is clinically better than standard cleaning ([Yein and colleagues, 2026](https://pubmed.ncbi.nlm.nih.gov/42032569/))."
+            ]
+          },
+          {
+            title: "What It Does Not Replace",
+            body: [
+              "Biofilm therapy does not replace brushing and flossing every day, and on its own it is not a treatment for advanced gum disease. If you have deep gum pockets or bone loss, you may need [deep cleanings](/services/periodontic-dentistry/deep-cleanings/) or other [gum disease treatment](/services/periodontic-dentistry/gum-disease-treatment/)."
+            ]
+          }
+        ],
+        textMaxWidth: 814
+      },
+      {
+        _type: "cardPair",
+        heading: "Your Gums and the Rest of Your Body",
+        text: [
+          "Gum health and general health are linked. Here is what the research does and does not show."
+        ],
+        cards: [
+          {
+            image: images.hygienistTreatingPatient,
+            title: "WHAT THE RESEARCH SHOWS:",
+            text: [
+              "Diabetes is a risk factor for gum disease, and heart and blood vessel disease is among the illnesses associated with it ([NIDCR](https://www.nidcr.nih.gov/health-info/gum-disease)). The American Heart Association found that studies support a link between gum disease and heart and blood vessel disease, but do not show that gum disease causes it, or that treating gum disease prevents it ([AHA, 2012](https://pubmed.ncbi.nlm.nih.gov/22514251/))."
+            ]
+          },
+          {
+            image: images.dentistPatientChat,
+            title: "WHAT IT MEANS FOR YOU:",
+            text: [
+              "In people with both diabetes and gum disease, a Cochrane review found that treating the gum disease with deep cleaning improved blood sugar control over the following months ([Simpson and colleagues, 2022](https://pubmed.ncbi.nlm.nih.gov/35420698/)). Healthy gums are worth having for their own sake, but biofilm therapy is not a treatment for heart disease or diabetes, and your doctor's care stays just as important."
+            ]
+          }
+        ]
+      },
+      {
+        _type: "steps",
+        heading: "Our Approach to Biofilm Therapy",
+        text: ["A cleaning you can see, explained as we go."],
+        items: [
+          {
+            title: "You See What We See",
+            text: "The disclosing dye shows exactly where plaque collects, so our home care advice fits your mouth.",
+            icon: images.stepConsultation
+          },
+          {
+            title: "Comfort Matters",
+            text: "In studies, patients reported less pain with this method than with standard scaling. Tell us if anything feels sensitive and we will adjust.",
+            icon: images.stepPreparation
+          },
+          {
+            title: "Part of Your Gum Care",
+            text: "It works alongside exams, gum measurements and, when needed, deep cleanings or laser gum treatment.",
+            icon: images.stepTreatment
+          },
+          {
+            title: "Visits That Fit Your Gums",
+            text: "How often you come back depends on the health of your gums, and we set it with you.",
+            icon: images.stepAftercare
+          }
+        ]
+      },
+      {
+        _type: "imageBand",
+        heading: "Start With a Clean, Healthy Mouth",
+        // TODO(TTR-910): confirm whether biofilm therapy is part of every cleaning or a separate visit.
+        text: [
+          "If your gums bleed when you brush, you have implants to keep clean, or you are due for a cleaning, ask about biofilm therapy when you book with Dr. Shir's team. Bleeding gums can be an early sign of gum disease, and it is easier to treat when caught early."
+        ],
+        image: images.dentistsTreatingPatient,
+        overlay: "none",
+        textMaxWidth: 728
+      },
+      {
+        _type: "faq",
+        heading: "Frequently Asked Questions About Biofilm Therapy",
+        text: ["The questions patients ask most often, answered plainly."],
+        items: [
+          {
+            question: "Is biofilm therapy the same as a regular cleaning?",
+            answer: [
+              "It does the same job, removing plaque and tartar, in a different order and with different tools: a disclosing dye first, then air polishing, then ultrasonic instruments for tartar. Studies comparing it with standard cleaning found less pain and shorter visits, but not clearly better gum results ([Yein and colleagues, 2026](https://pubmed.ncbi.nlm.nih.gov/42032569/))."
+            ]
+          },
+          {
+            question: "Can biofilm therapy improve my heart health or diabetes?",
+            answer: [
+              "We cannot promise that. Gum disease is linked with heart disease, but the research shows a link, not proof that gum disease causes heart disease or that treating it prevents heart disease ([AHA, 2012](https://pubmed.ncbi.nlm.nih.gov/22514251/)). In people with diabetes and gum disease, treating the gum disease with deep cleaning improved blood sugar control in clinical trials ([Simpson and colleagues, 2022](https://pubmed.ncbi.nlm.nih.gov/35420698/)). Your doctor stays in charge of your heart and diabetes care."
+            ]
+          },
+          {
+            question: "Does biofilm therapy hurt?",
+            answer: [
+              "In studies, patients reported less pain with this method than with standard scaling ([Yein and colleagues, 2026](https://pubmed.ncbi.nlm.nih.gov/42032569/)). Sensitive teeth or inflamed gums can still feel tender, so tell us and we will adjust or numb the area."
+            ]
+          },
+          {
+            question: "Is biofilm therapy covered by insurance?",
+            // TODO(TTR-910): replace with Dr. Shir's cost or insurance note, or keep this neutral answer.
+            answer: [
+              "Coverage depends on your plan and on whether the visit is a routine cleaning or gum treatment, so we check your plan and give you the cost before we start. We accept Aetna, Cigna, Delta Dental, MetLife and UnitedHealthcare, and offer payment plans through Cherry and CareCredit."
+            ]
+          }
+        ]
+      }
+    ],
+    seo: {
+      title: "Biofilm Therapy - Beverly Hills Dental",
+      description: "Biofilm therapy in Beverly Hills: a disclosing dye shows the plaque, then air polishing and ultrasonic cleaning remove it. What it does and does not do."
     }
   },
   {
