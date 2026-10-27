@@ -213,7 +213,8 @@ export const fallbackFaqs: Faq[] = [];
 
 /** Built-in posts by Dr. Shir (drafts for Kia and the client; a post published in /cms with the same slug replaces its built-in copy). */
 export const fallbackPosts: Post[] = [
-  // TTR-910 (Oct 26, 2026): Dr. Shir's two new services. Each "TODO(TTR-910)" marks a line to update once she answers.
+  // TTR-910 (Oct 26 and 27, 2026): Dr. Shir's two new services, from her answers: Curodont; Guided Biofilm Therapy with EMS
+  // AIRFLOW; adults and implant patients; no cost or insurance lines.
   {
     slug: "no-drill-cavity-care-biofilm-therapy",
     title: "No-drill cavity care and biofilm therapy: what they can and cannot do",
@@ -221,11 +222,11 @@ export const fallbackPosts: Post[] = [
     author: "Dr. Nushin Shir",
     category: "preventive",
     service: "/services/preventive-dentistry/no-drill-cavity-care/",
-    excerpt: "Early tooth decay can often be stopped without drilling, and biofilm therapy cleans away plaque you can see. What each one does, what the research says, and what neither can promise.",
+    excerpt: "Curodont can help stop early tooth decay without drilling, and Guided Biofilm Therapy cleans away plaque you can see. What each one does, what the research says, and what neither can promise.",
     image: images.hygienistTreatingPatient,
-    cta: "At your next checkup we can look for early white spots and check your gums, and tell you whether no-drill care or biofilm therapy makes sense for you.",
+    cta: "At your next visit we can look for early white spots and check your gums, and tell you whether Curodont or biofilm therapy makes sense for you.",
     figures: [
-      { beforeHeading: "What are the no-drill options?", image: images.digitalXRayRoom, alt: "Treatment room with a dental chair and the digital X-ray monitor used to find early decay", caption: "Early lesions are found with an exam and, when needed, digital X-rays, here in one of our treatment rooms.", position: "center 40%" },
+      { beforeHeading: "How does Curodont work?", image: images.digitalXRayRoom, alt: "Treatment room with a dental chair and the digital X-ray monitor used to find early decay", caption: "Early lesions are found with an exam and, when needed, digital X-rays, here in one of our treatment rooms.", position: "center 40%" },
       { beforeHeading: "What happens during biofilm therapy?", image: images.treatmentChair, alt: "Treatment room at the Bedford Drive office with a dental chair", caption: "Biofilm therapy is done in the chair, like any professional cleaning.", position: "center 45%" },
     ],
     blocks: [
@@ -233,20 +234,10 @@ export const fallbackPosts: Post[] = [
         _type: "facts",
         heading: "At a glance",
         items: [
-          { icon: "tooth", label: "Early decay (white spots)", value: "Can often be stopped or reversed without drilling" },
+          { icon: "tooth", label: "Early decay (white spots)", value: "Can often be stopped without drilling" },
           { icon: "shield", label: "Enamel that is already lost", value: "Does not grow back" },
-          { icon: "layers", label: "Biofilm therapy", value: "A dye shows plaque, then air polishing and ultrasonic cleaning remove it" },
-          { icon: "clock", label: "Fluoride varnish", value: "A few minutes, often at a checkup" },
-        ],
-      },
-      {
-        _type: "options",
-        beforeHeading: "When is a filling still the right choice?",
-        heading: "Which no-drill option fits which lesion",
-        items: [
-          { icon: "tooth", title: "A white spot on a smooth surface", text: "Fluoride varnish or a self-assembling peptide." },
-          { icon: "layers", title: "An early lesion in a groove or between teeth", text: "A sealant over a groove; resin infiltration between teeth. For decay starting on an exposed root, a prescription 5,000 ppm fluoride toothpaste." },
-          { icon: "shield", title: "A cavity that needs stopping", text: "Silver diamine fluoride, which stops many cavities but stains the decay black." },
+          { icon: "layers", label: "Biofilm therapy", value: "A dye shows plaque, then EMS AIRFLOW air polishing removes it" },
+          { icon: "calendar", label: "Biofilm therapy visit", value: "Usually its own appointment, or with your treatment" },
         ],
       },
       {
@@ -256,31 +247,28 @@ export const fallbackPosts: Post[] = [
         items: [
           { title: "Exam and gum check", text: "Your health history, an exam and gum measurements, so we know what kind of cleaning you need." },
           { title: "Disclosing dye", text: "A solution colors the plaque so it can be seen, and we show you where it builds up." },
-          { title: "Air polishing", text: "A fine spray of water, air and powder removes the colored plaque." },
-          { title: "Tartar and a final check", text: "Ultrasonic or hand instruments remove hard tartar, then we check that nothing colored is left." },
+          { title: "EMS AIRFLOW air polishing", text: "A fine spray of water, air and powder removes the colored plaque." },
+          { title: "Tartar and a final check", text: "Ultrasonic instruments remove hard tartar where needed, then we check that nothing colored is left." },
         ],
       },
     ],
     body: [
-      "Early tooth decay can often be stopped, and sometimes reversed, without drilling. Fluoride and a self-assembling peptide help put minerals back into weakened enamel, while sealants and resin infiltration seal the lesion off from acid. Enamel that is already lost does not grow back. Biofilm therapy is a professional cleaning that colors plaque with a dye, then removes it, usually with air polishing and ultrasonic instruments. Both aim to stop problems early, and neither replaces brushing and flossing every day.",
-      // TODO(TTR-910): once Dr. Shir names her methods, say which ones the office uses here.
-      "Our office now offers both. This article explains what each one does, who it suits and what the research says. For the details, see our [no-drill cavity care](/services/preventive-dentistry/no-drill-cavity-care/) and [biofilm therapy](/services/preventive-dentistry/biofilm-therapy/) pages.",
+      "Early tooth decay can often be stopped without drilling. We use Curodont Repair, which helps weakened enamel in an early white-spot lesion take minerals back in. Enamel that is already lost does not grow back. Guided Biofilm Therapy is a professional cleaning that colors plaque with a dye, then removes it with EMS AIRFLOW air polishing and, where needed, ultrasonic instruments. Both aim to stop problems early, and neither replaces brushing and flossing every day.",
+      "Our office now offers both, for adults and implant patients. This article explains what each one does and what the research says. For the details, see our [no-drill cavity care](/services/preventive-dentistry/no-drill-cavity-care/) and [biofilm therapy](/services/preventive-dentistry/biofilm-therapy/) pages.",
       "## Can early tooth decay heal without drilling?",
       "Sometimes. Decay is a tug of war: acid made by the bacteria in plaque pulls minerals out of enamel, and saliva and fluoride put them back. When minerals are lost faster than they return, a chalky white spot can appear. At that stage, decay can be stopped or reversed. Once it breaks through the surface and forms a cavity, the damage stays, and a dentist has to repair it with a filling ([NIDCR](https://www.nidcr.nih.gov/health-info/tooth-decay/more-info/tooth-decay-process)).",
-      "So no-drill care does not rebuild lost enamel, which cannot grow back ([Cleveland Clinic](https://my.clevelandclinic.org/health/diseases/tooth-erosion)). What it can do is harden weakened enamel, seal early lesions so acid cannot reach them, and keep many lesions from getting bigger.",
-      "## What are the no-drill options?",
-      "An American Dental Association expert panel reviewed the randomized trials and recommends several no-drill treatments for stopping or reversing decay in children and adults, including 5% sodium fluoride varnish, sealants, 38% silver diamine fluoride and, for decay on exposed roots, 5,000 ppm fluoride toothpaste or gel ([ADA guideline, 2018](https://pubmed.ncbi.nlm.nih.gov/30261951/)). Which one fits depends on where the lesion is and how deep it goes.",
-      "**Fluoride varnish** is painted on in a few minutes and helps put minerals back into early white spots. **Prescription fluoride toothpaste** (5,000 ppm) is used at home by adults with decay starting on exposed roots. A **sealant** placed over an early lesion in the groove of a back tooth can help stop it from getting worse; see our [dental sealants](/services/preventive-dentistry/dental-sealants/) page.",
-      "**Silver diamine fluoride** is a liquid brushed onto decay that can stop it from getting worse. It turns the decayed area black, and the stain stays. In the US it is cleared by the FDA for tooth sensitivity, so using it to stop decay is off-label, and it is usually reapplied twice a year ([ADA](https://www.ada.org/resources/ada-library/oral-health-topics/silver-diamine-fluoride)).",
-      "**Resin infiltration** is for early lesions between teeth. A very thin resin soaks into the weakened enamel and blocks the paths acid travels through; a review of randomized trials found treated lesions were less likely to get worse ([Cebula and colleagues, 2023](https://pubmed.ncbi.nlm.nih.gov/36675656/)), though some of its authors work with the company that makes the material. A **self-assembling peptide** (P11-4) forms a framework inside an early white spot that minerals from saliva can build on. A 2023 review of six trials found it likely helps stop early lesions and makes them smaller, but the trials had weaknesses and longer studies are needed ([Keeper and colleagues, 2023](https://pubmed.ncbi.nlm.nih.gov/37245138/)).",
+      "So no-drill care does not rebuild lost enamel, which cannot grow back ([Cleveland Clinic](https://my.clevelandclinic.org/health/diseases/tooth-erosion)). What it can do is help an early lesion take minerals back in and keep it from getting bigger.",
+      "## How does Curodont work?",
+      "Curodont Repair, made by vVARDIS, is a liquid applied to an early white-spot lesion, with no drilling. Its active ingredient, a self-assembling peptide called P11-4, forms a framework inside the weakened enamel that minerals from saliva can build on.",
+      "A 2023 review of six clinical trials found that it likely helps stop early lesions and makes them smaller, with no reports of changes in how the treated teeth looked. The trials had weaknesses, and the authors call for longer studies ([Keeper and colleagues, 2023](https://pubmed.ncbi.nlm.nih.gov/37245138/)).",
       "## When is a filling still the right choice?",
-      "When decay has made a hole in the tooth, reaches deep inside it, or keeps growing despite no-drill care. No-drill treatment is a plan, not a one-time fix: we record each lesion and recheck it at your visits with an exam and, when needed, [digital X-rays](/services/dental-technology/digital-x-rays/). If it keeps growing, a small [filling](/services/restorative-dentistry/dental-fillings/) protects the tooth.",
+      "When decay has made a hole in the tooth, reaches deep inside it, or keeps growing after treatment. Curodont is for early lesions: we record each one and recheck it at your visits with an exam and, when needed, [digital X-rays](/services/dental-technology/digital-x-rays/). If it keeps growing, a small [filling](/services/restorative-dentistry/dental-fillings/) protects the tooth.",
       "## What is biofilm, and why does it matter?",
       "Plaque is a biofilm, a sticky film of bacteria on the teeth and along the gums. The bacteria in plaque and tartar can trigger the inflammation that damages the gums, and early gum disease can often be reversed with daily brushing and flossing ([NIDCR](https://www.nidcr.nih.gov/health-info/gum-disease)). Hardened tartar can only be removed by a dental professional, which is where a professional cleaning comes in.",
       "## What happens during biofilm therapy?",
-      // TODO(TTR-910): name the system (for example Guided Biofilm Therapy) once Dr. Shir confirms it.
-      "Biofilm therapy is a way of doing that cleaning. One well-known version is called Guided Biofilm Therapy. First, a disclosing solution colors the plaque so it shows up, and we show you where it builds up. Most of it is then usually removed with air polishing, a fine spray of water, air and a very fine powder. Ultrasonic or hand instruments remove any hard tartar that remains, and a final look makes sure nothing colored is left behind.",
+      "We use Guided Biofilm Therapy with the EMS AIRFLOW system. First, a disclosing solution colors the plaque so it shows up, and we show you where it builds up. Most of it is then removed with air polishing, a fine spray of water, air and a very fine powder. Ultrasonic instruments remove any hard tartar that remains, and a final look makes sure nothing colored is left behind. It is usually its own appointment, but it can also be done at the time of your treatment.",
       "The dye makes a difference. In a small randomized trial, a cleaning guided by the disclosing dye left about half as much plaque at the gumline as the same cleaning without it, and less still on the rest of the tooth ([Mensi and colleagues, 2020](https://pubmed.ncbi.nlm.nih.gov/32348624/)). Air-polishing powders have also been studied for cleaning below the gumline, including around implants ([Gheorghe and colleagues, 2023](https://pubmed.ncbi.nlm.nih.gov/37959401/)).",
+      "As part of your care, Dr. Shir may also recommend probiotics, omega-3 fatty acids or a resolvin-based supplement. Research on supplements for gum health is still developing: current European guidelines for treating gum disease do not recommend probiotics or omega-3 supplements as an add-on to deep cleaning, because the evidence is not yet strong enough ([EFP guideline, 2020](https://pubmed.ncbi.nlm.nih.gov/32383274/)), and resolvins have so far been studied mainly in animals ([Osorio Parra and colleagues, 2019](https://pubmed.ncbi.nlm.nih.gov/30230662/)).",
       "## Is biofilm therapy better than a regular cleaning?",
       "Not clearly, and we will not tell you otherwise. A 2026 review of five studies comparing Guided Biofilm Therapy with standard scaling found that patients reported less pain and the treatment took less time, but the effect on gum measurements such as bleeding and pocket depth was mixed, and the authors concluded the evidence does not show it is clinically better ([Yein and colleagues, 2026](https://pubmed.ncbi.nlm.nih.gov/42032569/)). It is a thorough, visible way to clean. If you have deep gum pockets or bone loss, you may still need [deep cleanings](/services/periodontic-dentistry/deep-cleanings/) or other [gum disease treatment](/services/periodontic-dentistry/gum-disease-treatment/).",
       "If you would like to know whether either one fits you, [book a visit](/appointment/) and we will check your teeth and gums first.",
@@ -289,20 +277,16 @@ export const fallbackPosts: Post[] = [
       "Diabetes is where the evidence for treatment is stronger. In people with both diabetes and gum disease, a Cochrane review of randomized trials found that treating the gum disease with deep cleaning improved blood sugar control over the following months ([Simpson and colleagues, 2022](https://pubmed.ncbi.nlm.nih.gov/35420698/)). That is a good reason to keep your gums healthy. It does not make biofilm therapy a treatment for heart disease or diabetes, and your doctor's care stays just as important.",
       "## Questions patients ask about no-drill care and biofilm therapy",
       "### Can tooth enamel grow back?",
-      "No. Lost enamel cannot grow back. Weakened enamel in an early lesion can take minerals back in from saliva and fluoride, which can stop or reverse early decay. That is what no-drill care aims for.",
-      "### Does silver diamine fluoride stain teeth?",
-      "Yes. It turns the decayed part of the tooth black, and the stain stays. We talk it through with you before using it, especially on a tooth that shows when you smile.",
-      "### Who is no-drill cavity care for?",
-      // TODO(TTR-910): confirm who Dr. Shir offers each service to.
-      "People with white spots or early lesions that have not broken through the enamel, decay starting on exposed roots, and children and adults who are more likely to get decay. A checkup shows whether your lesions are early enough.",
+      "No. Lost enamel cannot grow back. Weakened enamel in an early lesion can take minerals back in from saliva and fluoride, which can stop or reverse early decay. That is what Curodont aims to help with.",
+      "### Who are these treatments for?",
+      "Adults and implant patients. Curodont is for early white-spot lesions on natural teeth that have not broken through the enamel; a checkup shows whether yours are early enough.",
+      "### Is biofilm therapy a separate appointment?",
+      "Usually, yes. It can also be done at the time of your treatment appointment.",
       "### How often should I have biofilm therapy?",
       "It depends on the health of your gums. We set how often you come back with you after the exam.",
-      "### Is either one covered by insurance?",
-      // TODO(TTR-910): replace with Dr. Shir's cost or insurance note, or keep this neutral answer.
-      "Coverage depends on your plan and on the treatment, so we check your plan and give you the cost before we start. We accept Aetna, Cigna, Delta Dental, MetLife and UnitedHealthcare, and offer payment plans through Cherry and CareCredit.",
       "If you have white spots, sensitive areas or gums that bleed when you brush, come and see us. We will check your teeth and gums and go through your options, with no pressure to decide that day. Our office is at 416 N. Bedford Dr. in Beverly Hills, a short drive from [Century City](/areas-we-serve/century-city/) and [West Hollywood](/areas-we-serve/west-hollywood/). [Request an appointment](/appointment/), or call us.",
     ],
-    seo: { title: "No-Drill Cavity Care & Biofilm Therapy | Beverly Hills Dentist Dr. Shir", description: "No-drill cavity care and biofilm therapy in Beverly Hills: what each does, what the research shows, and why enamel does not grow back, from Dr. Shir." },
+    seo: { title: "No-Drill Cavity Care & Biofilm Therapy | Beverly Hills Dentist Dr. Shir", description: "Curodont no-drill cavity care and Guided Biofilm Therapy with EMS AIRFLOW in Beverly Hills: what each does and what the research shows, from Dr. Shir." },
   },
   {
     slug: "dental-implants-beverly-hills-what-to-expect",

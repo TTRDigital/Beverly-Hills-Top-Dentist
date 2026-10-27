@@ -12,7 +12,7 @@ Links (live once the pages are approved and published):
 
 - **Photos: the practice's real photos only.** No stock patients, no AI images, no photos from other clients. Every repo photo below traces to the client's Drive library (Visuals folder, office photos taken Aug 27 to Sep 2, 2026, and the team photos), or is a new photo the office takes. Any photo showing a patient needs that patient's written consent.
 - **Wording:** no "painless", "guaranteed", "best" or "permanent", and no em dashes. Never say enamel "regrows" or that biofilm therapy improves heart health or diabetes. Gum health and whole-body health are linked; that is an association, not a promise.
-- **Spots to update once Dr. Shir answers** are marked `TODO(TTR-910)`: product names, who it is for, cost or insurance.
+- **Dr. Shir's answers (Oct 26):** Curodont for early decay; Guided Biofilm Therapy with EMS AIRFLOW; for adults and implant patients; no cost or insurance lines (not covered by dental insurance). Biofilm therapy is usually its own appointment but can be done at the treatment visit. She will send photos of her equipment (the EMS AIRFLOW unit and her "Dental Ozone" delivery system): use those when they arrive.
 
 ---
 
@@ -22,7 +22,7 @@ Links (live once the pages are approved and published):
 
 > New at Beverly Hills Dental Arts Studio: no-drill cavity care and biofilm therapy.
 >
-> Caught early, a weak spot in your enamel can often be strengthened and stopped before it turns into a cavity, with no drilling. And our biofilm therapy shows you exactly where plaque hides, then cleans it away.
+> Caught early, a weak spot in your enamel can often be stopped before it turns into a cavity, with no drilling, using Curodont. And our Guided Biofilm Therapy with EMS AIRFLOW shows you exactly where plaque hides, then cleans it away.
 >
 > Ask about both at your next visit. Call (310) 274-7005 or book through the link in our bio.
 >
@@ -40,17 +40,16 @@ Links (live once the pages are approved and published):
 
 > Can a cavity heal on its own? Not once it has made a hole. But early decay, the chalky white spot stage, can often be stopped or even reversed by putting minerals back into the enamel.
 >
-> That is what no-drill cavity care does. Depending on the tooth, it can mean fluoride varnish, a sealant, or another treatment that needs no drilling. Lost enamel does not grow back, so finding decay early is what counts.
+> That is what no-drill cavity care does. We use Curodont, a liquid applied to early white spots that helps the enamel take minerals back in, with no drilling. Lost enamel does not grow back, so finding decay early is what counts.
 >
 > Book a checkup and we will show you what we see: (310) 274-7005.
 >
 > #NoDrillDentistry #CavityPrevention #BeverlyHills
 
-`TODO(TTR-910)`: name the method(s) Dr. Shir uses (for example fluoride varnish, silver diamine fluoride, resin infiltration, P11-4).
 
 **Photo ideas (real photos only)**
 - `public/images/technology/digital-x-ray-room.jpg` (treatment room with the digital X-ray monitor): "Early decay shows up here first."
-- New photo to take in the office: the product or applicator on the treatment tray, no patient in frame.
+- Dr. Shir's own photo of the Curodont product on the treatment tray when she sends it (no patient in frame).
 
 ---
 
@@ -58,18 +57,17 @@ Links (live once the pages are approved and published):
 
 **Caption**
 
-> Plaque is a biofilm, a sticky film of bacteria that is hard to see. In biofilm therapy we first color it with a disclosing dye, so you can see exactly where it builds up. Then we clean it away, usually with air polishing and ultrasonic instruments, and check that nothing is missed.
+> Plaque is a biofilm, a sticky film of bacteria that is hard to see. In Guided Biofilm Therapy we first color it with a disclosing dye, so you can see exactly where it builds up. Then we clean it away with EMS AIRFLOW air polishing, and ultrasonic instruments where needed, and check that nothing is missed.
 >
-> You leave knowing where to focus when you brush and floss. Ask about it when you book your next cleaning: (310) 274-7005.
+> You leave knowing where to focus when you brush and floss. It is usually its own visit, and can also be done at your treatment appointment. Call (310) 274-7005.
 >
 > #BiofilmTherapy #DentalCleaning #HealthyGums #BeverlyHillsDentist
 
-`TODO(TTR-910)`: name the system (for example Guided Biofilm Therapy) and say whether it is part of every cleaning.
 
 **Photo ideas (real photos only)**
 - `public/images/team/nicole-vazquez.jpg` (our hygienist): "Meet the hands behind your biofilm therapy."
 - `public/images/office/hygienist-treating-patient.jpg` (clinician treating a patient in the chair).
-- New photo to take in the office: the air polishing unit on the cart, or a before/after of disclosed teeth (only with the patient's written consent, teeth only).
+- Dr. Shir's photo of her EMS AIRFLOW unit when she sends it, or a before/after of disclosed teeth (only with the patient's written consent, teeth only).
 
 ---
 
