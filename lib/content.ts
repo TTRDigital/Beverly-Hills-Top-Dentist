@@ -13,6 +13,7 @@ import {
 } from "@/lib/data/pages";
 import { fallbackCategories, fallbackServices, fallbackServicesHub } from "@/lib/data/services";
 import { fallbackAreaPages, fallbackAreasHub } from "@/lib/data/areas";
+import { drShirProfile } from "@/lib/data/profile";
 import type {
   AboutContent,
   AreaPage,
@@ -230,7 +231,9 @@ export const getTeam = cache(async (): Promise<TeamMember[]> => {
     ["teamMember"],
   );
   if (!cms?.length) return fallbackTeam;
-  return cms.map((m) => merge(fallbackTeam.find((f) => f.name === m.name) ?? { id: m.id, name: m.name, heading: m.heading, bio: [], order: m.order }, m));
+  const team = cms.map((m) => merge(fallbackTeam.find((f) => f.name === m.name) ?? { id: m.id, name: m.name, heading: m.heading, bio: [], order: m.order }, m));
+  // Dr. Shir's photo saved in /cms is an AI-edited copy; her original headshot is used whatever the CMS holds (TTR-921).
+  return team.map((m) => (/shir/i.test(m.name) ? { ...m, photo: drShirProfile.photo } : m));
 });
 
 /**

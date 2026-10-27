@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
+import { PROFILE_PATH, drShirProfile } from "@/lib/data/profile";
 import { getAboutPage, getTeam } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema } from "@/lib/schema";
@@ -29,6 +31,11 @@ export default async function AboutPage() {
         <div className="container-x text-center md:text-left">
           <h2 className="h2 text-black">{about.intro.heading}</h2>
           <p className="mt-5 text-black md:max-w-[531px]">{about.intro.text}</p>
+          <p className="mt-5">
+            <Link href={PROFILE_PATH} className="text-cta font-semibold text-brand underline-offset-4 hover:underline">
+              Meet Dr. Nushin Shir, DDS, MPH
+            </Link>
+          </p>
         </div>
       </section>
 
@@ -39,8 +46,20 @@ export default async function AboutPage() {
               {m.heading}
             </h2>
             <RichText paras={m.bio} className="mt-5" />
+            {/shir/i.test(m.name) ? (
+              <p className="mt-6">
+                <Link href={PROFILE_PATH} className="text-cta font-semibold text-white underline underline-offset-4 hover:text-brand-2">
+                  Dr. Shir&apos;s full profile
+                </Link>
+              </p>
+            ) : null}
           </div>
-          {m.photo ? (
+          {m.photo && /shir/i.test(m.name) ? (
+            // Her original headshot is small (216 x 320), so it is shown near its real size on a light panel, not stretched.
+            <div className="flex items-center justify-center bg-paper px-6 py-12 md:w-1/2">
+              <Image src={m.photo.src} alt={drShirProfile.photo.alt} width={m.photo.width} height={m.photo.height} sizes="280px" className="h-auto w-full max-w-[280px] rounded-xl shadow-[0_24px_60px_rgb(33_29_29_/_0.18)]" />
+            </div>
+          ) : m.photo ? (
             <div className="md:w-1/2">
               <Image src={m.photo.src} alt={m.photo.alt || m.name} width={m.photo.width} height={m.photo.height} sizes="(min-width: 768px) 50vw, 100vw" className="h-auto w-full" />
             </div>

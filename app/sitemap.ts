@@ -11,6 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     entry("/", 1),
     entry("/about-us/", 0.8),
+    entry("/about-us/dr-nushin-shir/", 0.8),
     entry("/services/", 0.8),
     ...categories.map((c) => entry(`/services/${c.slug}/`, 0.8)),
     ...services.map((s) => entry(`/services/${s.category}/${s.slug}/`, 0.7)),
