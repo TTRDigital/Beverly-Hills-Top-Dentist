@@ -274,15 +274,29 @@ export const getTeam = cache(async (): Promise<TeamMember[]> => {
   return cms.map((m) => merge(fallbackTeam.find((f) => f.name === m.name) ?? { id: m.id, name: m.name, heading: m.heading, bio: [], order: m.order }, m));
 });
 
+/**
+ * Before-and-after photos of Dr. Shir's own patients, by file name: the CMS copy (Sanity keeps the uploaded file name) or
+ * the built-in one. Anything else in the CMS is not shown, so other practices' cases can never reach the site from there.
+ * To add a case: upload it with the patient's written consent, then add its file name here.
+ */
+const OWN_CASE_FILES = ["smile-result-1.jpg", "smile-result-2.jpg", "smile-result-3.jpg"];
+const isOwnCase = (c: BeforeAfterCase & { file?: string | null }) =>
+  OWN_CASE_FILES.some((f) => c.file === f || c.image?.src?.endsWith(`/images/results/${f}`));
+
 export const getCases = cache(async (): Promise<BeforeAfterCase[]> => {
-  const cms = await sanityFetch<BeforeAfterCase[]>(`*[_type == "beforeAfterCase" && defined(image.asset)] | order(order asc){ "id": _id, title, groups, order, "image": image${IMG} }`, {}, [
-    "beforeAfterCase",
-  ]);
-  return cms?.length ? cms : fallbackCases;
+  const cms = await sanityFetch<(BeforeAfterCase & { file?: string | null })[]>(
+    `*[_type == "beforeAfterCase" && defined(image.asset)] | order(order asc){ "id": _id, title, groups, order, "image": image${IMG}, "file": image.asset->originalFilename }`,
+    {},
+    ["beforeAfterCase"],
+  );
+  const own = (cms ?? []).filter(isOwnCase).map(({ file: _file, ...c }) => (void _file, c));
+  return own.length ? own : fallbackCases;
 });
 
+/** Every place shows the same own cases, whatever group they were filed under in the CMS. */
 export async function getCaseGroup(group: BeforeAfterCase["groups"][number]) {
-  return (await getCases()).filter((c) => c.groups?.includes(group));
+  void group;
+  return getCases();
 }
 
 export const getTestimonials = cache(async (): Promise<Testimonial[]> => {
@@ -338,7 +352,10 @@ export const getAboutPage = cache(async (): Promise<AboutContent> => {
 
 export const getBeforeAfterPage = cache(async (): Promise<BeforeAfterContent> => {
   const cms = await sanityFetch<Partial<BeforeAfterContent>>(`*[_id == "beforeAfterPage"][0]{ hero{ heading, text, "image": image${IMG} }, gallery{ heading, text }, ${SEO} }`, {}, ["beforeAfterPage"]);
-  return merge(fallbackBeforeAfter, cms);
+  const page = merge(fallbackBeforeAfter, cms);
+  // The hero photo saved in /cms was another practice's (Oct 26, 2026): the practice's own photo is used whatever the CMS
+  // holds, until the CMS copy is replaced (docs/photo-swap/SANITY-EDITS.md). It is also the page's share image.
+  return { ...page, hero: { ...page.hero, image: fallbackBeforeAfter.hero.image } };
 });
 
 export const getAppointmentPage = cache(async (): Promise<AppointmentContent> => {

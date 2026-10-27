@@ -80,6 +80,15 @@ Optional repository **variables** (not secrets): `GHL_CHAT_WIDGET_ID` (shows the
 
 Same fields as the old form (Full Name, Email Address, Phone Number, Comment) plus a consent checkbox (phone, text and email). Client and server validation, a hidden honeypot field plus a timing check (a request is dropped only when both say spam; one signal alone is delivered with a `suspected-spam` tag), a per-IP rate limit, UTM/gclid attribution, then a redirect to `/thank-you/`. Payload: flat JSON with `name`, `first_name`, `last_name`, `email`, `phone` (E.164), `phone_raw`, `message`, `consent`, `tags`, `spam_check`, `page_url`, `landing_page`, `referrer` and the UTM fields. Leads go to the GoHighLevel webhook set in the deploy workflow. **Without a webhook configured the form accepts requests but does not forward them** (the PHP error log says so).
 
+## Applying reviewed CMS edits (TTR agents)
+
+`POST /api/ttr/sanity-edits/` (Vercel only) applies a reviewed list of Sanity edits from `lib/sanity-edits/<set>.json`, e.g. the photo swap (`photo-swap`, 146 fields in 38 documents, listed in `docs/photo-swap/SANITY-EDITS.md`).
+
+- Header `Authorization: Bearer <TTR agent key>`; the key is checked against TTR OS (`ttr-portal /api/v1/me`). Only kind `owner`, or kind `agent` with role `build_lead`, may use it; any other key gets 403.
+- Body `{ "set": "photo-swap" }` is a **dry run**: it reports, field by field, what would change, what is already done and what would be skipped (a field is only changed while it still holds the expected old photo). `{ "set": "photo-swap", "apply": true }` writes everything in one transaction, which fails as a whole if a document changed meanwhile.
+- Writing needs `SANITY_WRITE_TOKEN` (Editor token) in Vercel > Settings > Environment Variables (Production). Remove or rotate it afterwards.
+- Redeploy on Vercel afterwards; the pages read Sanity at build time.
+
 ## Editing in /cms
 
 - **Site settings:** name, phone, address, map link, hours, social links, header button, main menu (with both dropdown levels), logos, privacy policy link (not shown on the site at the moment).

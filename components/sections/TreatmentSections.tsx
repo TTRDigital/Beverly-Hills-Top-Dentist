@@ -157,7 +157,7 @@ export function CardPair({ s }: { s: CardPairSection }) {
 function Step({ it }: { it: StepsSection["items"][number] }) {
   return (
     <div>
-      {it.icon ? <Image src={it.icon.src} alt="" width={96} height={96} className="mb-[15px] h-auto w-[84px]" /> : null}
+      {it.icon ? <Image src={it.icon.src} alt={it.icon.alt || `${it.title} icon`} width={96} height={96} className="mb-[15px] h-auto w-[84px]" /> : null}
       <h3 className="mb-2.5 text-h3 font-semibold">{it.title}</h3>
       <p>{it.text}</p>
     </div>

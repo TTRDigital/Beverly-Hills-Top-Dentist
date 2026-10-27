@@ -16,17 +16,17 @@ export const fallbackHome: HomeContent = {
     text: "Dr. Shir has spent over thirty years refining an approach that protects your health while it rebuilds your smile.",
     cards: [
       {
-        image: images.biological,
+        image: images.ozoneUnit,
         title: "Biological",
         text: ["Ozone therapy, biocompatible materials, and a health-first plan. Dr. Shir holds two Master's degrees in Public Health, and it shows in every decision."],
       },
       {
-        image: images.biomimetic,
+        image: images.iteroScanner,
         title: "Biomimetic",
         text: ["We rebuild teeth to match what nature built. Soft-tissue lasers and in-office CT mean less drilling, and more of your own tooth stays."],
       },
       {
-        image: images.holistic,
+        image: images.hallwayFlowers,
         title: "Holistic",
         text: ["Your mouth is connected to the rest of you. Dr. Shir screens, treats, and plans with your whole health in view, not just the tooth in front of her."],
       },
@@ -44,7 +44,7 @@ export const fallbackHome: HomeContent = {
       images.imagingArea,
       images.frontOffice,
       images.hallwayFlowers,
-      images.hallwayWide,
+      images.hallwayWide2,
     ],
   },
   technology: {
@@ -135,7 +135,7 @@ export const fallbackAbout: AboutContent = {
 export const fallbackBeforeAfter: BeforeAfterContent = {
   hero: {
     heading: "A Gentle, Conservative Approach",
-    image: images.smilingWomanProfile,
+    image: images.cosmeticDentistrySign,
     text: "We focus on preserving as much of your natural tooth structure as possible, helping minimize discomfort and shorten recovery time. Using advanced techniques and precise care, we create beautiful, natural-looking results while protecting the long-term health and strength of your teeth.",
   },
   gallery: { heading: "Before and After Photos", text: "More than transforming teeth, we help inspire a more confident way of living." },

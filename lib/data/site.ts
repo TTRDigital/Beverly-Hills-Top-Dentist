@@ -191,34 +191,19 @@ export const fallbackTeam: TeamMember[] = [
   },
 ];
 
-const galleryOrder = [
-  images.case01, images.case02, images.case05, images.case03, images.case04, images.case06, images.case07,
-  images.case08, images.case09, images.case10, images.case11, images.case12, images.case13, images.case15,
-  images.case16, images.case17, images.case18, images.case19, images.case20, images.case21, images.case08B,
-];
-
 /**
- * Smile cases. "results": the home / thank-you carousel (the old home page's six
- * before-after lightbox images, then its three smile photos). "gallery": the
- * before-after grid (desktop). "galleryMobile": the before-after carousel (phones).
+ * Smile cases: Dr. Shir's own patients only (TTR, Oct 26, 2026). The old site's gallery photos were another practice's
+ * cases (watermarked "ideal") or could not be traced to this practice, so they were taken down. The same three cases show
+ * in every place: the home and thank-you carousel ("results"), the before-after grid ("gallery") and its phone carousel
+ * ("galleryMobile"). Add a case only with the patient's written consent.
  */
-export const fallbackCases: BeforeAfterCase[] = [
-  ...[images.smile1, images.smile2, images.smile3, images.smile4, images.smile5, images.smile6].map((image, i) => ({
-    id: `gallery-mobile-${i + 1}`,
-    title: image.alt,
-    image,
-    groups: ["results" as const, "galleryMobile" as const],
-    order: i + 1,
-  })),
-  ...[images.smileResult1, images.smileResult2, images.smileResult3].map((image, i) => ({
-    id: `result-${i + 1}`,
-    title: `Smile result ${i + 1}`,
-    image,
-    groups: ["results" as const],
-    order: 7 + i,
-  })),
-  ...galleryOrder.map((image, i) => ({ id: `gallery-${i + 1}`, title: image.alt, image, groups: ["gallery" as const], order: 10 + i })),
-];
+export const fallbackCases: BeforeAfterCase[] = [images.smileResult1, images.smileResult2, images.smileResult3].map((image, i) => ({
+  id: `result-${i + 1}`,
+  title: `Smile result ${i + 1}`,
+  image,
+  groups: ["results" as const, "gallery" as const, "galleryMobile" as const],
+  order: i + 1,
+}));
 
 /** The old site shows no patient reviews. Add real ones in /cms (Reviews); none are invented here. */
 export const fallbackTestimonials: Testimonial[] = [];
@@ -327,7 +312,7 @@ export const fallbackPosts: Post[] = [
     category: "implants",
     service: "/services/dental-implants-dentistry/",
     excerpt: "A dental implant from the first visit to the final crown: how long each stage usually takes, what recovery feels like and how to care for it.",
-    image: images.seniorPatientMirror,
+    image: images.imagingArea,
     cta: "At the first visit we examine your mouth and, if an implant looks right for you, take a 3D scan, so you know your timeline before anything starts.",
     figures: [
       { beforeHeading: "What happens on the day of surgery?", image: images.dentistsTreatingPatient, alt: "Two clinicians treating a patient in a treatment room at the Bedford Drive office", caption: "Two of our clinicians at work in a treatment room on Bedford Drive.", position: "center 40%" },
@@ -390,7 +375,7 @@ export const fallbackPosts: Post[] = [
       "Often, yes. The bone shrinks where a tooth is missing, most in the first months, so a graft may be needed, which can add a few months, sometimes more. The 3D scan shows how much bone is there before anything starts.",
       "If you are missing a tooth and want to know what an implant would involve for you, come and see us. The first visit includes the exam and, if an implant is planned, the 3D scan, and you will leave with a clear plan and a timeline. Our office is at 416 N. Bedford Dr. in Beverly Hills, a short drive from [Century City](/areas-we-serve/century-city/) and [West Hollywood](/areas-we-serve/west-hollywood/). [Request an appointment](/appointment/), or call us.",
     ],
-    seo: { title: "Dental Implant Timeline & Recovery | Beverly Hills Dentist Dr. Shir", description: "The dental implant timeline in Beverly Hills: the first visit, surgery, recovery, the months of healing and the final crown, and how to care for it." },
+    seo: { title: "Dental Implant Timeline & Recovery | Dr. Shir, Beverly Hills", description: "The dental implant timeline in Beverly Hills: the first visit, surgery, recovery, the months of healing and the final crown, and how to care for it." },
   },
   {
     slug: "bridge-or-implant-beverly-hills",
@@ -400,11 +385,11 @@ export const fallbackPosts: Post[] = [
     category: "restorative",
     service: "/services/restorative-dentistry/dental-bridges/",
     excerpt: "How to choose between a dental bridge and an implant: the teeth beside the gap, the bone, your health, time and cost, explained by our Beverly Hills dental team.",
-    image: images.dentalModels,
+    image: images.treatmentChair,
     cta: "Not sure which is right for you? At your consult we check the teeth beside the gap, the bone and your health, and go through both options with you, with no pressure to decide that day.",
     figures: [
-      { beforeHeading: "What decides between a bridge and an implant?", image: images.patientReviewingXRay, alt: "Patient looking at a dental X-ray before choosing between a bridge and an implant", caption: "Regular X-rays are usually the first look at the teeth on either side of a gap.", position: "center 40%" },
-      { beforeHeading: "When is a bridge a good choice?", image: images.shadeGuideSmile, alt: "Shade guide held up to a smile to match a bridge to the natural teeth", caption: "A bridge is shaded to match your own teeth, so the replacement tooth blends in.", position: "center 55%" },
+      { beforeHeading: "What decides between a bridge and an implant?", image: images.digitalXRayRoom, alt: "Treatment room at the Bedford Drive office with the digital X-ray monitor", caption: "Regular X-rays are usually the first look at the teeth on either side of a gap.", position: "center 40%" },
+      { beforeHeading: "When is a bridge a good choice?", image: images.iteroScanner, alt: "Digital intraoral scanner at the Bedford Drive office, used to record the teeth for a bridge", caption: "Our digital scanner records your teeth for the bridge, with no impression trays.", position: "center 30%" },
       { beforeHeading: "When is a 3D scan needed?", image: images.cbctScanner, alt: "Cone beam CT scanner in the imaging room, used when X-rays cannot show enough of the bone", caption: "The 3D scanner in our imaging room, used when regular X-rays cannot show enough of the bone or roots.", position: "center 35%" },
     ],
     blocks: [

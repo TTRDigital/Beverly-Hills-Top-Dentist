@@ -1,6 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
+    { "source": "/images/before-after/:file*", "destination": "/before-after/", "statusCode": 301 },
+    { "source": "/_img/images/before-after/:file*", "destination": "/before-after/", "statusCode": 301 },
     { "source": "/blog/dental-bridges-beverly-hills", "destination": "/blog/bridge-or-implant-beverly-hills/", "permanent": true },
     { "source": "/blog/dental-bridges-beverly-hills/", "destination": "/blog/bridge-or-implant-beverly-hills/", "permanent": true },
     {
@@ -753,6 +755,1306 @@
     {
       "source": "/dental-services/",
       "destination": "/services/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/05/2c4351b6-4301-4974-a83c-26fa58c39c86((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/images/insurance/cigna.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/05/53a63448-05dc-4859-ad81-b51350aaeb61((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/images/insurance/delta-dental.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/05/bh-logo-dark-transparent((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/images/brand/logo.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/05/c553b675-c84e-41e8-9f2c-c1fe8f69445d((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/images/insurance/metlife.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/05/db1f1e8f-8ae6-4219-ae76-77baa89c9f1d((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/images/insurance/unitedhealthcare.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/05/eb48049c-f08c-435d-bc7e-7dba002dcf86((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/images/insurance/aetna.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/06/before-after-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/06/before-after-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/06/before-after-3((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/06/before-after-4((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/06/before-after-5((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/06/before-after-6((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-01\\.-png-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-02-1-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-03-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-04-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-05-1-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-06-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-07\\.-png-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-08-1-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-08-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-09-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-10-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-11-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-12-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-13-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-15-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-16-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-17-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-18-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-19-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-20-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-21((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/ba-21-1((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/20260827_140645((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/office/reception-desk-portrait.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/20260827_140645-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/office/reception-desk.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/20260827_140703-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/office/hallway-round-table.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/20260827_140737-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/office/hallway-flowers.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/20260827_140746-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/office/hallway-table-detail.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/20260827_140900((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/office/treatment-chair.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/20260827_141308-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/office/imaging-area.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/20260827_141315-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/office/front-office.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/20260827_141420-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/office/cosmetic-dentistry-sign.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/481078235_618586414369480_290212468408429265_n((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/office/hallway-wide.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/Carlos-Headshot-Blue((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/team/carlos-torres.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/Nicole-Vazquez-Headshot((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpeg",
+      "destination": "/images/team/nicole-vazquez.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/08/Thanys-Headshot((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/team/thanys-m.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/20260827_141218-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/technology/digital-x-ray-room.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/20260901_142626-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/technology/cbct-scanner.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/20260901_142730-1-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/technology/itero-scanner.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/20260901_142954-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/technology/ozone-unit.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/20260902_080617-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/technology/soft-tissue-laser.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/20260902_122323-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/office/hygienist-treating-patient.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/20260902_165622-scaled((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/office/dentists-treating-patient.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/481078235_618586414369480_290212468408429265_n-2((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/office/hallway-wide-2.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/ChatGPT-Image-Sep-3-2026-01_48_43-AM((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/images/team/dr-nushin-shir.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/IMG_1600((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/results/smile-result-1.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/IMG_3286((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/results/smile-result-2.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/IMG_3292((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.jpg",
+      "destination": "/images/results/smile-result-3.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/Team-Pic((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/images/team/team-photo.jpg",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/cropped-ChatGPT-Image-Sep-16-2026-07_46_43-AM((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.png",
+      "destination": "/images/brand/site-icon-192.png",
+      "statusCode": 301
+    },
+    {
+      "source": "/wp-content/uploads/2026/09/dr-charlton((?:-scaled|-e\\d+)?(?:-\\d+x\\d+)?)\\.webp",
+      "destination": "/images/team/dr-daniel-charlton.webp",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:197)"
+        }
+      ],
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:197)"
+        }
+      ],
+      "destination": "/before-after/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:295)"
+        }
+      ],
+      "destination": "/services/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:295)"
+        }
+      ],
+      "destination": "/services/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:314)"
+        }
+      ],
+      "destination": "/appointment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:314)"
+        }
+      ],
+      "destination": "/appointment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:413|420|547|692|3824)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:413|420|547|692|3824)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:417)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/tooth-extractions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:417)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/tooth-extractions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:423|620|3825|3857)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/root-canal-therapy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:423|620|3825|3857)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/root-canal-therapy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:426|3827)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/partial-dentures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:426|3827)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/partial-dentures/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:429|929|992)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/dental-fillings/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:429|929|992)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/dental-fillings/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:432|994)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/dental-bridges/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:432|994)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/dental-bridges/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:435|438|730)"
+        }
+      ],
+      "destination": "/services/preventive-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:435|438|730)"
+        }
+      ],
+      "destination": "/services/preventive-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:440)"
+        }
+      ],
+      "destination": "/services/preventive-dentistry/teeth-cleaning/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:440)"
+        }
+      ],
+      "destination": "/services/preventive-dentistry/teeth-cleaning/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:443)"
+        }
+      ],
+      "destination": "/services/preventive-dentistry/dental-sealants/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:443)"
+        }
+      ],
+      "destination": "/services/preventive-dentistry/dental-sealants/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:446)"
+        }
+      ],
+      "destination": "/services/preventive-dentistry/checkups-exams/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:446)"
+        }
+      ],
+      "destination": "/services/preventive-dentistry/checkups-exams/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:449|853)"
+        }
+      ],
+      "destination": "/services/periodontic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:449|853)"
+        }
+      ],
+      "destination": "/services/periodontic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:454|913)"
+        }
+      ],
+      "destination": "/services/periodontic-dentistry/gum-graft-surgery/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:454|913)"
+        }
+      ],
+      "destination": "/services/periodontic-dentistry/gum-graft-surgery/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:456|917)"
+        }
+      ],
+      "destination": "/services/periodontic-dentistry/gum-disease-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:456|917)"
+        }
+      ],
+      "destination": "/services/periodontic-dentistry/gum-disease-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:477)"
+        }
+      ],
+      "destination": "/services/periodontic-dentistry/crown-lengthening/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:477)"
+        }
+      ],
+      "destination": "/services/periodontic-dentistry/crown-lengthening/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:482|925)"
+        }
+      ],
+      "destination": "/services/dental-implants-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:482|925)"
+        }
+      ],
+      "destination": "/services/dental-implants-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:487|597)"
+        }
+      ],
+      "destination": "/services/dental-implants-dentistry/single-tooth-implants/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:487|597)"
+        }
+      ],
+      "destination": "/services/dental-implants-dentistry/single-tooth-implants/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:492|921)"
+        }
+      ],
+      "destination": "/services/dental-implants-dentistry/full-arch-implants/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:492|921)"
+        }
+      ],
+      "destination": "/services/dental-implants-dentistry/full-arch-implants/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:497)"
+        }
+      ],
+      "destination": "/services/cosmetic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:497)"
+        }
+      ],
+      "destination": "/services/cosmetic-dentistry/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:502|566)"
+        }
+      ],
+      "destination": "/services/cosmetic-dentistry/teeth-whitening/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:502|566)"
+        }
+      ],
+      "destination": "/services/cosmetic-dentistry/teeth-whitening/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:507|909|3852)"
+        }
+      ],
+      "destination": "/services/cosmetic-dentistry/clear-aligners/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:507|909|3852)"
+        }
+      ],
+      "destination": "/services/cosmetic-dentistry/clear-aligners/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:512|802)"
+        }
+      ],
+      "destination": "/services/cosmetic-dentistry/porcelain-veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:512|802)"
+        }
+      ],
+      "destination": "/services/cosmetic-dentistry/porcelain-veneers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:517)"
+        }
+      ],
+      "destination": "/services/cosmetic-dentistry/dental-bonding/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:517)"
+        }
+      ],
+      "destination": "/services/cosmetic-dentistry/dental-bonding/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:524|3838)"
+        }
+      ],
+      "destination": "/services/preventive-dentistry/night-guards/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:524|3838)"
+        }
+      ],
+      "destination": "/services/preventive-dentistry/night-guards/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:3246)"
+        }
+      ],
+      "destination": "/about-us/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:3246)"
+        }
+      ],
+      "destination": "/about-us/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:3812)"
+        }
+      ],
+      "destination": "/services/dental-technology/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:3812)"
+        }
+      ],
+      "destination": "/services/dental-technology/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:3814)"
+        }
+      ],
+      "destination": "/services/dental-technology/ozone-therapy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:3814)"
+        }
+      ],
+      "destination": "/services/dental-technology/ozone-therapy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:3815)"
+        }
+      ],
+      "destination": "/services/dental-technology/ct-scans/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:3815)"
+        }
+      ],
+      "destination": "/services/dental-technology/ct-scans/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:3816)"
+        }
+      ],
+      "destination": "/services/dental-technology/digital-x-rays/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:3816)"
+        }
+      ],
+      "destination": "/services/dental-technology/digital-x-rays/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:3817|3836)"
+        }
+      ],
+      "destination": "/services/periodontic-dentistry/laser-gum-treatments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:3817|3836)"
+        }
+      ],
+      "destination": "/services/periodontic-dentistry/laser-gum-treatments/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:3818)"
+        }
+      ],
+      "destination": "/services/dental-technology/digital-scanner/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:3818)"
+        }
+      ],
+      "destination": "/services/dental-technology/digital-scanner/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:3826)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/porcelain-inlays-onlays/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:3826)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/porcelain-inlays-onlays/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:3828)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/wisdom-teeth-extractions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:3828)"
+        }
+      ],
+      "destination": "/services/restorative-dentistry/wisdom-teeth-extractions/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:3835)"
+        }
+      ],
+      "destination": "/services/periodontic-dentistry/deep-cleanings/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:3835)"
+        }
+      ],
+      "destination": "/services/periodontic-dentistry/deep-cleanings/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:3837)"
+        }
+      ],
+      "destination": "/services/periodontic-dentistry/gum-contouring/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:3837)"
+        }
+      ],
+      "destination": "/services/periodontic-dentistry/gum-contouring/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:3839)"
+        }
+      ],
+      "destination": "/services/preventive-dentistry/sleep-apnea-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:3839)"
+        }
+      ],
+      "destination": "/services/preventive-dentistry/sleep-apnea-treatment/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:3847)"
+        }
+      ],
+      "destination": "/services/cosmetic-dentistry/smile-makeover/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:3847)"
+        }
+      ],
+      "destination": "/services/cosmetic-dentistry/smile-makeover/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "page_id",
+          "value": "(?:4321)"
+        }
+      ],
+      "destination": "/thank-you/",
+      "statusCode": 301
+    },
+    {
+      "source": "/{index.php}?",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
+          "value": "(?:4321)"
+        }
+      ],
+      "destination": "/thank-you/",
+      "statusCode": 301
+    },
+    {
+      "source": "/index.php",
+      "destination": "/",
+      "statusCode": 301
+    },
+    {
+      "source": "/:file(sitemap_index|wp-sitemap|[a-z_-]+-sitemap\\d*|wp-sitemap-[a-z0-9_-]+)\\.xml",
+      "destination": "/sitemap.xml",
+      "statusCode": 301
+    },
+    {
+      "source": "/author/:name{/}?",
+      "destination": "/about-us/",
+      "statusCode": 301
+    },
+    {
+      "source": "/feed{/}?",
+      "destination": "/blog/",
+      "statusCode": 301
+    },
+    {
+      "source": "/:path+/feed{/}?",
+      "destination": "/:path+/",
+      "statusCode": 301
+    },
+    {
+      "source": "/:prefix(category|tag)/:rest*{/}?",
+      "destination": "/blog/",
       "statusCode": 301
     }
   ],
