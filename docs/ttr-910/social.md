@@ -40,7 +40,7 @@ Links (live once the pages are approved and published):
 
 > Can a cavity heal on its own? Not once it has made a hole. But early decay, the chalky white spot stage, can often be stopped or even reversed by putting minerals back into the enamel.
 >
-> That is what no-drill cavity care does. We use Curodont, a liquid applied to early white spots that helps the enamel take minerals back in, with no drilling. Lost enamel does not grow back, so finding decay early is what counts.
+> That is what no-drill cavity care aims to do. We use Curodont, a liquid applied to early white spots that helps the enamel take minerals back in, with no drilling. Once enamel is lost, your body cannot replace it, so finding decay early is what counts.
 >
 > Book a checkup and we will show you what we see: (310) 274-7005.
 >
@@ -57,7 +57,7 @@ Links (live once the pages are approved and published):
 
 **Caption**
 
-> Plaque is a biofilm, a sticky film of bacteria that is hard to see. In Guided Biofilm Therapy we first color it with a disclosing dye, so you can see exactly where it builds up. Then we clean it away with EMS AIRFLOW air polishing, and ultrasonic instruments where needed, and check that nothing is missed.
+> Plaque is a biofilm, a sticky film of bacteria that is hard to see. In Guided Biofilm Therapy we first color it with a disclosing dye, so you can see exactly where it builds up. Then we clean it away with EMS AIRFLOW air polishing, and ultrasonic instruments where needed, then check again for any plaque left behind.
 >
 > You leave knowing where to focus when you brush and floss. It is usually its own visit, and can also be done at your treatment appointment. Call (310) 274-7005.
 >
@@ -93,7 +93,7 @@ Links (live once the pages are approved and published):
 
 - NIDCR, The tooth decay process: https://www.nidcr.nih.gov/health-info/tooth-decay/more-info/tooth-decay-process
 - Cleveland Clinic, Tooth erosion ("You can't regrow enamel once it's gone"): https://my.clevelandclinic.org/health/diseases/tooth-erosion
-- ADA guideline on nonrestorative treatments for carious lesions (Slayton et al., 2018): https://pubmed.ncbi.nlm.nih.gov/30261951/
+- Keeper et al., 2023, Curodont Repair (self-assembling peptide P11-4) review: https://pubmed.ncbi.nlm.nih.gov/37245138/
 - NIDCR, Gum disease: https://www.nidcr.nih.gov/health-info/gum-disease
 - Mensi et al., 2020, disclosing agent as a guide for biofilm removal: https://pubmed.ncbi.nlm.nih.gov/32348624/
 - American Heart Association scientific statement (Lockhart et al., 2012): https://pubmed.ncbi.nlm.nih.gov/22514251/

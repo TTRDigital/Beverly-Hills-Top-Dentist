@@ -12,7 +12,7 @@ export const addedServiceLinks: { category: string; title: string; body: string[
     category: "preventive-dentistry",
     title: "No-Drill Cavity Care",
     body: [
-      "Early decay caught at the white-spot stage can often be stopped with Curodont, applied with no drilling. Lost enamel does not grow back, so finding decay early matters."
+      "Early decay caught at the white-spot stage can often be stopped with Curodont, applied with no drilling. Once enamel is lost, your body cannot replace it, so finding decay early matters."
     ],
     href: "/services/preventive-dentistry/no-drill-cavity-care/"
   },
@@ -6332,7 +6332,7 @@ export const fallbackServices: Service[] = [
         heading: "No-Drill Cavity Care in Beverly Hills",
         subheading: "Preventive Dentistry",
         text: [
-          "Early tooth decay can often be stopped before it becomes a cavity, with no drilling. We use Curodont Repair, a liquid applied to early white-spot lesions that helps weakened enamel take minerals back in. Enamel that is already lost does not grow back, so the aim is to find decay early and stop it there."
+          "Early tooth decay can often be stopped before it becomes a cavity, with no drilling. We use Curodont Repair, a liquid applied to early white-spot lesions that helps weakened enamel take minerals back in. Once enamel is lost, your body cannot replace it, so the aim is to find decay early and stop it there."
         ],
         image: images.digitalXRayRoom,
         overlay: "left",
@@ -6344,7 +6344,7 @@ export const fallbackServices: Service[] = [
         heading: "What No-Drill Cavity Care Can and Cannot Do",
         text: [
           "Tooth decay is a tug of war. Acid made by the bacteria in plaque pulls minerals out of enamel, and saliva and fluoride put them back. When minerals are lost faster than they return, a chalky white spot can appear. At that stage, decay can be stopped or reversed. Once it breaks through the surface and forms a cavity, the damage stays, and a dentist has to repair it with a filling ([NIDCR](https://www.nidcr.nih.gov/health-info/tooth-decay/more-info/tooth-decay-process)).",
-          "That is why we never promise new enamel: once it is lost, it cannot grow back ([Cleveland Clinic](https://my.clevelandclinic.org/health/diseases/tooth-erosion)). What Curodont aims to do is help an early lesion take minerals back in and stop it from getting bigger, so the tooth does not need drilling."
+          "That is why we never promise new enamel: once it is lost, your body cannot replace it ([Cleveland Clinic](https://my.clevelandclinic.org/health/diseases/tooth-erosion)). What Curodont aims to do is help an early lesion take minerals back in and stop it from getting bigger, so the tooth does not need drilling."
         ],
         tone: "light"
       },
@@ -6354,7 +6354,7 @@ export const fallbackServices: Service[] = [
         text: [
           "Curodont Repair is made by vVARDIS. Its active ingredient is a self-assembling peptide called P11-4."
         ],
-        image: images.ozoneUnit,
+        image: images.hygienistTreatingPatient,
         items: [
           {
             title: "What It Is",
@@ -6371,7 +6371,7 @@ export const fallbackServices: Service[] = [
           {
             title: "What the Research Shows",
             body: [
-              "A 2023 review of six clinical trials of Curodont Repair found it likely helps stop early lesions and makes them smaller, and found no reports of changes in how the treated teeth looked. The trials had weaknesses, and the authors call for longer studies ([Keeper and colleagues, 2023](https://pubmed.ncbi.nlm.nih.gov/37245138/))."
+              "A 2023 review of six clinical trials of Curodont Repair found it likely helps stop early lesions and makes them smaller, and none of the trials reported unwanted changes in how the treated teeth looked. The trials had weaknesses, and the authors call for longer studies ([Keeper and colleagues, 2023](https://pubmed.ncbi.nlm.nih.gov/37245138/))."
             ]
           },
           {
@@ -6455,9 +6455,9 @@ export const fallbackServices: Service[] = [
         text: ["The questions patients ask most often, answered plainly."],
         items: [
           {
-            question: "Can tooth enamel grow back?",
+            question: "Can lost tooth enamel come back?",
             answer: [
-              "No. Once enamel is lost, it cannot grow back ([Cleveland Clinic](https://my.clevelandclinic.org/health/diseases/tooth-erosion)). Weakened enamel in an early lesion can take minerals back in from saliva and fluoride, which can stop or reverse early decay ([NIDCR](https://www.nidcr.nih.gov/health-info/tooth-decay/more-info/tooth-decay-process)). That is what Curodont aims to help with."
+              "No. Once enamel is lost, your body cannot replace it ([Cleveland Clinic](https://my.clevelandclinic.org/health/diseases/tooth-erosion)). Weakened enamel in an early lesion can take minerals back in from saliva and fluoride, which can stop or reverse early decay ([NIDCR](https://www.nidcr.nih.gov/health-info/tooth-decay/more-info/tooth-decay-process)). That is what Curodont aims to help with."
             ]
           },
           {
@@ -6469,7 +6469,7 @@ export const fallbackServices: Service[] = [
           {
             question: "How well does it work?",
             answer: [
-              "A 2023 review of six clinical trials found it likely helps stop early lesions and makes them smaller. The trials had weaknesses and lasted up to two years, so we recheck every treated lesion at your visits ([Keeper and colleagues, 2023](https://pubmed.ncbi.nlm.nih.gov/37245138/))."
+              "A 2023 review of six clinical trials found it likely helps stop early lesions and makes them smaller. The trials had weaknesses, the results looked at up to two years, and the authors call for longer studies, so we recheck every treated lesion at your visits ([Keeper and colleagues, 2023](https://pubmed.ncbi.nlm.nih.gov/37245138/))."
             ]
           },
           {
@@ -6558,7 +6558,7 @@ export const fallbackServices: Service[] = [
           {
             title: "Supplements Dr. Shir May Recommend",
             body: [
-              "As part of your care, Dr. Shir may recommend probiotics, omega-3 fatty acids or a resolvin-based supplement. Research on supplements for gum health is still developing: current European guidelines for treating gum disease do not recommend probiotics or omega-3 supplements as an add-on to deep cleaning, because the evidence is not yet strong enough ([EFP guideline, 2020](https://pubmed.ncbi.nlm.nih.gov/32383274/)), and resolvins have so far been studied mainly in animals ([Osorio Parra and colleagues, 2019](https://pubmed.ncbi.nlm.nih.gov/30230662/))."
+              "As part of your care, Dr. Shir may recommend probiotics, omega-3 fatty acids or a resolvin-based supplement. Research on supplements for gum health is still developing: current European guidelines for treating gum disease advise against adding probiotics or omega-3 supplements to deep cleaning, because studies have not shown a clear benefit ([EFP guideline, 2020](https://pubmed.ncbi.nlm.nih.gov/32383274/)), and studies of resolvins for gum disease have so far been done in animals, with the resolvins put directly on the gums, so studies in people are still needed ([Osorio Parra and colleagues, 2019](https://pubmed.ncbi.nlm.nih.gov/30230662/))."
             ]
           },
           {
@@ -6587,7 +6587,7 @@ export const fallbackServices: Service[] = [
             image: images.treatmentChair,
             title: "WHAT THE RESEARCH SHOWS:",
             text: [
-              "Diabetes is a risk factor for gum disease, and heart and blood vessel disease is also linked with a higher chance of having it ([NIDCR](https://www.nidcr.nih.gov/health-info/gum-disease)). The American Heart Association found that studies support a link between gum disease and heart and blood vessel disease, but do not show that gum disease causes it, or that treating gum disease prevents it ([AHA, 2012](https://pubmed.ncbi.nlm.nih.gov/22514251/))."
+              "Diabetes is a risk factor for gum disease, and gum disease has also been linked with heart and blood vessel disease ([NIDCR](https://www.nidcr.nih.gov/health-info/gum-disease)). The American Heart Association found that studies support a link between gum disease and heart and blood vessel disease, but do not show that gum disease causes it, or that treating gum disease prevents it ([AHA, 2012](https://pubmed.ncbi.nlm.nih.gov/22514251/))."
             ]
           },
           {
@@ -6644,7 +6644,7 @@ export const fallbackServices: Service[] = [
           {
             question: "Is biofilm therapy the same as a regular cleaning?",
             answer: [
-              "It does the same job, removing plaque and tartar, in a different order and with different tools: a disclosing dye first, then EMS AIRFLOW air polishing, then ultrasonic instruments for tartar where needed. Studies comparing it with standard cleaning found less pain and shorter visits, but not clearly better gum results ([Yein and colleagues, 2026](https://pubmed.ncbi.nlm.nih.gov/42032569/))."
+              "It does the same job, removing plaque and tartar, in a different order and with different tools: a disclosing dye first, then EMS AIRFLOW air polishing, then ultrasonic instruments for tartar where needed. Studies in people with gum disease that compared it with standard scaling found less pain and shorter visits, but not clearly better gum results ([Yein and colleagues, 2026](https://pubmed.ncbi.nlm.nih.gov/42032569/))."
             ]
           },
           {
@@ -6656,7 +6656,7 @@ export const fallbackServices: Service[] = [
           {
             question: "Do I need to take supplements?",
             answer: [
-              "Not necessarily. Dr. Shir may recommend probiotics, omega-3 fatty acids or a resolvin-based supplement as part of your care. Research on supplements for gum health is still developing, and current European guidelines do not recommend probiotics or omega-3 supplements as an add-on to deep cleaning ([EFP guideline, 2020](https://pubmed.ncbi.nlm.nih.gov/32383274/)). Ask her what she suggests for you and why."
+              "Not necessarily. Dr. Shir may recommend probiotics, omega-3 fatty acids or a resolvin-based supplement as part of your care. Research on supplements for gum health is still developing, and current European guidelines for treating gum disease advise against adding probiotics or omega-3 supplements to deep cleaning ([EFP guideline, 2020](https://pubmed.ncbi.nlm.nih.gov/32383274/)). Ask her what she suggests for you and why."
             ]
           },
           {
