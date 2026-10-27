@@ -9,7 +9,7 @@ export type ImageEdit = { doc: string; path: string; from: string; to: string; a
 export type EditSet = { name: string; source: string; edits: ImageEdit[] };
 export type SanityDoc = { _id: string; _rev: string; [k: string]: unknown };
 
-export type Planned = { doc: string; path: string; status: "change" | "done" | "skip"; why?: string; fromFile: string; toFile: string };
+export type Planned = { doc: string; path: string; status: "change" | "done" | "skip" | "excluded"; why?: string; fromFile: string; toFile: string };
 export type Patch = { patch: { id: string; ifRevisionID: string; set: Record<string, unknown> } };
 
 type Seg = { key: string } | { match: string } | { index: number };
@@ -51,12 +51,20 @@ function heroOf(doc: SanityDoc, path: string): string | null {
   return section?._type === "hero" ? m[1] : null;
 }
 
-/** Checks every edit against the current documents and builds one patch per document. */
-export function plan(set: EditSet, docs: Map<string, SanityDoc>): { rows: Planned[]; patches: Patch[] } {
+/**
+ * Checks every edit against the current documents and builds one patch per document. Documents listed in `exclude` are
+ * left untouched: their rows are reported as "excluded" and they get no patch.
+ */
+export function plan(set: EditSet, docs: Map<string, SanityDoc>, exclude: string[] = []): { rows: Planned[]; patches: Patch[] } {
   const rows: Planned[] = [];
   const sets = new Map<string, Record<string, unknown>>();
+  const skipDocs = new Set(exclude);
   for (const e of set.edits) {
     const base = { doc: e.doc, path: e.path, fromFile: e.fromFile, toFile: e.toFile };
+    if (skipDocs.has(e.doc)) {
+      rows.push({ ...base, status: "excluded", why: "document excluded in this request" });
+      continue;
+    }
     const doc = docs.get(e.doc);
     if (!doc) {
       rows.push({ ...base, status: "skip", why: "document not found" });
