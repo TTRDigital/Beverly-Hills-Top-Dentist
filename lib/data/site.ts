@@ -213,6 +213,83 @@ export const fallbackFaqs: Faq[] = [];
 
 /** Built-in posts by Dr. Shir (drafts for Kia and the client; a post published in /cms with the same slug replaces its built-in copy). */
 export const fallbackPosts: Post[] = [
+  // TTR-950 (Oct 27, 2026): an original article on an idea Dr. Shir liked (another account's Instagram post). None of
+  // that post's wording, list or images is used. Every figure is from a cited review, worded as "about" or "often".
+  {
+    slug: "how-long-do-fillings-crowns-implants-veneers-last",
+    title: "How long do fillings, crowns, implants and veneers last, and how can you make yours last longer?",
+    date: "2026-10-27",
+    author: "Dr. Nushin Shir",
+    category: "restorative",
+    service: "/services/restorative-dentistry/",
+    excerpt: "Dental work often lasts many years, but not forever. What studies show for fillings, crowns, implants and veneers, why dental work wears out, and what helps yours last longer.",
+    image: images.dentistsTreatingPatient,
+    cta: "At your checkup we look at every filling, crown, implant and veneer you have, so small problems can be found while they are still small.",
+    figures: [
+      { beforeHeading: "How long do crowns last?", image: images.iteroScanner, alt: "Digital intraoral scanner at the Bedford Drive office", caption: "Crowns are planned from a digital scan of your teeth, taken in the office.", position: "center 30%" },
+      { beforeHeading: "What helps dental work last longer?", image: images.hygienistTreatingPatient, alt: "Clinician cleaning a patient's teeth in the dental chair at the Bedford Drive office", caption: "Regular professional cleanings protect the teeth and gums around your dental work.", position: "center 35%" },
+    ],
+    blocks: [
+      {
+        _type: "facts",
+        heading: "What studies show",
+        items: [
+          { icon: "tooth", label: "Crowns on natural teeth", value: "About 95 in 100 still in place after 5 years" },
+          { icon: "smile", label: "Porcelain and glass-ceramic veneers", value: "About 9 in 10 still in place after about 9 years" },
+          { icon: "implant", label: "Dental implants", value: "About 93 to 96 in 100 still in place after 10 years" },
+          { icon: "shield", label: "Why fillings fail most often", value: "New decay and fractures" },
+        ],
+      },
+      {
+        _type: "steps",
+        beforeHeading: "Questions patients ask about how long dental work lasts",
+        heading: "Five habits that help dental work last",
+        items: [
+          { title: "Clean every day", text: "Brush twice a day and clean between your teeth, including around crowns and implants." },
+          { title: "Keep your checkups", text: "An exam and X-rays when needed show a worn edge or new decay while it is small." },
+          { title: "Have professional cleanings", text: "We remove the plaque and tartar that home care misses." },
+          { title: "Protect against grinding", text: "If you grind or clench at night, a custom night guard takes the force off your teeth and dental work." },
+          { title: "Go easy on sugar and acid", text: "Frequent sugary snacks feed the bacteria that cause decay, and acidic drinks can wear down enamel, which can weaken the tooth around fillings and crowns." },
+        ],
+      },
+    ],
+    body: [
+      "Fillings, crowns, implants and veneers often last many years, but not forever. In studies, about 95 in 100 crowns on natural teeth were still in place after five years, about 9 in 10 porcelain veneers after about nine years, and about 93 to 96 in 100 implants after ten years. How long your own work lasts depends a great deal on your mouth and on how it is cared for.",
+      "Many people expect a filling or a crown to be done once and never thought about again. Yet we accept that other things placed in the body may need checking or replacing over the years. Dental work is the same, and it works in a demanding place. This article explains what the research shows for each type of work and what helps yours last longer.",
+      "## Why doesn't dental work last forever?",
+      "Your mouth is hard on anything in it. Every day your teeth take the force of chewing, swings between hot and cold, and contact with bacteria and the acid they make. Fillings, crowns and veneers are attached to living teeth, and the tooth around them can still decay. The materials themselves can also chip, crack or wear.",
+      "That is why the same filling can last decades in one person and need replacing in a few years in another. Your bite, whether you grind your teeth, how much sugar and acid you have, and how well the area is cleaned all play a part.",
+      "## How long do fillings last?",
+      "It varies widely. One large analysis pooled 12 studies that each followed patients for at least five years. Of 2,816 tooth-colored fillings in back teeth, 569 failed during the studies. The main reasons were new decay and fractures, and fillings failed more often in people at high risk of decay and in larger fillings that covered more surfaces of the tooth ([Opdam and colleagues, 2014](https://pubmed.ncbi.nlm.nih.gov/25048250/)).",
+      "So the most useful thing you can do for a filling is to keep decay away from its edges. See our [dental fillings](/services/restorative-dentistry/dental-fillings/) page for how we place them.",
+      "## How long do crowns last?",
+      "A review of 67 studies estimated that about 95 in 100 metal-ceramic crowns on natural teeth were still in place after five years, with similar results for some all-ceramic crowns. Some types of all-ceramic crowns did less well on back teeth ([Sailer and colleagues, 2015](https://pubmed.ncbi.nlm.nih.gov/25842099/)).",
+      "A crown covers the tooth, but the tooth underneath can still decay at the edge where the crown meets it, so cleaning there matters. Our [restorative dentistry](/services/restorative-dentistry/) page covers crowns and the other ways we repair teeth.",
+      "## How long do implants last?",
+      "A 2019 review found about 93 to 96 in 100 implants still in place after ten years, depending on how the researchers counted people who dropped out of the studies. The same review found the risk of losing an implant may be higher in people 65 and older ([Howe and colleagues, 2019](https://pubmed.ncbi.nlm.nih.gov/30904559/)). The crown on top of an implant may need repairs along the way: in another review, about 9 in 10 implant crowns were still in place after ten years, and after five years about 9 in 100 had a loose screw and a few had chipped porcelain ([Jung and colleagues, 2012](https://pubmed.ncbi.nlm.nih.gov/23062124/)).",
+      "An implant cannot decay, but the gum and bone around it can become inflamed, so implants need the same daily cleaning and regular checkups as your own teeth. See our [dental implants](/services/dental-implants-dentistry/) page.",
+      "## How long do veneers last?",
+      "A review of 13 studies estimated that about 9 in 10 porcelain and glass-ceramic veneers were still in place after a median of about nine years ([Morimoto and colleagues, 2016](https://pubmed.ncbi.nlm.nih.gov/26757327/)). Veneers are thin, so biting on hard objects and nighttime grinding are worth guarding against. See our [porcelain veneers](/services/cosmetic-dentistry/porcelain-veneers/) page.",
+      "If you would like your own dental work checked, [book a visit](/appointment/) and we will look at each piece with you.",
+      "## What helps dental work last longer?",
+      "Most of it is the same care that protects natural teeth. Brush twice a day, clean between your teeth, and keep your [checkups](/services/preventive-dentistry/checkups-exams/), where an exam and X-rays when needed can show a worn edge or new decay early, when it is simpler to fix.",
+      "Professional cleanings remove the plaque and tartar that home care misses. We use [Guided Biofilm Therapy with EMS AIRFLOW](/services/preventive-dentistry/biofilm-therapy/): a disclosing dye shows where plaque collects, including around crowns and implants, and air polishing removes it.",
+      "If you grind or clench at night, a [night guard](/services/preventive-dentistry/night-guards/) separates your teeth and takes the force off them and off your dental work. Repeated failures of the same filling or crown are often a sign that grinding needs addressing first.",
+      "## Caring for your mouth cares for more than your teeth",
+      "Keeping your gums healthy protects the teeth that hold your dental work, and it matters for the rest of you too. Gum disease has been linked with diabetes and with heart and blood vessel disease, although studies have not shown that gum disease causes heart disease ([NIDCR](https://www.nidcr.nih.gov/health-info/gum-disease); [AHA, 2012](https://pubmed.ncbi.nlm.nih.gov/22514251/)). Looking after your mouth is one part of looking after your health, alongside your doctor's care.",
+      "## Questions patients ask about how long dental work lasts",
+      "### Will my crown or veneer last forever?",
+      "Probably not forever. Many last for many years, and studies show most are still in place years later, but each one may need repair or replacement at some point. Good care and regular checkups make a long life more likely.",
+      "### How do I know if a filling or crown needs replacing?",
+      "Sometimes you notice it: sensitivity, a rough or broken edge, or food catching in one spot. Often you do not, which is why we check your dental work at every exam, with X-rays when needed.",
+      "### Do implants last longer than crowns?",
+      "The studies above looked at different patients and measured different things, so they do not rank one above the other. Both often last many years with good care.",
+      "### Does grinding shorten the life of dental work?",
+      "It can. Grinding and clenching put heavy force on teeth and dental work, which can wear, chip or crack them. A custom night guard helps protect them.",
+      "If you have fillings, crowns, implants or veneers and want them to last, come and see us. Our office is at 416 N. Bedford Dr. in Beverly Hills, a short drive from [Century City](/areas-we-serve/century-city/) and [West Hollywood](/areas-we-serve/west-hollywood/). [Request an appointment](/appointment/), or call us.",
+    ],
+    seo: { title: "How Long Do Crowns, Implants & Veneers Last? | Dr. Shir, Beverly Hills", description: "How long fillings, crowns, implants and veneers often last, according to studies, and what helps your dental work last longer, from Beverly Hills dentist Dr. Shir." },
+  },
   // TTR-910 (Oct 26 and 27, 2026): Dr. Shir's two new services, from her answers: Curodont; Guided Biofilm Therapy with EMS
   // AIRFLOW; adults and implant patients; no cost or insurance lines.
   {
