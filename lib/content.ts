@@ -11,13 +11,14 @@ import {
   fallbackPrivacy,
   fallbackThankYou,
 } from "@/lib/data/pages";
-import { fallbackCategories, fallbackServices, fallbackServicesHub } from "@/lib/data/services";
+import { addedServiceItems, addedServiceLinks, fallbackCategories, fallbackServices, fallbackServicesHub } from "@/lib/data/services";
 import { fallbackAreaPages, fallbackAreasHub } from "@/lib/data/areas";
 import type {
   AboutContent,
   AreaPage,
   AreasHub,
   Img,
+  MenuItem,
   Section,
   AppointmentContent,
   BeforeAfterCase,
@@ -119,6 +120,37 @@ function mergeBySlug<T extends { slug: string; order: number }>(fallback: T[], c
 
 const blankPage: TreatmentPage = { slug: "", title: "", sections: [], seo: { title: "", description: "" } };
 
+/**
+ * Services added after the CMS was loaded (lib/data/services.ts) appear in the menu, the Services hub and their category
+ * page even when those were saved in Sanity before the services existed. Nothing is added twice.
+ */
+function withAddedMenuItems(menu: MenuItem[]): MenuItem[] {
+  return menu.map((top) =>
+    top.href !== "/services/"
+      ? top
+      : {
+          ...top,
+          children: top.children?.map((cat) => {
+            const missing = addedServiceLinks.filter((a) => cat.href === `/services/${a.category}/` && !cat.children?.some((c) => c.href === a.href));
+            return missing.length ? { ...cat, children: [...(cat.children ?? []), ...missing.map((a) => ({ label: a.title, href: a.href }))] } : cat;
+          }),
+        },
+  );
+}
+
+/** Adds the category's new services to the accordion section that matches (the first one when no test is given). */
+function withAddedItems(sections: Section[], category: string, matches: (s: Section) => boolean = () => true): Section[] {
+  const add = addedServiceItems(category);
+  if (!add.length) return sections;
+  const at = sections.findIndex((s) => s._type === "accordionFeature" && matches(s));
+  if (at < 0) return sections;
+  return sections.map((s, i) => {
+    if (i !== at || s._type !== "accordionFeature") return s;
+    const missing = add.filter((a) => !s.items.some((it) => it.href === a.href));
+    return missing.length ? { ...s, items: [...s.items, ...missing] } : s;
+  });
+}
+
 /* ---------- Settings ---------- */
 
 export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
@@ -135,6 +167,7 @@ export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
   const s = merge({ ...fallbackSettings, menu: fallbackMenu }, cms);
   // The blog is always in the top menu (Kia, Oct 23), even when the menu saved in Sanity was made before it existed.
   if (!s.menu.some((m) => m.href === "/blog/")) s.menu = [...s.menu, { label: "Blog", href: "/blog/" }];
+  s.menu = withAddedMenuItems(s.menu);
   // tel: link always follows the displayed phone number.
   const digits = s.phone.replace(/\D/g, "");
   return { ...s, phoneHref: `tel:+${digits.length === 10 ? `1${digits}` : digits}` };
@@ -144,7 +177,7 @@ export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
 
 export const getCategories = cache(async (): Promise<ServiceCategory[]> => {
   const cms = await sanityFetch<Partial<ServiceCategory>[]>(`*[_type == "serviceCategory" && defined(slug.current)] | order(order asc) ${PAGE}`, {}, ["serviceCategory"]);
-  return mergeBySlug(fallbackCategories, cms, { ...blankPage, order: 99 });
+  return mergeBySlug(fallbackCategories, cms, { ...blankPage, order: 99 }).map((c) => ({ ...c, sections: withAddedItems(c.sections, c.slug) }));
 });
 
 export const getServices = cache(async (): Promise<Service[]> => {
@@ -161,7 +194,15 @@ async function hub(id: string, fallback: HubContent): Promise<HubContent> {
   return normalizePage(merge(fallback, cms));
 }
 
-export const getServicesHub = cache(() => hub("servicesPage", fallbackServicesHub));
+export const getServicesHub = cache(async () => {
+  const page = await hub("servicesPage", fallbackServicesHub);
+  const categories = [...new Set(addedServiceLinks.map((a) => a.category))];
+  const sections = categories.reduce(
+    (secs, cat) => withAddedItems(secs, cat, (s) => s._type === "accordionFeature" && s.link?.href === `/services/${cat}/`),
+    page.sections,
+  );
+  return { ...page, sections };
+});
 
 /* ---------- Areas We Serve ---------- */
 

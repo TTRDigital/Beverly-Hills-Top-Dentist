@@ -3,6 +3,7 @@
  * (files named *.vercel.ts are not part of the static SiteGround build).
  *
  *   POST /api/ttr/sanity-edits/   Authorization: Bearer <TTR agent key>   body: { "set": "photo-swap", "apply": false }
+ *   Optional "exclude": ["homePage", "beforeAfterPage"] leaves those documents untouched (rows reported as "excluded").
  *
  * - The key is checked against TTR OS (GET ttr-portal /api/v1/me), as on Ideal's seed route: only kind "owner", or kind
  *   "agent" with role "build_lead", may use it (403 for any other agent); a missing or unknown key is a 401.
@@ -56,7 +57,7 @@ export async function POST(request: Request) {
   if (!me) return reply(401, { ok: false, error: "A TTR agent key is required (Authorization: Bearer <key>)." });
   if (!mayEdit(me)) return reply(403, { ok: false, error: "This key may not change the CMS: only the owner or a build lead can." });
 
-  let body: { set?: unknown; apply?: unknown };
+  let body: { set?: unknown; apply?: unknown; exclude?: unknown };
   try {
     body = JSON.parse((await request.text()).slice(0, 4096) || "{}");
   } catch {
@@ -65,10 +66,14 @@ export async function POST(request: Request) {
   const set = typeof body.set === "string" ? SETS[body.set] : undefined;
   if (!set) return reply(400, { ok: false, error: `Unknown set. Known sets: ${Object.keys(SETS).join(", ")}.` });
   const apply = body.apply === true;
+  const exclude = body.exclude ?? [];
+  if (!Array.isArray(exclude) || exclude.length > 100 || !exclude.every((x) => typeof x === "string")) {
+    return reply(400, { ok: false, error: "\"exclude\" must be a list of document ids, e.g. [\"homePage\", \"beforeAfterPage\"]." });
+  }
   const token = process.env.SANITY_WRITE_TOKEN || "";
   if (apply && !token) return reply(503, { ok: false, error: "SANITY_WRITE_TOKEN is not set on this deployment, so nothing can be written. A dry run still works." });
 
-  const ids = [...new Set(set.edits.map((e) => e.doc))];
+  const ids = [...new Set(set.edits.map((e) => e.doc))].filter((id) => !exclude.includes(id));
   let docs: SanityDoc[];
   let drafts: string[];
   try {
@@ -77,14 +82,16 @@ export async function POST(request: Request) {
   } catch (e) {
     return reply(502, { ok: false, error: (e as Error).message });
   }
-  const { rows, patches } = plan(set, new Map(docs.map((d) => [d._id, d])));
+  const { rows, patches } = plan(set, new Map(docs.map((d) => [d._id, d])), exclude);
   const count = (s: string) => rows.filter((r) => r.status === s).length;
   const summary = {
     set: set.name,
     source: set.source,
     mode: apply ? "apply" : "dry run",
     agent: me.email ?? me.name ?? me.id ?? null,
-    fields: { total: rows.length, change: count("change"), done: count("done"), skip: count("skip") },
+    fields: { total: rows.length, change: count("change"), done: count("done"), skip: count("skip"), excluded: count("excluded") },
+    excluded: exclude,
+    excludeNotInSet: exclude.filter((id) => !set.edits.some((e) => e.doc === id)),
     documents: patches.length,
     draftsToCheck: drafts.map((d) => d.replace(/^drafts\./, "")),
     canWrite: !!token,
