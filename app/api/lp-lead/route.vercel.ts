@@ -7,7 +7,7 @@ import { MIN_FILL_MS } from "@/lib/lead-options";
 
 type In = Record<string, unknown>;
 const DEFAULT_WEBHOOK = "https://services.leadconnectorhq.com/hooks/4f5ooGf1YaKbVDMaK1ft/webhook-trigger/ce205296-0ed3-45f7-b761-409d18189c2e";
-const PAGE_KEYS = new Set(["general-biomimetic", "clear-aligners", "emergency", "dental-implants"]);
+const PAGE_KEYS = new Set(["general-biomimetic", "clear-aligners", "emergency", "dental-implants", "veneers-smile-makeover", "cleaning-exam"]);
 // Hidden fields kept with the lead: where it came from, never what it is about.
 const HIDDEN = ["page_url", "landing_page", "referrer", "campaign", "ad_group", "ad_id", "oppref", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
 
