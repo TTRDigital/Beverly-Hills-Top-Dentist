@@ -5,6 +5,7 @@
  */
 import { deliverLead, ghlWebhooks } from "@/lib/ghl";
 import { MIN_FILL_MS } from "@/lib/lead-options";
+import { sendLeadToTtrOs } from "@/lib/ttr-os-lead";
 
 type In = Record<string, unknown>;
 const PAGE_KEYS = new Set(["general-biomimetic", "clear-aligners", "emergency", "dental-implants", "veneers-smile-makeover", "cleaning-exam"]);
@@ -77,7 +78,16 @@ export async function POST(request: Request) {
   };
   for (const k of HIDDEN) payload[k] = text(input, k, 1000);
 
-  // To every GoHighLevel webhook in lib/ghl.ts; saved when at least one accepts it.
-  if (await deliverLead(payload, "lp-lead")) return reply(200, { ok: true, delivered: true });
+  // TTR OS is the practice's record of every request (TTR-1164); the GoHighLevel webhooks in lib/ghl.ts get a copy until Kia says to stop.
+  // The request counts as saved when either accepts it, so a lead is never lost to one side being down.
+  const PAGE_LABEL: Record<string, string> = { "general-biomimetic": "General and biomimetic dentistry", "clear-aligners": "Clear aligners", emergency: "Emergency dentist", "dental-implants": "Dental implants", "veneers-smile-makeover": "Veneers and smile makeovers", "cleaning-exam": "Teeth cleaning and new patient exams" };
+  const hid = Object.fromEntries(HIDDEN.map((k) => [k, text(input, k, 300)]));
+  const details = [`ChatGPT Ads landing page: ${PAGE_LABEL[pageKey]}`, hid.campaign && `campaign ${hid.campaign}`, hid.ad_group && `ad group ${hid.ad_group}`, hid.ad_id && `ad ${hid.ad_id}`, hid.oppref && `oppref ${hid.oppref}`, spamCheck !== "ok" && `check: ${spamCheck}`].filter(Boolean).join(" | ");
+  const [ghl, os] = await Promise.all([
+    deliverLead(payload, "lp-lead"),
+    sendLeadToTtrOs({ name, phone: phoneIn, email, service: PAGE_LABEL[pageKey], message: details, pageUrl: text(input, "page_url", 1000), landingUrl: text(input, "page_url", 1000), referrer: text(input, "referrer", 1000),
+      ip: (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim(), userAgent: request.headers.get("user-agent") ?? "" }),
+  ]);
+  if (ghl || os) return reply(200, { ok: true, delivered: true });
   return reply(502, { ok: false, error: "We could not send your request. Please call us instead." });
 }
