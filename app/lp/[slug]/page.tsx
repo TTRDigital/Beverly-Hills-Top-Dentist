@@ -12,6 +12,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return p ? { title: { absolute: p.title }, robots: { index: false, follow: false } } : {};
 }
 
+// Width of one step on desktop, so the row always fills evenly (3, 4 or 5 steps, 32px gaps).
+const STEP_W: Record<number, string> = { 2: "lg:w-[calc((100%-32px)/2)]", 3: "lg:w-[calc((100%-64px)/3)]", 4: "lg:w-[calc((100%-96px)/4)]", 5: "lg:w-[calc((100%-128px)/5)]" };
+
 const btn = "inline-flex min-h-[50px] items-center justify-center rounded-[3px] px-7 text-[16px] font-semibold transition-colors";
 const onDark = { solid: `${btn} bg-white text-brand hover:bg-cream`, ghost: `${btn} border-2 border-white text-white hover:bg-white/15` };
 
@@ -103,12 +106,12 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
         <section key={s.heading} className="bg-header">
           <div className="container-x py-14 sm:py-20">
             <Heading center>{s.heading}</Heading>
-            <ol className={`mt-10 grid gap-8 ${s.items.length >= 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3"}`}>
+            <ol className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-10">
               {s.items.map((t, n) => (
-                <li key={t.title} className="text-center">
+                <li key={t.title} className={`w-full text-center sm:w-[calc(50%-16px)] ${STEP_W[s.items.length] ?? "lg:w-[calc((100%-96px)/4)]"}`}>
                   <span aria-hidden="true" className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border-2 border-brand text-[18px] font-semibold text-brand">{n + 1}</span>
                   <p className="mt-4 text-[19px] font-semibold text-ink">{t.title}</p>
-                  <p className="mx-auto mt-1.5 max-w-[260px] text-[16px] leading-relaxed text-body">{t.text}</p>
+                  <p className="mx-auto mt-1.5 max-w-[240px] text-[16px] leading-relaxed text-body">{t.text}</p>
                 </li>
               ))}
             </ol>
