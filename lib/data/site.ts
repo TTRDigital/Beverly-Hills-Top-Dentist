@@ -96,7 +96,7 @@ export const fallbackMenu: MenuItem[] = [
 ];
 
 export const fallbackSettings: Omit<SiteSettings, "phoneHref"> = {
-  name: "Beverly Hills Dental Art Studio",
+  name: "Beverly Hills Dental Arts Studio",
   legalName: "Beverly Hills Dental Arts Studio",
   phone: "(310) 274-7005",
   // The footer writes the number with dashes; the header and appointment page with brackets.
