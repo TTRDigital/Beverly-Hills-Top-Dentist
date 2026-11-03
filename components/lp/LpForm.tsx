@@ -115,7 +115,7 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
         <div>
           <label className="flex items-start gap-3 text-[14px] leading-snug">
             <input id={`${uid}-consent`} name="consent" type="checkbox" aria-invalid={!!errors.consent || undefined} aria-describedby={errors.consent ? `${uid}-consent-err` : undefined} className="mt-0.5 h-5 w-5 shrink-0 accent-[#20472c]" />
-            <span>I agree to be contacted by {PRACTICE.name} about my request, by phone, text or email. See the <a href="/privacy-policy/" className="font-semibold text-brand underline">privacy policy</a>.</span>
+            <span>I agree to be contacted by {PRACTICE.name} about my request, by phone, text message or email. Message frequency varies. Message and data rates may apply. Reply STOP to cancel, HELP for help. Consent is not a condition of care. See the <a href="/sms-terms/" target="_blank" rel="noopener noreferrer" className="font-semibold text-brand underline">SMS terms</a> and <a href="/privacy-policy/" target="_blank" rel="noopener noreferrer" className="font-semibold text-brand underline">privacy policy</a>.</span>
           </label>
           {err("consent")}
         </div>
