@@ -7,6 +7,8 @@ export const GHL_WEBHOOKS = [
   "https://services.leadconnectorhq.com/hooks/4f5ooGf1YaKbVDMaK1ft/webhook-trigger/ce205296-0ed3-45f7-b761-409d18189c2e",
   // Added Nov 3, 2026: all leads also go to this trigger.
   "https://services.leadconnectorhq.com/hooks/4f5ooGf1YaKbVDMaK1ft/webhook-trigger/LBQDldmGnUwLcvmrXwcl",
+  // Added Nov 3, 2026 from the practice's developer (test payload accepted): every form submission goes here too.
+  "https://services.leadconnectorhq.com/hooks/4f5ooGf1YaKbVDMaK1ft/webhook-trigger/a6e877e5-6da6-49e4-a78e-54d36c987088",
 ];
 
 /** The code list plus any from GHL_WEBHOOK_URL, https only, without duplicates. */
