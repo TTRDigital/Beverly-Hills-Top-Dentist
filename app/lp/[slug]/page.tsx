@@ -22,13 +22,13 @@ function Heading({ children, center }: { children: React.ReactNode; center?: boo
 function Split({ s, flip, tone }: { s: Extract<LpSection, { kind: "text" | "list" | "bio" }>; flip: boolean; tone: string }) {
   return (
     <section className={tone}>
-      <div className="container-x grid items-center gap-8 py-14 sm:py-20 lg:grid-cols-2 lg:gap-16">
-        <div className={flip ? "lg:order-2" : ""}>
+      <div className={`container-x grid items-center gap-8 py-14 sm:py-20 ${s.image ? "lg:grid-cols-2 lg:gap-16" : "max-w-[820px] text-center"}`}>
+        <div className={flip && s.image ? "lg:order-2" : ""}>
           <Heading>{s.heading}</Heading>
           {s.kind === "list" ? (
             <>
               {s.intro ? <p className="mt-4 text-[17px] leading-relaxed text-body">{s.intro}</p> : null}
-              <ul className="mt-5 space-y-3 text-[17px] text-body">
+              <ul className={`mt-5 space-y-3 text-[17px] text-body ${s.image ? "" : "mx-auto max-w-[560px] text-left"}`}>
                 {s.items.map((t) => <li key={t} className="flex gap-3"><span aria-hidden="true" className="mt-[10px] h-2 w-2 shrink-0 rounded-full bg-brand" />{t}</li>)}
               </ul>
             </>
