@@ -339,7 +339,7 @@ export const fallbackServicesHub: HubContent = {
   ],
   seo: {
     title: "Services - Beverly Hills Dental",
-    description: "Implant, cosmetic, restorative, periodontal and preventive dentistry, plus in-office dental technology, at Beverly Hills Dental Art Studio."
+    description: "Implant, cosmetic, restorative, periodontal and preventive dentistry, plus in-office dental technology, at Beverly Hills Dental Arts Studio."
   }
 };
 
@@ -1122,7 +1122,7 @@ export const fallbackCategories: ServiceCategory[] = [
         _type: "textBand",
         heading: "Prevent Oral Health Problems Before They Start",
         text: [
-          "At Beverly Hills Dental Art Studio, our preventive care team is dedicated to providing exceptional dental care to the Beverly Hills community. Our experienced professionals are committed to helping you achieve and maintain optimal oral health through comprehensive preventive dentistry services."
+          "At Beverly Hills Dental Arts Studio, our preventive care team is dedicated to providing exceptional dental care to the Beverly Hills community. Our experienced professionals are committed to helping you achieve and maintain optimal oral health through comprehensive preventive dentistry services."
         ],
         tone: "light"
       },
@@ -1199,7 +1199,7 @@ export const fallbackCategories: ServiceCategory[] = [
       },
       {
         _type: "steps",
-        heading: "Why Choose Beverly Hills Dental Art Studio for Preventive Dentistry",
+        heading: "Why Choose Beverly Hills Dental Arts Studio for Preventive Dentistry",
         text: [
           "Our dedicated team brings decades of experience and advanced technology to every preventive care visit, ensuring the highest standard of dental health for you and your family."
         ],
@@ -1230,7 +1230,7 @@ export const fallbackCategories: ServiceCategory[] = [
         _type: "imageBand",
         heading: "Take Control of Your Dental Health Today",
         text: [
-          "Don’t wait until dental problems become serious. At Beverly Hills Dental Art Studio, we’re here to help you maintain your oral health with comprehensive preventive services. Schedule your appointment today at our Beverly Hills office."
+          "Don’t wait until dental problems become serious. At Beverly Hills Dental Arts Studio, we’re here to help you maintain your oral health with comprehensive preventive services. Schedule your appointment today at our Beverly Hills office."
         ],
         image: images.dentistsTreatingPatient,
         overlay: "none",
@@ -1240,7 +1240,7 @@ export const fallbackCategories: ServiceCategory[] = [
         _type: "faq",
         heading: "Frequently Asked Questions About Preventive Dentistry",
         text: [
-          "Have questions about preventive dental care? You’re not alone. Here are answers to the most common questions we hear from patients in Beverly Hills — so you can feel confident and informed before your visit to Beverly Hills Dental Art Studio."
+          "Have questions about preventive dental care? You’re not alone. Here are answers to the most common questions we hear from patients in Beverly Hills — so you can feel confident and informed before your visit to Beverly Hills Dental Arts Studio."
         ],
         items: [
           {

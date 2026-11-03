@@ -6,8 +6,8 @@
 import type { Img } from "../types";
 
 export const images = {
-  logo300: { src: "/images/brand/logo-300.png", alt: "Beverly Hills Dental Art Studio", width: 300, height: 71 },
-  logo: { src: "/images/brand/logo.png", alt: "Beverly Hills Dental Art Studio", width: 1607, height: 378 },
+  logo300: { src: "/images/brand/logo-300.png", alt: "Beverly Hills Dental Arts Studio", width: 300, height: 71 },
+  logo: { src: "/images/brand/logo.png", alt: "Beverly Hills Dental Arts Studio", width: 1607, height: 378 },
   siteIcon180: { src: "/images/brand/site-icon-180.png", alt: "", width: 180, height: 180 },
   siteIcon192: { src: "/images/brand/site-icon-192.png", alt: "", width: 192, height: 192 },
   siteIcon32: { src: "/images/brand/site-icon-32.png", alt: "", width: 32, height: 32 },
@@ -45,7 +45,7 @@ export const images = {
   drDanielCharlton: { src: "/images/team/dr-daniel-charlton.webp", alt: "Dr. Daniel Charlton, general and cosmetic dentist", width: 510, height: 537 },
   drNushinShir: { src: "/images/team/dr-nushin-shir.jpg", alt: "Dr. Nushin Shir, general and cosmetic dentist", width: 690, height: 1024 },
   nicoleVazquez: { src: "/images/team/nicole-vazquez.jpg", alt: "Nicole Vazquez, dental hygienist", width: 768, height: 1024 },
-  teamPhoto: { src: "/images/team/team-photo.jpg", alt: "The Beverly Hills Dental Art Studio team", width: 1536, height: 1024 },
+  teamPhoto: { src: "/images/team/team-photo.jpg", alt: "The Beverly Hills Dental Arts Studio team", width: 1536, height: 1024 },
   thanysM: { src: "/images/team/thanys-m.jpg", alt: "Thanys M., practice professional", width: 1015, height: 1024 },
   cbctScanner: { src: "/images/technology/cbct-scanner.jpg", alt: "Cone beam CT scanner in the imaging room", width: 1920, height: 2560 },
   digitalXRayRoom: { src: "/images/technology/digital-x-ray-room.jpg", alt: "Treatment room with a dental chair and digital X-ray monitor", width: 1920, height: 2560 },

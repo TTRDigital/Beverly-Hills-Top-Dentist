@@ -82,7 +82,7 @@ export const fallbackHome: HomeContent = {
   },
   work: {
     heading: "Our Work",
-    text: "Dr. Shir and the team at Beverly Hills Dental Art Studio are here to give you a smile that looks natural, feels healthy, and is done right the first time",
+    text: "Dr. Shir and the team at Beverly Hills Dental Arts Studio are here to give you a smile that looks natural, feels healthy, and is done right the first time",
   },
   values: {
     heading: "Biological. Biomimetic. Holistic. Natural.",
@@ -120,7 +120,7 @@ export const fallbackAbout: AboutContent = {
   },
   intro: {
     heading: "Beverly Hills' Premier Dental Team",
-    text: "Welcome to Beverly Hills Dental Art Studio, where your health and your smile come first. Led by Dr. Nushin Shir, our team combines decades of experience with a biological, biomimetic approach to dentistry — treating you, not just your teeth. Every plan we create is tailored to your goals, your comfort, and your long-term well-being.",
+    text: "Welcome to Beverly Hills Dental Arts Studio, where your health and your smile come first. Led by Dr. Nushin Shir, our team combines decades of experience with a biological, biomimetic approach to dentistry — treating you, not just your teeth. Every plan we create is tailored to your goals, your comfort, and your long-term well-being.",
   },
   mission: {
     heading: "Our Mission",
@@ -153,7 +153,7 @@ export const fallbackAppointment: AppointmentContent = {
   formButton: "Request an Appointment",
   seo: {
     title: "Appointment - Beverly Hills Dental",
-    description: "Request an appointment at Beverly Hills Dental Art Studio, 416 N. Bedford Dr., Suite 105, Beverly Hills. Call (310) 274-7005 or send the form and our team will reach out.",
+    description: "Request an appointment at Beverly Hills Dental Arts Studio, 416 N. Bedford Dr., Suite 105, Beverly Hills. Call (310) 274-7005 or send the form and our team will reach out.",
   },
 };
 
