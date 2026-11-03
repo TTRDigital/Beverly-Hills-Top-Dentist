@@ -8,7 +8,7 @@ import { MIN_FILL_MS } from "@/lib/lead-options";
 import { sendLeadToTtrOs } from "@/lib/ttr-os-lead";
 
 type In = Record<string, unknown>;
-const PAGE_KEYS = new Set(["general-biomimetic", "clear-aligners", "emergency", "dental-implants", "veneers-smile-makeover", "cleaning-exam"]);
+const PAGE_KEYS = new Set(["general-biomimetic", "clear-aligners", "emergency", "dental-implants", "veneers-smile-makeover", "cleaning-exam", "teeth-whitening", "full-arch-implants", "dental-crowns", "dental-bridges", "tooth-colored-fillings", "restorative-dentistry"]);
 // Hidden fields kept with the lead: where it came from, never what it is about.
 const HIDDEN = ["page_url", "landing_page", "referrer", "campaign", "ad_group", "ad_id", "oppref", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
 
@@ -80,7 +80,7 @@ export async function POST(request: Request) {
 
   // TTR OS is the practice's record of every request (TTR-1164); the GoHighLevel webhooks in lib/ghl.ts get a copy until Kia says to stop.
   // The request counts as saved when either accepts it, so a lead is never lost to one side being down.
-  const PAGE_LABEL: Record<string, string> = { "general-biomimetic": "General and biomimetic dentistry", "clear-aligners": "Clear aligners", emergency: "Emergency dentist", "dental-implants": "Dental implants", "veneers-smile-makeover": "Veneers and smile makeovers", "cleaning-exam": "Teeth cleaning and new patient exams" };
+  const PAGE_LABEL: Record<string, string> = { "general-biomimetic": "General and biomimetic dentistry", "clear-aligners": "Clear aligners", emergency: "Emergency dentist", "dental-implants": "Dental implants", "veneers-smile-makeover": "Veneers and smile makeovers", "cleaning-exam": "Teeth cleaning and new patient exams", "teeth-whitening": "Teeth whitening", "full-arch-implants": "Full arch implants", "dental-crowns": "Dental crowns and broken tooth repair", "dental-bridges": "Dental bridges", "tooth-colored-fillings": "Tooth-colored fillings", "restorative-dentistry": "Restorative dentistry" };
   const hid = Object.fromEntries(HIDDEN.map((k) => [k, text(input, k, 300)]));
   const details = [`ChatGPT Ads landing page: ${PAGE_LABEL[pageKey]}`, hid.campaign && `campaign ${hid.campaign}`, hid.ad_group && `ad group ${hid.ad_group}`, hid.ad_id && `ad ${hid.ad_id}`, hid.oppref && `oppref ${hid.oppref}`, spamCheck !== "ok" && `check: ${spamCheck}`].filter(Boolean).join(" | ");
   const [ghl, os] = await Promise.all([
