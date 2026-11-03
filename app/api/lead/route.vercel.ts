@@ -5,6 +5,7 @@
  */
 import { deliverLead, ghlWebhooks } from "@/lib/ghl";
 import { attributionKeys, MIN_FILL_MS } from "@/lib/lead-options";
+import { sendLeadToTtrOs } from "@/lib/ttr-os-lead";
 
 type In = Record<string, unknown>;
 
@@ -97,7 +98,13 @@ export async function POST(request: Request) {
   };
   for (const key of ["page_url", "landing_page", "referrer", ...attributionKeys]) payload[key] = text(input, key, 1000);
 
-  // To every GoHighLevel webhook in lib/ghl.ts; saved when at least one accepts it.
-  if (await deliverLead(payload, "lead")) return reply(200, { ok: true, delivered: true });
+  // TTR OS is the practice's record of every request (TTR-1164); the GoHighLevel webhooks in lib/ghl.ts get a copy until Kia says to stop.
+  // The request counts as saved when either accepts it, so a lead is never lost to one side being down.
+  const [ghl, os] = await Promise.all([
+    deliverLead(payload, "lead"),
+    sendLeadToTtrOs({ name: lead.full_name, phone: lead.phone, email: lead.email, service: "Appointment request", message: lead.comment, pageUrl: text(input, "page_url", 1000), landingUrl: text(input, "landing_page", 1000) || text(input, "page_url", 1000), referrer: text(input, "referrer", 1000),
+      ip: (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim(), userAgent: request.headers.get("user-agent") ?? "" }),
+  ]);
+  if (ghl || os) return reply(200, { ok: true, delivered: true });
   return reply(502, { ok: false, error: "We could not send your request. Please call us instead." });
 }
