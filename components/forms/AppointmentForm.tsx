@@ -199,7 +199,9 @@ export function AppointmentForm({
               className="mt-0.5 h-[18px] w-[18px] shrink-0 accent-[#31794b]"
             />
             <span>
-              I agree to be contacted by {businessName} by phone, text or email about my appointment request. Message and data rates may apply. Reply STOP to opt out.
+              I agree to be contacted by {businessName} about my appointment request, by phone, text message or email. Message frequency varies. Message and data rates may apply. Reply STOP to cancel, HELP for help. Consent is not a condition of care. See the{" "}
+              <a href="/sms-terms/" target="_blank" rel="noopener noreferrer" className="font-semibold text-white underline">SMS terms</a> and{" "}
+              <a href="/privacy-policy/" target="_blank" rel="noopener noreferrer" className="font-semibold text-white underline">privacy policy</a>.
             </span>
           </label>
           {err("consent")}
