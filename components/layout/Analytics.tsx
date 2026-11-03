@@ -19,12 +19,22 @@ const TRACK_CLICKS = `document.addEventListener('click',function(e){var a=e.targ
  */
 const GOOGLE_LOADER = `(function(){window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}if(!window.gtag)window.gtag=gtag;${GA_ID ? `gtag('js',new Date());gtag('config','${GA_ID}');` : ""}var done=false;function load(){if(done)return;done=true;${GA_ID ? `var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=${GA_ID}';document.head.appendChild(s);` : ""}${GTM_ID ? `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${GTM_ID}');` : ""}}['pointerdown','keydown','scroll','touchstart'].forEach(function(e){addEventListener(e,load,{once:true,passive:true})});setTimeout(load,10000);})();`;
 
-/** Google Analytics 4 and/or Tag Manager, plus the TTR OS tracker. Nothing loads when the ids are empty. */
+/*
+ * ChatGPT Ads measurement pixel (TTR-1157; handoff of Nov 3, 2026). The pixel id is public. The small oaiq queue exists at once so a
+ * lead event is never lost, and the SDK itself loads on the same first touch, scroll, key press or 10 seconds as Google's tag, so it
+ * never competes with the first paint. Where the browser sends Global Privacy Control, measurement stays off (consent false).
+ * Only the lead_created event is sent, with no patient or form data (see AppointmentForm). Set NEXT_PUBLIC_CHATGPT_PIXEL=off to turn it off.
+ */
+const CHATGPT_PIXEL = process.env.NEXT_PUBLIC_CHATGPT_PIXEL === "off" ? "" : process.env.NEXT_PUBLIC_CHATGPT_PIXEL || "3Son8DJqAvAi4ET8SZPsD5";
+const CHATGPT_LOADER = `(function(w,d){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;if(navigator.globalPrivacyControl)q("consent",false);q("init",{pixelId:"${CHATGPT_PIXEL}"});var done=false;function load(){if(done)return;done=true;var j=d.createElement("script");j.async=true;j.src="https://bzrcdn.openai.com/sdk/oaiq.min.js";var f=d.getElementsByTagName("script")[0];f.parentNode.insertBefore(j,f)}["pointerdown","keydown","scroll","touchstart"].forEach(function(e){addEventListener(e,load,{once:true,passive:true})});setTimeout(load,10000)})(window,document);`;
+
+/** Google Analytics 4 and/or Tag Manager, the ChatGPT Ads pixel, plus the TTR OS tracker. Nothing loads when the ids are empty. */
 export function Analytics() {
   return (
     <>
       {TTR_SITE_KEY ? <script async src="https://ttr-portal.vercel.app/api/site/script" data-site={TTR_SITE_KEY} /> : null}
       {GA_ID || GTM_ID ? <script dangerouslySetInnerHTML={{ __html: GOOGLE_LOADER + TRACK_CLICKS }} /> : null}
+      {CHATGPT_PIXEL ? <script dangerouslySetInnerHTML={{ __html: CHATGPT_LOADER }} /> : null}
     </>
   );
 }

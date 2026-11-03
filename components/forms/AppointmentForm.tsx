@@ -49,6 +49,7 @@ export function AppointmentForm({
   const uid = useId();
   const formRef = useRef<HTMLFormElement>(null);
   const startedAt = useRef<number>(0);
+  const leadSent = useRef(false);
   const [values, setValues] = useState<Values>(empty);
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<Errors>({});
@@ -119,6 +120,11 @@ export function AppointmentForm({
       const params = { form: variant === "area" ? "area" : "appointment", ...(trackPage ? { page: trackPage } : {}) };
       w.gtag?.("event", "generate_lead", params);
       w.dataLayer?.push({ event: "generate_lead", ...params });
+      // ChatGPT Ads: one lead_created per accepted request, no form data (TTR-1157). Only here, after the server said yes.
+      if (!leadSent.current) {
+        leadSent.current = true;
+        (window as unknown as { oaiq?: (...args: unknown[]) => void }).oaiq?.("measure", "lead_created", { type: "customer_action" });
+      }
       router.push("/thank-you/");
     } catch {
       setStatus("error");
