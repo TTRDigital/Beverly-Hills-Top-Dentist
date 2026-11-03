@@ -3,10 +3,10 @@
  * GoHighLevel inbound webhook), with the landing page's rules: name and phone required, email optional, no symptoms or medical
  * fields, and the page key plus campaign details kept as hidden fields in the internal lead record.
  */
+import { deliverLead, ghlWebhooks } from "@/lib/ghl";
 import { MIN_FILL_MS } from "@/lib/lead-options";
 
 type In = Record<string, unknown>;
-const DEFAULT_WEBHOOK = "https://services.leadconnectorhq.com/hooks/4f5ooGf1YaKbVDMaK1ft/webhook-trigger/ce205296-0ed3-45f7-b761-409d18189c2e";
 const PAGE_KEYS = new Set(["general-biomimetic", "clear-aligners", "emergency", "dental-implants", "veneers-smile-makeover", "cleaning-exam"]);
 // Hidden fields kept with the lead: where it came from, never what it is about.
 const HIDDEN = ["page_url", "landing_page", "referrer", "campaign", "ad_group", "ad_id", "oppref", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
@@ -59,8 +59,8 @@ export async function POST(request: Request) {
   if (trapFilled && tooFast) return reply(200, { ok: true });
   const spamCheck = trapFilled ? "suspect: hidden field filled" : tooFast ? `suspect: sent in ${elapsed} ms` : "ok";
 
-  const webhook = (process.env.GHL_WEBHOOK_URL ?? "").trim().replace(/^["']|["']$/g, "") || DEFAULT_WEBHOOK;
-  if (!webhook.startsWith("https://")) return reply(503, { ok: false, error: "The form is not connected yet. Please call us instead." });
+  if (!ghlWebhooks().length) return reply(503, { ok: false, error: "The form is not connected yet. Please call us instead." });
+
 
   const digits = phoneIn.replace(/\D/g, "");
   const phone = digits.length === 10 ? `+1${digits}` : digits.length === 11 && digits[0] === "1" ? `+${digits}` : `${phoneIn.startsWith("+") ? "+" : ""}${digits}`;
@@ -77,18 +77,7 @@ export async function POST(request: Request) {
   };
   for (const k of HIDDEN) payload[k] = text(input, k, 1000);
 
-  for (let attempt = 0; attempt < 2; attempt++) {
-    let status = 0;
-    try {
-      const res = await fetch(webhook, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(payload), signal: AbortSignal.timeout(8000) });
-      status = res.status;
-      if (res.ok) return reply(200, { ok: true, delivered: true });
-      console.error(`[lp-lead] GoHighLevel webhook answered ${status}`);
-    } catch (error) {
-      console.error("[lp-lead] GoHighLevel webhook failed", error);
-    }
-    if (status !== 0 && status !== 429 && status < 500) break;
-    await new Promise((r) => setTimeout(r, 600));
-  }
+  // To every GoHighLevel webhook in lib/ghl.ts; saved when at least one accepts it.
+  if (await deliverLead(payload, "lp-lead")) return reply(200, { ok: true, delivered: true });
   return reply(502, { ok: false, error: "We could not send your request. Please call us instead." });
 }

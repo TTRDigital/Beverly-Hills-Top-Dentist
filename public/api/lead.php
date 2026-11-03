@@ -4,9 +4,9 @@
  * Validates the request like the form does, filters spam and posts it as flat
  * JSON to the GoHighLevel inbound webhook.
  *
- * The webhook URL lives in lead-config.php (next to public_html or in this
+ * The webhook URLs live in lead-config.php (next to public_html or in this
  * folder; blocked from the web by .htaccess), returning
- *   ['webhook_url' => 'https://services.leadconnectorhq.com/hooks/...']
+ *   ['webhook_urls' => ['https://services.leadconnectorhq.com/hooks/...', ...]]
  * The deploy workflow writes it when the GHL_WEBHOOK_URL secret is set.
  * Until then, requests are accepted (the visitor sees the thank-you page) but
  * NOT forwarded anywhere, and the server error log says so.
@@ -96,14 +96,18 @@ foreach ([dirname(__DIR__, 2) . '/lead-config.php', __DIR__ . '/lead-config.php'
         break;
     }
 }
-$webhook = trim((string) ($config['webhook_url'] ?? ''), " \t\n\r\0\x0B\"'");
-if ($webhook === '') {
-    error_log('[lead] No GoHighLevel webhook configured (lead-config.php): request accepted but NOT sent.');
-    reply(200, ['ok' => true, 'delivered' => false]);
+// Every lead goes to each webhook listed (webhook_urls, or a comma-separated webhook_url); see lib/ghl.ts.
+$list = $config['webhook_urls'] ?? preg_split('/[\s,]+/', (string) ($config['webhook_url'] ?? ''));
+$webhooks = [];
+foreach ((array) $list as $url) {
+    $url = trim((string) $url, " \t\n\r\0\x0B\"'");
+    // https only; plain http is allowed for a local test webhook (localhost).
+    if (preg_match('#^https://#', $url) || preg_match('#^http://(localhost|127\.0\.0\.1)(:\d+)?/#', $url)) $webhooks[] = $url;
+    elseif ($url !== '') error_log('[lead] Skipped a webhook URL that is not https. Check lead-config.php.');
 }
-// https only; plain http is allowed for a local test webhook (localhost).
-if (!preg_match('#^https://#', $webhook) && !preg_match('#^http://(localhost|127\.0\.0\.1)(:\d+)?/#', $webhook)) {
-    error_log('[lead] GoHighLevel webhook URL is not https: request accepted but NOT sent. Check lead-config.php.');
+$webhooks = array_values(array_unique($webhooks));
+if (!$webhooks) {
+    error_log('[lead] No GoHighLevel webhook configured (lead-config.php): request accepted but NOT sent.');
     reply(200, ['ok' => true, 'delivered' => false]);
 }
 
@@ -135,26 +139,34 @@ foreach (['page_url', 'landing_page', 'referrer', 'utm_source', 'utm_medium', 'u
     $payload[$key] = text($in, $key, 1000);
 }
 
-// One retry for rate limits, server errors and network failures.
+// Each webhook gets one retry for rate limits, server errors and network failures.
+// The lead is saved when at least one webhook accepts it.
 $body = json_encode($payload);
-for ($attempt = 0; $attempt < 2; $attempt++) {
-    $ch = curl_init($webhook);
-    curl_setopt_array($ch, [
-        CURLOPT_POST => true,
-        CURLOPT_POSTFIELDS => $body,
-        CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'Accept: application/json'],
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_TIMEOUT => 8,
-    ]);
-    $res = curl_exec($ch);
-    $status = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
-    curl_close($ch);
-    if ($status >= 200 && $status < 300) {
-        reply(200, ['ok' => true, 'delivered' => true]);
+$delivered = false;
+foreach ($webhooks as $webhook) {
+    for ($attempt = 0; $attempt < 2; $attempt++) {
+        $ch = curl_init($webhook);
+        curl_setopt_array($ch, [
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $body,
+            CURLOPT_HTTPHEADER => ['Content-Type: application/json', 'Accept: application/json'],
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 8,
+        ]);
+        $res = curl_exec($ch);
+        $status = (int) curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
+        curl_close($ch);
+        if ($status >= 200 && $status < 300) {
+            $delivered = true;
+            break;
+        }
+        error_log('[lead] GoHighLevel webhook ' . substr($webhook, -20) . " answered {$status}: " . substr((string) $res, 0, 300));
+        if ($status !== 0 && $status !== 429 && $status < 500) break;
+        usleep(600000);
     }
-    error_log("[lead] GoHighLevel webhook answered {$status}: " . substr((string) $res, 0, 300));
-    if ($status !== 0 && $status !== 429 && $status < 500) break;
-    usleep(600000);
+}
+if ($delivered) {
+    reply(200, ['ok' => true, 'delivered' => true]);
 }
 
 // Nothing saved the request: tell the visitor so they can call instead.

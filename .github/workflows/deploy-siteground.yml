@@ -6,7 +6,7 @@
 #   SG_FTP_SERVER    FTP host from SiteGround Site Tools > Site > FTP Accounts
 #   SG_FTP_USERNAME  FTP account whose folder is the site's public_html
 #   SG_FTP_PASSWORD
-#   GHL_WEBHOOK_URL  optional: overrides the GoHighLevel webhook set below
+#   GHL_WEBHOOK_URL  optional: replaces the GoHighLevel webhook list set below (comma-separated)
 # Optional repository variables (Settings > Secrets and variables > Actions > Variables):
 #   GHL_CHAT_WIDGET_ID, GA_ID, GTM_ID
 name: Deploy to SiteGround
@@ -35,7 +35,8 @@ jobs:
       # The appointment form's GoHighLevel inbound webhook. It is written only into
       # api/lead-config.php on SiteGround (never served, see .htaccess), not into
       # public/, because hosts without PHP (e.g. Vercel previews) serve .php as text.
-      GHL_WEBHOOK_URL: ${{ secrets.GHL_WEBHOOK_URL || 'https://services.leadconnectorhq.com/hooks/4f5ooGf1YaKbVDMaK1ft/webhook-trigger/ce205296-0ed3-45f7-b761-409d18189c2e' }}
+      # Same list as lib/ghl.ts: every lead goes to each of these (comma-separated). A GHL_WEBHOOK_URL secret replaces the list.
+      GHL_WEBHOOK_URL: ${{ secrets.GHL_WEBHOOK_URL || 'https://services.leadconnectorhq.com/hooks/4f5ooGf1YaKbVDMaK1ft/webhook-trigger/ce205296-0ed3-45f7-b761-409d18189c2e,https://services.leadconnectorhq.com/hooks/4f5ooGf1YaKbVDMaK1ft/webhook-trigger/LBQDldmGnUwLcvmrXwcl' }}
       NEXT_PUBLIC_GHL_CHAT_WIDGET_ID: ${{ vars.GHL_CHAT_WIDGET_ID }}
       NEXT_PUBLIC_GA_ID: ${{ vars.GA_ID }}
       NEXT_PUBLIC_GTM_ID: ${{ vars.GTM_ID }}
@@ -64,7 +65,7 @@ jobs:
       - name: Write form settings
         if: env.GHL_WEBHOOK_URL != ''
         run: |
-          php -r 'file_put_contents("out/api/lead-config.php", "<?php\nreturn " . var_export(["webhook_url" => getenv("GHL_WEBHOOK_URL")], true) . ";\n");'
+          php -r 'file_put_contents("out/api/lead-config.php", "<?php\nreturn " . var_export(["webhook_urls" => array_values(array_filter(preg_split("/[\\s,]+/", getenv("GHL_WEBHOOK_URL"))))], true) . ";\n");'
 
       - name: Upload to SiteGround
         # Skipped (build check only) until the FTP secrets are added.

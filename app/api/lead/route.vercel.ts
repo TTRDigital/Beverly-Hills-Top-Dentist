@@ -1,14 +1,13 @@
 /*
  * Appointment form handler on Vercel (Vercel has no PHP). It does what public/api/lead.php does on SiteGround: validates
  * the request like the form, filters spam, and posts the lead as flat JSON to the GoHighLevel inbound webhook. Keep the
- * two in sync. The webhook URL comes from GHL_WEBHOOK_URL (Vercel > Project > Settings > Environment Variables); without
- * it, the same inbound webhook the SiteGround deploy uses (.github/workflows/deploy-siteground.yml) is used.
+ * two in sync. The webhooks are listed in lib/ghl.ts (a GHL_WEBHOOK_URL environment variable on Vercel adds more).
  */
+import { deliverLead, ghlWebhooks } from "@/lib/ghl";
 import { attributionKeys, MIN_FILL_MS } from "@/lib/lead-options";
 
 type In = Record<string, unknown>;
 
-const DEFAULT_WEBHOOK = "https://services.leadconnectorhq.com/hooks/4f5ooGf1YaKbVDMaK1ft/webhook-trigger/ce205296-0ed3-45f7-b761-409d18189c2e";
 
 const reply = (status: number, body: Record<string, unknown>) =>
   Response.json(body, { status, headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } });
@@ -73,11 +72,7 @@ export async function POST(request: Request) {
   if (trapFilled && tooFast) return reply(200, { ok: true });
   const spamCheck = trapFilled ? "suspect: hidden field filled" : tooFast ? `suspect: sent in ${elapsed} ms` : "ok";
 
-  const webhook = (process.env.GHL_WEBHOOK_URL ?? "").trim().replace(/^["']|["']$/g, "") || DEFAULT_WEBHOOK;
-  if (!webhook.startsWith("https://")) {
-    console.error("[lead] GHL_WEBHOOK_URL is not https: request refused.");
-    return reply(503, { ok: false, error: "The form is not connected yet. Please call us instead." });
-  }
+  if (!ghlWebhooks().length) return reply(503, { ok: false, error: "The form is not connected yet. Please call us instead." });
 
   // E.164 for US numbers.
   const digits = lead.phone.replace(/\D/g, "");
@@ -102,24 +97,7 @@ export async function POST(request: Request) {
   };
   for (const key of ["page_url", "landing_page", "referrer", ...attributionKeys]) payload[key] = text(input, key, 1000);
 
-  // One retry for rate limits, server errors and network failures.
-  for (let attempt = 0; attempt < 2; attempt++) {
-    let status = 0;
-    try {
-      const res = await fetch(webhook, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payload),
-        signal: AbortSignal.timeout(8000),
-      });
-      status = res.status;
-      if (res.ok) return reply(200, { ok: true, delivered: true });
-      console.error(`[lead] GoHighLevel webhook answered ${status}`);
-    } catch (error) {
-      console.error("[lead] GoHighLevel webhook failed", error);
-    }
-    if (status !== 0 && status !== 429 && status < 500) break;
-    await new Promise((r) => setTimeout(r, 600));
-  }
+  // To every GoHighLevel webhook in lib/ghl.ts; saved when at least one accepts it.
+  if (await deliverLead(payload, "lead")) return reply(200, { ok: true, delivered: true });
   return reply(502, { ok: false, error: "We could not send your request. Please call us instead." });
 }
