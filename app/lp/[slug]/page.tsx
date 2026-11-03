@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { RequestButton, RequestModal } from "@/components/lp/RequestModal";
-import { LP_PAGES, PRACTICE, lpBySlug, type LpSection } from "@/lib/lp-pages";
+import { BAND, BIO, LP_PAGES, PILLARS, PRACTICE, STRIP, TECH, TECH_INTRO, WORK, lpBySlug } from "@/lib/lp-pages";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => LP_PAGES.map((p) => ({ slug: p.slug }));
@@ -12,53 +12,32 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return p ? { title: { absolute: p.title }, robots: { index: false, follow: false } } : {};
 }
 
-// Width of one step on desktop, so the row always fills evenly (3, 4 or 5 steps, 32px gaps).
-const STEP_W: Record<number, string> = { 2: "lg:w-[calc((100%-32px)/2)]", 3: "lg:w-[calc((100%-64px)/3)]", 4: "lg:w-[calc((100%-96px)/4)]", 5: "lg:w-[calc((100%-128px)/5)]" };
-
 const btn = "inline-flex min-h-[50px] items-center justify-center rounded-[3px] px-7 text-[16px] font-semibold transition-colors";
 const onDark = { solid: `${btn} bg-white text-brand hover:bg-cream`, ghost: `${btn} border-2 border-white text-white hover:bg-white/15` };
+const onLight = { solid: `${btn} bg-brand text-white hover:bg-brand-2`, ghost: `${btn} border-2 border-brand text-brand hover:bg-brand hover:text-white` };
+// Width of one step on desktop, so the row always fills evenly (32px gaps).
+const STEP_W: Record<number, string> = { 2: "lg:w-[calc((100%-32px)/2)]", 3: "lg:w-[calc((100%-64px)/3)]", 4: "lg:w-[calc((100%-96px)/4)]", 5: "lg:w-[calc((100%-128px)/5)]" };
 
-function Heading({ children, center }: { children: React.ReactNode; center?: boolean }) {
-  return <h2 className={`text-[26px] font-semibold leading-tight text-ink sm:text-[32px] ${center ? "text-center" : ""}`}>{children}</h2>;
-}
-
-function Split({ s, flip, tone }: { s: Extract<LpSection, { kind: "text" | "list" | "bio" }>; flip: boolean; tone: string }) {
-  return (
-    <section className={tone}>
-      <div className={`container-x grid items-center gap-8 py-14 sm:py-20 ${s.image ? "lg:grid-cols-2 lg:gap-16" : "max-w-[820px] text-center"}`}>
-        <div className={flip && s.image ? "lg:order-2" : ""}>
-          <Heading>{s.heading}</Heading>
-          {s.kind === "list" ? (
-            <>
-              {s.intro ? <p className="mt-4 text-[17px] leading-relaxed text-body">{s.intro}</p> : null}
-              <ul className={`mt-5 space-y-3 text-[17px] text-body ${s.image ? "" : "mx-auto max-w-[560px] text-left"}`}>
-                {s.items.map((t) => <li key={t} className="flex gap-3"><span aria-hidden="true" className="mt-[10px] h-2 w-2 shrink-0 rounded-full bg-brand" />{t}</li>)}
-              </ul>
-            </>
-          ) : (
-            <div className="mt-4 space-y-4 text-[17px] leading-relaxed text-body">{s.paragraphs.map((t) => <p key={t}>{t}</p>)}</div>
-          )}
-        </div>
-        {s.image ? (
-          <div className={`relative aspect-[4/3] overflow-hidden rounded-[6px] lg:aspect-[4/4.2] ${flip ? "lg:order-1" : ""}`}>
-            <Image src={s.image.src} alt={s.image.alt} fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" />
-          </div>
-        ) : null}
-      </div>
-    </section>
-  );
+function H2({ children, center, light }: { children: React.ReactNode; center?: boolean; light?: boolean }) {
+  return <h2 className={`text-[28px] font-semibold leading-tight sm:text-[36px] ${light ? "text-white" : "text-ink"} ${center ? "text-center" : ""}`}>{children}</h2>;
 }
 
 export default async function LandingPage({ params }: { params: Promise<{ slug: string }> }) {
   const p = lpBySlug((await params).slug);
   if (!p) notFound();
   const call = p.primary.target === "call";
-  const main = p.sections.filter((s) => s.kind !== "steps");
-  const steps = p.sections.filter((s): s is Extract<LpSection, { kind: "steps" }> => s.kind === "steps");
+  const requestLabel = call ? "Request a Callback" : p.primary.label;
   const callBtn = (where: string, cls: string, label?: string) => (
     <a href={PRACTICE.tel} data-track="click_to_call" data-track-page={`lp-${p.key}-${where}`} className={cls}>{label ?? `Call ${PRACTICE.phone}`}</a>
   );
-  const requestLabel = call ? "Request a Callback" : p.primary.label;
+  const actions = (where: string, dark: boolean) => {
+    const c = dark ? onDark : onLight;
+    return call ? (
+      <>{callBtn(where, c.solid, p.primary.label)}<RequestButton className={c.ghost}>{requestLabel}</RequestButton></>
+    ) : (
+      <><RequestButton className={c.solid}>{requestLabel}</RequestButton>{callBtn(where, c.ghost)}</>
+    );
+  };
 
   return (
     <>
@@ -69,59 +48,156 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
       ) : null}
 
       {/* Hero: the practice's own photo, the headline and the two actions */}
-      <section className="relative isolate flex min-h-[560px] items-end overflow-hidden bg-night sm:min-h-[640px]">
+      <section className="relative isolate flex min-h-[560px] items-end overflow-hidden bg-night sm:min-h-[660px]">
         <Image src={p.hero.src} alt={p.hero.alt} fill priority sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: p.hero.pos ?? "50% 50%" }} />
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/45 to-black/10 sm:bg-gradient-to-r sm:from-black/75 sm:via-black/40 sm:to-black/5" />
         <div className="container-x pb-12 pt-32 sm:pb-20">
           <div className="max-w-[680px]">
             <h1 className="lp-rise text-[38px] font-semibold leading-[1.08] text-white sm:text-[56px]">{p.headline}</h1>
             <p className="lp-rise lp-rise-2 mt-5 max-w-[580px] text-[18px] leading-relaxed text-white/90 sm:text-[20px]">{p.support}</p>
-            <div className="lp-rise lp-rise-3 mt-8 flex flex-col gap-3 sm:flex-row">
-              {call ? (
-                <>{callBtn("hero", onDark.solid, p.primary.label)}<RequestButton className={onDark.ghost}>{requestLabel}</RequestButton></>
-              ) : (
-                <><RequestButton className={onDark.solid}>{requestLabel}</RequestButton>{callBtn("hero", onDark.ghost)}</>
-              )}
-            </div>
+            <div className="lp-rise lp-rise-3 mt-8 flex flex-col gap-3 sm:flex-row">{actions("hero", true)}</div>
             {p.availability ? <p className="mt-4 max-w-[520px] text-[14px] leading-snug text-white/80">{p.availability}</p> : null}
           </div>
         </div>
       </section>
 
-      {/* Three short points */}
+      {/* Three quick facts */}
+      <section className="bg-brand text-white">
+        <ul className="container-x grid gap-3 py-5 text-center text-[15px] font-semibold sm:grid-cols-3 sm:gap-6 sm:py-6 sm:text-[16px]">
+          {STRIP.map((t) => <li key={t}>{t}</li>)}
+        </ul>
+      </section>
+
+      {/* The practice's approach, as on the homepage */}
       <section className="bg-white">
-        <div className="container-x grid gap-8 py-12 sm:grid-cols-3 sm:gap-10 sm:py-16">
-          {p.highlights.map((h) => (
-            <div key={h.title} className="text-center sm:px-2">
-              <p className="text-[20px] font-semibold text-ink">{h.title}</p>
-              <p className="mx-auto mt-2 max-w-[300px] text-[16px] leading-relaxed text-body">{h.text}</p>
-            </div>
-          ))}
+        <div className="container-x py-16 sm:py-24">
+          <div className="mx-auto max-w-[760px] text-center">
+            <H2>{PILLARS.heading}</H2>
+            <p className="mt-4 text-[18px] leading-relaxed text-body">{PILLARS.text}</p>
+          </div>
+          <div className="mt-12 grid gap-6 md:grid-cols-3 md:gap-8">
+            {PILLARS.items.map((it, n) => (
+              <div key={it.title} className="rounded-[6px] border border-line bg-paper p-7 text-center sm:p-8">
+                <span aria-hidden="true" className="text-[15px] font-semibold tracking-[0.18em] text-brand">0{n + 1}</span>
+                <h3 className="mt-2 text-[24px] font-semibold text-ink">{it.title}</h3>
+                <p className="mt-3 text-[16px] leading-relaxed text-body">{it.text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {main.map((s, i) => <Split key={s.heading} s={s as Extract<LpSection, { kind: "text" | "list" | "bio" }>} flip={i % 2 === 1} tone={i % 2 === 0 ? "bg-paper" : "bg-white"} />)}
+      {/* This page's own topic */}
+      <section className="bg-paper">
+        <div className="container-x grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <H2>{p.focus.heading}</H2>
+            {p.focus.intro ? <p className="mt-4 text-[18px] leading-relaxed text-body">{p.focus.intro}</p> : null}
+            {p.focus.items ? (
+              <ul className="mt-5 space-y-3 text-[17px] text-body">
+                {p.focus.items.map((t) => <li key={t} className="flex gap-3"><span aria-hidden="true" className="mt-[10px] h-2 w-2 shrink-0 rounded-full bg-brand" />{t}</li>)}
+              </ul>
+            ) : null}
+            {p.focus.paragraphs ? <div className="mt-4 space-y-4 text-[17px] leading-relaxed text-body">{p.focus.paragraphs.map((t) => <p key={t}>{t}</p>)}</div> : null}
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">{actions("focus", false)}</div>
+          </div>
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[6px] lg:aspect-[4/4.4]">
+            <Image src={p.focus.image.src} alt={p.focus.image.alt} fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" />
+          </div>
+        </div>
+      </section>
 
-      {steps.map((s) => (
-        <section key={s.heading} className="bg-header">
-          <div className="container-x py-14 sm:py-20">
-            <Heading center>{s.heading}</Heading>
-            <ol className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-10">
-              {s.items.map((t, n) => (
-                <li key={t.title} className={`w-full text-center sm:w-[calc(50%-16px)] ${STEP_W[s.items.length] ?? "lg:w-[calc((100%-96px)/4)]"}`}>
-                  <span aria-hidden="true" className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border-2 border-brand text-[18px] font-semibold text-brand">{n + 1}</span>
-                  <p className="mt-4 text-[19px] font-semibold text-ink">{t.title}</p>
-                  <p className="mx-auto mt-1.5 max-w-[240px] text-[16px] leading-relaxed text-body">{t.text}</p>
-                </li>
+      {/* Full-width photo band, like the homepage */}
+      <section className="relative isolate overflow-hidden bg-night">
+        <Image src={BAND.image.src} alt={BAND.image.alt} fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: "50% 58%" }} />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
+        <div className="container-x flex min-h-[420px] items-end py-14 sm:min-h-[520px] sm:py-20">
+          <div className="max-w-[640px]">
+            <H2 light>{BAND.heading}</H2>
+            <p className="mt-4 text-[18px] leading-relaxed text-white/90">{BAND.text}</p>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">{actions("band", true)}</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Technology */}
+      <section className="bg-white">
+        <div className="container-x py-16 sm:py-24">
+          <div className="mx-auto max-w-[760px] text-center">
+            <H2>{TECH_INTRO.heading}</H2>
+            <p className="mt-4 text-[18px] leading-relaxed text-body">{TECH_INTRO.text}</p>
+          </div>
+          <div className={`mt-12 grid gap-6 sm:grid-cols-2 ${p.tech.length === 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
+            {p.tech.map((k) => (
+              <div key={k} className="overflow-hidden rounded-[6px] border border-line bg-paper">
+                <div className="relative aspect-[4/3]">
+                  <Image src={TECH[k].image.src} alt={TECH[k].image.alt} fill sizes="(min-width: 1024px) 300px, (min-width: 640px) 45vw, 100vw" className="object-cover" />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-[20px] font-semibold text-ink">{TECH[k].title}</h3>
+                  <p className="mt-2 text-[16px] leading-relaxed text-body">{TECH[k].text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Dr. Shir */}
+      <section className="bg-header">
+        <div className="container-x grid items-center gap-10 py-16 sm:py-24 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-[6px] lg:max-w-none">
+            <Image src={BIO.image.src} alt={BIO.image.alt} fill sizes="(min-width: 1024px) 460px, 90vw" className="object-cover" style={{ objectPosition: "50% 20%" }} />
+          </div>
+          <div>
+            <H2>{BIO.heading}</H2>
+            <div className="mt-5 space-y-4 text-[18px] leading-relaxed text-body">{BIO.paragraphs.map((t) => <p key={t}>{t}</p>)}</div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">{actions("bio", false)}</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Process */}
+      <section className="bg-white">
+        <div className="container-x py-16 sm:py-24">
+          <div className="mx-auto max-w-[760px] text-center">
+            <H2>{p.steps.heading}</H2>
+            {p.steps.intro ? <p className="mt-4 text-[18px] leading-relaxed text-body">{p.steps.intro}</p> : null}
+          </div>
+          <ol className="mt-12 flex flex-wrap justify-center gap-x-8 gap-y-10">
+            {p.steps.items.map((t, n) => (
+              <li key={t.title} className={`w-full text-center sm:w-[calc(50%-16px)] ${STEP_W[p.steps.items.length] ?? "lg:w-[calc((100%-96px)/4)]"}`}>
+                <span aria-hidden="true" className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-brand text-[19px] font-semibold text-white">{n + 1}</span>
+                <p className="mt-4 text-[20px] font-semibold text-ink">{t.title}</p>
+                <p className="mx-auto mt-2 max-w-[300px] text-[16px] leading-relaxed text-body">{t.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Our work */}
+      {p.showWork ? (
+        <section className="bg-paper">
+          <div className="container-x py-16 sm:py-24">
+            <div className="mx-auto max-w-[760px] text-center">
+              <H2>{WORK.heading}</H2>
+              <p className="mt-4 text-[17px] leading-relaxed text-body">{WORK.text}</p>
+            </div>
+            <div className="mt-12 grid gap-5 sm:grid-cols-3">
+              {WORK.images.map((im, i) => (
+                <div key={im.src} className="relative aspect-square overflow-hidden rounded-[6px] border border-line">
+                  <Image src={im.src} alt={`${im.alt} (${i + 1})`} fill sizes="(min-width: 640px) 380px, 100vw" className="object-cover" />
+                </div>
               ))}
-            </ol>
+            </div>
           </div>
         </section>
-      ))}
+      ) : null}
 
       <section className="bg-white">
-        <div className="container-x max-w-[820px] py-14 sm:py-20">
-          <Heading center>Questions, answered</Heading>
+        <div className="container-x max-w-[820px] py-16 sm:py-24">
+          <H2 center>Questions, answered</H2>
           <div className="mt-8 divide-y divide-line border-y border-line">
             {p.faqs.map((f) => (
               <details key={f.q} className="group py-5">
@@ -138,9 +214,9 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
 
       {/* Visit */}
       <section className="bg-paper">
-        <div className="container-x grid gap-10 py-14 sm:py-20 md:grid-cols-2">
+        <div className="container-x grid gap-10 py-16 sm:py-20 md:grid-cols-2">
           <div>
-            <Heading>Visit us</Heading>
+            <H2>Visit us</H2>
             <p className="mt-4 text-[17px] leading-relaxed text-body"><span className="font-semibold text-ink">{PRACTICE.name}</span><br />{PRACTICE.doctor}<br />{PRACTICE.address}</p>
             <p className="mt-3"><a href={PRACTICE.map} className="font-semibold text-brand underline" target="_blank" rel="noopener noreferrer">Open in Maps<span className="sr-only"> (opens in a new tab)</span></a></p>
             <p className="mt-2"><a href={PRACTICE.tel} data-track="click_to_call" data-track-page={`lp-${p.key}-visit`} className="font-semibold text-brand underline">{PRACTICE.phone}</a></p>
@@ -161,15 +237,9 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
         <Image src="/images/office/hallway-wide.jpg" alt="" fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: "40% 55%" }} />
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black/60" />
         <div className="container-x max-w-[820px] py-16 text-center sm:py-24">
-          <h2 className="text-[28px] font-semibold leading-tight text-white sm:text-[38px]">{p.closing.heading}</h2>
+          <h2 className="text-[30px] font-semibold leading-tight text-white sm:text-[40px]">{p.closing.heading}</h2>
           <p className="mx-auto mt-3 max-w-[560px] text-[17px] text-white/90">{p.closing.text}</p>
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-            {call ? (
-              <>{callBtn("end", onDark.solid, p.primary.label)}<RequestButton className={onDark.ghost}>{requestLabel}</RequestButton></>
-            ) : (
-              <><RequestButton className={onDark.solid}>{requestLabel}</RequestButton>{callBtn("end", onDark.ghost)}</>
-            )}
-          </div>
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">{actions("end", true)}</div>
         </div>
       </section>
 
