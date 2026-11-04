@@ -6,9 +6,11 @@
 import { deliverLead, ghlWebhooks } from "@/lib/ghl";
 import { MIN_FILL_MS } from "@/lib/lead-options";
 import { sendLeadToTtrOs } from "@/lib/ttr-os-lead";
+import { after } from "next/server";
+import { cookieOf, leadSource, sendLeadEvent } from "@/lib/ads-capi";
 
 type In = Record<string, unknown>;
-const PAGE_KEYS = new Set(["general-biomimetic", "clear-aligners", "emergency", "dental-implants", "veneers-smile-makeover", "cleaning-exam", "teeth-whitening", "full-arch-implants", "dental-crowns", "dental-bridges", "tooth-colored-fillings", "restorative-dentistry"]);
+const PAGE_KEYS = new Set(["general-biomimetic", "clear-aligners", "emergency", "dental-implants", "veneers-smile-makeover", "cleaning-exam", "teeth-whitening", "full-arch-implants", "dental-crowns", "dental-bridges", "tooth-colored-fillings", "restorative-dentistry", "toothache", "broken-tooth", "new-patient", "best-dentist", "dentist-near-me"]);
 // Hidden fields kept with the lead: where it came from, never what it is about.
 const HIDDEN = ["page_url", "landing_page", "referrer", "campaign", "ad_group", "ad_id", "oppref", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"];
 
@@ -77,10 +79,13 @@ export async function POST(request: Request) {
     consent: true, tags, spam_check: spamCheck,
   };
   for (const k of HIDDEN) payload[k] = text(input, k, 1000);
+  payload.lead_source = leadSource(text(input, "utm_source", 100), text(input, "referrer", 500));
+  payload.lead_id = text(input, "lead_id", 80);
+  payload.event_id = text(input, "event_id", 100);
 
   // TTR OS is the practice's record of every request (TTR-1164); the GoHighLevel webhooks in lib/ghl.ts get a copy until Kia says to stop.
   // The request counts as saved when either accepts it, so a lead is never lost to one side being down.
-  const PAGE_LABEL: Record<string, string> = { "general-biomimetic": "General and biomimetic dentistry", "clear-aligners": "Clear aligners", emergency: "Emergency dentist", "dental-implants": "Dental implants", "veneers-smile-makeover": "Veneers and smile makeovers", "cleaning-exam": "Teeth cleaning and new patient exams", "teeth-whitening": "Teeth whitening", "full-arch-implants": "Full arch implants", "dental-crowns": "Dental crowns and broken tooth repair", "dental-bridges": "Dental bridges", "tooth-colored-fillings": "Tooth-colored fillings", "restorative-dentistry": "Restorative dentistry" };
+  const PAGE_LABEL: Record<string, string> = { "general-biomimetic": "General and biomimetic dentistry", "clear-aligners": "Clear aligners", emergency: "Emergency dentist", "dental-implants": "Dental implants", "veneers-smile-makeover": "Veneers and smile makeovers", "cleaning-exam": "Teeth cleaning and new patient exams", "teeth-whitening": "Teeth whitening", "full-arch-implants": "Full arch implants", "dental-crowns": "Dental crowns and broken tooth repair", "dental-bridges": "Dental bridges", "tooth-colored-fillings": "Tooth-colored fillings", "restorative-dentistry": "Restorative dentistry", toothache: "Toothache and urgent care", "broken-tooth": "Broken tooth repair", "new-patient": "New patient visit", "best-dentist": "Dentist consultation", "dentist-near-me": "Dentist near me" };
   const hid = Object.fromEntries(HIDDEN.map((k) => [k, text(input, k, 300)]));
   const details = [`ChatGPT Ads landing page: ${PAGE_LABEL[pageKey]}`, hid.campaign && `campaign ${hid.campaign}`, hid.ad_group && `ad group ${hid.ad_group}`, hid.ad_id && `ad ${hid.ad_id}`, hid.oppref && `oppref ${hid.oppref}`, spamCheck !== "ok" && `check: ${spamCheck}`].filter(Boolean).join(" | ");
   const [ghl, os] = await Promise.all([
@@ -88,6 +93,22 @@ export async function POST(request: Request) {
     sendLeadToTtrOs({ name, phone: phoneIn, email, service: PAGE_LABEL[pageKey], message: details, pageUrl: text(input, "page_url", 1000), landingUrl: text(input, "page_url", 1000), referrer: text(input, "referrer", 1000),
       ip: (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim(), userAgent: request.headers.get("user-agent") ?? "" }),
   ]);
-  if (ghl || os) return reply(200, { ok: true, delivered: true });
+  if (ghl || os) {
+    // The same lead_created event goes to OpenAI from the server, with the id the browser used (counted once). Skipped without the key,
+    // for test leads and for Global Privacy Control; a failure is logged and never changes the visitor's answer.
+    const eventId = text(input, "event_id", 100), leadId = text(input, "lead_id", 80);
+    if (/^[A-Za-z0-9_-]{8,100}$/.test(eventId) && /^[A-Za-z0-9_-]{8,80}$/.test(leadId)) {
+      const cookies = request.headers.get("cookie");
+      const hdr = (k: string) => request.headers.get(k) ?? "";
+      after(async () => {
+        await sendLeadEvent({
+          eventId, leadId, name: name, email: email, phone: phoneIn, sourceUrl: text(input, "page_url", 1000) || "https://beverlyhillstopdentist.com/",
+          ip: hdr("x-forwarded-for").split(",")[0].trim(), userAgent: hdr("user-agent"),
+          oppref: text(input, "oppref", 300) || cookieOf(cookies, "__oppref"), obref: cookieOf(cookies, "__obref"), gpc: hdr("sec-gpc") === "1",
+        });
+      });
+    }
+    return reply(200, { ok: true, delivered: true });
+  }
   return reply(502, { ok: false, error: "We could not send your request. Please call us instead." });
 }

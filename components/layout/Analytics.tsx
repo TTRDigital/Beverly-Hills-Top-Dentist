@@ -13,6 +13,14 @@ const TTR_SITE_KEY = process.env.NEXT_PUBLIC_TTR_SITE_KEY === "off" ? "" : proce
 const TRACK_CLICKS = `document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-track]');if(!a)return;var n=a.getAttribute('data-track'),p={link_url:a.href||''},pg=a.getAttribute('data-track-page');if(pg)p.page=pg;if(window.gtag)window.gtag('event',n,p);else(window.dataLayer=window.dataLayer||[]).push(Object.assign({event:n},p))});`;
 
 /*
+ * Phone calls (TTR-1186): the first tap on any tel: link in a page view is one conversion. GA4 and the dataLayer get phone_call_click
+ * (page and where on the page), and the ChatGPT Ads pixel gets a custom event of the same name with a unique event_id (OpenAI has no
+ * standard call event; the matching conversion is created in Ads Manager). No number or personal data is sent. Global Privacy Control
+ * switches the ad event off through the pixel's consent.
+ */
+const TRACK_CALLS = `(function(){var fired=false;document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href^="tel:"]');if(!a||fired)return;fired=true;var loc=a.getAttribute('data-track-page')||'';var id='call_'+Date.now().toString(36)+Math.random().toString(36).slice(2,8);var p={page:location.pathname,link_location:loc};if(window.gtag)window.gtag('event','phone_call_click',p);(window.dataLayer=window.dataLayer||[]).push({event:'phone_call_click',page:location.pathname,link_location:loc});if(window.oaiq)window.oaiq('measure','custom',{type:'custom'},{custom_event_name:'phone_call_click',event_id:id})},true)})();`;
+
+/*
  * Google's scripts load after the visitor's first touch, scroll or key press, or after 10 seconds, so they never compete
  * with the first paint (Lighthouse Oct 22: the tag blocked the page for 1.4 s on phones). Events sent before that queue
  * in dataLayer and go out once the tag is in. Nothing loads when the ids are empty.
@@ -34,7 +42,7 @@ export function Analytics() {
     <>
       {TTR_SITE_KEY ? <script async src="https://ttr-portal.vercel.app/api/site/script" data-site={TTR_SITE_KEY} /> : null}
       {GA_ID || GTM_ID ? <script dangerouslySetInnerHTML={{ __html: GOOGLE_LOADER + TRACK_CLICKS }} /> : null}
-      {CHATGPT_PIXEL ? <script dangerouslySetInnerHTML={{ __html: CHATGPT_LOADER }} /> : null}
+      {CHATGPT_PIXEL ? <script dangerouslySetInnerHTML={{ __html: CHATGPT_LOADER + TRACK_CALLS }} /> : null}
     </>
   );
 }

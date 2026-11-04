@@ -3,6 +3,7 @@
 import { useId, useRef, useState } from "react";
 import { ATTRIBUTION_STORAGE_KEY } from "@/lib/lead-options";
 import { PRACTICE } from "@/lib/lp-pages";
+import { newLeadIds, oppref, trackLead } from "@/lib/ads-tracking";
 
 type Errors = Partial<Record<"full_name" | "phone" | "email" | "consent" | "form", string>>;
 const URL_KEYS = ["campaign", "ad_group", "ad_id", "oppref", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"] as const;
@@ -47,6 +48,8 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
     const params = new URLSearchParams(window.location.search);
     const hidden: Record<string, string> = {};
     for (const k of URL_KEYS) hidden[k] = (params.get(k) || stored[k] || "").slice(0, 300);
+    if (!hidden.oppref) hidden.oppref = oppref().slice(0, 300);
+    const ids = newLeadIds();
 
     try {
       const res = await fetch("/api/lp-lead/", {
@@ -56,16 +59,14 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
           full_name: v("full_name"), phone: v("phone"), email: v("email"), consent: true, page_key: pageKey,
           website_url: v("website_url"), elapsed_ms: Date.now() - startedAt.current,
           page_url: window.location.href.slice(0, 1000), landing_page: (stored.landing_page || window.location.href).slice(0, 1000), referrer: (stored.referrer || document.referrer).slice(0, 1000),
+          lead_id: ids.leadId, event_id: ids.eventId,
           ...hidden,
         }),
       });
       if (!res.ok) throw new Error(String(res.status));
-      const w = window as unknown as { gtag?: (...a: unknown[]) => void; dataLayer?: unknown[]; oaiq?: (...a: unknown[]) => void };
-      w.gtag?.("event", "generate_lead", { form: "landing_page", page: pageKey });
-      w.dataLayer?.push({ event: "generate_lead", form: "landing_page", page: pageKey });
       if (!leadSent.current) {
         leadSent.current = true;
-        w.oaiq?.("measure", "lead_created", { type: "customer_action" });
+        await trackLead({ form: "landing_page", page: pageKey, email: v("email"), phone: v("phone"), leadId: ids.leadId, eventId: ids.eventId });
       }
       setStatus("sent");
     } catch {
