@@ -44,7 +44,7 @@ export default function LpLayout({ children }: Readonly<{ children: React.ReactN
         </div>
       </footer>
       <AttributionCapture />
-      <Analytics />
+      <Analytics pixelNow />
     </>
   );
 }

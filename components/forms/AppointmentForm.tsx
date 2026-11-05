@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { ATTRIBUTION_STORAGE_KEY, attributionKeys } from "@/lib/lead-options";
+import { newLeadIds, oppref, trackLead } from "@/lib/ads-tracking";
 
 type Field = "full_name" | "email" | "phone" | "comment";
 type Values = Record<Field, string>;
@@ -98,6 +99,7 @@ export function AppointmentForm({
     } catch {
       /* storage unavailable */
     }
+    const ids = newLeadIds();
     const honeypot = (formRef.current?.elements.namedItem("website_url") as HTMLInputElement | null)?.value ?? "";
 
     try {
@@ -113,17 +115,14 @@ export function AppointmentForm({
           landing_page: attribution.landing_page ?? "",
           referrer: attribution.referrer ?? document.referrer,
           ...Object.fromEntries(attributionKeys.map((k) => [k, attribution[k] ?? ""])),
+          oppref: attribution.oppref || oppref(), lead_id: ids.leadId, event_id: ids.eventId,
         }),
       });
       if (!res.ok) throw new Error(String(res.status));
-      const w = window as unknown as { gtag?: (...args: unknown[]) => void; dataLayer?: unknown[] };
-      const params = { form: variant === "area" ? "area" : "appointment", ...(trackPage ? { page: trackPage } : {}) };
-      w.gtag?.("event", "generate_lead", params);
-      w.dataLayer?.push({ event: "generate_lead", ...params });
-      // ChatGPT Ads: one lead_created per accepted request, no form data (TTR-1157). Only here, after the server said yes.
+      // One generate_lead (GA4) and one ChatGPT Ads lead_created per accepted request, with hashed details and the event id the server also uses.
       if (!leadSent.current) {
         leadSent.current = true;
-        (window as unknown as { oaiq?: (...args: unknown[]) => void }).oaiq?.("measure", "lead_created", { type: "customer_action" });
+        await trackLead({ form: variant === "area" ? "area" : "appointment", page: trackPage, email: String(values.email ?? ""), phone: String(values.phone ?? ""), leadId: ids.leadId, eventId: ids.eventId });
       }
       router.push("/thank-you/");
     } catch {

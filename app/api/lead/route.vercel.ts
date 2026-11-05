@@ -6,6 +6,8 @@
 import { deliverLead, ghlWebhooks } from "@/lib/ghl";
 import { attributionKeys, MIN_FILL_MS } from "@/lib/lead-options";
 import { sendLeadToTtrOs } from "@/lib/ttr-os-lead";
+import { after } from "next/server";
+import { cookieOf, leadSource, sendLeadEvent } from "@/lib/ads-capi";
 
 type In = Record<string, unknown>;
 
@@ -97,6 +99,9 @@ export async function POST(request: Request) {
     spam_check: spamCheck,
   };
   for (const key of ["page_url", "landing_page", "referrer", ...attributionKeys]) payload[key] = text(input, key, 1000);
+  payload.lead_source = leadSource(text(input, "utm_source", 100), text(input, "referrer", 500));
+  payload.lead_id = text(input, "lead_id", 80);
+  payload.event_id = text(input, "event_id", 100);
 
   // TTR OS is the practice's record of every request (TTR-1164); the GoHighLevel webhooks in lib/ghl.ts get a copy until Kia says to stop.
   // The request counts as saved when either accepts it, so a lead is never lost to one side being down.
@@ -105,6 +110,22 @@ export async function POST(request: Request) {
     sendLeadToTtrOs({ name: lead.full_name, phone: lead.phone, email: lead.email, service: "Appointment request", message: lead.comment, pageUrl: text(input, "page_url", 1000), landingUrl: text(input, "landing_page", 1000) || text(input, "page_url", 1000), referrer: text(input, "referrer", 1000),
       ip: (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim(), userAgent: request.headers.get("user-agent") ?? "" }),
   ]);
-  if (ghl || os) return reply(200, { ok: true, delivered: true });
+  if (ghl || os) {
+    // The same lead_created event goes to OpenAI from the server, with the id the browser used (counted once). Skipped without the key,
+    // for test leads and for Global Privacy Control; a failure is logged and never changes the visitor's answer.
+    const eventId = text(input, "event_id", 100), leadId = text(input, "lead_id", 80);
+    if (/^[A-Za-z0-9_-]{8,100}$/.test(eventId) && /^[A-Za-z0-9_-]{8,80}$/.test(leadId)) {
+      const cookies = request.headers.get("cookie");
+      const hdr = (k: string) => request.headers.get(k) ?? "";
+      after(async () => {
+        await sendLeadEvent({
+          eventId, leadId, name: lead.full_name, email: lead.email, phone: lead.phone, sourceUrl: text(input, "page_url", 1000) || "https://beverlyhillstopdentist.com/",
+          ip: hdr("x-forwarded-for").split(",")[0].trim(), userAgent: hdr("user-agent"),
+          oppref: text(input, "oppref", 300) || cookieOf(cookies, "__oppref"), obref: cookieOf(cookies, "__obref"), gpc: hdr("sec-gpc") === "1",
+        });
+      });
+    }
+    return reply(200, { ok: true, delivered: true });
+  }
   return reply(502, { ok: false, error: "We could not send your request. Please call us instead." });
 }
