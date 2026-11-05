@@ -5,12 +5,12 @@ import { ATTRIBUTION_STORAGE_KEY } from "@/lib/lead-options";
 import { PRACTICE } from "@/lib/lp-pages";
 import { newLeadIds, oppref, trackLead } from "@/lib/ads-tracking";
 
-type Errors = Partial<Record<"full_name" | "phone" | "email" | "consent" | "form", string>>;
+type Errors = Partial<Record<"full_name" | "phone" | "email" | "comment" | "consent" | "form", string>>;
 const URL_KEYS = ["campaign", "ad_group", "ad_id", "oppref", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"] as const;
 
 /**
- * Short request form for the ChatGPT Ads landing pages. Name and phone are required, email is optional, and there is no field for
- * symptoms or medical history. The lead_created ad event goes out once, only after the server accepted the request, and carries no
+ * Short request form for the ChatGPT Ads landing pages. Name, phone and a comment are required (comment added at Kia's ask, Nov 5,
+ * 2026), email is optional. The comment goes only to the practice's lead record, never to the ads platform. The lead_created ad event goes out once, only after the server accepted the request, and carries no
  * form data. Campaign details travel as hidden fields in the internal lead record.
  */
 export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; title: string; button: string; note: string; id?: string }) {
@@ -30,6 +30,7 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
     if (v("full_name").length < 2) next.full_name = "Please enter your full name.";
     if (!/^[0-9()#&+*\-=. ]+$/.test(v("phone")) || v("phone").replace(/\D/g, "").length < 10) next.phone = "Please enter a phone number with area code.";
     if (v("email") && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v("email"))) next.email = "Please enter a valid email address or leave it empty.";
+    if (v("comment").length < 2) next.comment = "Please add a short comment.";
     if (f.get("consent") !== "on") next.consent = "Please agree so we can contact you.";
     setErrors(next);
     const bad = Object.keys(next)[0];
@@ -56,7 +57,7 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          full_name: v("full_name"), phone: v("phone"), email: v("email"), consent: true, page_key: pageKey,
+          full_name: v("full_name"), phone: v("phone"), email: v("email"), comment: v("comment"), consent: true, page_key: pageKey,
           website_url: v("website_url"), elapsed_ms: Date.now() - startedAt.current,
           page_url: window.location.href.slice(0, 1000), landing_page: (stored.landing_page || window.location.href).slice(0, 1000), referrer: (stored.referrer || document.referrer).slice(0, 1000),
           lead_id: ids.leadId, event_id: ids.eventId,
@@ -109,6 +110,11 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
           <label htmlFor={`${uid}-email`} className="mb-1 block text-[15px] font-semibold text-ink">Email <span className="font-normal text-body">(optional)</span></label>
           <input id={`${uid}-email`} name="email" type="email" inputMode="email" autoComplete="email" aria-invalid={!!errors.email || undefined} aria-describedby={errors.email ? `${uid}-email-err` : undefined} className={input(errors.email)} />
           {err("email")}
+        </div>
+        <div>
+          <label htmlFor={`${uid}-comment`} className="mb-1 block text-[15px] font-semibold text-ink">Comment <span aria-hidden="true">*</span></label>
+          <textarea id={`${uid}-comment`} name="comment" rows={3} maxLength={1000} required aria-required="true" placeholder="How can we help you?" aria-invalid={!!errors.comment || undefined} aria-describedby={errors.comment ? `${uid}-comment-err` : undefined} className={`${input(errors.comment)} resize-y`} />
+          {err("comment")}
         </div>
         <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
           <label>Leave this empty<input name="website_url" tabIndex={-1} autoComplete="off" /></label>

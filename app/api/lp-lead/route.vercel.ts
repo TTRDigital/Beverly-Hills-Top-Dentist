@@ -1,7 +1,6 @@
 /*
  * Lead handler for the ChatGPT Ads landing pages (/lp/, TTR-1156). Same delivery as app/api/lead/route.vercel.ts (the practice's
- * GoHighLevel inbound webhook), with the landing page's rules: name and phone required, email optional, no symptoms or medical
- * fields, and the page key plus campaign details kept as hidden fields in the internal lead record.
+ * GoHighLevel inbound webhook), with the landing page's rules: name, phone and a short comment required (Nov 5, 2026), email optional, and the page key plus campaign details kept as hidden fields in the internal lead record.
  */
 import { deliverLead, ghlWebhooks } from "@/lib/ghl";
 import { MIN_FILL_MS } from "@/lib/lead-options";
@@ -47,12 +46,13 @@ export async function POST(request: Request) {
     return reply(400, { ok: false, error: "Invalid request." });
   }
 
-  const name = text(input, "full_name", 120), email = text(input, "email", 200), phoneIn = text(input, "phone", 40), pageKey = text(input, "page_key", 40);
+  const name = text(input, "full_name", 120), email = text(input, "email", 200), phoneIn = text(input, "phone", 40), pageKey = text(input, "page_key", 40), comment = text(input, "comment", 1000);
   const errors: Record<string, string> = {};
   if (!PAGE_KEYS.has(pageKey)) return reply(400, { ok: false, error: "Invalid request." });
   if (name.length < 2) errors.full_name = "Please enter your full name.";
   if (!/^[0-9()#&+*\-=. ]+$/.test(phoneIn) || phoneIn.replace(/\D/g, "").length < 10) errors.phone = "Please enter a phone number with area code.";
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) errors.email = "Please enter a valid email address or leave it empty.";
+  if (comment.length < 2) errors.comment = "Please add a short comment.";
   if (input.consent !== true) errors.consent = "Please agree so we can contact you.";
   if (Object.keys(errors).length) return reply(422, { ok: false, error: "Please check the form.", fields: errors });
 
@@ -76,6 +76,7 @@ export async function POST(request: Request) {
     page_key: pageKey,
     submitted_at: new Date().toISOString(),
     name, first_name: first, last_name: rest.join(" "), email, phone, phone_raw: phoneIn,
+    message: comment, comment, // "message" is the key the main site form uses for GoHighLevel
     consent: true, tags, spam_check: spamCheck,
   };
   for (const k of HIDDEN) payload[k] = text(input, k, 1000);
@@ -90,7 +91,7 @@ export async function POST(request: Request) {
   const details = [`ChatGPT Ads landing page: ${PAGE_LABEL[pageKey]}`, hid.campaign && `campaign ${hid.campaign}`, hid.ad_group && `ad group ${hid.ad_group}`, hid.ad_id && `ad ${hid.ad_id}`, hid.oppref && `oppref ${hid.oppref}`, spamCheck !== "ok" && `check: ${spamCheck}`].filter(Boolean).join(" | ");
   const [ghl, os] = await Promise.all([
     deliverLead(payload, "lp-lead"),
-    sendLeadToTtrOs({ name, phone: phoneIn, email, service: PAGE_LABEL[pageKey], message: details, pageUrl: text(input, "page_url", 1000), landingUrl: text(input, "page_url", 1000), referrer: text(input, "referrer", 1000),
+    sendLeadToTtrOs({ name, phone: phoneIn, email, service: PAGE_LABEL[pageKey], message: `${comment}\n\n${details}`, pageUrl: text(input, "page_url", 1000), landingUrl: text(input, "page_url", 1000), referrer: text(input, "referrer", 1000),
       ip: (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim(), userAgent: request.headers.get("user-agent") ?? "" }),
   ]);
   if (ghl || os) {
