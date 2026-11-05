@@ -4,7 +4,7 @@
  */
 import { deliverLead, ghlWebhooks } from "@/lib/ghl";
 import { MIN_FILL_MS } from "@/lib/lead-options";
-import { sendLeadToTtrOs } from "@/lib/ttr-os-lead";
+import { landingWithAttribution, sendLeadToTtrOs, type OsLead } from "@/lib/ttr-os-lead";
 import { after } from "next/server";
 import { cookieOf, leadSource, sendLeadEvent } from "@/lib/ads-capi";
 import { sendLeadAlerts } from "@/lib/lead-alerts";
@@ -90,11 +90,14 @@ export async function POST(request: Request) {
   const PAGE_LABEL: Record<string, string> = { "general-biomimetic": "General and biomimetic dentistry", "clear-aligners": "Clear aligners", emergency: "Emergency dentist", "dental-implants": "Dental implants", "veneers-smile-makeover": "Veneers and smile makeovers", "cleaning-exam": "Teeth cleaning and new patient exams", "teeth-whitening": "Teeth whitening", "full-arch-implants": "Full arch implants", "dental-crowns": "Dental crowns and broken tooth repair", "dental-bridges": "Dental bridges", "tooth-colored-fillings": "Tooth-colored fillings", "restorative-dentistry": "Restorative dentistry", toothache: "Toothache and urgent care", "broken-tooth": "Broken tooth repair", "new-patient": "New patient visit", "best-dentist": "Dentist consultation", "dentist-near-me": "Dentist near me" };
   const hid = Object.fromEntries(HIDDEN.map((k) => [k, text(input, k, 300)]));
   const details = [`ChatGPT Ads landing page: ${PAGE_LABEL[pageKey]}`, hid.campaign && `campaign ${hid.campaign}`, hid.ad_group && `ad group ${hid.ad_group}`, hid.ad_id && `ad ${hid.ad_id}`, hid.oppref && `oppref ${hid.oppref}`, spamCheck !== "ok" && `check: ${spamCheck}`].filter(Boolean).join(" | ");
-  const [ghl, os] = await Promise.all([
-    deliverLead(payload, "lp-lead"),
-    sendLeadToTtrOs({ name, phone: phoneIn, email, service: PAGE_LABEL[pageKey], message: `${comment}\n\n${details}`, pageUrl: text(input, "page_url", 1000), landingUrl: text(input, "page_url", 1000), referrer: text(input, "referrer", 1000),
-      ip: (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim(), userAgent: request.headers.get("user-agent") ?? "" }),
-  ]);
+  // The address TTR OS reads the source from: the page the visitor first landed on, with the ad details from the hidden fields added if missing.
+  const osLead: OsLead = { name, phone: phoneIn, email, service: PAGE_LABEL[pageKey], message: `${comment}\n\n${details}`, pageUrl: text(input, "page_url", 1000),
+    landingUrl: landingWithAttribution(text(input, "landing_page", 1000) || text(input, "page_url", 1000), hid), referrer: text(input, "referrer", 1000),
+    ip: (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim(), userAgent: request.headers.get("user-agent") ?? "" };
+  // One quick try for TTR OS (4 seconds): its being slow or down must not hold up or fail the form. If it did not take the lead, one more try
+  // runs after the visitor has their answer.
+  const [ghl, os] = await Promise.all([deliverLead(payload, "lp-lead"), sendLeadToTtrOs(osLead, { attempts: 1, timeoutMs: 4000 }).catch(() => false)]);
+  if (!os) after(async () => { await sendLeadToTtrOs(osLead).catch(() => false); });
   // Email and text alerts to the office (lib/lead-alerts.ts), sent after the answer so they can never hold up or fail the submit.
   after(() => sendLeadAlerts({
     name, phone: phoneIn, email, comment, page: PAGE_LABEL[pageKey], pageUrl: text(input, "page_url", 1000),
