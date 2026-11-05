@@ -3,7 +3,7 @@
  * photos, the same ideas (biological, biomimetic, holistic), the technology and Dr. Shir's background, in the practice's own words from
  * its homepage and About page. No prices, ratings, badges, testimonials, guarantees or "24/7".
  * Offers: only the practice's own new patient specials (Carlos Torres, Nov 5, 2026), in OFFERS below. Add no terms the practice did not give.
- * CONFIRM with the practice before launch: the Invisalign name (copy stays "clear aligners"), the hours.
+ * The practice confirmed the Invisalign name (Carlos Torres, Nov 5, 2026). CONFIRM with the practice: the hours.
  */
 export type LpImage = { src: string; alt: string };
 export type OfferKey = "cleaning" | "treatment" | "invisalign";
@@ -142,19 +142,19 @@ export const LP_PAGES: LpPage[] = [
   {
     slug: "invisalign-beverly-hills",
     key: "clear-aligners",
-    // CONFIRM: use the Invisalign name in visible copy only after the practice confirms it offers Invisalign.
-    title: "Clear Aligners in Beverly Hills | Beverly Hills Dental Arts Studio",
-    headline: "Explore Clear Aligners in Beverly Hills",
-    support: "Considering a straighter smile? Meet Dr. Nushin Shir to review your teeth, bite, and clear aligner options, with a treatment plan tailored to your needs.",
-    primary: { label: "Request an Aligner Consultation", target: "form" },
-    formTitle: "Request an aligner consultation",
-    formButton: "Request an Aligner Consultation",
-    formNote: "Find out whether clear aligners are suitable for you. Treatment and timing depend on an examination. " + SUCCESS_NOTE,
+    // The practice asked for the Invisalign name in visible copy (Carlos Torres, Nov 5, 2026). The key stays "clear-aligners" for lead reports.
+    title: "Invisalign in Beverly Hills | Beverly Hills Dental Arts Studio",
+    headline: "Explore Invisalign in Beverly Hills",
+    support: "Considering a straighter smile? Meet Dr. Nushin Shir to review your teeth, bite, and Invisalign options, with a treatment plan tailored to your needs.",
+    primary: { label: "Request an Invisalign Consultation", target: "form" },
+    formTitle: "Request an Invisalign consultation",
+    formButton: "Request an Invisalign Consultation",
+    formNote: "Find out whether Invisalign is suitable for you. Treatment and timing depend on an examination. " + SUCCESS_NOTE,
     hero: HERO("30% 50%"),
     offers: ["invisalign"],
     focus: {
-      heading: "Why consider clear aligners",
-      intro: "Many adults look at aligners because they are:",
+      heading: "Why consider Invisalign",
+      intro: "Many adults choose Invisalign aligners because they are:",
       items: ["Removable trays", "A discreet appearance", "Digitally planned treatment", "Not right for everyone: suitability depends on your teeth, gums and bite"],
       image: TECH_IMAGE("scanner"),
     },
@@ -170,11 +170,11 @@ export const LP_PAGES: LpPage[] = [
     tech: ["scanner", "xray", "ct"],
     showWork: true,
     faqs: [
-      { q: "Are clear aligners right for everyone?", a: "No. Suitability depends on your teeth, gums, and bite. Some cases need another treatment or specialist care." },
+      { q: "Is Invisalign right for everyone?", a: "No. Suitability depends on your teeth, gums, and bite. Some cases need another treatment or specialist care." },
       { q: "How long does treatment take?", a: "Your clinician will discuss an expected timeline after assessment. Timing varies by case and prescribed wear." },
       { q: "What does treatment cost?", a: "Ask for a personalized estimate after the consultation." },
     ],
-    closing: { heading: "Find out if clear aligners suit you", text: "Request a consultation and our team will contact you about availability." },
+    closing: { heading: "Find out if Invisalign suits you", text: "Request a consultation and our team will contact you about availability." },
   },
   {
     slug: "emergency-dentist-beverly-hills",
