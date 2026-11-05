@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { RequestButton, RequestModal } from "@/components/lp/RequestModal";
-import { BAND, BIO, LP_PAGES, PILLARS, PRACTICE, STRIP, TECH, TECH_INTRO, WORK, lpBySlug } from "@/lib/lp-pages";
+import { BAND, BIO, DEFAULT_OFFERS, LP_PAGES, OFFERS, PILLARS, PRACTICE, STRIP, TECH, TECH_INTRO, WORK, lpBySlug } from "@/lib/lp-pages";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => LP_PAGES.map((p) => ({ slug: p.slug }));
@@ -26,6 +26,8 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
   const p = lpBySlug((await params).slug);
   if (!p) notFound();
   const call = p.primary.target === "call";
+  const offers = (p.offers ?? DEFAULT_OFFERS).map((k) => OFFERS[k]);
+  const fine = ["New patients only.", ...offers.map((o) => o.note).filter(Boolean)].join(" ");
   const requestLabel = call ? "Request a Callback" : p.primary.label;
   const callBtn = (where: string, cls: string, label?: string) => (
     <a href={PRACTICE.tel} data-track="click_to_call" data-track-page={`lp-${p.key}-${where}`} className={cls}>{label ?? `Call ${PRACTICE.phone}`}</a>
@@ -56,6 +58,16 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
             <h1 className="lp-rise text-[38px] font-semibold leading-[1.08] text-white sm:text-[56px]">{p.headline}</h1>
             <p className="lp-rise lp-rise-2 mt-5 max-w-[580px] text-[18px] leading-relaxed text-white/90 sm:text-[20px]">{p.support}</p>
             <div className="lp-rise lp-rise-3 mt-8 flex flex-col gap-3 sm:flex-row">{actions("hero", true)}</div>
+            {/* New patient specials: under the actions, so the Call button stays where it was */}
+            <div className="lp-rise lp-rise-3 mt-5 max-w-[520px] rounded-[6px] bg-white/95 px-5 py-4 text-ink shadow-[0_6px_24px_rgb(0_0_0/0.25)]">
+              <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-brand">New patient {offers.length > 1 ? "specials" : "special"}</p>
+              <ul className="mt-2 space-y-1">
+                {offers.map((o) => (
+                  <li key={o.amount} className="text-[18px] leading-snug sm:text-[19px]"><span className="font-bold text-brand">{o.amount}</span> {o.text}</li>
+                ))}
+              </ul>
+              <p className="mt-2 text-[13px] leading-snug text-body">{fine}</p>
+            </div>
             {p.availability ? <p className="mt-4 max-w-[520px] text-[14px] leading-snug text-white/80">{p.availability}</p> : null}
           </div>
         </div>

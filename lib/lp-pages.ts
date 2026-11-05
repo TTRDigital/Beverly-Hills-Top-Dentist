@@ -1,10 +1,12 @@
 /*
  * ChatGPT Ads landing pages (TTR-1156; brief of Nov 3, 2026, docs/LANDING-PAGES-BRIEF.md). Built like the homepage: the practice's own
  * photos, the same ideas (biological, biomimetic, holistic), the technology and Dr. Shir's background, in the practice's own words from
- * its homepage and About page. No prices, offers, ratings, badges, testimonials, guarantees or "24/7".
+ * its homepage and About page. No prices, ratings, badges, testimonials, guarantees or "24/7".
+ * Offers: only the practice's own new patient specials (Carlos Torres, Nov 5, 2026), in OFFERS below. Add no terms the practice did not give.
  * CONFIRM with the practice before launch: the Invisalign name (copy stays "clear aligners"), the hours.
  */
 export type LpImage = { src: string; alt: string };
+export type OfferKey = "cleaning" | "treatment" | "invisalign";
 export type TechKey = "ozone" | "ct" | "scanner" | "laser" | "xray";
 
 export type LpPage = {
@@ -20,6 +22,7 @@ export type LpPage = {
   hero: LpImage & { pos?: string };
   notice?: string; // urgent care notice
   availability?: string;
+  offers?: OfferKey[]; // new patient specials shown in the hero; DEFAULT_OFFERS when not set
   focus: { heading: string; intro?: string; items?: string[]; paragraphs?: string[]; image: LpImage };
   steps: { heading: string; intro?: string; items: { title: string; text: string }[] };
   tech: TechKey[];
@@ -42,6 +45,14 @@ export const PRACTICE = {
     { days: "Saturday and Sunday", time: "Closed" },
   ],
 };
+
+/* New patient specials, in the practice's own terms (Carlos Torres, Nov 5, 2026). Each note is the fine print for that offer. */
+export const OFFERS: Record<OfferKey, { amount: string; text: string; note: string }> = {
+  cleaning: { amount: "$99", text: "cleaning and x-rays", note: "The $99 special is for patients without insurance." },
+  treatment: { amount: "$200 off", text: "your treatment", note: "" },
+  invisalign: { amount: "$2,000 off", text: "Invisalign", note: "" },
+};
+export const DEFAULT_OFFERS: OfferKey[] = ["cleaning", "treatment"];
 
 /* Shared building blocks, from the practice's homepage and About page. */
 export const STRIP = ["Over 30 years of experience", "In-office 3D imaging", "Ozone therapy and soft-tissue lasers"];
@@ -140,6 +151,7 @@ export const LP_PAGES: LpPage[] = [
     formButton: "Request an Aligner Consultation",
     formNote: "Find out whether clear aligners are suitable for you. Treatment and timing depend on an examination. " + SUCCESS_NOTE,
     hero: HERO("30% 50%"),
+    offers: ["invisalign"],
     focus: {
       heading: "Why consider clear aligners",
       intro: "Many adults look at aligners because they are:",
