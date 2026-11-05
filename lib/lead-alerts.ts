@@ -1,7 +1,8 @@
 /*
  * Lead alerts sent by the site itself (Kia, Nov 5, 2026): GoHighLevel's own email notifications were not reaching the office.
  * Every landing page lead now also goes out as
- * - a plain text email through Resend (needs RESEND_API_KEY, and a from address on a domain verified in Resend), and
+ * - a plain text email through Postmark (POSTMARK_SERVER_TOKEN) or Resend (RESEND_API_KEY), from LEAD_ALERT_FROM, an address on a
+ *   domain verified with that service (Kia, Nov 5: the agency's own domain, ttrdigitalmarketing.com), and
  * - a text message through the GoHighLevel API, from the practice's GoHighLevel number (needs GHL_API_KEY and GHL_LOCATION_ID).
  * The GoHighLevel webhooks in lib/ghl.ts are unchanged. Alerts run after the visitor's answer is sent: a missing key skips that
  * alert with a log line, and a failure is logged, so neither can block or fail a form submit. Keys live only in Vercel's
@@ -60,22 +61,25 @@ export function smsText(l: LeadAlert): string {
   return `${suspect(l) ? "Possible spam. " : ""}New BHDA lead from the ChatGPT ad page (${l.page}): ${oneLine(l.name)}, ${pretty(l.phone)}. Details are in the lead email.`.slice(0, 320);
 }
 
+/** Postmark when POSTMARK_SERVER_TOKEN is set, otherwise Resend when RESEND_API_KEY is set. */
 async function sendEmail(l: LeadAlert): Promise<void> {
-  const key = process.env.RESEND_API_KEY, from = process.env.LEAD_ALERT_FROM;
-  if (!key || !from) {
-    console.warn(`[lead-alert] email skipped: ${!key ? "RESEND_API_KEY" : "LEAD_ALERT_FROM"} is not set`);
+  const postmark = process.env.POSTMARK_SERVER_TOKEN, resend = process.env.RESEND_API_KEY, from = process.env.LEAD_ALERT_FROM;
+  if ((!postmark && !resend) || !from) {
+    console.warn(`[lead-alert] email skipped: ${!from ? "LEAD_ALERT_FROM" : "POSTMARK_SERVER_TOKEN (or RESEND_API_KEY)"} is not set`);
     return;
   }
   const { subject, text } = emailText(l);
-  const body: Record<string, unknown> = { from, to: listFrom(process.env.LEAD_ALERT_EMAILS, EMAIL_TO), subject, text };
-  if (l.email) body.reply_to = l.email;
+  const to = listFrom(process.env.LEAD_ALERT_EMAILS, EMAIL_TO);
+  const [service, url, headers, body] = postmark
+    ? ["Postmark", "https://api.postmarkapp.com/email", { "X-Postmark-Server-Token": postmark, Accept: "application/json", "Content-Type": "application/json" },
+      { From: from, To: to.join(", "), Subject: subject, TextBody: text, MessageStream: process.env.POSTMARK_MESSAGE_STREAM || "outbound", ...(l.email ? { ReplyTo: l.email } : {}) }]
+    : ["Resend", "https://api.resend.com/emails", { Authorization: `Bearer ${resend}`, "Content-Type": "application/json" },
+      { from, to, subject, text, ...(l.email ? { reply_to: l.email } : {}) }];
   try {
-    const res = await fetch("https://api.resend.com/emails", {
-      method: "POST", headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" }, body: JSON.stringify(body), signal: AbortSignal.timeout(8000),
-    });
-    if (!res.ok) console.error(`[lead-alert] Resend answered ${res.status}: ${(await res.text().catch(() => "")).slice(0, 300)}`);
+    const res = await fetch(url, { method: "POST", headers, body: JSON.stringify(body), signal: AbortSignal.timeout(8000) });
+    if (!res.ok) console.error(`[lead-alert] ${service} answered ${res.status}: ${(await res.text().catch(() => "")).slice(0, 300)}`);
   } catch (error) {
-    console.error("[lead-alert] Resend could not be reached", error);
+    console.error(`[lead-alert] ${service} could not be reached`, error);
   }
 }
 
