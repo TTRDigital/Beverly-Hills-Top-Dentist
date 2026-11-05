@@ -31,8 +31,9 @@ export type LpPage = {
 export const PRACTICE = {
   name: "Beverly Hills Dental Arts Studio",
   doctor: "Dr. Nushin Shir",
-  phone: "310-274-7005",
-  tel: "tel:+13102747005",
+  // Call tracking number for the ChatGPT ad pages only (Nov 5, 2026); it forwards to the practice line 310-274-7005, which the main site and Google listing keep.
+  phone: "424-424-3347",
+  tel: "tel:+14244243347",
   address: "416 N. Bedford Dr., Suite 105, Beverly Hills, CA 90210",
   map: "https://www.google.com/maps/search/?api=1&query=416+N+Bedford+Dr+Suite+105+Beverly+Hills+CA+90210",
   hours: [
@@ -169,7 +170,7 @@ export const LP_PAGES: LpPage[] = [
     title: "Emergency Dentist in Beverly Hills | Beverly Hills Dental Arts Studio",
     headline: "Need an Emergency Dentist in Beverly Hills",
     support: "For an urgent dental concern, call Beverly Hills Dental Arts Studio to ask about the next available appointment. Our team can help you arrange an assessment during office hours.",
-    primary: { label: "Call 310-274-7005", target: "call" },
+    primary: { label: "Call 424-424-3347", target: "call" },
     formTitle: "Request a callback",
     formButton: "Request a Callback",
     formNote: "Appointment availability varies. Online requests are not monitored continuously and are not confirmed bookings.",
