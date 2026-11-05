@@ -7,6 +7,7 @@ import { MIN_FILL_MS } from "@/lib/lead-options";
 import { sendLeadToTtrOs } from "@/lib/ttr-os-lead";
 import { after } from "next/server";
 import { cookieOf, leadSource, sendLeadEvent } from "@/lib/ads-capi";
+import { sendLeadAlerts } from "@/lib/lead-alerts";
 
 type In = Record<string, unknown>;
 const PAGE_KEYS = new Set(["general-biomimetic", "clear-aligners", "emergency", "dental-implants", "veneers-smile-makeover", "cleaning-exam", "teeth-whitening", "full-arch-implants", "dental-crowns", "dental-bridges", "tooth-colored-fillings", "restorative-dentistry", "toothache", "broken-tooth", "new-patient", "best-dentist", "dentist-near-me"]);
@@ -94,6 +95,11 @@ export async function POST(request: Request) {
     sendLeadToTtrOs({ name, phone: phoneIn, email, service: PAGE_LABEL[pageKey], message: `${comment}\n\n${details}`, pageUrl: text(input, "page_url", 1000), landingUrl: text(input, "page_url", 1000), referrer: text(input, "referrer", 1000),
       ip: (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim(), userAgent: request.headers.get("user-agent") ?? "" }),
   ]);
+  // Email and text alerts to the office (lib/lead-alerts.ts), sent after the answer so they can never hold up or fail the submit.
+  after(() => sendLeadAlerts({
+    name, phone: phoneIn, email, comment, page: PAGE_LABEL[pageKey], pageUrl: text(input, "page_url", 1000),
+    utmSource: hid.utm_source, utmMedium: hid.utm_medium, utmCampaign: hid.utm_campaign, campaign: hid.campaign, adGroup: hid.ad_group, spamCheck,
+  }));
   if (ghl || os) {
     // The same lead_created event goes to OpenAI from the server, with the id the browser used (counted once). Skipped without the key,
     // for test leads and for Global Privacy Control; a failure is logged and never changes the visitor's answer.
