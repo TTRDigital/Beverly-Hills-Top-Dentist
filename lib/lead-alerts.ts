@@ -42,7 +42,7 @@ const oneLine = (s: string) => s.replace(/[\r\n]+/g, " ").trim();
 const suspect = (l: LeadAlert) => !!l.spamCheck && l.spamCheck !== "ok";
 
 export function emailText(l: LeadAlert): { subject: string; text: string } {
-  const subject = `${suspect(l) ? "[Possible spam] " : ""}New lead: ${oneLine(l.name)} (${l.page})`.slice(0, 200);
+  const subject = `${suspect(l) ? "[Possible spam] " : ""}New ChatGPT Ads lead: ${oneLine(l.name)} (${l.page})`.slice(0, 200);
   const rows: [string, string | undefined][] = [
     ["Name", l.name], ["Phone", pretty(l.phone)], ["Email", l.email || "not given"], ["Landing page", l.page], ["Page URL", l.pageUrl],
     ["UTM source", l.utmSource || "none"], ["UTM medium", l.utmMedium], ["UTM campaign", l.utmCampaign], ["Campaign", l.campaign], ["Ad group", l.adGroup],
@@ -50,7 +50,7 @@ export function emailText(l: LeadAlert): { subject: string; text: string } {
   ];
   const lines = rows.filter(([, v]) => v).map(([k, v]) => `${k}: ${oneLine(v as string)}`);
   const text = [
-    "New request from a ChatGPT Ads landing page on beverlyhillstopdentist.com.", "",
+    "New lead from ChatGPT Ads, on a Beverly Hills Dental Arts Studio landing page.", "",
     ...lines, "", "Comment:", l.comment?.trim() || "(none)", "",
     "Please call the patient back as soon as you can. This lead was also sent to GoHighLevel as usual.",
   ].join("\n");
@@ -58,7 +58,8 @@ export function emailText(l: LeadAlert): { subject: string; text: string } {
 }
 
 export function smsText(l: LeadAlert): string {
-  return `${suspect(l) ? "Possible spam. " : ""}New BHDA lead from the ChatGPT ad page (${l.page}): ${oneLine(l.name)}, ${pretty(l.phone)}. Details are in the lead email.`.slice(0, 320);
+  const email = l.email ? oneLine(l.email) : "no email given";
+  return `${suspect(l) ? "Possible spam. " : ""}New ChatGPT Ads lead for BHDA: ${oneLine(l.name)}, ${pretty(l.phone)}, ${email}. Page: ${l.page}.`.slice(0, 320);
 }
 
 /** Postmark when POSTMARK_SERVER_TOKEN is set, otherwise Resend when RESEND_API_KEY is set. */
