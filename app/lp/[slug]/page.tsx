@@ -63,7 +63,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
               <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-brand">New patient {offers.length > 1 ? "specials" : "special"}</p>
               <ul className="mt-2 space-y-1">
                 {offers.map((o) => (
-                  <li key={o.amount} className="text-[18px] leading-snug sm:text-[19px]"><span className="font-bold text-brand">{o.amount}</span> {o.text}</li>
+                  <li key={o.text} className="text-[18px] leading-snug sm:text-[19px]"><span className="font-bold text-brand">{o.amount}</span> {o.text}</li>
                 ))}
               </ul>
               <p className="mt-2 text-[13px] leading-snug text-body">{fine}</p>

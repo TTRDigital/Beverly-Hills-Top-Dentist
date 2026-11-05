@@ -6,7 +6,7 @@
  * The practice confirmed the Invisalign name (Carlos Torres, Nov 5, 2026). CONFIRM with the practice: the hours.
  */
 export type LpImage = { src: string; alt: string };
-export type OfferKey = "cleaning" | "treatment" | "invisalign";
+export type OfferKey = "cleaning" | "treatment" | "invisalign" | "invisalignConsult" | "implantConsult";
 export type TechKey = "ozone" | "ct" | "scanner" | "laser" | "xray";
 
 export type LpPage = {
@@ -51,6 +51,8 @@ export const OFFERS: Record<OfferKey, { amount: string; text: string; note: stri
   cleaning: { amount: "$99", text: "cleaning and x-rays", note: "The $99 special is for patients without insurance." },
   treatment: { amount: "$200 off", text: "your treatment", note: "" },
   invisalign: { amount: "$2,000 off", text: "Invisalign", note: "" },
+  invisalignConsult: { amount: "Free", text: "Invisalign consultation", note: "" },
+  implantConsult: { amount: "Free", text: "implant consultation", note: "" },
 };
 export const DEFAULT_OFFERS: OfferKey[] = ["cleaning", "treatment"];
 
@@ -151,7 +153,7 @@ export const LP_PAGES: LpPage[] = [
     formButton: "Request an Invisalign Consultation",
     formNote: "Find out whether Invisalign is suitable for you. Treatment and timing depend on an examination. " + SUCCESS_NOTE,
     hero: HERO("30% 50%"),
-    offers: ["invisalign"],
+    offers: ["invisalign", "invisalignConsult"],
     focus: {
       heading: "Why consider Invisalign",
       intro: "Many adults choose Invisalign aligners because they are:",
@@ -223,6 +225,7 @@ export const LP_PAGES: LpPage[] = [
     formButton: "Request an Implant Consultation",
     formNote: "An examination is needed to determine suitability, treatment sequence, and costs. " + SUCCESS_NOTE,
     hero: HERO("70% 50%"),
+    offers: ["implantConsult", "cleaning", "treatment"],
     focus: {
       heading: "Understand your options",
       paragraphs: ["Missing teeth can be replaced in different ways, from a single tooth to a full arch. Dr. Shir assesses your mouth and explains which choices may suit you.", "Your assessment can include in-office 3D imaging, an assessment of your bone and gums, and a discussion of a written treatment plan."],
