@@ -4,9 +4,11 @@
  * { event_id }) deduplicates with the server's Conversions API event (lib/ads-capi.ts) on the same id. Nothing personal goes to GA4.
  * Where the browser sends Global Privacy Control, no ad event or hash is sent.
  */
+import { LIVE_HOST, VISITOR_COOKIE, VISITOR_ID_RE } from "./ads-gate.ts";
+
 const PIXEL_ID = process.env.NEXT_PUBLIC_CHATGPT_PIXEL || "3Son8DJqAvAi4ET8SZPsD5";
 
-type W = { gtag?: (...a: unknown[]) => void; dataLayer?: unknown[]; oaiq?: (...a: unknown[]) => void };
+type W = { gtag?: (...a: unknown[]) => void; dataLayer?: unknown[]; oaiq?: (...a: unknown[]) => void; __bhvid?: string };
 
 const hex = async (s: string) => {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
@@ -25,6 +27,17 @@ export function newLeadIds() {
   return { leadId: id, eventId: `lead_${id}` };
 }
 
+/** The visitor id the page script set on the first visit (cookie bh_vid), or "" when there is none (Global Privacy Control). */
+export function visitorId(): string {
+  const w = window as unknown as W;
+  const m = document.cookie.match(new RegExp(`(?:^|;\\s*)${VISITOR_COOKIE}=([^;]+)`));
+  const v = m ? decodeURIComponent(m[1]) : w.__bhvid ?? "";
+  return VISITOR_ID_RE.test(v) ? v : "";
+}
+
+/** True only when the answer from the lead API says the request was kept. A dropped bot answers delivered:false. */
+export const wasKept = (data: unknown) => !(data && typeof data === "object" && (data as { delivered?: unknown }).delivered === false);
+
 /** The ad click reference the OpenAI pixel keeps in a first-party cookie, for the server event. */
 export function oppref(): string {
   const m = document.cookie.match(/(?:^|;\s*)__oppref=([^;]+)/);
@@ -38,8 +51,11 @@ export async function trackLead(o: { form: string; page?: string; email?: string
   w.gtag?.("event", "generate_lead", params);
   w.dataLayer?.push({ event: "generate_lead", ...params });
   if ((navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl) return;
+  // Previews, localhost and test builds never send ad events (the pixel script is not even loaded there).
+  if (!LIVE_HOST.test(location.hostname)) return;
   try {
-    const user: Record<string, string> = { external_id_sha256: await hex(o.leadId.trim()) };
+    // The visitor id (set on the first visit), hashed, goes with every event; the lead id is only a fallback when there is none.
+    const user: Record<string, string> = { external_id_sha256: await hex((visitorId() || o.leadId).trim()) };
     const email = (o.email ?? "").trim().toLowerCase();
     if (email) user.email_sha256 = await hex(email);
     const phone = o.phone ? normPhone(o.phone) : null;

@@ -1,0 +1,42 @@
+
+== A. real site (live host), production server
+PASS  visitor id cookie set on first visit (Secure, Lax, 1 year)  {"secure":true,"sameSite":"Lax","days":365}
+PASS  pixel script requested on the real site
+PASS  first events carry hashed visitor id (external_id_sha256) in init, no raw id
+PASS  page load, scroll and opening the form send no lead_created and nothing to OpenAI
+
+== B. valid submit with NO comment and an email
+PASS  exactly one lead_created in the browser  event_id=lead_acf0f109-074e-4814-ad23-37e53d5b091d
+       pixel init user object (hashed): {"external_id_sha256":"632d070ceaaeefc8de067819489368d3179aed5a12dded1c8690aefc8b7545e6","email_sha256":"22ec08cb6a9272789a6360b339b5cfc9ec7dc6ff55719c8f85d605c00df9e60d","phone_number_sha256":"ee4f02b71ef9feba80c2f8cc3cc96d3fac4486986906f4390adc64ac6f4b08d1"}
+PASS  email and phone hashed correctly, external id = hash of the visitor cookie
+PASS  comment field is optional: request accepted without a comment
+PASS  TTR OS message has no empty comment  "ChatGPT Ads landing page: Gum health and gum disease treatment | check: suspect: sent in 381 ms"
+PASS  server sent exactly one lead_created to OpenAI with the SAME id as the pixel
+       server event (as sent to OpenAI): {"id":"lead_acf0f109-074e-4814-ad23-37e53d5b091d","type":"lead_created","timestamp_ms":1794266661578,"action_source":"web","source_url":"https://beverlyhillstopdentist.com/lp/gum-health-beverly-hills/","user":{"user_agent":"[browser UA]","external_ids_sha256":["632d070ceaaeefc8de067819489368d3179aed5a12dded1c8690aefc8b7545e6"],"emails_sha256":["22ec08cb6a9272789a6360b339b5cfc9ec7dc6ff55719c8f85d605c00df9e60d"],"phone_numbers_sha256":["ee4f02b71ef9feba80c2f8cc3cc96d3fac4486986906f4390adc64ac6f4b08d1"],"ip_address":"[ip]"},"opt_out":false,"data":{"type":"customer_action"}}
+PASS  server event hashes: same external id hash, email, phone; no raw values, no comment, no name
+
+== C. things that must NOT count
+PASS  failed validation (empty form): no lead_created, nothing to OpenAI, no lead
+PASS  bot (hidden field filled, sent fast): no lead_created, not saved, nothing to OpenAI
+PASS  double click on submit: one lead_created, one saved lead, one server event
+
+== D. call tap
+PASS  one phone_call_click in the pixel (a second tap adds nothing)  event_id=call_mw9w1sq2nuertn
+PASS  one beacon to the server endpoint with the same id
+PASS  server sent one custom phone_call_click to OpenAI, same id, hashed visitor id, no personal data
+       server call event: {"id":"call_mw9w1sq2nuertn","type":"custom","custom_event_name":"phone_call_click","timestamp_ms":1794266672058,"action_source":"web","source_url":"https://beverlyhillstopdentist.com/lp/gum-health-beverly-hills/","user":{"user_agent":"[browser UA]","external_ids_sha256":["34f7f855d4fabc50284984dce96e0d63f28dfded2e8a1281167a16b9e40f991d"],"ip_address":"[ip]"},"opt_out":false,"data":{"type":"custom"}}
+
+== E. previews and localhost send nothing
+PASS  localhost/preview host: pixel script NOT requested
+PASS  localhost/preview host: no lead_created in the queue, no beacon
+PASS  preview server (VERCEL_ENV=preview): lead still saved for testing, but NOTHING sent to OpenAI
+
+== E2. a real preview deployment (VERCEL_ENV=preview, no test mocks): the form works but sends nothing real
+PASS  preview: the form says thank you (request accepted) ...
+PASS  ... and NOTHING went to the CRM, TTR OS or OpenAI (all mocks stayed empty; the guard saw no outside request)
+
+== F. Global Privacy Control
+PASS  GPC: no visitor id cookie, no hashes
+PASS  GPC: no lead_created event, no beacon, nothing to OpenAI (the lead itself is still saved)
+
+23 passed, 0 failed

@@ -3,11 +3,11 @@
  * the request like the form, filters spam, and posts the lead as flat JSON to the GoHighLevel inbound webhook. Keep the
  * two in sync. The webhooks are listed in lib/ghl.ts (a GHL_WEBHOOK_URL environment variable on Vercel adds more).
  */
-import { deliverLead, ghlWebhooks } from "@/lib/ghl";
+import { deliverLead, ghlWebhooks, isSandbox } from "@/lib/ghl";
 import { attributionKeys, MIN_FILL_MS } from "@/lib/lead-options";
 import { sendLeadToTtrOs } from "@/lib/ttr-os-lead";
 import { after } from "next/server";
-import { cookieOf, leadSource, sendLeadEvent } from "@/lib/ads-capi";
+import { VISITOR_COOKIE, cookieOf, leadSource, sendLeadEvent } from "@/lib/ads-capi";
 
 type In = Record<string, unknown>;
 
@@ -72,9 +72,14 @@ export async function POST(request: Request) {
   const trapFilled = text(input, "website_url", 200) !== "";
   const elapsed = Number.isInteger(input.elapsed_ms) ? (input.elapsed_ms as number) : null;
   const tooFast = elapsed !== null && elapsed < MIN_FILL_MS;
-  if (trapFilled && tooFast) return reply(200, { ok: true });
+  if (trapFilled && tooFast) return reply(200, { ok: true, delivered: false });
   const spamCheck = trapFilled ? "suspect: hidden field filled" : tooFast ? `suspect: sent in ${elapsed} ms` : "ok";
 
+  // Previews, localhost and test builds: the form works and says thank you, but nothing real is sent (no CRM, TTR OS, alert or ad event).
+  if (isSandbox()) {
+    console.warn("[lead] not production: the request was accepted and nothing was sent");
+    return reply(200, { ok: true, delivered: true, sandbox: true });
+  }
   if (!ghlWebhooks().length) return reply(503, { ok: false, error: "The form is not connected yet. Please call us instead." });
 
   // E.164 for US numbers.
@@ -122,6 +127,7 @@ export async function POST(request: Request) {
           eventId, leadId, name: lead.full_name, email: lead.email, phone: lead.phone, sourceUrl: text(input, "page_url", 1000) || "https://beverlyhillstopdentist.com/",
           ip: hdr("x-forwarded-for").split(",")[0].trim(), userAgent: hdr("user-agent"),
           oppref: text(input, "oppref", 300) || cookieOf(cookies, "__oppref"), obref: cookieOf(cookies, "__obref"), gpc: hdr("sec-gpc") === "1",
+          visitorId: cookieOf(cookies, VISITOR_COOKIE),
         });
       });
     }

@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { ATTRIBUTION_STORAGE_KEY, attributionKeys } from "@/lib/lead-options";
-import { newLeadIds, oppref, trackLead } from "@/lib/ads-tracking";
+import { newLeadIds, oppref, trackLead, wasKept } from "@/lib/ads-tracking";
 
 type Field = "full_name" | "email" | "phone" | "comment";
 type Values = Record<Field, string>;
@@ -120,7 +120,8 @@ export function AppointmentForm({
       });
       if (!res.ok) throw new Error(String(res.status));
       // One generate_lead (GA4) and one ChatGPT Ads lead_created per accepted request, with hashed details and the event id the server also uses.
-      if (!leadSent.current) {
+      const answer: unknown = await res.json().catch(() => null);
+      if (!leadSent.current && wasKept(answer)) {
         leadSent.current = true;
         await trackLead({ form: variant === "area" ? "area" : "appointment", page: trackPage, email: String(values.email ?? ""), phone: String(values.phone ?? ""), leadId: ids.leadId, eventId: ids.eventId });
       }

@@ -11,8 +11,19 @@ export const GHL_WEBHOOKS = [
   "https://services.leadconnectorhq.com/hooks/4f5ooGf1YaKbVDMaK1ft/webhook-trigger/a6e877e5-6da6-49e4-a78e-54d36c987088",
 ];
 
+/** True only on the live site's production deployment (Vercel sets VERCEL_ENV). */
+export const isProduction = () => process.env.VERCEL_ENV === "production";
+
+/** True when a request must be accepted but nothing real may be sent: not production, and no test mock set up. */
+export const isSandbox = () => !isProduction() && !(process.env.GHL_WEBHOOKS_OVERRIDE ?? "").trim();
+
 /** The code list plus any from GHL_WEBHOOK_URL, https only, without duplicates. */
 export function ghlWebhooks(): string[] {
+  // Test runs only: GHL_WEBHOOKS_OVERRIDE replaces the whole list (so a local mock gets the lead and the real webhooks never do). Never set in production.
+  const only = (process.env.GHL_WEBHOOKS_OVERRIDE ?? "").split(/[\s,]+/).map((u) => u.trim()).filter((u) => /^https?:\/\//.test(u));
+  if (only.length) return only;
+  // The real webhooks (the code list and GHL_WEBHOOK_URL) are only used by the live site. Previews, localhost and test runs never reach them.
+  if (!isProduction()) return [];
   const fromEnv = (process.env.GHL_WEBHOOK_URL ?? "").split(/[\s,]+/).map((u) => u.trim().replace(/^["']|["']$/g, ""));
   return [...new Set([...GHL_WEBHOOKS, ...fromEnv])].filter((u) => u.startsWith("https://"));
 }

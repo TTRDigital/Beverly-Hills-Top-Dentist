@@ -7,7 +7,7 @@
     "build": "node scripts/optimize-images.mjs && next build",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --no-warnings --test lib/sanity-edits/plan.test.ts",
+    "test": "node --experimental-strip-types --no-warnings --test lib/sanity-edits/plan.test.ts lib/ads-capi.test.ts",
     "seed": "node --experimental-strip-types --no-warnings scripts/seed.ts"
   },
   "dependencies": {

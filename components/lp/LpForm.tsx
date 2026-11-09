@@ -3,14 +3,13 @@
 import { useId, useRef, useState } from "react";
 import { ATTRIBUTION_STORAGE_KEY } from "@/lib/lead-options";
 import { PRACTICE } from "@/lib/lp-pages";
-import { newLeadIds, oppref, trackLead } from "@/lib/ads-tracking";
+import { newLeadIds, oppref, trackLead, wasKept } from "@/lib/ads-tracking";
 
 type Errors = Partial<Record<"full_name" | "phone" | "email" | "comment" | "consent" | "form", string>>;
 const URL_KEYS = ["campaign", "ad_group", "ad_id", "oppref", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"] as const;
 
 /**
- * Short request form for the ChatGPT Ads landing pages. Name, phone and a comment are required (comment added at Kia's ask, Nov 5,
- * 2026), email is optional. The comment goes only to the practice's lead record, never to the ads platform. The lead_created ad event goes out once, only after the server accepted the request, and carries no
+ * Short request form for the ChatGPT Ads landing pages. Name and phone are required; email and the comment are optional (Nov 9, 2026; the comment was required from Nov 5 to Nov 9). The comment goes only to the practice's lead record, never to the ads platform. The lead_created ad event goes out once, only after the server accepted the request, and carries no
  * form data. Campaign details travel as hidden fields in the internal lead record.
  */
 export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; title: string; button: string; note: string; id?: string }) {
@@ -30,7 +29,6 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
     if (v("full_name").length < 2) next.full_name = "Please enter your full name.";
     if (!/^[0-9()#&+*\-=. ]+$/.test(v("phone")) || v("phone").replace(/\D/g, "").length < 10) next.phone = "Please enter a phone number with area code.";
     if (v("email") && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v("email"))) next.email = "Please enter a valid email address or leave it empty.";
-    if (v("comment").length < 2) next.comment = "Please add a short comment.";
     if (f.get("consent") !== "on") next.consent = "Please agree so we can contact you.";
     setErrors(next);
     const bad = Object.keys(next)[0];
@@ -65,7 +63,9 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
         }),
       });
       if (!res.ok) throw new Error(String(res.status));
-      if (!leadSent.current) {
+      const answer: unknown = await res.json().catch(() => null);
+      // One lead_created per request the server kept: never for a request it dropped (a bot), never twice.
+      if (!leadSent.current && wasKept(answer)) {
         leadSent.current = true;
         await trackLead({ form: "landing_page", page: pageKey, email: v("email"), phone: v("phone"), leadId: ids.leadId, eventId: ids.eventId });
       }
@@ -112,8 +112,8 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
           {err("email")}
         </div>
         <div>
-          <label htmlFor={`${uid}-comment`} className="mb-1 block text-[15px] font-semibold text-ink">Comment <span aria-hidden="true">*</span></label>
-          <textarea id={`${uid}-comment`} name="comment" rows={3} maxLength={1000} required aria-required="true" placeholder="How can we help you?" aria-invalid={!!errors.comment || undefined} aria-describedby={errors.comment ? `${uid}-comment-err` : undefined} className={`${input(errors.comment)} resize-y`} />
+          <label htmlFor={`${uid}-comment`} className="mb-1 block text-[15px] font-semibold text-ink">Comment <span className="font-normal text-body">(optional)</span></label>
+          <textarea id={`${uid}-comment`} name="comment" rows={3} maxLength={1000} placeholder="How can we help you?" aria-invalid={!!errors.comment || undefined} aria-describedby={errors.comment ? `${uid}-comment-err` : undefined} className={`${input(errors.comment)} resize-y`} />
           {err("comment")}
         </div>
         <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
