@@ -393,10 +393,10 @@ export const post = defineType({
     defineField({ name: "title", type: "string", validation: (r) => r.required() }),
     slugField,
     defineField({ name: "date", type: "date", validation: (r) => r.required() }),
-    // Every post is written by a named dentist (Dr. Shir by default) and supports one category of the site: the byline
+    // Every post is written by Dr. Shir (the site shows her on every post) and supports one category of the site: the byline
     // links to the author page and the article's structured data names the author, the category and the related page.
     defineField({ name: "author", title: "Author", type: "string", initialValue: "Dr. Nushin Shir",
-      options: { list: [{ title: "Dr. Nushin Shir", value: "Dr. Nushin Shir" }, { title: "Dr. Daniel Charlton", value: "Dr. Daniel Charlton" }] } }),
+      options: { list: [{ title: "Dr. Nushin Shir", value: "Dr. Nushin Shir" }] } }),
     defineField({ name: "category", title: "Category (the part of the site this post supports)", type: "string", initialValue: "cosmetic",
       options: { list: [
         { title: "Dental implants", value: "implants" }, { title: "Cosmetic dentistry and clear aligners", value: "cosmetic" },
