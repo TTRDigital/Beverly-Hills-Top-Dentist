@@ -15,14 +15,14 @@ export const nightGuardsCulverCity: Post = {
   slug: "night-guards-culver-city",
   title: "Night Guards for Culver City Patients",
   date: "2026-11-09",
-  author: "Dr. Daniel Charlton",
+  author: "Dr. Nushin Shir",
   category: "preventive",
   service: "/services/preventive-dentistry/night-guards/",
   excerpt:
     "Waking up with a tight jaw, or a dentist who mentions worn teeth? Here is how a custom night guard is made at our Beverly Hills office, and what to expect if you are coming from Culver City.",
   image: {
-    ...images.receptionDeskCroppedWide,
-    alt: "Reception desk at Beverly Hills Dental Arts Studio with the Cosmetic Dentistry sign, a mosaic mirror and white orchids",
+    ...images.hallwayWide,
+    alt: "The hallway at Beverly Hills Dental Arts Studio with a round table, flowers and framed black and white portraits",
   },
   cta: "If your jaw feels tight in the morning, come and let us look at your teeth. We will show you what we see and talk through your options.",
   figures: [
@@ -35,10 +35,10 @@ export const nightGuardsCulverCity: Post = {
     },
     {
       beforeHeading: "Why do Culver City patients come to Beverly Hills for a night guard?",
-      image: images.roundTableLobbyWide,
-      alt: "Office lobby with a vase of blossoms and open doorways to the treatment rooms on Bedford Drive",
+      image: images.waitingLoungeWide,
+      alt: "The waiting lounge at Beverly Hills Dental Arts Studio with framed flower art, glass shelves and a glass console table",
       caption: "Our only office is at 416 N. Bedford Dr., Suite 105, in Beverly Hills.",
-      position: "center 55%",
+      position: "center 45%",
     },
   ],
   blocks: [
