@@ -9,7 +9,7 @@ import { lpBySlug, type LpPage } from "@/lib/lp-pages";
  */
 const FIELDS = `{
   title, headline, support, primary{ label, target }, formTitle, formButton, formNote,
-  hero{ src, alt, pos }, notice, availability, offers,
+  hero{ src, alt, pos }, bandImage{ src, alt, pos }, closingImage{ src, alt, pos }, notice, availability, offers,
   focus{ heading, intro, items, paragraphs, image{ src, alt } },
   steps{ heading, intro, items[]{ title, text } },
   tech, showWork, faqs[]{ q, a }, closing{ heading, text }

@@ -15,9 +15,19 @@
     "formButton": "Request a Free Consultation",
     "formNote": "What your mouth needs is decided at the examination. Your request is not a confirmed appointment. Our team will contact you about availability.",
     "hero": {
-      "src": "/images/office/hallway-wide.jpg",
-      "alt": "The reception area of Beverly Hills Dental Arts Studio",
+      "src": "/images/office/front-desk-wide.jpg",
+      "alt": "The front desk at Beverly Hills Dental Arts Studio, with a mosaic mirror and the Cosmetic Dentistry sign",
+      "pos": "30% 50%"
+    },
+    "bandImage": {
+      "src": "/images/office/round-table-lobby-wide.jpg",
+      "alt": "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond",
       "pos": "50% 55%"
+    },
+    "closingImage": {
+      "src": "/images/office/waiting-lounge-wide.jpg",
+      "alt": "The waiting lounge at Beverly Hills Dental Arts Studio, with a white leather chair, a mirrored console and glass shelves",
+      "pos": "50% 50%"
     },
     "offers": [],
     "focus": {
@@ -30,8 +40,8 @@
         "A smile makeover, planned around your face and your goals"
       ],
       "image": {
-        "src": "/images/office/dentists-treating-patient.jpg",
-        "alt": "Dr. Shir's team treating a patient at Beverly Hills Dental Arts Studio"
+        "src": "/images/office/waiting-lounge-portrait.jpg",
+        "alt": "The waiting lounge at Beverly Hills Dental Arts Studio, with a white leather chair and a mirrored console"
       }
     },
     "steps": {
@@ -101,9 +111,19 @@
     "formButton": "Request a Free Consultation",
     "formNote": "What your gums need is decided at the examination. Your request is not a confirmed appointment. Our team will contact you about availability.",
     "hero": {
-      "src": "/images/office/hallway-wide.jpg",
-      "alt": "The reception area of Beverly Hills Dental Arts Studio",
+      "src": "/images/office/waiting-lounge-wide.jpg",
+      "alt": "The waiting lounge at Beverly Hills Dental Arts Studio, with a white leather chair, a mirrored console and glass shelves",
+      "pos": "50% 55%"
+    },
+    "bandImage": {
+      "src": "/images/office/front-desk-wide.jpg",
+      "alt": "The front desk at Beverly Hills Dental Arts Studio, with a mosaic mirror and the Cosmetic Dentistry sign",
       "pos": "50% 50%"
+    },
+    "closingImage": {
+      "src": "/images/office/round-table-lobby-wide.jpg",
+      "alt": "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond",
+      "pos": "50% 55%"
     },
     "offers": [],
     "focus": {
@@ -116,8 +136,8 @@
         "Periodontal maintenance, regular visits to help keep your gums healthy over time"
       ],
       "image": {
-        "src": "/images/office/hygienist-treating-patient.jpg",
-        "alt": "A hygienist treating a patient at Beverly Hills Dental Arts Studio"
+        "src": "/images/office/round-table-lobby-portrait.jpg",
+        "alt": "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and a treatment room beyond"
       }
     },
     "steps": {

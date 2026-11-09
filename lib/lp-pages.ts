@@ -20,6 +20,8 @@ export type LpPage = {
   formButton: string;
   formNote: string;
   hero: LpImage & { pos?: string };
+  bandImage?: LpImage & { pos?: string }; // the full-width photo band; BAND.image when not set
+  closingImage?: LpImage & { pos?: string }; // behind the closing action; the reception hallway when not set
   notice?: string; // urgent care notice
   availability?: string;
   offers?: OfferKey[]; // new patient specials shown in the hero; DEFAULT_OFFERS when not set
@@ -542,13 +544,15 @@ export const LP_PAGES: LpPage[] = [
     formTitle: "Request a free consultation",
     formButton: "Request a Free Consultation",
     formNote: "What your mouth needs is decided at the examination. " + SUCCESS_NOTE,
-    hero: HERO("50% 55%"),
+    hero: { src: "/images/office/front-desk-wide.jpg", alt: "The front desk at Beverly Hills Dental Arts Studio, with a mosaic mirror and the Cosmetic Dentistry sign", pos: "30% 50%" },
+    bandImage: { src: "/images/office/round-table-lobby-wide.jpg", alt: "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond", pos: "50% 55%" },
+    closingImage: { src: "/images/office/waiting-lounge-wide.jpg", alt: "The waiting lounge at Beverly Hills Dental Arts Studio, with a white leather chair, a mirrored console and glass shelves", pos: "50% 50%" },
     offers: [],
     focus: {
       heading: "One plan for your whole smile",
       intro: "Full mouth rehabilitation looks at how your teeth, gums and bite work together, then restores them as a whole instead of one tooth at a time. After your examination, your plan may include:",
       items: ["Porcelain crowns, made from a digital scan and shaded to your own teeth", "Dental bridges, to replace missing teeth with a fixed restoration", "Porcelain veneers, to reshape and refine the front of your smile", "A smile makeover, planned around your face and your goals"],
-      image: { src: "/images/office/dentists-treating-patient.jpg", alt: "Dr. Shir's team treating a patient at Beverly Hills Dental Arts Studio" },
+      image: { src: "/images/office/waiting-lounge-portrait.jpg", alt: "The waiting lounge at Beverly Hills Dental Arts Studio, with a white leather chair and a mirrored console" },
     },
     steps: {
       heading: "Your visit, step by step",
@@ -579,13 +583,15 @@ export const LP_PAGES: LpPage[] = [
     formTitle: "Request a free consultation",
     formButton: "Request a Free Consultation",
     formNote: "What your gums need is decided at the examination. " + SUCCESS_NOTE,
-    hero: HERO("50% 50%"),
+    hero: { src: "/images/office/waiting-lounge-wide.jpg", alt: "The waiting lounge at Beverly Hills Dental Arts Studio, with a white leather chair, a mirrored console and glass shelves", pos: "50% 55%" },
+    bandImage: { src: "/images/office/front-desk-wide.jpg", alt: "The front desk at Beverly Hills Dental Arts Studio, with a mosaic mirror and the Cosmetic Dentistry sign", pos: "50% 50%" },
+    closingImage: { src: "/images/office/round-table-lobby-wide.jpg", alt: "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond", pos: "50% 55%" },
     offers: [],
     focus: {
       heading: "Care for your gums, at every stage",
       intro: "Healthy gums support your teeth, and gum health is connected to the rest of your health. After an examination, your care may include:",
       items: ["A gum evaluation, with digital X-rays and a check of your gums and the bone around your teeth", "Deep cleaning (scaling and root planing), which cleans below the gumline", "Ozone therapy and soft-tissue laser care, used alongside conventional treatment where suitable", "Periodontal maintenance, regular visits to help keep your gums healthy over time"],
-      image: { src: "/images/office/hygienist-treating-patient.jpg", alt: "A hygienist treating a patient at Beverly Hills Dental Arts Studio" },
+      image: { src: "/images/office/round-table-lobby-portrait.jpg", alt: "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and a treatment room beyond" },
     },
     steps: {
       heading: "Your visit, step by step",

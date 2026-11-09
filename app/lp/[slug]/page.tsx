@@ -124,7 +124,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
 
       {/* Full-width photo band, like the homepage */}
       <section className="relative isolate overflow-hidden bg-night">
-        <Image src={BAND.image.src} alt={BAND.image.alt} fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: "50% 58%" }} />
+        <Image src={(p.bandImage ?? BAND.image).src} alt={(p.bandImage ?? BAND.image).alt} fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: p.bandImage?.pos ?? "50% 58%" }} />
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
         <div className="container-x flex min-h-[420px] items-end py-14 sm:min-h-[520px] sm:py-20">
           <div className="max-w-[640px]">
@@ -249,7 +249,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
 
       {/* Closing action over the practice photo */}
       <section className="relative isolate overflow-hidden bg-night">
-        <Image src="/images/office/hallway-wide.jpg" alt="" fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: "40% 55%" }} />
+        <Image src={p.closingImage?.src ?? "/images/office/hallway-wide.jpg"} alt="" fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: p.closingImage?.pos ?? "40% 55%" }} />
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black/60" />
         <div className="container-x max-w-[820px] py-16 text-center sm:py-24">
           <h2 className="text-[30px] font-semibold leading-tight text-white sm:text-[40px]">{p.closing.heading}</h2>

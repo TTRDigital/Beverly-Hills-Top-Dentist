@@ -550,6 +550,8 @@ export const lpPage = defineType({
     defineField({ name: "formButton", title: "Form button", type: "string" }),
     defineField({ name: "formNote", title: "Note after sending", type: "text", rows: 2 }),
     lpImage("hero", "Top photo"),
+    lpImage("bandImage", "Wide photo band"),
+    lpImage("closingImage", "Closing section photo"),
     defineField({ name: "notice", title: "Notice bar", type: "string" }),
     defineField({ name: "availability", type: "string" }),
     lines("offers", "New patient specials shown", "Leave empty for none."),
