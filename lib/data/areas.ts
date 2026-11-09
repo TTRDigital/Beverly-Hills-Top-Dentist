@@ -375,7 +375,7 @@ export const fallbackAreaPages: AreaPage[] = [
       "Are you thinking about cosmetic dentistry in Beverly Hills, such as veneers or a smile makeover, or about dental implants? Then that combination matters. Your plan can start from a 3D scan taken in our own office, and be talked through with you before anything is decided.",
     ],
     gettingHere: [
-      "Santa Monica is west of Beverly Hills. The map beside this text draws the route from Santa Monica to our door. Wilshire Boulevard and Santa Monica Boulevard both run from Santa Monica into Beverly Hills, and drivers often use one of them, then turn onto N. Bedford Drive. Your maps app will show the best route for the day and time you travel, because traffic changes it.",
+      "Santa Monica is west of Beverly Hills. The map beside this text draws the route from Santa Monica to our door. Wilshire Boulevard and Santa Monica Boulevard both run from Santa Monica into Beverly Hills, and drivers often use one of them, then turn onto N. Bedford Drive. Your maps app will show a current route for the day and time you travel, because traffic changes it.",
       "We do not quote a drive time, since it depends so much on the hour. Parking is available around Bedford Drive, a short walk from Suite 105. We open at 8:00 a.m. Monday to Thursday, and Friday from 8:00 a.m. to 1:00 p.m. If you are running late, call 310-274-7005. We would rather hear from you than keep you waiting.",
     ],
     mapFrom: "Santa Monica, CA",
@@ -406,7 +406,7 @@ export const fallbackAreaPages: AreaPage[] = [
     },
     faqs: [
       { question: "Do you have an office in Santa Monica?", answer: ["No. Our only office is at 416 N. Bedford Dr., Suite 105, Beverly Hills, CA 90210. Patients from nearby areas visit us there."] },
-      { question: "How do I get to your office from Santa Monica?", answer: ["Santa Monica is west of Beverly Hills. Wilshire Boulevard and Santa Monica Boulevard both run into Beverly Hills, and N. Bedford Drive is where you will find us. Your maps app will show the best route for your time of day. We do not quote a drive time, because it changes with traffic."] },
+      { question: "How do I get to your office from Santa Monica?", answer: ["Santa Monica is west of Beverly Hills. Wilshire Boulevard and Santa Monica Boulevard both run into Beverly Hills, and N. Bedford Drive is where you will find us. Your maps app will show a current route for your time of day. We do not quote a drive time, because it changes with traffic."] },
       { question: "Where do I park?", answer: ["Parking is available around Bedford Drive, a short walk from the office. We will point you to the easiest option when you book."] },
       { question: "Who will I see?", answer: ["Dr. Daniel Charlton and Dr. Nushin Shir are both General & Cosmetic Dentists. Call 310-274-7005 and our team can help you choose a first visit."] },
       { question: "What is different about your practice?", answer: ["We bring together ozone therapy, in-house CBCT 3D scanning, soft tissue lasers and a holistic, biological and biomimetic approach, with mercury-free composite fillings. Specialists work inside the practice, so we do not refer you out."] },
