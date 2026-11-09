@@ -1,13 +1,14 @@
-// The blog's authors and categories. Every post is by a named dentist (Dr. Shir by default; the About page is the author
-// page) and supports one part of the site, so posts are never random: each one links up to the page it is written for.
+// The blog's authors and categories. Every post is by a named dentist (Dr. Shir by default; her profile page is her author
+// page, the About page for anyone else) and supports one part of the site, so posts are never random: each one links up to the page it is written for.
 import { images } from "@/lib/data/images";
+import { PROFILE_PATH, drShirProfile } from "@/lib/data/profile";
 import type { Img } from "@/lib/types";
 
 export type Author = { name: string; credentials: string; jobTitle: string; url: string; image: Img; blurb: string };
 export const AUTHORS: Record<string, Author> = {
   "Dr. Nushin Shir": {
-    name: "Dr. Nushin Shir", credentials: "DDS, MPH", jobTitle: "General & Cosmetic Dentist", url: "/about-us/", image: images.drNushinShir,
-    blurb: "Dr. Shir earned her DDS at the UCLA School of Dentistry and holds two master's degrees in public health from UCLA. She has practiced dentistry for over 30 years.",
+    name: "Dr. Nushin Shir", credentials: "DDS, MPH", jobTitle: "General & Cosmetic Dentist", url: PROFILE_PATH, image: drShirProfile.photo,
+    blurb: "Dr. Shir is the principal dentist at Beverly Hills Dental Arts Studio. She earned her DDS at the UCLA School of Dentistry in 1993, holds two master's degrees in public health from UCLA, and has practiced dentistry for over 30 years.",
   },
   "Dr. Daniel Charlton": {
     name: "Dr. Daniel Charlton", credentials: "DDS", jobTitle: "General & Cosmetic Dentist", url: "/about-us/", image: images.drDanielCharlton,
