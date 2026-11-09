@@ -37,7 +37,7 @@ export const images = {
   imagingArea: { src: "/images/office/imaging-area.jpg", alt: "Imaging area with the CT scanner and flowers", width: 1920, height: 2560 },
   receptionDeskPortrait: { src: "/images/office/reception-desk-portrait.jpg", alt: "Reception desk and waiting area with the Cosmetic Dentistry sign", width: 768, height: 1024 },
   receptionDesk: { src: "/images/office/reception-desk.jpg", alt: "Reception desk and waiting area with the Cosmetic Dentistry sign", width: 1920, height: 2560 },
-  receptionDeskNewWide: { src: "/images/office/reception-desk-new-wide.jpg", alt: "Reception desk with the Cosmetic Dentistry sign, a mosaic mirror and fresh flowers at the Beverly Hills Dental Arts Studio office", width: 2000, height: 1250 },
+  receptionDeskCroppedWide: { src: "/images/office/reception-desk-cropped-wide.jpg", alt: "Reception desk at Beverly Hills Dental Arts Studio with the Cosmetic Dentistry sign, a mosaic mirror and white orchids", width: 1530, height: 960 },
   roundTableLobbyWide: { src: "/images/office/round-table-lobby-wide.jpg", alt: "Office lobby with a vase of blossoms and open doorways to the treatment rooms at the Beverly Hills Dental Arts Studio office", width: 2000, height: 1250 },
   treatmentChair: { src: "/images/office/treatment-chair.jpg", alt: "Treatment room with a dental chair and sculpture on the wall", width: 768, height: 1024 },
   smileResult1: { src: "/images/results/smile-result-1.jpg", alt: "Before and after smile result", width: 670, height: 670 },

@@ -21,8 +21,8 @@ export const nightGuardsCulverCity: Post = {
   excerpt:
     "Waking up with a tight jaw, or a dentist who mentions worn teeth? Here is how a custom night guard is made at our Beverly Hills office, and what to expect if you are coming from Culver City.",
   image: {
-    ...images.receptionDeskNewWide,
-    alt: "Reception desk with the Cosmetic Dentistry sign and fresh flowers at the Beverly Hills Dental Arts Studio office on Bedford Drive",
+    ...images.receptionDeskCroppedWide,
+    alt: "Reception desk at Beverly Hills Dental Arts Studio with the Cosmetic Dentistry sign, a mosaic mirror and white orchids",
   },
   cta: "If your jaw feels tight in the morning, come and let us look at your teeth. We will show you what we see and talk through your options.",
   figures: [
