@@ -25,8 +25,6 @@ const nextConfig: NextConfig = {
   env: { NEXT_PUBLIC_LEAD_ENDPOINT: onVercel ? "/api/lead/" : "/api/lead.php" },
   // /about-us/ -> about-us/index.html, which Apache serves as is
   // (and matches the old WordPress URLs).
-  // The 404 page for unmatched addresses is app/global-not-found.tsx, so the site menu stays out of every other page's HTML.
-  experimental: { globalNotFound: true },
   trailingSlash: true,
   poweredByHeader: false,
   images: {
