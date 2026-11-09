@@ -22,7 +22,7 @@
     "heroImage": {
       "_type": "altImage",
       "alt": "Reception desk at Beverly Hills Dental Arts Studio with the Cosmetic Dentistry sign, a mosaic mirror and white orchids",
-      "_sanityAsset": "image@file://./public/images/office/reception-desk-new-wide.jpg"
+      "_sanityAsset": "image@file://./public/images/office/reception-desk-cropped-wide.jpg"
     },
     "byline": [
       "Dr. Daniel Charlton",
