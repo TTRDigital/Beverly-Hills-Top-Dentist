@@ -366,7 +366,7 @@ export const fallbackAreaPages: AreaPage[] = [
     cardLine: "Directions from Santa Monica to our Beverly Hills office. Cosmetic dentistry, implants and mercury-free fillings.",
     heading: "Looking for a Dentist Near Santa Monica?",
     subhead: "Beverly Hills Dental Arts Studio is at 416 N. Bedford Drive in Beverly Hills, a drive east of Santa Monica.",
-    heroImage: images.hallwayWide,
+    heroImage: images.frontDeskWide,
     byline: ["Dr. Daniel Charlton", "Dr. Nushin Shir"],
     trustStrip: ["Ozone therapy", "In-house CBCT 3D scanning", "Soft tissue lasers", "Holistic and biomimetic care", "Mercury-free composite fillings", "In-house specialists"],
     intro: [

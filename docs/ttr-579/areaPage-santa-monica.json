@@ -21,8 +21,8 @@
     "subhead": "Beverly Hills Dental Arts Studio is at 416 N. Bedford Drive in Beverly Hills, a drive east of Santa Monica.",
     "heroImage": {
       "_type": "altImage",
-      "alt": "Wide view of the office hallway with framed photographs",
-      "_sanityAsset": "image@file://./public/images/office/hallway-wide.jpg"
+      "alt": "Front desk at Beverly Hills Dental Arts Studio with a mosaic mirror, a lit Smile sign and a bonsai plant",
+      "_sanityAsset": "image@file://./public/images/office/front-desk-wide.jpg"
     },
     "byline": [
       "Dr. Daniel Charlton",
