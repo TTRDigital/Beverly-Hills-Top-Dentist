@@ -85,6 +85,7 @@ export async function sendEvent(e: CapiEvent): Promise<CapiResult> {
         method: "POST", headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" }, body: JSON.stringify(body), signal: AbortSignal.timeout(8000),
       });
       const text = (await res.text().catch(() => "")).slice(0, 500);
+      if (validateOnly) console.log(`[capi] validate_only answer ${res.status}: ${text.slice(0, 300)}`); // nothing is recorded in this mode
       if (res.ok) return { status: "sent", http: res.status, body: text };
       console.error(`[capi] OpenAI answered ${res.status}: ${text.slice(0, 300)}`);
       last = { status: "failed", http: res.status, body: text };
