@@ -15,18 +15,18 @@
     "formButton": "Request a Free Consultation",
     "formNote": "What your mouth needs is decided at the examination. Your request is not a confirmed appointment. Our team will contact you about availability.",
     "hero": {
-      "src": "/images/office/round-table-lobby-wide.jpg",
-      "alt": "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond",
+      "src": "/images/office/hallway-wide.jpg",
+      "alt": "The hallway at Beverly Hills Dental Arts Studio, with a silver vase on a round white table and framed photographs on the walls",
       "pos": "50% 55%"
     },
     "bandImage": {
-      "src": "/images/office/front-desk-wide.jpg",
-      "alt": "The front desk at Beverly Hills Dental Arts Studio, with a mosaic mirror and the Cosmetic Dentistry sign",
+      "src": "/images/office/waiting-lounge-wide.jpg",
+      "alt": "The waiting lounge at Beverly Hills Dental Arts Studio, with a white leather chair, a mirrored console and glass shelves",
       "pos": "50% 50%"
     },
     "closingImage": {
-      "src": "/images/office/waiting-lounge-wide.jpg",
-      "alt": "The waiting lounge at Beverly Hills Dental Arts Studio, with a white leather chair, a mirrored console and glass shelves",
+      "src": "/images/office/front-desk-wide.jpg",
+      "alt": "The front desk at Beverly Hills Dental Arts Studio, with a mosaic mirror and the Cosmetic Dentistry sign",
       "pos": "50% 50%"
     },
     "offers": [],
@@ -40,8 +40,8 @@
         "A smile makeover, planned around your face and your goals"
       ],
       "image": {
-        "src": "/images/office/waiting-lounge-portrait.jpg",
-        "alt": "The waiting lounge at Beverly Hills Dental Arts Studio, with a white leather chair and a mirrored console"
+        "src": "/images/office/round-table-lobby-portrait.jpg",
+        "alt": "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond"
       }
     },
     "steps": {
@@ -111,8 +111,8 @@
     "formButton": "Request a Free Consultation",
     "formNote": "What your gums need is decided at the examination. Your request is not a confirmed appointment. Our team will contact you about availability.",
     "hero": {
-      "src": "/images/office/round-table-lobby-wide.jpg",
-      "alt": "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond",
+      "src": "/images/office/hallway-wide.jpg",
+      "alt": "The hallway at Beverly Hills Dental Arts Studio, with a silver vase on a round white table and framed photographs on the walls",
       "pos": "50% 55%"
     },
     "bandImage": {
@@ -121,9 +121,9 @@
       "pos": "50% 60%"
     },
     "closingImage": {
-      "src": "/images/office/waiting-lounge-wide.jpg",
-      "alt": "The waiting lounge at Beverly Hills Dental Arts Studio, with a white leather chair, a mirrored console and glass shelves",
-      "pos": "50% 50%"
+      "src": "/images/office/round-table-lobby-wide.jpg",
+      "alt": "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond",
+      "pos": "50% 55%"
     },
     "offers": [],
     "focus": {
@@ -136,8 +136,8 @@
         "Periodontal maintenance, regular visits to help keep your gums healthy over time"
       ],
       "image": {
-        "src": "/images/office/front-desk-portrait.jpg",
-        "alt": "The front desk area at Beverly Hills Dental Arts Studio, with the Cosmetic Dentistry sign and a mosaic mirror"
+        "src": "/images/office/waiting-lounge-portrait.jpg",
+        "alt": "The waiting lounge at Beverly Hills Dental Arts Studio, with a white leather chair, a mirrored console and glass shelves"
       }
     },
     "steps": {
