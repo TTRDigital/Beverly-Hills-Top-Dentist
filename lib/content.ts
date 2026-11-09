@@ -318,7 +318,11 @@ export const getPosts = cache(async (): Promise<Post[]> => {
     {},
     ["post"],
   );
-  return cms?.length ? cms.map((p) => ({ ...p, body: p.body ?? [], seo: merge({ title: p.title, description: p.excerpt ?? "" }, p.seo) })) : fallbackPosts;
+  if (!cms?.length) return fallbackPosts;
+  // A post published in /cms replaces the built-in post with the same slug; built-in posts not yet in /cms stay.
+  const published = cms.map((p) => ({ ...p, body: p.body ?? [], seo: merge({ title: p.title, description: p.excerpt ?? "" }, p.seo) }));
+  const slugs = new Set(published.map((p) => p.slug));
+  return [...published, ...fallbackPosts.filter((p) => !slugs.has(p.slug))].sort((a, b) => b.date.localeCompare(a.date));
 });
 
 /* ---------- Page singletons ---------- */
