@@ -21,26 +21,24 @@ export const nightGuardsCulverCity: Post = {
   excerpt:
     "Waking up with a tight jaw, or a dentist who mentions worn teeth? Here is how a custom night guard is made at our Beverly Hills office, and what to expect if you are coming from Culver City.",
   image: {
-    src: images.iteroScanner.src,
-    alt: "The iTero digital scanner at the Bedford Drive office, used to make a custom night guard from a scan of your teeth",
-    width: images.iteroScanner.width,
-    height: images.iteroScanner.height,
+    ...images.receptionDeskNewWide,
+    alt: "Reception desk with the Cosmetic Dentistry sign and fresh flowers at the Beverly Hills Dental Arts Studio office on Bedford Drive",
   },
   cta: "If your jaw feels tight in the morning, come and let us look at your teeth. We will show you what we see and talk through your options.",
   figures: [
     {
       beforeHeading: "How is a custom night guard made?",
-      image: images.digitalXRayRoom,
-      alt: "Treatment room at the Bedford Drive office with a dental chair and digital monitor",
+      image: images.iteroScanner,
+      alt: "The iTero digital scanner at the Bedford Drive office",
       caption: "Your guard starts with a digital scan of your teeth, taken in our office.",
       position: "center 30%",
     },
     {
       beforeHeading: "Why do Culver City patients come to Beverly Hills for a night guard?",
-      image: images.receptionDesk,
-      alt: "Reception desk and waiting area at the Beverly Hills Dental Arts Studio office on Bedford Drive",
+      image: images.roundTableLobbyWide,
+      alt: "Office lobby with a vase of blossoms and open doorways to the treatment rooms on Bedford Drive",
       caption: "Our only office is at 416 N. Bedford Dr., Suite 105, in Beverly Hills.",
-      position: "center 40%",
+      position: "center 55%",
     },
   ],
   blocks: [
