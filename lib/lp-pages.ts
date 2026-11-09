@@ -22,6 +22,7 @@ export type LpPage = {
   hero: LpImage & { pos?: string };
   bandImage?: LpImage & { pos?: string }; // the full-width photo band; BAND.image when not set
   bandFaces?: boolean; // the band photo shows faces near the top: text sits lower on phones and the shade is lighter at the top
+  focusWide?: boolean; // the main-section photo is landscape (e.g. the team): the card is 3:2 on desktop too, so nobody is cropped out
   closingImage?: LpImage & { pos?: string }; // behind the closing action; the reception hallway when not set
   notice?: string; // urgent care notice
   availability?: string;
@@ -586,15 +587,15 @@ export const LP_PAGES: LpPage[] = [
     formButton: "Request a Free Consultation",
     formNote: "What your gums need is decided at the examination. " + SUCCESS_NOTE,
     hero: { src: "/images/office/hallway-wide.jpg", alt: "The hallway at Beverly Hills Dental Arts Studio, with a silver vase on a round white table and framed photographs on the walls", pos: "50% 55%" },
-    bandImage: { src: "/images/team/team-photo.jpg", alt: "The team at Beverly Hills Dental Arts Studio", pos: "50% 0%" },
-    bandFaces: true,
+    bandImage: { src: "/images/office/reception-desk-cropped-wide.jpg", alt: "The reception desk at Beverly Hills Dental Arts Studio, with the Cosmetic Dentistry sign, a mosaic mirror and white orchids", pos: "50% 60%" },
+    focusWide: true,
     closingImage: { src: "/images/office/round-table-lobby-wide.jpg", alt: "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond", pos: "50% 55%" },
     offers: [],
     focus: {
       heading: "Care for your gums, at every stage",
       intro: "Healthy gums support your teeth, and gum health is connected to the rest of your health. After an examination, your care may include:",
       items: ["A gum evaluation, with digital X-rays and a check of your gums and the bone around your teeth", "Deep cleaning (scaling and root planing), which cleans below the gumline", "Ozone therapy and soft-tissue laser care, used alongside conventional treatment where suitable", "Periodontal maintenance, regular visits to help keep your gums healthy over time"],
-      image: { src: "/images/office/waiting-lounge-portrait.jpg", alt: "The waiting lounge at Beverly Hills Dental Arts Studio, with a white leather chair, a mirrored console and glass shelves" },
+      image: { src: "/images/team/team-photo.jpg", alt: "The team at Beverly Hills Dental Arts Studio" },
     },
     steps: {
       heading: "Your visit, step by step",

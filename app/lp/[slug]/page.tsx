@@ -116,8 +116,8 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
             {p.focus.paragraphs ? <div className="mt-4 space-y-4 text-[17px] leading-relaxed text-body">{p.focus.paragraphs.map((t) => <p key={t}>{t}</p>)}</div> : null}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">{actions("focus", false)}</div>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[6px] lg:aspect-[4/4.4]">
-            <Image src={p.focus.image.src} alt={p.focus.image.alt} fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" />
+          <div className={`relative aspect-[4/3] overflow-hidden rounded-[6px] ${p.focusWide ? "lg:aspect-[3/2]" : "lg:aspect-[4/4.4]"}`}>
+            <Image src={p.focus.image.src} alt={p.focus.image.alt} fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" style={p.focusWide ? { objectPosition: "50% 20%" } : undefined} />
           </div>
         </div>
       </section>

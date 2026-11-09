@@ -551,6 +551,7 @@ export const lpPage = defineType({
     defineField({ name: "formNote", title: "Note after sending", type: "text", rows: 2 }),
     lpImage("hero", "Top photo"),
     lpImage("bandImage", "Wide photo band"),
+    defineField({ name: "focusWide", title: "Main section photo is landscape", type: "boolean", description: "Shows the main section photo as a wide card on desktop, so a group photo is not cropped." }),
     defineField({ name: "bandFaces", title: "Band photo has faces near the top", type: "boolean", description: "Keeps the band text below the faces on phones." }),
     lpImage("closingImage", "Closing section photo"),
     defineField({ name: "notice", title: "Notice bar", type: "string" }),
