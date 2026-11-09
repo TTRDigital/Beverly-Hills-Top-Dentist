@@ -2038,7 +2038,7 @@
       "statusCode": 301
     },
     {
-      "source": "/author/:name((?!dr-nushin-shir$)[^/]+){/}?",
+      "source": "/author/((?!dr-nushin-shir/?$)[^/]+)/?",
       "destination": "/about-us/",
       "statusCode": 301
     },
