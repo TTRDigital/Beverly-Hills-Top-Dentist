@@ -35,10 +35,9 @@ export const nightGuardsCulverCity: Post = {
     },
     {
       beforeHeading: "Why do Culver City patients come to Beverly Hills for a night guard?",
-      image: images.waitingLoungeWide,
-      alt: "The waiting lounge at Beverly Hills Dental Arts Studio with framed flower art, glass shelves and a glass console table",
+      image: images.teamPhoto,
+      alt: "The team at Beverly Hills Dental Arts Studio",
       caption: "Our only office is at 416 N. Bedford Dr., Suite 105, in Beverly Hills.",
-      position: "center 45%",
     },
   ],
   blocks: [
