@@ -15,6 +15,7 @@ export const AUTHORS: Record<string, Author> = {
 };
 export const DEFAULT_AUTHOR = "Dr. Nushin Shir";
 /** Every blog post is by Dr. Shir (Kia, Nov 9, 2026), whatever the post's author field says. Dr. Charlton stays on the About Us team section only. */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const authorFor = (_name?: string | null): Author => AUTHORS[DEFAULT_AUTHOR];
 
 export type Category = { key: string; name: string; path: string; blurb: string };
