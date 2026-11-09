@@ -222,6 +222,8 @@ function normalizeArea<T>(page: T): T {
   if ("treatments" in p) {
     out.gettingHere = arr<string>(p.gettingHere);
     out.zips = arr<string>(p.zips);
+    out.byline = arr<string>(p.byline);
+    out.trustStrip = arr<string>(p.trustStrip);
     out.treatments = arr<Loose>(p.treatments).map((t) => ({ title: String(t.title ?? ""), text: String(t.text ?? ""), links: arr(t.links) }));
   } else {
     out.planText = arr<string>(p.planText);
@@ -244,7 +246,7 @@ export const getAreaPages = cache(async (): Promise<AreaPage[]> => {
     `*[_type == "areaPage" && defined(slug.current)] | order(order asc){
       "slug": slug.current, order, approved, name, zips, cardLine, heading, subhead, "heroImage": heroImage${IMG},
       intro, gettingHere, mapFrom, mapTitle, treatmentsHeading, treatments[]{ title, text, "links": links[]${LINK} },
-      whyHeading, ${WHY}, whyText, ${FAQS}, "reviews": reviews[]->{ quote, name, "rating": coalesce(rating, 5), source }, ${SEO}
+      whyHeading, ${WHY}, whyText, ${FAQS}, "reviews": reviews[]->{ quote, name, "rating": coalesce(rating, 5), source }, byline, related{ title, text, href }, trustStrip, ${SEO}
     }`,
     {},
     ["areaPage"],

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getAreaPages, getAreasHub, getSiteSettings } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
-import { breadcrumbSchema, faqPageSchema } from "@/lib/schema";
+import { areaPageSchema, breadcrumbSchema, faqPageSchema } from "@/lib/schema";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { AreaFaq, AreaHero, CtaBand, FinalCta, GettingHere, Intro, Reviews, StickyMobileBar, Treatments, TrustStrip, WhyRow } from "@/components/areas/AreaBlocks";
+import { AreaFaq, AreaHero, Byline, CtaBand, FinalCta, GettingHere, Intro, RelatedCard, Reviews, StickyMobileBar, Treatments, TrustStrip, WhyRow } from "@/components/areas/AreaBlocks";
 
 export const dynamicParams = false;
 
@@ -39,14 +39,17 @@ export default async function AreaRoute({ params }: { params: Promise<{ slug: st
         ])}
       />
       <JsonLd data={faqPageSchema(page.faqs)} />
+      {page.byline?.length ? <JsonLd data={areaPageSchema(page)} /> : null}
       <AreaHero s={s} page={track} heading={page.heading} subhead={page.subhead} image={page.heroImage} />
-      <TrustStrip items={s.trustStrip} />
+      <Byline names={page.byline ?? []} />
+      <TrustStrip items={page.trustStrip?.length ? page.trustStrip : s.trustStrip} />
       <Intro paras={page.intro} />
       <GettingHere page={page} mapCaption={hub.mapCaption} />
       <Treatments page={page} />
       <CtaBand s={s} page={track} />
       <WhyRow heading={page.whyHeading} items={page.whyItems} text={page.whyText} />
       <Reviews reviews={page.reviews} area={page.name} />
+      <RelatedCard related={page.related} />
       <AreaFaq faqs={page.faqs} />
       <FinalCta s={s} page={track} heading={hub.ctaHeading} />
       <StickyMobileBar s={s} page={track} />

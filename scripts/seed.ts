@@ -6,14 +6,17 @@
  *   npm run seed -- --force # overwrite everything with the built-in content
  *   npm run seed -- --dry-run  # build every document without uploading or writing
  *   npm run seed -- --force --only=areasPage,areaPage-  # only documents whose ID starts with these
+ *   npm run seed -- --export=out.json --only=areaPage-santa-monica  # export mode: write the documents to a JSON file.
+ *       No token, no network, nothing uploaded. Photos are written as "_sanityAsset": "image@file://./public/..."
+ *       so `sanity dataset import` (run from the repo root) uploads them. Document IDs must not contain dots.
  *
  * Writes to project q5yxih7t / production unless NEXT_PUBLIC_SANITY_PROJECT_ID /
  * NEXT_PUBLIC_SANITY_DATASET say otherwise (environment or .env.local). Needs
  * SANITY_WRITE_TOKEN (Editor token from sanity.io/manage > API > Tokens) in
  * .env.local. Without --force, anything an editor already changed is kept.
  */
-import { createReadStream, existsSync, readFileSync } from "node:fs";
-import { basename, join } from "node:path";
+import { createReadStream, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { basename, dirname, join, resolve } from "node:path";
 import { createClient } from "@sanity/client";
 import type { Img, Link, MenuItem, Section, TreatmentPage } from "../lib/types";
 import { fallbackCases, fallbackFaqs, fallbackMenu, fallbackPosts, fallbackSettings, fallbackTeam, fallbackTestimonials } from "../lib/data/site.ts";
@@ -42,7 +45,9 @@ if (existsSync(join(root, ".env.local"))) {
 const { dataset, projectId } = await import("../sanity/env.ts");
 const token = process.env.SANITY_WRITE_TOKEN;
 const force = process.argv.includes("--force");
-const dryRun = process.argv.includes("--dry-run");
+const exportTo = process.argv.find((a) => a.startsWith("--export="))?.slice(9);
+// Export mode never touches the network, so it behaves like a dry run that also writes the file.
+const dryRun = process.argv.includes("--dry-run") || !!exportTo;
 // --only=areasPage,areaPage- limits the run to documents whose ID starts with one of these.
 const only = (process.argv.find((a) => a.startsWith("--only="))?.slice(7) ?? "").split(",").map((x) => x.trim()).filter(Boolean);
 
@@ -75,6 +80,10 @@ async function asset(src: string, kind: "image" | "file" = "image") {
 
 async function altImage(img?: Img) {
   if (!img) return undefined;
+  if (exportTo) {
+    if (!existsSync(join(root, "public", img.src))) throw new Error(`Missing file: public${img.src}`);
+    return { _type: "altImage", alt: img.alt, _sanityAsset: `image@file://./public${img.src}` };
+  }
   return { _type: "altImage", alt: img.alt, asset: { _type: "reference", _ref: await asset(img.src) } };
 }
 async function images(list: Img[] = []) {
@@ -267,6 +276,9 @@ async function build() {
       heading: a.heading,
       subhead: a.subhead,
       heroImage: await altImage(a.heroImage),
+      byline: a.byline,
+      related: a.related ? { title: a.related.title, text: a.related.text, href: a.related.href } : undefined,
+      trustStrip: a.trustStrip,
       intro: a.intro,
       gettingHere: a.gettingHere,
       mapFrom: a.mapFrom,
@@ -320,6 +332,16 @@ const clean = (v: unknown): unknown =>
 console.log(`Seeding ${projectId}/${dataset}${force ? " (overwriting)" : " (keeping existing documents)"}${dryRun ? " [dry run]" : ""}. Uploading photos`);
 const docs = (await build()).map((d) => clean(d) as { _id: string; _type: string }).filter((d) => !only.length || only.some((p) => d._id.startsWith(p)));
 console.log(`\n${uploaded.size} files ${dryRun ? "checked" : "uploaded"}. Writing ${docs.length} documents…`);
+if (exportTo) {
+  const bad = docs.filter((d) => d._id.includes("."));
+  if (bad.length) throw new Error(`Document IDs must not contain dots: ${bad.map((d) => d._id).join(", ")}`);
+  if (!docs.length) throw new Error("Nothing to export: check --only.");
+  const file = resolve(exportTo);
+  mkdirSync(dirname(file), { recursive: true });
+  writeFileSync(file, `${JSON.stringify(docs, null, 2)}\n`);
+  console.log(`Exported ${docs.length} document(s) to ${file}: ${docs.map((d) => d._id).join(", ")}`);
+  process.exit(0);
+}
 if (dryRun) {
   const counts = docs.reduce<Record<string, number>>((acc, d) => ((acc[d._type] = (acc[d._type] ?? 0) + 1), acc), {});
   console.log("Dry run, nothing written:", counts, `${Math.round(JSON.stringify(docs).length / 1024)} KB of content`);

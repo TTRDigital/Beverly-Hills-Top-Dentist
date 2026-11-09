@@ -351,4 +351,72 @@ export const fallbackAreaPages: AreaPage[] = [
       description: "Hollywood patients travel about 20 minutes to Dr. Shir in Beverly Hills for veneers, whitening, bonding and natural cosmetic dentistry.",
     },
   },
+  /*
+   * TTR-579: "Dentist Near Santa Monica". Santa Monica is a nearby town, not an office: the only office is Beverly Hills.
+   * approved: false = reachable for review, noindex, not in the sitemap and not on the hub, until the practice approves it.
+   * No drive times or distances (not verified). Statements the practice must confirm are listed in docs/ttr-579/README.md.
+   * The same document is exported to docs/ttr-579/areaPage-santa-monica.json for loading into Sanity.
+   */
+  {
+    slug: "santa-monica",
+    order: 7,
+    approved: false,
+    name: "Santa Monica",
+    zips: ["90401", "90402", "90403", "90404", "90405"],
+    cardLine: "Directions from Santa Monica to our Beverly Hills office. Cosmetic dentistry, implants and mercury-free fillings.",
+    heading: "Looking for a Dentist Near Santa Monica?",
+    subhead: "Beverly Hills Dental Arts Studio is at 416 N. Bedford Drive in Beverly Hills, a drive east of Santa Monica.",
+    heroImage: images.hallwayWide,
+    byline: ["Dr. Daniel Charlton", "Dr. Nushin Shir"],
+    trustStrip: ["Ozone therapy", "In-house CBCT 3D scanning", "Soft tissue lasers", "Holistic and biomimetic care", "Mercury-free composite fillings", "In-house specialists"],
+    intro: [
+      "Are you searching for a dentist near Santa Monica, and wondering if a drive east is worth it? Beverly Hills Dental Arts Studio is a general and cosmetic dental practice at 416 N. Bedford Dr., Suite 105, Beverly Hills, CA 90210. We have one office, and it is in Beverly Hills. We do not have an office in Santa Monica, and we would rather say so plainly.",
+      "Dr. Daniel Charlton and Dr. Nushin Shir are both General & Cosmetic Dentists. The practice is built around a more thoughtful way of caring for teeth: ozone therapy, in-house CBCT 3D scanning, soft tissue lasers and a holistic, biological and biomimetic approach, with mercury-free composite fillings. Specialists work inside the practice, so we do not refer you out to another office.",
+      "Are you thinking about cosmetic dentistry in Beverly Hills, such as veneers or a smile makeover, or about dental implants? Then that combination matters. Your plan can start from a 3D scan taken in our own office, and be talked through with you before anything is decided.",
+    ],
+    gettingHere: [
+      "Santa Monica is west of Beverly Hills. The map beside this text draws the route from Santa Monica to our door. Wilshire Boulevard and Santa Monica Boulevard both run from Santa Monica into Beverly Hills, and drivers often use one of them, then turn onto N. Bedford Drive. Your maps app will show the best route for the day and time you travel, because traffic changes it.",
+      "We do not quote a drive time, since it depends so much on the hour. Parking is available around Bedford Drive, a short walk from Suite 105. We open at 8:00 a.m. Monday to Thursday, and Friday from 8:00 a.m. to 1:00 p.m. If you are running late, call 310-274-7005. We would rather hear from you than keep you waiting.",
+    ],
+    mapFrom: "Santa Monica, CA",
+    mapTitle: "Map: route from Santa Monica to 416 N. Bedford Dr., Beverly Hills",
+    treatmentsHeading: "Care you can plan with us",
+    treatments: [
+      { title: "Porcelain veneers and smile makeovers", text: "Do you want to change the shape, shade or spacing of your smile? A veneer or smile makeover plan starts with a conversation about how you want to look and feel, then follows the lines of your own face.", links: [{ label: "About porcelain veneers", href: L.veneers }, { label: "About smile makeovers", href: "/services/cosmetic-dentistry/smile-makeover/" }] },
+      { title: "Dental implants", text: "Are you missing a tooth, or several? Implant planning can start with a CBCT 3D scan taken here in the office, so it does not wait on an outside imaging center. Dr. Charlton and Dr. Shir can talk through your options with you.", links: [{ label: "About single tooth implants", href: L.implant }, { label: "About full arch implants", href: "/services/dental-implants-dentistry/full-arch-implants/" }] },
+      { title: "Mercury-free composite fillings", text: "Would you prefer tooth-colored fillings with no mercury? Our biomimetic approach is about keeping as much of your natural tooth as possible. Crowns, bridges, inlays and onlays, and root canals are part of our restorative care too.", links: [{ label: "About dental fillings", href: L.fillings }, { label: "About restorative dentistry", href: L.restorative }] },
+      { title: "Invisalign® and clear aligners", text: "Curious about straightening your teeth without metal brackets? Invisalign® and other clear aligners are removable and discreet. A first visit is a chance to ask whether they suit your teeth and your goals.", links: [{ label: "About clear aligners", href: "/services/cosmetic-dentistry/clear-aligners/" }] },
+      { title: "Teeth whitening and bonding", text: "Would a brighter or more even smile be enough? Professional whitening and dental bonding are two of the ways we refresh a smile, and we can help you decide which fits.", links: [{ label: "About teeth whitening", href: L.whitening }, { label: "About dental bonding", href: L.bonding }] },
+      { title: "Gum care and soft tissue lasers", text: "Do your gums bother you, or would you like a more balanced smile line? Our soft tissue lasers are used for laser gum treatments and gum contouring, alongside deep cleanings and night guards.", links: [{ label: "About laser gum treatments", href: "/services/periodontic-dentistry/laser-gum-treatments/" }, { label: "About gum contouring", href: "/services/periodontic-dentistry/gum-contouring/" }] },
+    ],
+    whyHeading: "What sets our Beverly Hills studio apart",
+    whyItems: [
+      { title: "Ozone therapy", text: "A health-first way to disinfect and support healing, used within our biological approach." },
+      { title: "In-house CBCT 3D scanning", text: "Detailed imaging in the office, so planning does not wait on an outside scan center." },
+      { title: "Soft tissue lasers", text: "Used for laser gum treatments and gum contouring." },
+      { title: "Holistic, biological care", text: "Mercury-free composite fillings and biomimetic techniques that keep as much natural tooth as possible." },
+    ],
+    whyText: [
+      "Specialists work inside the practice with Dr. Charlton and Dr. Shir, and the practice does not refer out. That keeps your care in one place, with one team that knows your plan.",
+    ],
+    related: {
+      title: "Cosmetic dentistry in Beverly Hills",
+      text: "Veneers, bonding, whitening, smile makeovers and Invisalign® at Beverly Hills Dental Arts Studio.",
+      href: "/services/cosmetic-dentistry/",
+    },
+    faqs: [
+      { question: "Do you have an office in Santa Monica?", answer: ["No. Our only office is at 416 N. Bedford Dr., Suite 105, Beverly Hills, CA 90210. Patients from nearby areas visit us there."] },
+      { question: "How do I get to your office from Santa Monica?", answer: ["Santa Monica is west of Beverly Hills. Wilshire Boulevard and Santa Monica Boulevard both run into Beverly Hills, and N. Bedford Drive is where you will find us. Your maps app will show the best route for your time of day. We do not quote a drive time, because it changes with traffic."] },
+      { question: "Where do I park?", answer: ["Parking is available around Bedford Drive, a short walk from the office. We will point you to the easiest option when you book."] },
+      { question: "Who will I see?", answer: ["Dr. Daniel Charlton and Dr. Nushin Shir are both General & Cosmetic Dentists. Call 310-274-7005 and our team can help you choose a first visit."] },
+      { question: "What is different about your practice?", answer: ["We bring together ozone therapy, in-house CBCT 3D scanning, soft tissue lasers and a holistic, biological and biomimetic approach, with mercury-free composite fillings. Specialists work inside the practice, so we do not refer you out."] },
+      { question: "Do you treat TMJ problems or sleep apnea?", answer: ["Yes. TMJ care and sleep apnea treatment are among the services we offer. Tell us what you are noticing at your first visit and we will talk through your options."] },
+      { question: "Do you take my insurance?", answer: ["Coverage varies by plan. Call 310-274-7005 and we will check what your plan covers before your visit."] },
+    ],
+    reviews: [],
+    seo: {
+      title: "Dentist Near Santa Monica | Beverly Hills Dental Arts Studio",
+      description: "Dentist near Santa Monica? Beverly Hills Dental Arts Studio offers cosmetic and implant care with in-house CBCT scanning and ozone therapy. Call 310-274-7005.",
+    },
+  },
 ];
