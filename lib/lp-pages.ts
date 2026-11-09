@@ -20,9 +20,7 @@ export type LpPage = {
   formButton: string;
   formNote: string;
   hero: LpImage & { pos?: string };
-  bandImage?: LpImage & { pos?: string }; // the full-width photo band; BAND.image when not set
-  heroVideo?: boolean; // the website's hero video plays over the hero photo (large screens, normal connections); the photo is the poster
-  bandFaces?: boolean; // the band photo shows faces near the top: text sits lower on phones and the shade is lighter at the top
+  heroVideo?: boolean; // the website hero video plays over the hero photo (large screens, normal connections; the photo is the poster). On unless false.
   focusWide?: boolean; // the main-section photo is landscape (e.g. the team): the card is 3:2 on desktop too, so nobody is cropped out
   closingImage?: LpImage & { pos?: string }; // behind the closing action; the reception hallway when not set
   notice?: string; // urgent care notice
@@ -77,7 +75,7 @@ export const PILLARS = {
 export const BAND = {
   heading: "Thirty Years of Doing It Differently",
   text: "Ozone therapy, soft-tissue lasers, in-office CT. Dr. Shir invested in the technology most practices refer out for, so your care never leaves this office.",
-  image: { src: "/images/office/hallway-round-table.jpg", alt: "The hallway at Beverly Hills Dental Arts Studio" },
+  image: { src: "/images/office/hallway-wide.jpg", alt: "The hallway at Beverly Hills Dental Arts Studio, with a silver vase on a round white table and framed photographs on the walls" },
 };
 
 export const TECH_INTRO = { heading: "Technology and Innovation", text: "Imaging, diagnosis and treatment happen in one office, with one team accountable for your care from the first scan to the final result." };
@@ -548,16 +546,14 @@ export const LP_PAGES: LpPage[] = [
     formButton: "Request a Free Consultation",
     formNote: "What your mouth needs is decided at the examination. " + SUCCESS_NOTE,
     hero: { src: "/images/office/hallway-wide.jpg", alt: "The hallway at Beverly Hills Dental Arts Studio, with a silver vase on a round white table and framed photographs on the walls", pos: "50% 55%" },
-    bandImage: { src: "/images/team/team-photo.jpg", alt: "The team at Beverly Hills Dental Arts Studio", pos: "50% 0%" },
-    bandFaces: true,
     closingImage: { src: "/images/office/front-desk-wide.jpg", alt: "The front desk at Beverly Hills Dental Arts Studio, with a mosaic mirror and the Cosmetic Dentistry sign", pos: "50% 50%" },
-    heroVideo: true,
     offers: [],
+    focusWide: true,
     focus: {
       heading: "One plan for your whole smile",
       intro: "Full mouth rehabilitation looks at how your teeth, gums and bite work together, then restores them as a whole instead of one tooth at a time. After your examination, your plan may include:",
       items: ["Porcelain crowns, made from a digital scan and shaded to your own teeth", "Dental bridges, to replace missing teeth with a fixed restoration", "Porcelain veneers, to reshape and refine the front of your smile", "A smile makeover, planned around your face and your goals"],
-      image: { src: "/images/office/round-table-lobby-portrait.jpg", alt: "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond" },
+      image: { src: "/images/team/team-photo.jpg", alt: "The team at Beverly Hills Dental Arts Studio" },
     },
     steps: {
       heading: "Your visit, step by step",
@@ -589,11 +585,9 @@ export const LP_PAGES: LpPage[] = [
     formButton: "Request a Free Consultation",
     formNote: "What your gums need is decided at the examination. " + SUCCESS_NOTE,
     hero: { src: "/images/office/hallway-wide.jpg", alt: "The hallway at Beverly Hills Dental Arts Studio, with a silver vase on a round white table and framed photographs on the walls", pos: "50% 55%" },
-    bandImage: { src: "/images/office/reception-desk-cropped-wide.jpg", alt: "The reception desk at Beverly Hills Dental Arts Studio, with the Cosmetic Dentistry sign, a mosaic mirror and white orchids", pos: "50% 60%" },
-    focusWide: true,
     closingImage: { src: "/images/office/round-table-lobby-wide.jpg", alt: "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond", pos: "50% 55%" },
-    heroVideo: true,
     offers: [],
+    focusWide: true,
     focus: {
       heading: "Care for your gums, at every stage",
       intro: "Healthy gums support your teeth, and gum health is connected to the rest of your health. After an examination, your care may include:",

@@ -55,7 +55,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
       <section className="relative isolate flex min-h-[560px] items-end overflow-hidden bg-night sm:min-h-[660px]">
         <Image src={p.hero.src} alt={p.hero.alt} fill priority sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: p.hero.pos ?? "50% 50%" }} />
         {/* The site's hero video over the photo: only large screens on a normal connection, after the page has loaded; the photo shows until it plays. */}
-        {p.heroVideo ? <HeroVideo mp4="/video/home-hero.mp4" webm="/video/home-hero.webm" className="absolute inset-0 -z-[15] h-full w-full object-cover" /> : null}
+        {p.heroVideo !== false ? <HeroVideo mp4="/video/home-hero.mp4" webm="/video/home-hero.webm" className="absolute inset-0 -z-[15] h-full w-full object-cover" /> : null}
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/45 to-black/10 sm:bg-gradient-to-r sm:from-black/75 sm:via-black/40 sm:to-black/5" />
         <div className="container-x pb-12 pt-32 sm:pb-20">
           <div className="max-w-[680px]">
@@ -127,9 +127,9 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
 
       {/* Full-width photo band, like the homepage */}
       <section className="relative isolate overflow-hidden bg-night">
-        <Image src={(p.bandImage ?? BAND.image).src} alt={(p.bandImage ?? BAND.image).alt} fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: p.bandImage?.pos ?? "50% 58%" }} />
-        <div aria-hidden="true" className={`absolute inset-0 -z-10 bg-gradient-to-t ${p.bandFaces ? "from-black/85 via-black/45 to-black/0" : "from-black/80 via-black/50 to-black/20"}`} />
-        <div className={`container-x flex min-h-[420px] items-end pb-14 sm:min-h-[520px] sm:py-20 ${p.bandFaces ? "pt-[280px] sm:pt-20" : "pt-14"}`}>
+        <Image src={BAND.image.src} alt={BAND.image.alt} fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: "50% 58%" }} />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
+        <div className="container-x flex min-h-[420px] items-end py-14 sm:min-h-[520px] sm:py-20">
           <div className="max-w-[640px]">
             <H2 light>{BAND.heading}</H2>
             <p className="mt-4 text-[18px] leading-relaxed text-white/90">{BAND.text}</p>
