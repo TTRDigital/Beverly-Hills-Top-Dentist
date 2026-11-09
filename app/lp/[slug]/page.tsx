@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { RequestButton, RequestModal } from "@/components/lp/RequestModal";
 import { BAND, BIO, DEFAULT_OFFERS, LP_PAGES, OFFERS, PILLARS, PRACTICE, STRIP, TECH, TECH_INTRO, WORK } from "@/lib/lp-pages";
 import { getLpPage } from "@/lib/lp-content";
+import { HeroVideo } from "@/components/sections/HeroVideo";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => LP_PAGES.map((p) => ({ slug: p.slug }));
@@ -53,6 +54,8 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
       {/* Hero: the practice's own photo, the headline and the two actions */}
       <section className="relative isolate flex min-h-[560px] items-end overflow-hidden bg-night sm:min-h-[660px]">
         <Image src={p.hero.src} alt={p.hero.alt} fill priority sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: p.hero.pos ?? "50% 50%" }} />
+        {/* The site's hero video over the photo: only large screens on a normal connection, after the page has loaded; the photo shows until it plays. */}
+        {p.heroVideo ? <HeroVideo mp4="/video/home-hero.mp4" webm="/video/home-hero.webm" className="absolute inset-0 -z-[15] h-full w-full object-cover" /> : null}
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/45 to-black/10 sm:bg-gradient-to-r sm:from-black/75 sm:via-black/40 sm:to-black/5" />
         <div className="container-x pb-12 pt-32 sm:pb-20">
           <div className="max-w-[680px]">

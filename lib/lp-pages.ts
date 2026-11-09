@@ -21,6 +21,7 @@ export type LpPage = {
   formNote: string;
   hero: LpImage & { pos?: string };
   bandImage?: LpImage & { pos?: string }; // the full-width photo band; BAND.image when not set
+  heroVideo?: boolean; // the website's hero video plays over the hero photo (large screens, normal connections); the photo is the poster
   bandFaces?: boolean; // the band photo shows faces near the top: text sits lower on phones and the shade is lighter at the top
   focusWide?: boolean; // the main-section photo is landscape (e.g. the team): the card is 3:2 on desktop too, so nobody is cropped out
   closingImage?: LpImage & { pos?: string }; // behind the closing action; the reception hallway when not set
@@ -550,6 +551,7 @@ export const LP_PAGES: LpPage[] = [
     bandImage: { src: "/images/team/team-photo.jpg", alt: "The team at Beverly Hills Dental Arts Studio", pos: "50% 0%" },
     bandFaces: true,
     closingImage: { src: "/images/office/front-desk-wide.jpg", alt: "The front desk at Beverly Hills Dental Arts Studio, with a mosaic mirror and the Cosmetic Dentistry sign", pos: "50% 50%" },
+    heroVideo: true,
     offers: [],
     focus: {
       heading: "One plan for your whole smile",
@@ -590,6 +592,7 @@ export const LP_PAGES: LpPage[] = [
     bandImage: { src: "/images/office/reception-desk-cropped-wide.jpg", alt: "The reception desk at Beverly Hills Dental Arts Studio, with the Cosmetic Dentistry sign, a mosaic mirror and white orchids", pos: "50% 60%" },
     focusWide: true,
     closingImage: { src: "/images/office/round-table-lobby-wide.jpg", alt: "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond", pos: "50% 55%" },
+    heroVideo: true,
     offers: [],
     focus: {
       heading: "Care for your gums, at every stage",
