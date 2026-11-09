@@ -32,7 +32,6 @@ export const images = {
   hallwayTableDetail: { src: "/images/office/hallway-table-detail.jpg", alt: "Round marble table in the office hallway", width: 1920, height: 2560 },
   hallwayWide1024: { src: "/images/office/hallway-wide-1024.jpg", alt: "Wide view of the office hallway with framed photographs", width: 1024, height: 684 },
   hallwayWide2: { src: "/images/office/hallway-wide-2.jpg", alt: "Wide view of the office hallway with framed photographs", width: 2048, height: 1367 },
-  roundTableLobbyWide: { src: "/images/office/round-table-lobby-wide.jpg", alt: "Lobby of Beverly Hills Dental Arts Studio with a glass vase of pink and white blossoms, framed black and white wall portraits and doorways to the treatment rooms", width: 2000, height: 1250 },
   hallwayWide: { src: "/images/office/hallway-wide.jpg", alt: "Wide view of the office hallway with framed photographs", width: 2048, height: 1367 },
   hygienistTreatingPatient: { src: "/images/office/hygienist-treating-patient.jpg", alt: "Clinician treating a patient in the dental chair", width: 1920, height: 2560 },
   imagingArea: { src: "/images/office/imaging-area.jpg", alt: "Imaging area with the CT scanner and flowers", width: 1920, height: 2560 },
