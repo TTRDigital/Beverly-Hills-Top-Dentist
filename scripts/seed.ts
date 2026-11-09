@@ -277,6 +277,7 @@ async function build() {
       subhead: a.subhead,
       heroImage: await altImage(a.heroImage),
       byline: a.byline,
+      bylineUrl: a.bylineUrl,
       related: a.related ? { title: a.related.title, text: a.related.text, href: a.related.href } : undefined,
       trustStrip: a.trustStrip,
       intro: a.intro,

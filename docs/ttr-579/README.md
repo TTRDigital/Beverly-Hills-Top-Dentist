@@ -9,7 +9,7 @@ New city page at `/areas-we-serve/santa-monica/` (unapproved: noindex, not in th
 - To publish: practice approves, then turn on "Approved" in the document.
 
 ## Claims the practice must confirm
-1. Byline: written by Dr. Daniel Charlton and Dr. Nushin Shir, both "General & Cosmetic Dentist".
+1. Byline: by Dr. Nushin Shir only, General & Cosmetic Dentist, linking to /author/dr-nushin-shir/ (Kia). Body copy still names both doctors.
 2. Ozone therapy, in-house CBCT 3D scanning, soft tissue lasers, holistic/biological/biomimetic care, mercury-free composite fillings.
 3. Specialists work inside the practice and the practice does not refer out (which specialties, if we should name them).
 4. "Patients from nearby areas visit us" (FAQ).

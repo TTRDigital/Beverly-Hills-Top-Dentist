@@ -367,7 +367,8 @@ export const fallbackAreaPages: AreaPage[] = [
     heading: "Looking for a Dentist Near Santa Monica?",
     subhead: "Beverly Hills Dental Arts Studio is at 416 N. Bedford Drive in Beverly Hills, a drive east of Santa Monica.",
     heroImage: { ...images.hallwayWide, alt: "The hallway at Beverly Hills Dental Arts Studio with a round table, flowers and framed black and white portraits" },
-    byline: ["Dr. Daniel Charlton", "Dr. Nushin Shir"],
+    byline: ["Dr. Nushin Shir"],
+    bylineUrl: "/author/dr-nushin-shir/",
     trustStrip: ["Ozone therapy", "In-house CBCT 3D scanning", "Soft tissue lasers", "Holistic and biomimetic care", "Mercury-free composite fillings", "In-house specialists"],
     intro: [
       "Are you searching for a dentist near Santa Monica, and wondering if a drive east is worth it? Beverly Hills Dental Arts Studio is a general and cosmetic dental practice at 416 N. Bedford Dr., Suite 105, Beverly Hills, CA 90210. We have one office, and it is in Beverly Hills. We do not have an office in Santa Monica, and we would rather say so plainly.",

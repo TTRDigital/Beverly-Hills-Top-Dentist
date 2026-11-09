@@ -279,6 +279,7 @@ export const areaPage = defineType({
     faqsField,
     defineField({ name: "reviews", title: "Area reviews (written permission only)", type: "array", of: [defineArrayMember({ type: "reference", to: [{ type: "testimonial" }] })], description: "Hidden while empty." }),
     defineField({ name: "byline", title: "Byline (dentists, in order)", type: "array", of: [defineArrayMember({ type: "string", options: { list: ["Dr. Daniel Charlton", "Dr. Nushin Shir"] } })], description: "Optional. Hidden while empty." }),
+    defineField({ name: "bylineUrl", title: "Byline link (optional)", type: "string", description: "A page of this site, for example /author/dr-nushin-shir/. Empty: the dentists' default page." }),
     defineField({
       name: "related",
       title: "Related page (card before the FAQ)",

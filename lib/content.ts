@@ -246,7 +246,7 @@ export const getAreaPages = cache(async (): Promise<AreaPage[]> => {
     `*[_type == "areaPage" && defined(slug.current)] | order(order asc){
       "slug": slug.current, order, approved, name, zips, cardLine, heading, subhead, "heroImage": heroImage${IMG},
       intro, gettingHere, mapFrom, mapTitle, treatmentsHeading, treatments[]{ title, text, "links": links[]${LINK} },
-      whyHeading, ${WHY}, whyText, ${FAQS}, "reviews": reviews[]->{ quote, name, "rating": coalesce(rating, 5), source }, byline, related{ title, text, href }, trustStrip, ${SEO}
+      whyHeading, ${WHY}, whyText, ${FAQS}, "reviews": reviews[]->{ quote, name, "rating": coalesce(rating, 5), source }, byline, bylineUrl, related{ title, text, href }, trustStrip, ${SEO}
     }`,
     {},
     ["areaPage"],

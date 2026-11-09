@@ -63,7 +63,7 @@ export function AreaHero({ s, page, heading, subhead, image }: { s: SiteSettings
 }
 
 /** Byline under the hero, for pages that name their dentists: names link to the About page. */
-export function Byline({ names }: { names: string[] }) {
+export function Byline({ names, url }: { names: string[]; url?: string }) {
   if (!names.length) return null;
   const authors = names.map((n) => authorFor(n));
   return (
@@ -73,12 +73,12 @@ export function Byline({ names }: { names: string[] }) {
         {authors.map((a, i) => (
           <span key={a.name}>
             {i > 0 ? (i === authors.length - 1 ? " and " : ", ") : ""}
-            <Link href={a.url} className="font-semibold text-brand">
+            <Link href={url || a.url} className="font-semibold text-brand">
               {a.name}
             </Link>
           </span>
         ))}
-        , {authors[0].jobTitle}s
+        , {authors[0].jobTitle}{authors.length > 1 ? "s" : ""}
       </p>
     </section>
   );

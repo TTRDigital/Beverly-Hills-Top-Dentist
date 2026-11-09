@@ -106,7 +106,7 @@ export function areaPageSchema(page: AreaPage) {
     inLanguage: "en-US",
     author: (page.byline ?? []).map((n) => {
       const a = authorFor(n);
-      return { "@type": "Person", name: a.name, jobTitle: a.jobTitle, url: absoluteUrl(a.url), worksFor: { "@id": `${siteUrl}/#dentist` } };
+      return { "@type": "Person", name: a.name, jobTitle: a.jobTitle, url: absoluteUrl(page.bylineUrl || a.url), worksFor: { "@id": `${siteUrl}/#dentist` } };
     }),
     publisher: { "@id": `${siteUrl}/#dentist` },
     about: { "@id": `${siteUrl}/#dentist` },
