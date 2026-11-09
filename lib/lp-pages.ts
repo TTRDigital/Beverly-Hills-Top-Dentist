@@ -544,8 +544,8 @@ export const LP_PAGES: LpPage[] = [
     formTitle: "Request a free consultation",
     formButton: "Request a Free Consultation",
     formNote: "What your mouth needs is decided at the examination. " + SUCCESS_NOTE,
-    hero: { src: "/images/office/reception-desk-cropped-wide.jpg", alt: "The reception desk at Beverly Hills Dental Arts Studio, with the Cosmetic Dentistry sign, a mosaic mirror and white orchids", pos: "50% 60%" },
-    bandImage: { src: "/images/office/round-table-lobby-wide.jpg", alt: "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond", pos: "50% 55%" },
+    hero: { src: "/images/office/round-table-lobby-wide.jpg", alt: "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond", pos: "50% 55%" },
+    bandImage: { src: "/images/office/front-desk-wide.jpg", alt: "The front desk at Beverly Hills Dental Arts Studio, with a mosaic mirror and the Cosmetic Dentistry sign", pos: "50% 50%" },
     closingImage: { src: "/images/office/waiting-lounge-wide.jpg", alt: "The waiting lounge at Beverly Hills Dental Arts Studio, with a white leather chair, a mirrored console and glass shelves", pos: "50% 50%" },
     offers: [],
     focus: {
