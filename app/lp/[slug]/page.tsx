@@ -125,8 +125,8 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
       {/* Full-width photo band, like the homepage */}
       <section className="relative isolate overflow-hidden bg-night">
         <Image src={(p.bandImage ?? BAND.image).src} alt={(p.bandImage ?? BAND.image).alt} fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: p.bandImage?.pos ?? "50% 58%" }} />
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
-        <div className="container-x flex min-h-[420px] items-end py-14 sm:min-h-[520px] sm:py-20">
+        <div aria-hidden="true" className={`absolute inset-0 -z-10 bg-gradient-to-t ${p.bandFaces ? "from-black/85 via-black/45 to-black/0" : "from-black/80 via-black/50 to-black/20"}`} />
+        <div className={`container-x flex min-h-[420px] items-end pb-14 sm:min-h-[520px] sm:py-20 ${p.bandFaces ? "pt-[280px] sm:pt-20" : "pt-14"}`}>
           <div className="max-w-[640px]">
             <H2 light>{BAND.heading}</H2>
             <p className="mt-4 text-[18px] leading-relaxed text-white/90">{BAND.text}</p>

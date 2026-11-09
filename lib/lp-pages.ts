@@ -21,6 +21,7 @@ export type LpPage = {
   formNote: string;
   hero: LpImage & { pos?: string };
   bandImage?: LpImage & { pos?: string }; // the full-width photo band; BAND.image when not set
+  bandFaces?: boolean; // the band photo shows faces near the top: text sits lower on phones and the shade is lighter at the top
   closingImage?: LpImage & { pos?: string }; // behind the closing action; the reception hallway when not set
   notice?: string; // urgent care notice
   availability?: string;
@@ -545,7 +546,8 @@ export const LP_PAGES: LpPage[] = [
     formButton: "Request a Free Consultation",
     formNote: "What your mouth needs is decided at the examination. " + SUCCESS_NOTE,
     hero: { src: "/images/office/hallway-wide.jpg", alt: "The hallway at Beverly Hills Dental Arts Studio, with a silver vase on a round white table and framed photographs on the walls", pos: "50% 55%" },
-    bandImage: { src: "/images/office/waiting-lounge-wide.jpg", alt: "The waiting lounge at Beverly Hills Dental Arts Studio, with a white leather chair, a mirrored console and glass shelves", pos: "50% 50%" },
+    bandImage: { src: "/images/team/team-photo.jpg", alt: "The team at Beverly Hills Dental Arts Studio", pos: "50% 0%" },
+    bandFaces: true,
     closingImage: { src: "/images/office/front-desk-wide.jpg", alt: "The front desk at Beverly Hills Dental Arts Studio, with a mosaic mirror and the Cosmetic Dentistry sign", pos: "50% 50%" },
     offers: [],
     focus: {
@@ -584,7 +586,8 @@ export const LP_PAGES: LpPage[] = [
     formButton: "Request a Free Consultation",
     formNote: "What your gums need is decided at the examination. " + SUCCESS_NOTE,
     hero: { src: "/images/office/hallway-wide.jpg", alt: "The hallway at Beverly Hills Dental Arts Studio, with a silver vase on a round white table and framed photographs on the walls", pos: "50% 55%" },
-    bandImage: { src: "/images/office/reception-desk-cropped-wide.jpg", alt: "The reception desk at Beverly Hills Dental Arts Studio, with the Cosmetic Dentistry sign, a mosaic mirror and white orchids", pos: "50% 60%" },
+    bandImage: { src: "/images/team/team-photo.jpg", alt: "The team at Beverly Hills Dental Arts Studio", pos: "50% 0%" },
+    bandFaces: true,
     closingImage: { src: "/images/office/round-table-lobby-wide.jpg", alt: "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond", pos: "50% 55%" },
     offers: [],
     focus: {
