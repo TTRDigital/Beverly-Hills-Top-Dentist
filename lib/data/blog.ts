@@ -14,7 +14,8 @@ export const AUTHORS: Record<string, Author> = {
   },
 };
 export const DEFAULT_AUTHOR = "Dr. Nushin Shir";
-export const authorFor = (name?: string | null): Author => AUTHORS[name || ""] || AUTHORS[DEFAULT_AUTHOR];
+/** Every blog post is by Dr. Shir (Kia, Nov 9, 2026), whatever the post's author field says. Dr. Charlton stays on the About Us team section only. */
+export const authorFor = (_name?: string | null): Author => AUTHORS[DEFAULT_AUTHOR];
 
 export type Category = { key: string; name: string; path: string; blurb: string };
 export const CATEGORIES: Category[] = [
