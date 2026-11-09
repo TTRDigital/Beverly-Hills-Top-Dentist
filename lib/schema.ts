@@ -1,5 +1,5 @@
 import type { Faq, Post, SiteSettings, TeamMember, Testimonial } from "@/lib/types";
-import { authorFor, categoryFor } from "@/lib/data/blog";
+import { AUTHORS, authorFor, categoryFor, DEFAULT_AUTHOR } from "@/lib/data/blog";
 import { absoluteUrl, siteUrl } from "@/lib/site";
 import { images } from "@/lib/data/images";
 import { plainText } from "@/lib/text";
@@ -80,6 +80,27 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: items.map((it, i) => ({ "@type": "ListItem", position: i + 1, name: it.name, item: absoluteUrl(it.path) })),
+  };
+}
+
+/** Dr. Shir's author page. Only facts already on the About page; sameAs is the practice's own profiles. */
+export function authorSchema(sameAs: string[]) {
+  const a = AUTHORS[DEFAULT_AUTHOR];
+  const url = absoluteUrl(a.url);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${url}#person`,
+    name: a.name,
+    honorificSuffix: a.credentials,
+    jobTitle: a.jobTitle,
+    description: "Dr. Shir earned her DDS from UCLA and holds two master's degrees in public health from UCLA, in epidemiology and healthcare policy. She has practiced dentistry for over 30 years and has a background teaching restorative dentistry.",
+    url,
+    image: abs(a.image.src),
+    alumniOf: { "@type": "CollegeOrUniversity", name: "UCLA" },
+    worksFor: { "@id": `${siteUrl}/#dentist` },
+    mainEntityOfPage: url,
+    sameAs,
   };
 }
 

@@ -1,12 +1,11 @@
-// The blog's authors and categories. Every post is by a named dentist (Dr. Shir by default; the About page is the author
-// page) and supports one part of the site, so posts are never random: each one links up to the page it is written for.
+// The blog's authors and categories. Every post is by a named dentist (Dr. Shir by default; her author page is /author/dr-nushin-shir/) and supports one part of the site, so posts are never random: each one links up to the page it is written for.
 import { images } from "@/lib/data/images";
 import type { Img } from "@/lib/types";
 
 export type Author = { name: string; credentials: string; jobTitle: string; url: string; image: Img; blurb: string };
 export const AUTHORS: Record<string, Author> = {
   "Dr. Nushin Shir": {
-    name: "Dr. Nushin Shir", credentials: "DDS, MPH", jobTitle: "General & Cosmetic Dentist", url: "/about-us/", image: images.drNushinShir,
+    name: "Dr. Nushin Shir", credentials: "DDS, MPH", jobTitle: "General & Cosmetic Dentist", url: "/author/dr-nushin-shir/", image: images.drNushinShir,
     blurb: "Dr. Shir earned her DDS at the UCLA School of Dentistry and holds two master's degrees in public health from UCLA. She has practiced dentistry for over 30 years.",
   },
   "Dr. Daniel Charlton": {
