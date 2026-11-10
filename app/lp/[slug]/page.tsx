@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { RequestButton, RequestModal } from "@/components/lp/RequestModal";
-import { BAND, BIO, DEFAULT_OFFERS, LP_PAGES, OFFERS, PILLARS, PRACTICE, STRIP, TECH, TECH_INTRO, WORK } from "@/lib/lp-pages";
+import { BAND, BIO, DEFAULT_OFFERS, finePrint, LP_PAGES, OFFERS, PILLARS, PRACTICE, STRIP, TECH, TECH_INTRO, WORK } from "@/lib/lp-pages";
 import { getLpPage } from "@/lib/lp-content";
 import { HeroVideo } from "@/components/sections/HeroVideo";
 
@@ -28,8 +28,9 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
   const p = await getLpPage((await params).slug);
   if (!p) notFound();
   const call = p.primary.target === "call";
-  const offers = (p.offers ?? DEFAULT_OFFERS).map((k) => OFFERS[k]);
-  const fine = ["New patients only.", ...offers.map((o) => o.note).filter(Boolean)].join(" ");
+  const offerKeys = p.offers ?? DEFAULT_OFFERS;
+  const offers = offerKeys.map((k) => OFFERS[k]);
+  const fine = finePrint(offerKeys);
   const requestLabel = call ? "Request a Callback" : p.primary.label;
   const callBtn = (where: string, cls: string, label?: string) => (
     <a href={PRACTICE.tel} data-track="click_to_call" data-track-page={`lp-${p.key}-${where}`} className={cls}>{label ?? `Call ${PRACTICE.phone}`}</a>
@@ -68,7 +69,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
               <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-brand">New patient {offers.length > 1 ? "specials" : "special"}</p>
               <ul className="mt-2 space-y-1">
                 {offers.map((o) => (
-                  <li key={o.text} className="text-[18px] leading-snug sm:text-[19px]"><span className="font-bold text-brand">{o.amount}</span> {o.text}</li>
+                  <li key={o.text} className="text-[18px] leading-snug sm:text-[19px]">{o.or ? "or " : ""}<span className="font-bold text-brand">{o.amount}</span> {o.text}{o.aside ? <span className="text-[15px] text-body"> {o.aside}</span> : null}</li>
                 ))}
               </ul>
               <p className="mt-2 text-[13px] leading-snug text-body">{fine}</p>

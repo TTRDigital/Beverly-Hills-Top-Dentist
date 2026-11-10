@@ -5,6 +5,11 @@ import { images } from "@/lib/data/images";
 import { plainText } from "@/lib/text";
 import { outlinePost } from "@/lib/blog-post";
 
+/** An author page path, which may end in a #section anchor on the About page. */
+const authorPageUrl = (u: string) => {
+  const [path, hash] = u.split("#");
+  return absoluteUrl(path) + (hash ? `#${hash}` : "");
+};
 const abs = (src: string) => (src.startsWith("http") ? src : absoluteUrl(src));
 
 /** Dentist (a LocalBusiness) for the whole site, from the practice's own address, phone and hours. */
@@ -164,7 +169,7 @@ export function postSchema(post: Post) {
     ...(post.image ? { image: abs(post.image.src) } : {}),
     wordCount: words,
     timeRequired: `PT${minutes}M`,
-    author: { "@type": "Person", name: `${a.name}, ${a.credentials}`, jobTitle: a.jobTitle, url: absoluteUrl(a.url), image: abs(a.image.src), worksFor: { "@id": `${siteUrl}/#dentist` } },
+    author: { "@type": "Person", name: `${a.name}, ${a.credentials}`, jobTitle: a.jobTitle, url: authorPageUrl(a.url), image: abs(a.image.src), worksFor: { "@id": `${siteUrl}/#dentist` } },
     publisher: { "@id": `${siteUrl}/#dentist` },
     ...(c ? { articleSection: c.name, about: { "@type": "Thing", name: c.name, url: absoluteUrl(post.service || c.path) } } : {}),
     inLanguage: "en-US",

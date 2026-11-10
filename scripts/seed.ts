@@ -6,10 +6,12 @@
  *   npm run seed -- --force # overwrite everything with the built-in content
  *   npm run seed -- --dry-run  # build every document without uploading or writing
  *   npm run seed -- --force --only=areasPage,areaPage-  # only documents whose ID starts with these
+ *   npm run seed -- --only=post-night-guards-culver-city --export-docs=docs/ttr-983/post-night-guards-culver-city.json
+ *       # export mode: writes the documents to a JSON file. No token, no network, no photo uploads.
+ *       # Photos are written as "_sanityAsset": "image@file://./public/..." so `sanity dataset import`
+ *       # (run from the repo root) uploads them; a missing photo file stops the export. Document IDs must not contain dots.
  *   npm run seed -- --export=docs/lp-sanity-documents.json  # EXPORT MODE: write the new ad landing pages to a file; no token, no network, no upload
- *   npm run seed -- --export-docs=out.json --only=areaPage-santa-monica  # export mode for any built-in documents: write them to a JSON file.
- *       No token, no network, nothing uploaded. Photos are written as "_sanityAsset": "image@file://./public/..."
- *       so `sanity dataset import` (run from the repo root) uploads them. Document IDs must not contain dots.
+ *   npm run seed -- --only=areaPage-santa-monica --export-docs=docs/ttr-579/areaPage-santa-monica.json  # the same export mode
  *
  * Writes to project q5yxih7t / production unless NEXT_PUBLIC_SANITY_PROJECT_ID /
  * NEXT_PUBLIC_SANITY_DATASET say otherwise (environment or .env.local). Needs
@@ -337,6 +339,15 @@ async function build() {
       excerpt: p.excerpt,
       body: p.body,
       image: await altImage(p.image),
+      cta: p.cta,
+      figures: await Promise.all(
+        (p.figures ?? []).map(async (f) => ({ _key: key(), _type: "postFigure", beforeHeading: f.beforeHeading, image: await altImage({ ...f.image, alt: f.alt ?? f.image.alt }), caption: f.caption, position: f.position })),
+      ),
+      blocks: (p.blocks ?? []).map((b) => {
+        const t = { facts: "postFacts", steps: "postSteps", options: "postOptions" }[b._type];
+        const item = { facts: "postFact", steps: "postStep", options: "postOption" }[b._type];
+        return { _key: key(), _type: t, heading: b.heading, beforeHeading: b.beforeHeading, items: b.items.map((i) => ({ _key: key(), _type: item, ...i })) };
+      }),
       seo: seo(p.seo),
     });
 
