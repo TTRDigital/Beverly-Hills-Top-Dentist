@@ -5,6 +5,7 @@ import { authorFor } from "@/lib/data/blog";
 import { RichText } from "@/components/ui/RichText";
 import { Accordion } from "@/components/ui/Accordion";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
+import { HeroVideo } from "@/components/sections/HeroVideo";
 import { CheckCircle, LaserIcon, LeafIcon, MapMarker, OzoneIcon, PhoneIcon, ScanIcon, ToothIcon } from "@/components/ui/Icons";
 
 /*
@@ -44,7 +45,7 @@ export function CtaButtons({ s, page, tone = "dark", className = "" }: { s: Site
 }
 
 /** Hero: real office photo, H1, subhead with the drive time, both buttons above the fold. */
-export function AreaHero({ s, page, heading, subhead, image }: { s: SiteSettings; page: string; heading: string; subhead: string; image?: Img }) {
+export function AreaHero({ s, page, heading, subhead, image, video }: { s: SiteSettings; page: string; heading: string; subhead: string; image?: Img; video?: boolean }) {
   return (
     <section className="relative flex min-h-[460px] flex-col justify-end overflow-hidden py-12 md:min-h-[560px] md:py-20">
       {image ? (
@@ -52,6 +53,8 @@ export function AreaHero({ s, page, heading, subhead, image }: { s: SiteSettings
       ) : (
         <div className="absolute inset-0 bg-night" />
       )}
+      {/* The site hero video over the photo: large screens on a normal connection, after the page has loaded; the photo shows until it plays. */}
+      {video ? <HeroVideo mp4="/video/home-hero.mp4" webm="/video/home-hero.webm" /> : null}
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
       <div className="container-x relative text-white">
         <h1 className="max-w-[760px] text-h1 font-semibold md:text-[44px]">{heading}</h1>
