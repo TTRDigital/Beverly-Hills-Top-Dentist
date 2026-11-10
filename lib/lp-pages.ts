@@ -394,7 +394,7 @@ export const LP_PAGES: LpPage[] = [
     showWork: true,
     faqs: [
       { q: "Am I a candidate for full arch implants?", a: "Suitability depends on the bone available, your health and other factors. A 3D scan and an examination show what is possible." },
-      { q: "Will I need bone grafting?", a: "Some cases need preparation and others do not. Your plan is made from your own scan, and Dr. Shir will explain what your case needs." },
+      { q: "Will my case need any preparation first?", a: "Some cases need preparation and others do not. Your plan is made from your own scan, and Dr. Shir will explain what your case needs." },
       { q: "How long does it take, and what does it cost?", a: "Timing and cost depend on your plan and your healing. Request a written estimate after your consultation." },
     ],
     closing: { heading: "Talk through your options", text: "Request a consultation and our team will contact you about availability." },
@@ -447,7 +447,7 @@ export const LP_PAGES: LpPage[] = [
     hero: HERO("35% 50%"),
     focus: {
       heading: "Closing the gap",
-      paragraphs: ["A bridge replaces one or more missing teeth by anchoring the replacement to the teeth on either side, or to implants. Anchored to natural teeth, it is a non-surgical option.", "The trade-off is worth understanding before you choose: the anchor teeth are prepared for crowns, and enamel removed for a bridge does not grow back. Dr. Shir will set out the options against your situation and will not default to one."],
+      paragraphs: ["A bridge replaces one or more missing teeth by anchoring the replacement to the teeth on either side, or to implants.", "The trade-off is worth understanding before you choose: the anchor teeth are prepared for crowns, and enamel removed for a bridge does not grow back. Dr. Shir will set out the options against your situation and will not default to one."],
       image: TECH_IMAGE("scanner"),
     },
     steps: {
@@ -463,7 +463,7 @@ export const LP_PAGES: LpPage[] = [
     showWork: true,
     faqs: [
       { q: "What types of bridge are there?", a: "Traditional, cantilever, Maryland bonded and implant-supported bridges. Which one suits you depends on your teeth, your bite and where the gap is." },
-      { q: "Should I choose a bridge or an implant?", a: "A bridge uses the neighboring teeth as anchors. An implant leaves them untouched but involves surgery and takes longer. Dr. Shir can explain both after an examination." },
+      { q: "Should I choose a bridge or an implant?", a: "A bridge uses the neighboring teeth as anchors, so those teeth are prepared. An implant is a different option that leaves the neighboring teeth untouched. Dr. Shir can explain both after an examination." },
       { q: "How much does a bridge cost?", a: "Costs depend on the type of bridge and the number of teeth. Request a written estimate after your consultation." },
     ],
     closing: { heading: "Talk through your options", text: "Request a consultation and our team will contact you about availability." },
