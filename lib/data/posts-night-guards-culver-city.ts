@@ -21,17 +21,17 @@ export const nightGuardsCulverCity: Post = {
   excerpt:
     "Waking up with a tight jaw, or a dentist who mentions worn teeth? Here is how a custom night guard is made at our Beverly Hills office, and what to expect if you are coming from Culver City.",
   image: {
-    ...images.hallwayWide,
-    alt: "The hallway at Beverly Hills Dental Arts Studio with a round table, flowers and framed black and white portraits",
+    ...images.treatmentRoomSmileWide,
+    alt: "A treatment room at Beverly Hills Dental Arts Studio with a marble smile sculpture on the wall",
   },
   cta: "If your jaw feels tight in the morning, come and let us look at your teeth. We will show you what we see and talk through your options.",
   figures: [
     {
       beforeHeading: "How is a custom night guard made?",
-      image: images.iteroScanner,
-      alt: "The iTero digital scanner at the Bedford Drive office",
-      caption: "Your guard starts with a digital scan of your teeth, taken in our office.",
-      position: "center 30%",
+      image: images.frontDeskSignWide,
+      alt: "The front desk at the Bedford Drive office with the Cosmetic Dentistry sign and blossoms",
+      caption: "Your guard starts at our Bedford Drive office, with a digital scan of your teeth.",
+      position: "center",
     },
     {
       beforeHeading: "Why do Culver City patients come to Beverly Hills for a night guard?",
