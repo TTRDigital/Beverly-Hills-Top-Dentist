@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { AreaPage, AreaWhyItem, Faq, Img, SiteSettings, Testimonial } from "@/lib/types";
+import type { AreaPage, AreaRelated, AreaWhyItem, Faq, Img, SiteSettings, Testimonial } from "@/lib/types";
+import { authorFor } from "@/lib/data/blog";
 import { RichText } from "@/components/ui/RichText";
 import { Accordion } from "@/components/ui/Accordion";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
@@ -56,6 +57,47 @@ export function AreaHero({ s, page, heading, subhead, image }: { s: SiteSettings
         <h1 className="max-w-[760px] text-h1 font-semibold md:text-[44px]">{heading}</h1>
         <p className="mt-4 max-w-[640px] text-[18px] leading-snug text-white/90">{subhead}</p>
         <CtaButtons s={s} page={page} className="mt-7" />
+      </div>
+    </section>
+  );
+}
+
+/** Byline under the hero, for pages that name their dentists: names link to the About page. */
+export function Byline({ names, url }: { names: string[]; url?: string }) {
+  if (!names.length) return null;
+  const authors = names.map((n) => authorFor(n));
+  return (
+    <section aria-label="Byline" className="border-b border-line bg-white">
+      <p className="container-x py-4 text-[15px] text-body">
+        By{" "}
+        {authors.map((a, i) => (
+          <span key={a.name}>
+            {i > 0 ? (i === authors.length - 1 ? " and " : ", ") : ""}
+            <Link href={url || a.url} className="font-semibold text-brand">
+              {a.name}
+            </Link>
+          </span>
+        ))}
+        , {authors[0].jobTitle}{authors.length > 1 ? "s" : ""}
+      </p>
+    </section>
+  );
+}
+
+/** One related page of the site, as a card. Hidden when the page has none. */
+export function RelatedCard({ related }: { related?: AreaRelated }) {
+  if (!related?.href || !related.title) return null;
+  return (
+    <section aria-label="Related page" className="bg-white py-14 md:py-16">
+      <div className="container-x max-w-[900px]">
+        <p className="text-[15px] font-semibold uppercase tracking-wide text-brand-2">Related page</p>
+        <Link href={related.href} className="mt-3 block rounded-[12px] border border-line bg-paper p-6 transition-colors hover:border-brand">
+          <span className="block text-h3 font-semibold text-black">{related.title}</span>
+          {related.text ? <span className="mt-2 block leading-[1.65]">{related.text}</span> : null}
+          <span className="text-cta mt-4 inline-block font-semibold text-brand">
+            Read more<span className="sr-only"> about {related.title.toLowerCase()}</span>
+          </span>
+        </Link>
       </div>
     </section>
   );

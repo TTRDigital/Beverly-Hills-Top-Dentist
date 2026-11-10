@@ -1,4 +1,4 @@
-import type { Faq, Post, SiteSettings, TeamMember, Testimonial } from "@/lib/types";
+import type { AreaPage, Faq, Post, SiteSettings, TeamMember, Testimonial } from "@/lib/types";
 import { AUTHORS, authorFor, categoryFor, DEFAULT_AUTHOR } from "@/lib/data/blog";
 import { absoluteUrl, siteUrl } from "@/lib/site";
 import { images } from "@/lib/data/images";
@@ -116,6 +116,27 @@ export function faqPageSchema(items: Faq[]) {
     mainEntity: items
       .filter((f) => f.answer.length)
       .map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: plainText(f.answer) } })),
+  };
+}
+
+/** A city page that names its dentists: who wrote it, which practice it is about and the related page. The address stays the Beverly Hills office. */
+export function areaPageSchema(page: AreaPage) {
+  const path = `/areas-we-serve/${page.slug}/`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${absoluteUrl(path)}#webpage`,
+    url: absoluteUrl(path),
+    name: page.seo.title,
+    description: page.seo.description,
+    inLanguage: "en-US",
+    author: (page.byline ?? []).map((n) => {
+      const a = authorFor(n);
+      return { "@type": "Person", name: a.name, jobTitle: a.jobTitle, url: absoluteUrl(page.bylineUrl || a.url), worksFor: { "@id": `${siteUrl}/#dentist` } };
+    }),
+    publisher: { "@id": `${siteUrl}/#dentist` },
+    about: { "@id": `${siteUrl}/#dentist` },
+    ...(page.related?.href ? { relatedLink: absoluteUrl(page.related.href) } : {}),
   };
 }
 
