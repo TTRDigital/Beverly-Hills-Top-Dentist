@@ -40,7 +40,7 @@ export default async function AreaRoute({ params }: { params: Promise<{ slug: st
       />
       <JsonLd data={faqPageSchema(page.faqs)} />
       {page.byline?.length ? <JsonLd data={areaPageSchema(page)} /> : null}
-      <AreaHero s={s} page={track} heading={page.heading} subhead={page.subhead} image={page.heroImage} />
+      <AreaHero s={s} page={track} heading={page.heading} subhead={page.subhead} image={page.heroImage} video={page.heroVideo} />
       <Byline names={page.byline ?? []} url={page.bylineUrl} />
       <TrustStrip items={page.trustStrip?.length ? page.trustStrip : s.trustStrip} />
       <Intro paras={page.intro} />

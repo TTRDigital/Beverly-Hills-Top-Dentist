@@ -222,6 +222,8 @@ export type AreaWhyItem = { title: string; text: string };
 /** One neighborhood page under /areas-we-serve/. approved: false = noindex, out of the sitemap. */
 export type AreaPage = {
   slug: string;
+  /** Plays the site hero video over the hero photo (large screens only). Built-in setting, not edited in the CMS. */
+  heroVideo?: boolean;
   order: number;
   approved: boolean;
   name: string;

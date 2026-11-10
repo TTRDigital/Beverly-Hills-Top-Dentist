@@ -359,6 +359,7 @@ export const fallbackAreaPages: AreaPage[] = [
    */
   {
     slug: "santa-monica",
+    heroVideo: true,
     order: 7,
     approved: true,
     name: "Santa Monica",
