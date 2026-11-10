@@ -130,5 +130,17 @@ export async function POST(request: Request) {
   });
   const out = await res.json().catch(() => ({}));
   if (!res.ok) return reply(502, { ok: false, ...summary, error: "Sanity refused the transaction; nothing was changed.", sanity: out, rows });
-  return reply(200, { ok: true, ...summary, transactionId: (out as { transactionId?: string }).transactionId, note: "Applied. Redeploy on Vercel so the pages pick it up.", rows });
+  // an old photo the set replaced is deleted from Sanity once nothing refers to it (Sanity refuses to delete a referenced asset, so a leftover use keeps it)
+  let deleted: string | undefined;
+  if (set.deleteAsset) {
+    try {
+      const refs = await query<string[]>("*[references($id)]._id", { id: set.deleteAsset }, token);
+      if (refs.length) deleted = `kept: still used by ${refs.join(", ")}`;
+      else {
+        const del = await fetch(`https://${projectId}.api.sanity.io/v${apiVersion}/data/mutate/${dataset}`, { method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }, body: JSON.stringify({ mutations: [{ delete: { id: set.deleteAsset } }] }), cache: "no-store" });
+        deleted = del.ok ? "old photo deleted from Sanity" : `kept: Sanity said ${del.status}`;
+      }
+    } catch (e) { deleted = `kept: ${(e as Error).message}`; }
+  }
+  return reply(200, { ok: true, ...summary, transactionId: (out as { transactionId?: string }).transactionId, oldPhoto: deleted, note: "Applied. Redeploy on Vercel so the pages pick it up.", rows });
 }
