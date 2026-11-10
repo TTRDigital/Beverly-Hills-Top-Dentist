@@ -177,6 +177,16 @@
    "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
    "fromFile": "treatment-chair.jpg",
    "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "homePage",
+   "path": "values.cards[_key==\"k1t\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
   }
- ]
+ ],
+ "deleteAsset": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg"
 }
