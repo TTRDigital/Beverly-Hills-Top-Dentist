@@ -30,6 +30,7 @@ export const images = {
   frontDeskVaseWide: { src: "/images/office/front-desk-vase-wide.jpg", alt: "Silver vase with blossoms at the front desk of Beverly Hills Dental Arts Studio", width: 1600, height: 1067 },
   treatmentRoomSmileWide: { src: "/images/office/treatment-room-smile-wide.jpg", alt: "Treatment room at Beverly Hills Dental Arts Studio with a marble smile sculpture on the wall", width: 1600, height: 1067 },
   frontDeskSignWide: { src: "/images/office/front-desk-sign-wide.jpg", alt: "Front desk wall at Beverly Hills Dental Arts Studio with the Cosmetic Dentistry sign and blossoms", width: 1600, height: 1067 },
+  receptionWindowWide: { src: "/images/office/reception-window-wide.jpg", alt: "Reception window at Beverly Hills Dental Arts Studio with the Smile sign and the Cosmetic Dentistry wall sign", width: 1600, height: 1067 },
   dentistsTreatingPatient: { src: "/images/office/dentists-treating-patient.jpg", alt: "Two clinicians treating a patient in the treatment room", width: 1920, height: 2560 },
   frontOffice: { src: "/images/office/front-office.jpg", alt: "Front office workstation and hallway", width: 1920, height: 2560 },
   hallwayFlowers: { src: "/images/office/hallway-flowers.jpg", alt: "Office hallway with blossom flowers and a glass partition", width: 1920, height: 2560 },

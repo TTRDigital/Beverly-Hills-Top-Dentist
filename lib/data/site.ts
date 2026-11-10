@@ -451,7 +451,7 @@ export const fallbackPosts: Post[] = [
     cta: "Not sure which is right for you? At your consult we check the teeth beside the gap, the bone and your health, and go through both options with you, with no pressure to decide that day.",
     figures: [
       { beforeHeading: "What decides between a bridge and an implant?", image: images.teamTreatingPatientWide, alt: "Dr. Shir and her assistant treating a patient at the Bedford Drive office", caption: "Our team at work in a treatment room at the Bedford Drive office.", position: "center" },
-      { beforeHeading: "When is a bridge a good choice?", image: images.iteroScanner, alt: "Digital intraoral scanner at the Bedford Drive office, used to record the teeth for a bridge", caption: "Our digital scanner records your teeth for the bridge, with no impression trays.", position: "center 30%" },
+      { beforeHeading: "When is a bridge a good choice?", image: images.receptionWindowWide, alt: "Reception window at the Bedford Drive office with the Smile sign", caption: "Your visit begins at our front desk at the Bedford Drive office.", position: "center" },
       { beforeHeading: "When is a 3D scan needed?", image: images.frontDeskVaseWide, alt: "Silver vase with blossoms at the front desk of the Bedford Drive office", caption: "A welcome at the front desk of our Bedford Drive office.", position: "center" },
     ],
     blocks: [
