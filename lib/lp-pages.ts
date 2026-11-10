@@ -201,7 +201,7 @@ export const LP_PAGES: LpPage[] = [
       heading: "Reasons to call",
       intro: "Call the office if you have:",
       items: ["A toothache", "A chipped or broken tooth", "A lost filling", "A loose crown"],
-      image: { src: "/images/office/treatment-chair.jpg", alt: "A treatment room at Beverly Hills Dental Arts Studio" },
+      image: { src: "/images/office/treatment-room-chair.jpg", alt: "A treatment room at Beverly Hills Dental Arts Studio" },
     },
     steps: {
       heading: "What happens next",
@@ -414,7 +414,7 @@ export const LP_PAGES: LpPage[] = [
       heading: "Protecting a damaged tooth",
       intro: "Dr. Shir removes as little healthy tooth as the situation allows and chooses the smallest restoration that will hold. Depending on your tooth, that may be:",
       items: ["A tooth-colored filling, for smaller damage", "An onlay, which covers only the part of the tooth that needs covering", "A metal-free porcelain crown, made from a digital scan and shaded against your own teeth, where the tooth needs full coverage"],
-      image: { src: "/images/office/treatment-chair.jpg", alt: "A treatment room at Beverly Hills Dental Arts Studio" },
+      image: { src: "/images/office/treatment-room-chair.jpg", alt: "A treatment room at Beverly Hills Dental Arts Studio" },
     },
     steps: {
       heading: "Your visit, step by step",

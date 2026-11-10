@@ -43,7 +43,7 @@ export const images = {
   imagingArea: { src: "/images/office/imaging-area.jpg", alt: "Imaging area with the CT scanner and flowers", width: 1920, height: 2560 },
   receptionDeskPortrait: { src: "/images/office/reception-desk-portrait.jpg", alt: "Reception desk and waiting area with the Cosmetic Dentistry sign", width: 768, height: 1024 },
   receptionDesk: { src: "/images/office/reception-desk.jpg", alt: "Reception desk and waiting area with the Cosmetic Dentistry sign", width: 1920, height: 2560 },
-  treatmentChair: { src: "/images/office/treatment-chair.jpg", alt: "Treatment room with a dental chair and sculpture on the wall", width: 768, height: 1024 },
+  treatmentChair: { src: "/images/office/treatment-room-chair.jpg", alt: "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window", width: 1536, height: 2048 },
   smileResult1: { src: "/images/results/smile-result-1.jpg", alt: "Before and after smile result", width: 670, height: 670 },
   smileResult2: { src: "/images/results/smile-result-2.jpg", alt: "Before and after smile result", width: 1005, height: 1005 },
   smileResult3: { src: "/images/results/smile-result-3.jpg", alt: "Before and after smile result with a replaced front tooth", width: 1005, height: 1005 },
