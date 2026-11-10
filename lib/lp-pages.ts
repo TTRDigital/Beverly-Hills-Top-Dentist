@@ -2,11 +2,11 @@
  * ChatGPT Ads landing pages (TTR-1156; brief of Nov 3, 2026, docs/LANDING-PAGES-BRIEF.md). Built like the homepage: the practice's own
  * photos, the same ideas (biological, biomimetic, holistic), the technology and Dr. Shir's background, in the practice's own words from
  * its homepage and About page. No prices, ratings, badges, testimonials, guarantees or "24/7".
- * Offers: only the practice's own new patient specials (Carlos Torres, Nov 5, 2026), in OFFERS below. Add no terms the practice did not give.
+ * Offers: only the practice's own new patient specials, as on its printed flyers (Nov 9, 2026), in OFFERS below. Add no terms the practice did not give.
  * The practice confirmed the Invisalign name (Carlos Torres, Nov 5, 2026). CONFIRM with the practice: the hours.
  */
 export type LpImage = { src: string; alt: string };
-export type OfferKey = "cleaning" | "treatment" | "invisalign" | "invisalignConsult" | "implantConsult";
+export type OfferKey = "cleaning" | "treatment" | "invisalign" | "invisalignConsult";
 export type TechKey = "ozone" | "ct" | "scanner" | "laser" | "xray";
 
 export type LpPage = {
@@ -20,6 +20,9 @@ export type LpPage = {
   formButton: string;
   formNote: string;
   hero: LpImage & { pos?: string };
+  heroVideo?: boolean; // the website hero video plays over the hero photo (large screens, normal connections; the photo is the poster). On unless false.
+  focusWide?: boolean; // the main-section photo is landscape (e.g. the team): the card is 3:2 on desktop too, so nobody is cropped out
+  closingImage?: LpImage & { pos?: string }; // behind the closing action; the reception hallway when not set
   notice?: string; // urgent care notice
   availability?: string;
   offers?: OfferKey[]; // new patient specials shown in the hero; DEFAULT_OFFERS when not set
@@ -46,15 +49,18 @@ export const PRACTICE = {
   ],
 };
 
-/* New patient specials, in the practice's own terms (Carlos Torres, Nov 5, 2026). Each note is the fine print for that offer. */
-export const OFFERS: Record<OfferKey, { amount: string; text: string; note: string }> = {
-  cleaning: { amount: "$99", text: "cleaning and x-rays", note: "The $99 special is for patients without insurance." },
-  treatment: { amount: "$200 off", text: "your treatment", note: "" },
-  invisalign: { amount: "$2,000 off", text: "Invisalign", note: "" },
-  invisalignConsult: { amount: "Free", text: "Invisalign consultation", note: "" },
-  implantConsult: { amount: "Free", text: "implant consultation", note: "" },
+/* New patient specials, as printed on the practice's flyers (Kia, Nov 9, 2026). Add no terms the practice did not give. */
+export const OFFERS: Record<OfferKey, { amount: string; text: string; aside?: string; or?: boolean }> = {
+  cleaning: { amount: "$99", text: "new patient exam, x-rays and cleaning", aside: "(without insurance)" },
+  treatment: { amount: "$200 off", text: "your treatment", or: true },
+  invisalign: { amount: "$2,000 off", text: "Invisalign" },
+  invisalignConsult: { amount: "Free", text: "Invisalign consultation" },
 };
 export const DEFAULT_OFFERS: OfferKey[] = ["cleaning", "treatment"];
+
+/** The small print under the offer card. Pages with the two choices say to choose one. */
+export const finePrint = (keys: OfferKey[]) =>
+  keys.includes("cleaning") && keys.includes("treatment") ? "New patients only. Choose one offer. Offers can't be combined. Ends Dec 31, 2026." : "New patients only. Offers can't be combined. Ends Dec 31, 2026.";
 
 /* Shared building blocks, from the practice's homepage and About page. */
 export const STRIP = ["Over 30 years of experience", "In-office 3D imaging", "Ozone therapy and soft-tissue lasers"];
@@ -72,7 +78,7 @@ export const PILLARS = {
 export const BAND = {
   heading: "Thirty Years of Doing It Differently",
   text: "Ozone therapy, soft-tissue lasers, in-office CT. Dr. Shir invested in the technology most practices refer out for, so your care never leaves this office.",
-  image: { src: "/images/office/hallway-round-table.jpg", alt: "The hallway at Beverly Hills Dental Arts Studio" },
+  image: { src: "/images/office/hallway-wide.jpg", alt: "The hallway at Beverly Hills Dental Arts Studio, with a silver vase on a round white table and framed photographs on the walls" },
 };
 
 export const TECH_INTRO = { heading: "Technology and Innovation", text: "Imaging, diagnosis and treatment happen in one office, with one team accountable for your care from the first scan to the final result." };
@@ -225,7 +231,7 @@ export const LP_PAGES: LpPage[] = [
     formButton: "Request an Implant Consultation",
     formNote: "An examination is needed to determine suitability, treatment sequence, and costs. " + SUCCESS_NOTE,
     hero: HERO("70% 50%"),
-    offers: ["implantConsult", "cleaning", "treatment"],
+    offers: ["cleaning", "treatment"],
     focus: {
       heading: "Understand your options",
       paragraphs: ["Missing teeth can be replaced in different ways, from a single tooth to a full arch. Dr. Shir assesses your mouth and explains which choices may suit you.", "Your assessment can include in-office 3D imaging, an assessment of your bone and gums, and a discussion of a written treatment plan."],
@@ -531,6 +537,84 @@ export const LP_PAGES: LpPage[] = [
       { q: "How much will treatment cost?", a: "Costs depend on your assessment and recommended treatment. Ask the team about a written plan before deciding." },
     ],
     closing: { heading: "Ready to start?", text: "Request a consultation and our team will contact you about availability." },
+  },
+  {
+    slug: "full-mouth-rehabilitation-beverly-hills",
+    key: "full-mouth-rehabilitation",
+    title: "Full Mouth Rehabilitation in Beverly Hills | Beverly Hills Dental Arts Studio",
+    headline: "Full Mouth Rehabilitation in Beverly Hills",
+    support: "Worn, damaged or missing teeth, planned as one complete restoration with crowns, bridges, veneers and smile makeovers. Dr. Nushin Shir treats you, not just your teeth.",
+    primary: { label: "Request a Free Consultation", target: "form" },
+    formTitle: "Request a free consultation",
+    formButton: "Request a Free Consultation",
+    formNote: "What your mouth needs is decided at the examination. " + SUCCESS_NOTE,
+    hero: { src: "/images/office/hallway-wide.jpg", alt: "The hallway at Beverly Hills Dental Arts Studio, with a silver vase on a round white table and framed photographs on the walls", pos: "50% 55%" },
+    closingImage: { src: "/images/office/front-desk-wide.jpg", alt: "The front desk at Beverly Hills Dental Arts Studio, with a mosaic mirror and the Cosmetic Dentistry sign", pos: "50% 50%" },
+    offers: [],
+    focusWide: true,
+    focus: {
+      heading: "One plan for your whole smile",
+      intro: "Full mouth rehabilitation looks at how your teeth, gums and bite work together, then restores them as a whole instead of one tooth at a time. After your examination, your plan may include:",
+      items: ["Porcelain crowns, made from a digital scan and shaded to your own teeth", "Dental bridges, to replace missing teeth with a fixed restoration", "Porcelain veneers, to reshape and refine the front of your smile", "A smile makeover, planned around your face and your goals"],
+      image: { src: "/images/team/team-photo.jpg", alt: "The team at Beverly Hills Dental Arts Studio" },
+    },
+    steps: {
+      heading: "Your visit, step by step",
+      items: [
+        { title: "Examination and imaging", text: "Dr. Shir looks at your teeth, gums and bite, with imaging taken in this office." },
+        { title: "Your whole-mouth plan", text: "You go over your options in plain language, with the timing and cost explained before you decide." },
+        { title: "Your treatment", text: "Your care is carried out as planned, with one team who knows your history." },
+        { title: "Final fit and follow-up", text: "Your restorations are fitted and checked with you, and your ongoing care is planned." },
+      ],
+    },
+    tech: ["ct", "scanner", "xray", "laser"],
+    showWork: true,
+    faqs: [
+      { q: "What is full mouth rehabilitation?", a: "It is a complete plan to restore the health, function and appearance of your teeth together. It can include crowns, bridges, veneers and other restorations, depending on what your examination shows." },
+      { q: "Is it right for me?", a: "Dr. Shir will tell you after an examination. Some people need only a few restorations, and she will explain your options before anything begins." },
+      { q: "Will it take more than one visit?", a: "Because the plan covers your whole mouth, care is usually planned across more than one visit. Dr. Shir explains the timing before you decide." },
+      { q: "How much will it cost?", a: "Costs depend on your assessment and the treatment in your plan. Ask the team for a written plan before you decide." },
+    ],
+    closing: { heading: "Start with a conversation", text: "Request a free consultation and our team will contact you about availability." },
+  },
+  {
+    slug: "gum-health-beverly-hills",
+    key: "gum-health",
+    title: "Gum Health and Gum Disease Treatment in Beverly Hills | Beverly Hills Dental Arts Studio",
+    headline: "Gum Health and Gum Disease Treatment in Beverly Hills",
+    support: "Bleeding, swollen or receding gums? Dr. Nushin Shir cares for your gums with your whole health in view, from deep cleaning to ongoing periodontal maintenance.",
+    primary: { label: "Request a Free Consultation", target: "form" },
+    formTitle: "Request a free consultation",
+    formButton: "Request a Free Consultation",
+    formNote: "What your gums need is decided at the examination. " + SUCCESS_NOTE,
+    hero: { src: "/images/office/hallway-wide.jpg", alt: "The hallway at Beverly Hills Dental Arts Studio, with a silver vase on a round white table and framed photographs on the walls", pos: "50% 55%" },
+    closingImage: { src: "/images/office/round-table-lobby-wide.jpg", alt: "The lobby at Beverly Hills Dental Arts Studio, with a round table and spring blossoms and treatment rooms beyond", pos: "50% 55%" },
+    offers: [],
+    focusWide: true,
+    focus: {
+      heading: "Care for your gums, at every stage",
+      intro: "Healthy gums support your teeth, and gum health is connected to the rest of your health. After an examination, your care may include:",
+      items: ["A gum evaluation, with digital X-rays and a check of your gums and the bone around your teeth", "Deep cleaning (scaling and root planing), which cleans below the gumline", "Ozone therapy and soft-tissue laser care, used alongside conventional treatment where suitable", "Periodontal maintenance, regular visits to help keep your gums healthy over time"],
+      image: { src: "/images/team/team-photo.jpg", alt: "The team at Beverly Hills Dental Arts Studio" },
+    },
+    steps: {
+      heading: "Your visit, step by step",
+      items: [
+        { title: "Gum examination", text: "Dr. Shir checks your gums and teeth, with digital X-rays taken in the office." },
+        { title: "Your options", text: "You go over what your gums need and why, in plain language." },
+        { title: "Your treatment", text: "Deep cleaning and any other care in your plan are carried out as agreed with you." },
+        { title: "Keeping your gums healthy", text: "A maintenance schedule is set for you, so your care continues with a team who knows your history." },
+      ],
+    },
+    tech: ["xray", "ozone", "laser"],
+    showWork: false,
+    faqs: [
+      { q: "What are signs of gum disease?", a: "Bleeding when you brush or floss, red or swollen gums, gums pulling away from the teeth, ongoing bad breath or teeth that feel loose. Gum disease is often painless in its early stages, so an examination matters." },
+      { q: "What is scaling and root planing?", a: "A deep cleaning that removes plaque and tartar from below the gumline and smooths the root surfaces. Whether you need it is decided at your examination." },
+      { q: "What is periodontal maintenance?", a: "Regular cleanings after gum treatment, to help keep your gums healthy. Dr. Shir sets how often you come in, based on your needs." },
+      { q: "How much will treatment cost?", a: "Costs depend on your assessment and the treatment in your plan. Ask the team for an estimate before you decide." },
+    ],
+    closing: { heading: "Get your gums checked", text: "Request a free consultation and our team will contact you about availability." },
   },
 ];
 

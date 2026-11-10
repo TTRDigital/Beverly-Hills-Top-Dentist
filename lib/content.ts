@@ -222,6 +222,8 @@ function normalizeArea<T>(page: T): T {
   if ("treatments" in p) {
     out.gettingHere = arr<string>(p.gettingHere);
     out.zips = arr<string>(p.zips);
+    out.byline = arr<string>(p.byline);
+    out.trustStrip = arr<string>(p.trustStrip);
     out.treatments = arr<Loose>(p.treatments).map((t) => ({ title: String(t.title ?? ""), text: String(t.text ?? ""), links: arr(t.links) }));
   } else {
     out.planText = arr<string>(p.planText);
@@ -244,7 +246,7 @@ export const getAreaPages = cache(async (): Promise<AreaPage[]> => {
     `*[_type == "areaPage" && defined(slug.current)] | order(order asc){
       "slug": slug.current, order, approved, name, zips, cardLine, heading, subhead, "heroImage": heroImage${IMG},
       intro, gettingHere, mapFrom, mapTitle, treatmentsHeading, treatments[]{ title, text, "links": links[]${LINK} },
-      whyHeading, ${WHY}, whyText, ${FAQS}, "reviews": reviews[]->{ quote, name, "rating": coalesce(rating, 5), source }, ${SEO}
+      whyHeading, ${WHY}, whyText, ${FAQS}, "reviews": reviews[]->{ quote, name, "rating": coalesce(rating, 5), source }, byline, bylineUrl, related{ title, text, href }, trustStrip, ${SEO}
     }`,
     {},
     ["areaPage"],
@@ -318,7 +320,11 @@ export const getPosts = cache(async (): Promise<Post[]> => {
     {},
     ["post"],
   );
-  return cms?.length ? cms.map((p) => ({ ...p, body: p.body ?? [], seo: merge({ title: p.title, description: p.excerpt ?? "" }, p.seo) })) : fallbackPosts;
+  if (!cms?.length) return fallbackPosts;
+  // A post published in /cms replaces the built-in post with the same slug; built-in posts not yet in /cms stay.
+  const published = cms.map((p) => ({ ...p, body: p.body ?? [], seo: merge({ title: p.title, description: p.excerpt ?? "" }, p.seo) }));
+  const slugs = new Set(published.map((p) => p.slug));
+  return [...published, ...fallbackPosts.filter((p) => !slugs.has(p.slug))].sort((a, b) => b.date.localeCompare(a.date));
 });
 
 /* ---------- Page singletons ---------- */

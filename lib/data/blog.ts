@@ -1,21 +1,22 @@
-// The blog's authors and categories. Every post is by a named dentist (Dr. Shir by default; the About page is the author
-// page) and supports one part of the site, so posts are never random: each one links up to the page it is written for.
+// The blog's authors and categories. Every post is by a named dentist (Dr. Shir by default; her author page is /author/dr-nushin-shir/) and supports one part of the site, so posts are never random: each one links up to the page it is written for.
 import { images } from "@/lib/data/images";
 import type { Img } from "@/lib/types";
 
 export type Author = { name: string; credentials: string; jobTitle: string; url: string; image: Img; blurb: string };
 export const AUTHORS: Record<string, Author> = {
   "Dr. Nushin Shir": {
-    name: "Dr. Nushin Shir", credentials: "DDS, MPH", jobTitle: "General & Cosmetic Dentist", url: "/about-us/", image: images.drNushinShir,
+    name: "Dr. Nushin Shir", credentials: "DDS, MPH", jobTitle: "General & Cosmetic Dentist", url: "/author/dr-nushin-shir/", image: images.drNushinShir,
     blurb: "Dr. Shir earned her DDS at the UCLA School of Dentistry and holds two master's degrees in public health from UCLA. She has practiced dentistry for over 30 years.",
   },
   "Dr. Daniel Charlton": {
-    name: "Dr. Daniel Charlton", credentials: "DDS", jobTitle: "General & Cosmetic Dentist", url: "/about-us/", image: images.drDanielCharlton,
+    name: "Dr. Daniel Charlton", credentials: "DDS", jobTitle: "General & Cosmetic Dentist", url: "/about-us/#team-dr-daniel-charlton", image: images.drDanielCharlton,
     blurb: "Dr. Charlton combines decades of experience with the newest techniques in general and cosmetic dentistry.",
   },
 };
 export const DEFAULT_AUTHOR = "Dr. Nushin Shir";
-export const authorFor = (name?: string | null): Author => AUTHORS[name || ""] || AUTHORS[DEFAULT_AUTHOR];
+/** Every blog post is by Dr. Shir (Kia, Nov 9, 2026), whatever the post's author field says. Dr. Charlton stays on the About Us team section only. */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const authorFor = (_name?: string | null): Author => AUTHORS[DEFAULT_AUTHOR];
 
 export type Category = { key: string; name: string; path: string; blurb: string };
 export const CATEGORIES: Category[] = [

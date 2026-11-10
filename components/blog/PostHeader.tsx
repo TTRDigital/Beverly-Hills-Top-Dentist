@@ -45,7 +45,7 @@ export function PostHero({ post, author, category, minutes }: { post: Post; auth
             <Image src={author.image.src} alt={author.image.alt} width={56} height={56} className="h-14 w-14 shrink-0 rounded-full object-cover object-top" />
             <div className="min-w-0 text-sm leading-snug">
               <div className="font-semibold text-ink">
-                By{" "}
+                Written by{" "}
                 <Link href={author.url} className="underline decoration-brand/40 underline-offset-4 transition-colors hover:text-brand">
                   {author.name}, {author.credentials}
                 </Link>

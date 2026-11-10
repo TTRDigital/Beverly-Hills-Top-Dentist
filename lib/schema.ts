@@ -1,10 +1,15 @@
-import type { Faq, Post, SiteSettings, TeamMember, Testimonial } from "@/lib/types";
-import { authorFor, categoryFor } from "@/lib/data/blog";
+import type { AreaPage, Faq, Post, SiteSettings, TeamMember, Testimonial } from "@/lib/types";
+import { AUTHORS, authorFor, categoryFor, DEFAULT_AUTHOR } from "@/lib/data/blog";
 import { absoluteUrl, siteUrl } from "@/lib/site";
 import { images } from "@/lib/data/images";
 import { plainText } from "@/lib/text";
 import { outlinePost } from "@/lib/blog-post";
 
+/** An author page path, which may end in a #section anchor on the About page. */
+const authorPageUrl = (u: string) => {
+  const [path, hash] = u.split("#");
+  return absoluteUrl(path) + (hash ? `#${hash}` : "");
+};
 const abs = (src: string) => (src.startsWith("http") ? src : absoluteUrl(src));
 
 /** Dentist (a LocalBusiness) for the whole site, from the practice's own address, phone and hours. */
@@ -83,6 +88,27 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
   };
 }
 
+/** Dr. Shir's author page. Only facts already on the About page; sameAs is the practice's own profiles. */
+export function authorSchema(sameAs: string[]) {
+  const a = AUTHORS[DEFAULT_AUTHOR];
+  const url = absoluteUrl(a.url);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${url}#person`,
+    name: a.name,
+    honorificSuffix: a.credentials,
+    jobTitle: a.jobTitle,
+    description: "Dr. Shir earned her DDS from UCLA and holds two master's degrees in public health from UCLA, in epidemiology and healthcare policy. She has practiced dentistry for over 30 years and has a background teaching restorative dentistry.",
+    url,
+    image: abs(a.image.src),
+    alumniOf: { "@type": "CollegeOrUniversity", name: "UCLA" },
+    worksFor: { "@id": `${siteUrl}/#dentist` },
+    mainEntityOfPage: url,
+    sameAs,
+  };
+}
+
 export function faqPageSchema(items: Faq[]) {
   return {
     "@context": "https://schema.org",
@@ -90,6 +116,27 @@ export function faqPageSchema(items: Faq[]) {
     mainEntity: items
       .filter((f) => f.answer.length)
       .map((f) => ({ "@type": "Question", name: f.question, acceptedAnswer: { "@type": "Answer", text: plainText(f.answer) } })),
+  };
+}
+
+/** A city page that names its dentists: who wrote it, which practice it is about and the related page. The address stays the Beverly Hills office. */
+export function areaPageSchema(page: AreaPage) {
+  const path = `/areas-we-serve/${page.slug}/`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${absoluteUrl(path)}#webpage`,
+    url: absoluteUrl(path),
+    name: page.seo.title,
+    description: page.seo.description,
+    inLanguage: "en-US",
+    author: (page.byline ?? []).map((n) => {
+      const a = authorFor(n);
+      return { "@type": "Person", name: a.name, jobTitle: a.jobTitle, url: absoluteUrl(page.bylineUrl || a.url), worksFor: { "@id": `${siteUrl}/#dentist` } };
+    }),
+    publisher: { "@id": `${siteUrl}/#dentist` },
+    about: { "@id": `${siteUrl}/#dentist` },
+    ...(page.related?.href ? { relatedLink: absoluteUrl(page.related.href) } : {}),
   };
 }
 
@@ -122,7 +169,7 @@ export function postSchema(post: Post) {
     ...(post.image ? { image: abs(post.image.src) } : {}),
     wordCount: words,
     timeRequired: `PT${minutes}M`,
-    author: { "@type": "Person", name: `${a.name}, ${a.credentials}`, jobTitle: a.jobTitle, url: absoluteUrl(a.url), image: abs(a.image.src), worksFor: { "@id": `${siteUrl}/#dentist` } },
+    author: { "@type": "Person", name: `${a.name}, ${a.credentials}`, jobTitle: a.jobTitle, url: authorPageUrl(a.url), image: abs(a.image.src), worksFor: { "@id": `${siteUrl}/#dentist` } },
     publisher: { "@id": `${siteUrl}/#dentist` },
     ...(c ? { articleSection: c.name, about: { "@type": "Thing", name: c.name, url: absoluteUrl(post.service || c.path) } } : {}),
     inLanguage: "en-US",
