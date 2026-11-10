@@ -1,10 +1,15 @@
-import type { Faq, Post, SiteSettings, TeamMember, Testimonial } from "@/lib/types";
+import type { AreaPage, Faq, Post, SiteSettings, TeamMember, Testimonial } from "@/lib/types";
 import { AUTHORS, authorFor, categoryFor, DEFAULT_AUTHOR } from "@/lib/data/blog";
 import { absoluteUrl, siteUrl } from "@/lib/site";
 import { images } from "@/lib/data/images";
 import { plainText } from "@/lib/text";
 import { outlinePost } from "@/lib/blog-post";
 
+/** An author page path, which may end in a #section anchor on the About page. */
+const authorPageUrl = (u: string) => {
+  const [path, hash] = u.split("#");
+  return absoluteUrl(path) + (hash ? `#${hash}` : "");
+};
 const abs = (src: string) => (src.startsWith("http") ? src : absoluteUrl(src));
 
 /** Dentist (a LocalBusiness) for the whole site, from the practice's own address, phone and hours. */
@@ -114,6 +119,27 @@ export function faqPageSchema(items: Faq[]) {
   };
 }
 
+/** A city page that names its dentists: who wrote it, which practice it is about and the related page. The address stays the Beverly Hills office. */
+export function areaPageSchema(page: AreaPage) {
+  const path = `/areas-we-serve/${page.slug}/`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${absoluteUrl(path)}#webpage`,
+    url: absoluteUrl(path),
+    name: page.seo.title,
+    description: page.seo.description,
+    inLanguage: "en-US",
+    author: (page.byline ?? []).map((n) => {
+      const a = authorFor(n);
+      return { "@type": "Person", name: a.name, jobTitle: a.jobTitle, url: absoluteUrl(page.bylineUrl || a.url), worksFor: { "@id": `${siteUrl}/#dentist` } };
+    }),
+    publisher: { "@id": `${siteUrl}/#dentist` },
+    about: { "@id": `${siteUrl}/#dentist` },
+    ...(page.related?.href ? { relatedLink: absoluteUrl(page.related.href) } : {}),
+  };
+}
+
 export function serviceSchema(name: string, description: string, path: string) {
   return {
     "@context": "https://schema.org",
@@ -143,7 +169,7 @@ export function postSchema(post: Post) {
     ...(post.image ? { image: abs(post.image.src) } : {}),
     wordCount: words,
     timeRequired: `PT${minutes}M`,
-    author: { "@type": "Person", name: `${a.name}, ${a.credentials}`, jobTitle: a.jobTitle, url: absoluteUrl(a.url), image: abs(a.image.src), worksFor: { "@id": `${siteUrl}/#dentist` } },
+    author: { "@type": "Person", name: `${a.name}, ${a.credentials}`, jobTitle: a.jobTitle, url: authorPageUrl(a.url), image: abs(a.image.src), worksFor: { "@id": `${siteUrl}/#dentist` } },
     publisher: { "@id": `${siteUrl}/#dentist` },
     ...(c ? { articleSection: c.name, about: { "@type": "Thing", name: c.name, url: absoluteUrl(post.service || c.path) } } : {}),
     inLanguage: "en-US",

@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return pageMetadata({ ...hub.seo, noIndex: hub.seo.noIndex || !hub.approved }, "/areas-we-serve/", hub.heroImage);
 }
 
-/** Areas We Serve hub: map, six area cards, why patients make the trip, first visit, FAQ, zips. */
+/** Areas We Serve hub: map, area cards (approved pages only), why patients make the trip, first visit, FAQ, zips. */
 export default async function AreasHubPage() {
   const [hub, areas, s] = await Promise.all([getAreasHub(), getAreaPages(), getSiteSettings()]);
   const track = "areas-we-serve";
@@ -39,7 +39,7 @@ export default async function AreasHubPage() {
         <div className="container-x">
           <h2 className="h2 text-black md:text-center">{hub.cardsHeading}</h2>
           <ul className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {areas.map((a) => (
+            {areas.filter((a) => a.approved).map((a) => (
               <li key={a.slug} className="flex flex-col rounded-[12px] border border-line bg-paper p-6">
                 <MapMarker className="h-8 w-8 text-brand" />
                 <h3 className="mt-4 text-h3 font-semibold text-black">{a.name}</h3>

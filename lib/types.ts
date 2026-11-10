@@ -244,8 +244,18 @@ export type AreaPage = {
   faqs: Faq[];
   /** Shown only when real reviews with written permission are added. */
   reviews: Testimonial[];
+  /** Optional: the dentists named in the byline under the hero (names as in lib/data/blog.ts AUTHORS). */
+  byline?: string[];
+  /** Optional: where the byline names link (default: each dentist's page in lib/data/blog.ts). */
+  bylineUrl?: string;
+  /** Optional: one related page of the site, shown as a card before the FAQ. */
+  related?: AreaRelated;
+  /** Optional: this page's own trust strip; empty or missing shows the site-wide one. */
+  trustStrip?: string[];
   seo: Seo;
 };
+
+export type AreaRelated = { title: string; text: string; href: string };
 
 export type AreasHub = {
   approved: boolean;
