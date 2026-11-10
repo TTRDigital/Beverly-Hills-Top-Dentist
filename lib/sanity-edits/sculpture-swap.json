@@ -1,0 +1,182 @@
+{
+ "name": "sculpture-swap",
+ "source": "Client feedback, Nov 10: the treatment room photo with the torso sculpture is replaced by treatment-room-chair.jpg (Kia). Every field that holds the old photo (treatment-chair.jpg) gets the new one.",
+ "upload": {
+  "url": "/images/office/treatment-room-chair.jpg",
+  "id": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+  "filename": "treatment-room-chair.jpg"
+ },
+ "edits": [
+  {
+   "doc": "service-checkups-exams",
+   "path": "sections[_key==\"kn4\"].cards[_key==\"kn5\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "service-crown-lengthening",
+   "path": "sections[_key==\"ki8\"].cards[_key==\"ki9\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "service-dental-bonding",
+   "path": "sections[_key==\"kat\"].cards[_key==\"kau\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "service-dental-bridges",
+   "path": "sections[_key==\"kd2\"].cards[_key==\"kd3\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "service-dental-fillings",
+   "path": "sections[_key==\"kcb\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "service-dental-fillings",
+   "path": "sections[_key==\"kcc\"].cards[_key==\"kcd\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "service-dental-sealants",
+   "path": "sections[_key==\"kmd\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "service-dental-sealants",
+   "path": "sections[_key==\"kme\"].cards[_key==\"kmf\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "service-full-arch-implants",
+   "path": "sections[_key==\"k7x\"].cards[_key==\"k7y\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "service-gum-disease-treatment",
+   "path": "sections[_key==\"khl\"].cards[_key==\"khm\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "service-gum-graft-surgery",
+   "path": "sections[_key==\"kiy\"].cards[_key==\"kiz\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "service-porcelain-veneers",
+   "path": "sections[_key==\"k8n\"].cards[_key==\"k8o\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "service-single-tooth-implants",
+   "path": "sections[_key==\"k77\"].cards[_key==\"k78\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "service-teeth-cleaning",
+   "path": "sections[_key==\"klo\"].cards[_key==\"klp\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "service-teeth-whitening",
+   "path": "sections[_key==\"ka3\"].cards[_key==\"ka4\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "serviceCategory-cosmetic-dentistry",
+   "path": "sections[_key==\"k3o\"].cards[_key==\"k3p\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "serviceCategory-periodontic-dentistry",
+   "path": "sections[_key==\"k54\"].cards[_key==\"k55\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "serviceCategory-preventive-dentistry",
+   "path": "sections[_key==\"k5u\"].cards[_key==\"k5v\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  },
+  {
+   "doc": "serviceCategory-restorative-dentistry",
+   "path": "sections[_key==\"k4e\"].cards[_key==\"k4f\"].image",
+   "from": "image-3e155aecb9bdb71d500e42e9c0a1742b8b8d5597-768x1024-jpg",
+   "to": "image-fa2018a66970c7f9515136e4cd001700a1a0f45a-1536x2048-jpg",
+   "alt": "A treatment room at Beverly Hills Dental Arts Studio with a dental chair and a window",
+   "fromFile": "treatment-chair.jpg",
+   "toFile": "treatment-room-chair.jpg"
+  }
+ ]
+}

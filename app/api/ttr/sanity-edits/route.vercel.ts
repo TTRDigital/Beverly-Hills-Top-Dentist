@@ -17,8 +17,9 @@
 import { apiVersion, dataset, projectId } from "@/sanity/env";
 import { plan, type EditSet, type SanityDoc } from "@/lib/sanity-edits/plan";
 import photoSwap from "@/lib/sanity-edits/photo-swap.json";
+import sculptureSwap from "@/lib/sanity-edits/sculpture-swap.json";
 
-const SETS: Record<string, EditSet> = { "photo-swap": photoSwap as EditSet };
+const SETS: Record<string, EditSet> = { "photo-swap": photoSwap as EditSet, "sculpture-swap": sculptureSwap as EditSet };
 const PORTAL = (process.env.TTR_PORTAL_URL || "https://ttr-portal.vercel.app").replace(/\/$/, "");
 
 const reply = (status: number, body: Record<string, unknown>) =>
@@ -96,7 +97,29 @@ export async function POST(request: Request) {
     draftsToCheck: drafts.map((d) => d.replace(/^drafts\./, "")),
     canWrite: !!token,
   };
-  if (!apply) return reply(200, { ok: true, ...summary, rows, patches });
+  // a set may need its new photo in Sanity first: check it, and on apply upload it from this site (the id is the file's hash, so a wrong file is refused)
+  let upload: string | undefined;
+  if (set.upload) {
+    try {
+      const have = await query<string[]>("*[_id == $id]._id", { id: set.upload.id }, token || undefined);
+      upload = have.length ? "already in Sanity" : "not in Sanity yet";
+      if (apply && !have.length) {
+        const img = await fetch(new URL(set.upload.url, request.url), { cache: "no-store" });
+        if (!img.ok) return reply(502, { ok: false, ...summary, error: `Could not read ${set.upload.url} from this site (${img.status}). Deploy the photo first.` });
+        const bytes = await img.arrayBuffer();
+        const up = await fetch(`https://${projectId}.api.sanity.io/v${apiVersion}/assets/images/${dataset}?filename=${encodeURIComponent(set.upload.filename)}`, {
+          method: "POST", headers: { Authorization: `Bearer ${token}`, "Content-Type": "image/jpeg" }, body: bytes, cache: "no-store",
+        });
+        const upJson = (await up.json().catch(() => ({}))) as { document?: { _id?: string } };
+        if (!up.ok) return reply(502, { ok: false, ...summary, error: "Sanity refused the photo upload; nothing was changed.", sanity: upJson });
+        if (upJson.document?._id !== set.upload.id) return reply(502, { ok: false, ...summary, error: `The uploaded photo got id ${upJson.document?._id}, not the expected ${set.upload.id}. Nothing was changed.` });
+        upload = "uploaded";
+      }
+    } catch (e) {
+      return reply(502, { ok: false, ...summary, error: (e as Error).message });
+    }
+  }
+  if (!apply) return reply(200, { ok: true, ...summary, upload, rows, patches });
   if (!patches.length) return reply(200, { ok: true, ...summary, note: "Nothing to change.", rows });
 
   const res = await fetch(`https://${projectId}.api.sanity.io/v${apiVersion}/data/mutate/${dataset}?returnIds=true&visibility=sync`, {
