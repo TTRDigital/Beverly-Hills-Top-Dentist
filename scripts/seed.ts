@@ -6,6 +6,9 @@
  *   npm run seed -- --force # overwrite everything with the built-in content
  *   npm run seed -- --dry-run  # build every document without uploading or writing
  *   npm run seed -- --force --only=areasPage,areaPage-  # only documents whose ID starts with these
+ *   npm run seed -- --only=post-night-guards-culver-city --export-docs=docs/ttr-983/post-night-guards-culver-city.json
+ *       # export mode: writes the documents to a JSON file. No token, no network, no photo uploads
+ *       # (photos are left out of the file; a normal run with the token uploads them).
  *   npm run seed -- --export=docs/lp-sanity-documents.json  # EXPORT MODE: write the new ad landing pages to a file; no token, no network, no upload
  *
  * Writes to project q5yxih7t / production unless NEXT_PUBLIC_SANITY_PROJECT_ID /
@@ -62,7 +65,8 @@ if (existsSync(join(root, ".env.local"))) {
 const { dataset, projectId } = await import("../sanity/env.ts");
 const token = process.env.SANITY_WRITE_TOKEN;
 const force = process.argv.includes("--force");
-const dryRun = process.argv.includes("--dry-run");
+const exportPath = process.argv.find((a) => a.startsWith("--export-docs="))?.slice(14);
+const dryRun = process.argv.includes("--dry-run") || !!exportPath;
 // --only=areasPage,areaPage- limits the run to documents whose ID starts with one of these.
 const only = (process.argv.find((a) => a.startsWith("--only="))?.slice(7) ?? "").split(",").map((x) => x.trim()).filter(Boolean);
 
@@ -95,6 +99,7 @@ async function asset(src: string, kind: "image" | "file" = "image") {
 
 async function altImage(img?: Img) {
   if (!img) return undefined;
+  if (exportPath) return { _type: "altImage", alt: img.alt };
   return { _type: "altImage", alt: img.alt, asset: { _type: "reference", _ref: await asset(img.src) } };
 }
 async function images(list: Img[] = []) {
@@ -324,6 +329,15 @@ async function build() {
       excerpt: p.excerpt,
       body: p.body,
       image: await altImage(p.image),
+      cta: p.cta,
+      figures: await Promise.all(
+        (p.figures ?? []).map(async (f) => ({ _key: key(), _type: "postFigure", beforeHeading: f.beforeHeading, image: await altImage({ ...f.image, alt: f.alt ?? f.image.alt }), caption: f.caption, position: f.position })),
+      ),
+      blocks: (p.blocks ?? []).map((b) => {
+        const t = { facts: "postFacts", steps: "postSteps", options: "postOptions" }[b._type];
+        const item = { facts: "postFact", steps: "postStep", options: "postOption" }[b._type];
+        return { _key: key(), _type: t, heading: b.heading, beforeHeading: b.beforeHeading, items: b.items.map((i) => ({ _key: key(), _type: item, ...i })) };
+      }),
       seo: seo(p.seo),
     });
 
@@ -340,6 +354,15 @@ const clean = (v: unknown): unknown =>
 console.log(`Seeding ${projectId}/${dataset}${force ? " (overwriting)" : " (keeping existing documents)"}${dryRun ? " [dry run]" : ""}. Uploading photos`);
 const docs = (await build()).map((d) => clean(d) as { _id: string; _type: string }).filter((d) => !only.length || only.some((p) => d._id.startsWith(p)));
 console.log(`\n${uploaded.size} files ${dryRun ? "checked" : "uploaded"}. Writing ${docs.length} documents…`);
+if (exportPath) {
+  const { mkdirSync, writeFileSync } = await import("node:fs");
+  const { dirname, resolve } = await import("node:path");
+  const out = resolve(root, exportPath);
+  mkdirSync(dirname(out), { recursive: true });
+  writeFileSync(out, JSON.stringify(docs, null, 2) + "\n");
+  console.log(`Exported ${docs.length} document(s) to ${exportPath}. Nothing was uploaded or written to Sanity.`);
+  process.exit(0);
+}
 if (dryRun) {
   const counts = docs.reduce<Record<string, number>>((acc, d) => ((acc[d._type] = (acc[d._type] ?? 0) + 1), acc), {});
   console.log("Dry run, nothing written:", counts, `${Math.round(JSON.stringify(docs).length / 1024)} KB of content`);

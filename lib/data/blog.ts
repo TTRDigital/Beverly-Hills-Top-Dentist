@@ -9,7 +9,7 @@ export const AUTHORS: Record<string, Author> = {
     blurb: "Dr. Shir earned her DDS at the UCLA School of Dentistry and holds two master's degrees in public health from UCLA. She has practiced dentistry for over 30 years.",
   },
   "Dr. Daniel Charlton": {
-    name: "Dr. Daniel Charlton", credentials: "DDS", jobTitle: "General & Cosmetic Dentist", url: "/about-us/", image: images.drDanielCharlton,
+    name: "Dr. Daniel Charlton", credentials: "DDS", jobTitle: "General & Cosmetic Dentist", url: "/about-us/#team-dr-daniel-charlton", image: images.drDanielCharlton,
     blurb: "Dr. Charlton combines decades of experience with the newest techniques in general and cosmetic dentistry.",
   },
 };
