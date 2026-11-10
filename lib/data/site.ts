@@ -447,10 +447,10 @@ export const fallbackPosts: Post[] = [
     category: "restorative",
     service: "/services/restorative-dentistry/dental-bridges/",
     excerpt: "How to choose between a dental bridge and an implant: the teeth beside the gap, the bone, your health, time and cost, explained by our Beverly Hills dental team.",
-    image: images.treatmentChair,
+    image: images.teamTreatingPatientWide,
     cta: "Not sure which is right for you? At your consult we check the teeth beside the gap, the bone and your health, and go through both options with you, with no pressure to decide that day.",
     figures: [
-      { beforeHeading: "What decides between a bridge and an implant?", image: images.digitalXRayRoom, alt: "Treatment room at the Bedford Drive office with the digital X-ray monitor", caption: "Regular X-rays are usually the first look at the teeth on either side of a gap.", position: "center 40%" },
+      { beforeHeading: "What decides between a bridge and an implant?", image: images.lobbyRoundTableWide, alt: "Reception lobby at the Bedford Drive office", caption: "Our reception lobby at the Bedford Drive office, where your consult begins.", position: "center" },
       { beforeHeading: "When is a bridge a good choice?", image: images.iteroScanner, alt: "Digital intraoral scanner at the Bedford Drive office, used to record the teeth for a bridge", caption: "Our digital scanner records your teeth for the bridge, with no impression trays.", position: "center 30%" },
       { beforeHeading: "When is a 3D scan needed?", image: images.cbctScanner, alt: "Cone beam CT scanner in the imaging room, used when X-rays cannot show enough of the bone", caption: "The 3D scanner in our imaging room, used when regular X-rays cannot show enough of the bone or roots.", position: "center 35%" },
     ],
