@@ -2,11 +2,11 @@
  * ChatGPT Ads landing pages (TTR-1156; brief of Nov 3, 2026, docs/LANDING-PAGES-BRIEF.md). Built like the homepage: the practice's own
  * photos, the same ideas (biological, biomimetic, holistic), the technology and Dr. Shir's background, in the practice's own words from
  * its homepage and About page. No prices, ratings, badges, testimonials, guarantees or "24/7".
- * Offers: only the practice's own new patient specials (Carlos Torres, Nov 5, 2026), in OFFERS below. Add no terms the practice did not give.
+ * Offers: only the practice's own new patient specials, as on its printed flyers (Nov 9, 2026), in OFFERS below. Add no terms the practice did not give.
  * The practice confirmed the Invisalign name (Carlos Torres, Nov 5, 2026). CONFIRM with the practice: the hours.
  */
 export type LpImage = { src: string; alt: string };
-export type OfferKey = "cleaning" | "treatment" | "invisalign" | "invisalignConsult" | "implantConsult";
+export type OfferKey = "cleaning" | "treatment" | "invisalign" | "invisalignConsult";
 export type TechKey = "ozone" | "ct" | "scanner" | "laser" | "xray";
 
 export type LpPage = {
@@ -49,15 +49,18 @@ export const PRACTICE = {
   ],
 };
 
-/* New patient specials, in the practice's own terms (Carlos Torres, Nov 5, 2026). Each note is the fine print for that offer. */
-export const OFFERS: Record<OfferKey, { amount: string; text: string; note: string }> = {
-  cleaning: { amount: "$99", text: "cleaning and x-rays", note: "The $99 special is for patients without insurance." },
-  treatment: { amount: "$200 off", text: "your treatment", note: "" },
-  invisalign: { amount: "$2,000 off", text: "Invisalign", note: "" },
-  invisalignConsult: { amount: "Free", text: "Invisalign consultation", note: "" },
-  implantConsult: { amount: "Free", text: "implant consultation", note: "" },
+/* New patient specials, as printed on the practice's flyers (Kia, Nov 9, 2026). Add no terms the practice did not give. */
+export const OFFERS: Record<OfferKey, { amount: string; text: string; aside?: string; or?: boolean }> = {
+  cleaning: { amount: "$99", text: "new patient exam, x-rays and cleaning", aside: "(without insurance)" },
+  treatment: { amount: "$200 off", text: "your treatment", or: true },
+  invisalign: { amount: "$2,000 off", text: "Invisalign" },
+  invisalignConsult: { amount: "Free", text: "Invisalign consultation" },
 };
 export const DEFAULT_OFFERS: OfferKey[] = ["cleaning", "treatment"];
+
+/** The small print under the offer card. Pages with the two choices say to choose one. */
+export const finePrint = (keys: OfferKey[]) =>
+  keys.includes("cleaning") && keys.includes("treatment") ? "New patients only. Choose one offer. Offers can't be combined. Ends Dec 31, 2026." : "New patients only. Offers can't be combined. Ends Dec 31, 2026.";
 
 /* Shared building blocks, from the practice's homepage and About page. */
 export const STRIP = ["Over 30 years of experience", "In-office 3D imaging", "Ozone therapy and soft-tissue lasers"];
@@ -228,7 +231,7 @@ export const LP_PAGES: LpPage[] = [
     formButton: "Request an Implant Consultation",
     formNote: "An examination is needed to determine suitability, treatment sequence, and costs. " + SUCCESS_NOTE,
     hero: HERO("70% 50%"),
-    offers: ["implantConsult", "cleaning", "treatment"],
+    offers: ["cleaning", "treatment"],
     focus: {
       heading: "Understand your options",
       paragraphs: ["Missing teeth can be replaced in different ways, from a single tooth to a full arch. Dr. Shir assesses your mouth and explains which choices may suit you.", "Your assessment can include in-office 3D imaging, an assessment of your bone and gums, and a discussion of a written treatment plan."],
