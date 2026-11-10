@@ -393,10 +393,10 @@ export const post = defineType({
     defineField({ name: "title", type: "string", validation: (r) => r.required() }),
     slugField,
     defineField({ name: "date", type: "date", validation: (r) => r.required() }),
-    // Every post is written by a named dentist (Dr. Shir by default) and supports one category of the site: the byline
+    // Every post is written by Dr. Shir (the site shows her on every post) and supports one category of the site: the byline
     // links to the author page and the article's structured data names the author, the category and the related page.
     defineField({ name: "author", title: "Author", type: "string", initialValue: "Dr. Nushin Shir",
-      options: { list: [{ title: "Dr. Nushin Shir", value: "Dr. Nushin Shir" }, { title: "Dr. Daniel Charlton", value: "Dr. Daniel Charlton" }] } }),
+      options: { list: [{ title: "Dr. Nushin Shir", value: "Dr. Nushin Shir" }] } }),
     defineField({ name: "category", title: "Category (the part of the site this post supports)", type: "string", initialValue: "cosmetic",
       options: { list: [
         { title: "Dental implants", value: "implants" }, { title: "Cosmetic dentistry and clear aligners", value: "cosmetic" },
@@ -530,6 +530,61 @@ export const singletonTypes = new Set([
   "areasPage",
 ]);
 
+/* Ad landing pages (/lp/<slug>/). The document ID is "lpPage-<slug>"; the built-in page in lib/lp-pages.ts is the fallback for anything left empty. */
+const lpImage = (name: string, title: string) =>
+  defineField({ name, title, type: "object", fields: [defineField({ name: "src", title: "Photo path", type: "string", description: "A file on the site, e.g. /images/office/hallway-wide.jpg" }), defineField({ name: "alt", title: "Alt text", type: "string" }), defineField({ name: "pos", title: "Focus point", type: "string", description: 'Optional, e.g. "50% 55%".' })] });
+const lines = (name: string, title: string, description?: string) => defineField({ name, title, type: "array", of: [defineArrayMember({ type: "string" })], description });
+
+export const lpPage = defineType({
+  name: "lpPage",
+  title: "Ad landing page",
+  type: "document",
+  fields: [
+    defineField({ name: "slug", title: "URL slug", type: "string", readOnly: true, description: "The page address is /lp/<slug>/. It is set when the page is created." }),
+    defineField({ name: "key", title: "Lead key", type: "string", readOnly: true, description: "Sent with each lead. Do not change." }),
+    defineField({ name: "title", title: "Browser title", type: "string" }),
+    defineField({ name: "headline", type: "string" }),
+    defineField({ name: "support", title: "Text under the headline", type: "text", rows: 3 }),
+    defineField({ name: "primary", title: "Main button", type: "object", fields: [defineField({ name: "label", type: "string" }), defineField({ name: "target", type: "string", options: { list: ["form", "call"] } })] }),
+    defineField({ name: "formTitle", title: "Form title", type: "string" }),
+    defineField({ name: "formButton", title: "Form button", type: "string" }),
+    defineField({ name: "formNote", title: "Note after sending", type: "text", rows: 2 }),
+    lpImage("hero", "Top photo"),
+    defineField({ name: "heroVideo", title: "Play the website hero video", type: "boolean", initialValue: true, description: "On unless switched off. The home page video plays over the top photo on large screens. The photo shows first and on phones." }),
+    defineField({ name: "focusWide", title: "Main section photo is landscape", type: "boolean", description: "Shows the main section photo as a wide card on desktop, so a group photo is not cropped." }),
+    lpImage("closingImage", "Closing section photo"),
+    defineField({ name: "notice", title: "Notice bar", type: "string" }),
+    defineField({ name: "availability", type: "string" }),
+    lines("offers", "New patient specials shown", "Leave empty for none."),
+    defineField({
+      name: "focus",
+      title: "Main section",
+      type: "object",
+      fields: [defineField({ name: "heading", type: "string" }), defineField({ name: "intro", type: "text", rows: 3 }), lines("items", "Bullet list"), lines("paragraphs", "Paragraphs"), lpImage("image", "Photo")],
+    }),
+    defineField({
+      name: "steps",
+      title: "Steps",
+      type: "object",
+      fields: [
+        defineField({ name: "heading", type: "string" }),
+        defineField({ name: "intro", type: "text", rows: 2 }),
+        defineField({ name: "items", type: "array", of: [defineArrayMember({ type: "object", fields: [defineField({ name: "title", type: "string" }), defineField({ name: "text", type: "text", rows: 3 })], preview: { select: { title: "title" } } })] }),
+      ],
+    }),
+    defineField({ name: "tech", title: "Technology cards", type: "array", of: [defineArrayMember({ type: "string", options: { list: ["ozone", "ct", "scanner", "laser", "xray"] } })] }),
+    defineField({ name: "showWork", title: "Show our work photos", type: "boolean" }),
+    defineField({
+      name: "faqs",
+      title: "Questions",
+      type: "array",
+      of: [defineArrayMember({ type: "object", fields: [defineField({ name: "q", title: "Question", type: "string" }), defineField({ name: "a", title: "Answer", type: "text", rows: 4 })], preview: { select: { title: "q" } } })],
+    }),
+    defineField({ name: "closing", title: "Closing section", type: "object", fields: [defineField({ name: "heading", type: "string" }), defineField({ name: "text", type: "text", rows: 2 })] }),
+  ],
+  preview: { select: { title: "headline", slug: "slug" }, prepare: (v) => ({ title: v.title, subtitle: `/lp/${v.slug}/` }) },
+});
+
 export const documentTypes = [
   siteSettings,
   homePage,
@@ -548,4 +603,5 @@ export const documentTypes = [
   faq,
   teamMember,
   post,
+  lpPage,
 ];

@@ -1,5 +1,4 @@
-// The blog's authors and categories. Every post is by a named dentist (Dr. Shir by default; the About page is the author
-// page) and supports one part of the site, so posts are never random: each one links up to the page it is written for.
+// The blog's authors and categories. Every post is by a named dentist (Dr. Shir by default; her author page is /author/dr-nushin-shir/) and supports one part of the site, so posts are never random: each one links up to the page it is written for.
 import { images } from "@/lib/data/images";
 import type { Img } from "@/lib/types";
 
@@ -15,7 +14,9 @@ export const AUTHORS: Record<string, Author> = {
   },
 };
 export const DEFAULT_AUTHOR = "Dr. Nushin Shir";
-export const authorFor = (name?: string | null): Author => AUTHORS[name || ""] || AUTHORS[DEFAULT_AUTHOR];
+/** Every blog post is by Dr. Shir (Kia, Nov 9, 2026), whatever the post's author field says. Dr. Charlton stays on the About Us team section only. */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export const authorFor = (_name?: string | null): Author => AUTHORS[DEFAULT_AUTHOR];
 
 export type Category = { key: string; name: string; path: string; blurb: string };
 export const CATEGORIES: Category[] = [

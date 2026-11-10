@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { RequestButton, RequestModal } from "@/components/lp/RequestModal";
-import { BAND, BIO, DEFAULT_OFFERS, LP_PAGES, OFFERS, PILLARS, PRACTICE, STRIP, TECH, TECH_INTRO, WORK, lpBySlug } from "@/lib/lp-pages";
+import { BAND, BIO, DEFAULT_OFFERS, LP_PAGES, OFFERS, PILLARS, PRACTICE, STRIP, TECH, TECH_INTRO, WORK } from "@/lib/lp-pages";
+import { getLpPage } from "@/lib/lp-content";
+import { HeroVideo } from "@/components/sections/HeroVideo";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => LP_PAGES.map((p) => ({ slug: p.slug }));
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const p = lpBySlug((await params).slug);
+  const p = await getLpPage((await params).slug);
   return p ? { title: { absolute: p.title }, robots: { index: false, follow: false } } : {};
 }
 
@@ -23,7 +25,7 @@ function H2({ children, center, light }: { children: React.ReactNode; center?: b
 }
 
 export default async function LandingPage({ params }: { params: Promise<{ slug: string }> }) {
-  const p = lpBySlug((await params).slug);
+  const p = await getLpPage((await params).slug);
   if (!p) notFound();
   const call = p.primary.target === "call";
   const offers = (p.offers ?? DEFAULT_OFFERS).map((k) => OFFERS[k]);
@@ -52,6 +54,8 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
       {/* Hero: the practice's own photo, the headline and the two actions */}
       <section className="relative isolate flex min-h-[560px] items-end overflow-hidden bg-night sm:min-h-[660px]">
         <Image src={p.hero.src} alt={p.hero.alt} fill priority sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: p.hero.pos ?? "50% 50%" }} />
+        {/* The site's hero video over the photo: only large screens on a normal connection, after the page has loaded; the photo shows until it plays. */}
+        {p.heroVideo !== false ? <HeroVideo mp4="/video/home-hero.mp4" webm="/video/home-hero.webm" className="absolute inset-0 -z-[15] h-full w-full object-cover" /> : null}
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/45 to-black/10 sm:bg-gradient-to-r sm:from-black/75 sm:via-black/40 sm:to-black/5" />
         <div className="container-x pb-12 pt-32 sm:pb-20">
           <div className="max-w-[680px]">
@@ -59,6 +63,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
             <p className="lp-rise lp-rise-2 mt-5 max-w-[580px] text-[18px] leading-relaxed text-white/90 sm:text-[20px]">{p.support}</p>
             <div className="lp-rise lp-rise-3 mt-8 flex flex-col gap-3 sm:flex-row">{actions("hero", true)}</div>
             {/* New patient specials: under the actions, so the Call button stays where it was */}
+            {offers.length ? (
             <div className="lp-rise lp-rise-3 mt-5 max-w-[520px] rounded-[6px] bg-white/95 px-5 py-4 text-ink shadow-[0_6px_24px_rgb(0_0_0/0.25)]">
               <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-brand">New patient {offers.length > 1 ? "specials" : "special"}</p>
               <ul className="mt-2 space-y-1">
@@ -68,6 +73,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
               </ul>
               <p className="mt-2 text-[13px] leading-snug text-body">{fine}</p>
             </div>
+            ) : null}
             {p.availability ? <p className="mt-4 max-w-[520px] text-[14px] leading-snug text-white/80">{p.availability}</p> : null}
           </div>
         </div>
@@ -113,8 +119,8 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
             {p.focus.paragraphs ? <div className="mt-4 space-y-4 text-[17px] leading-relaxed text-body">{p.focus.paragraphs.map((t) => <p key={t}>{t}</p>)}</div> : null}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">{actions("focus", false)}</div>
           </div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-[6px] lg:aspect-[4/4.4]">
-            <Image src={p.focus.image.src} alt={p.focus.image.alt} fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" />
+          <div className={`relative aspect-[4/3] overflow-hidden rounded-[6px] ${p.focusWide ? "lg:aspect-[3/2]" : "lg:aspect-[4/4.4]"}`}>
+            <Image src={p.focus.image.src} alt={p.focus.image.alt} fill sizes="(min-width: 1024px) 560px, 100vw" className="object-cover" style={p.focusWide ? { objectPosition: "50% 20%" } : undefined} />
           </div>
         </div>
       </section>
@@ -246,7 +252,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
 
       {/* Closing action over the practice photo */}
       <section className="relative isolate overflow-hidden bg-night">
-        <Image src="/images/office/hallway-wide.jpg" alt="" fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: "40% 55%" }} />
+        <Image src={p.closingImage?.src ?? "/images/office/hallway-wide.jpg"} alt="" fill sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: p.closingImage?.pos ?? "40% 55%" }} />
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-black/60" />
         <div className="container-x max-w-[820px] py-16 text-center sm:py-24">
           <h2 className="text-[30px] font-semibold leading-tight text-white sm:text-[40px]">{p.closing.heading}</h2>

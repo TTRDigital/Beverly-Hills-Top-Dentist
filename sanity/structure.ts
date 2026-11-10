@@ -36,5 +36,6 @@ export const structure: StructureResolver = (S) =>
       S.listItem().title("Team").icon(Users).child(S.documentTypeList("teamMember").title("Team").defaultOrdering([{ field: "order", direction: "asc" }])),
       S.listItem().title("Reviews").icon(MessageSquareQuote).child(S.documentTypeList("testimonial").title("Reviews")),
       S.listItem().title("FAQs").icon(CircleHelp).child(S.documentTypeList("faq").title("FAQs").defaultOrdering([{ field: "order", direction: "asc" }])),
+      S.listItem().title("Ad landing pages").icon(FileText).child(S.documentTypeList("lpPage").title("Ad landing pages")),
       S.listItem().title("Blog posts").icon(Newspaper).child(S.documentTypeList("post").title("Blog posts").defaultOrdering([{ field: "date", direction: "desc" }])),
     ]);

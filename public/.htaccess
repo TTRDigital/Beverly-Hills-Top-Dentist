@@ -268,7 +268,7 @@ ErrorDocument 404 /404.html
 
   # WordPress sitemaps and the author page.
   RewriteRule ^(?:sitemap_index|wp-sitemap|[a-z_-]+-sitemap\d*|wp-sitemap-[a-z0-9_-]+)\.xml$ https://%{HTTP_HOST}/sitemap.xml [R=301,L,NC]
-  RewriteRule ^author/[^/]+/?$ https://%{HTTP_HOST}/about-us/ [R=301,L,NC]
+  RewriteRule ^author/(?!dr-nushin-shir/?$)[^/]+/?$ https://%{HTTP_HOST}/about-us/ [R=301,L,NC]
   # WordPress-only paths that no longer exist: 410 Gone, so search engines drop them.
   RewriteRule ^(?:wp-admin|wp-includes|wp-json|wp-content/(?:themes|plugins|cache|languages))(?:/|$) - [G,L,NC]
   RewriteRule ^(?:wp-login|xmlrpc|wp-cron|wp-signup|wp-trackback|wp-comments-post)\.php$ - [G,L,NC]
