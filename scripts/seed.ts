@@ -6,7 +6,8 @@
  *   npm run seed -- --force # overwrite everything with the built-in content
  *   npm run seed -- --dry-run  # build every document without uploading or writing
  *   npm run seed -- --force --only=areasPage,areaPage-  # only documents whose ID starts with these
- *   npm run seed -- --export=out.json --only=areaPage-santa-monica  # export mode: write the documents to a JSON file.
+ *   npm run seed -- --export=docs/lp-sanity-documents.json  # EXPORT MODE: write the new ad landing pages to a file; no token, no network, no upload
+ *   npm run seed -- --export-docs=out.json --only=areaPage-santa-monica  # export mode for any built-in documents: write them to a JSON file.
  *       No token, no network, nothing uploaded. Photos are written as "_sanityAsset": "image@file://./public/..."
  *       so `sanity dataset import` (run from the repo root) uploads them. Document IDs must not contain dots.
  *
@@ -31,7 +32,26 @@ import {
 import { fallbackCategories, fallbackServices, fallbackServicesHub } from "../lib/data/services.ts";
 import { fallbackAreaPages, fallbackAreasHub } from "../lib/data/areas.ts";
 
+import { LP_PAGES } from "../lib/lp-pages.ts";
+
 const root = new URL("..", import.meta.url).pathname;
+
+/* ---------- export mode: --export=<file> ---------- */
+// Writes the ad landing page documents (ID "lpPage-<slug>", no dots) as JSON in the shape of the lpPage type, for loading from TTR OS. Touches nothing else.
+const exportFile = process.argv.find((a) => a.startsWith("--export="))?.slice(9);
+if (exportFile) {
+  const onlyIds = (process.argv.find((a) => a.startsWith("--only="))?.slice(7) ?? "").split(",").map((x) => x.trim()).filter(Boolean);
+  const NEW_SLUGS = ["full-mouth-rehabilitation-beverly-hills", "gum-health-beverly-hills"];
+  const strip = (v: unknown): unknown =>
+    Array.isArray(v) ? v.map(strip) : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).filter(([, x]) => x !== undefined).map(([k, x]) => [k, strip(x)])) : v;
+  const lpDocs = LP_PAGES.filter((p) => (onlyIds.length ? onlyIds.some((i) => `lpPage-${p.slug}`.startsWith(i)) : NEW_SLUGS.includes(p.slug))).map((p) => {
+    const { slug, ...rest } = p;
+    return strip({ _id: `lpPage-${slug}`, _type: "lpPage", slug, ...rest });
+  });
+  writeFileSync(join(root, exportFile), JSON.stringify(lpDocs, null, 2) + "\n");
+  console.log(`Exported ${lpDocs.length} documents to ${exportFile}: ${lpDocs.map((d) => (d as { _id: string })._id).join(", ")}`);
+  process.exit(0);
+}
 
 // Minimal .env.local reader so the script works without extra packages.
 if (existsSync(join(root, ".env.local"))) {
@@ -45,7 +65,7 @@ if (existsSync(join(root, ".env.local"))) {
 const { dataset, projectId } = await import("../sanity/env.ts");
 const token = process.env.SANITY_WRITE_TOKEN;
 const force = process.argv.includes("--force");
-const exportTo = process.argv.find((a) => a.startsWith("--export="))?.slice(9);
+const exportTo = process.argv.find((a) => a.startsWith("--export-docs="))?.slice(14);
 // Export mode never touches the network, so it behaves like a dry run that also writes the file.
 const dryRun = process.argv.includes("--dry-run") || !!exportTo;
 // --only=areasPage,areaPage- limits the run to documents whose ID starts with one of these.

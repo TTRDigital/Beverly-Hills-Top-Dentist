@@ -11,6 +11,7 @@ Next.js 16 (App Router, static export) + Sanity Studio embedded at `/cms`, Tailw
 | URL | Route |
 |---|---|
 | `/` | `app/(site)/page.tsx`: video hero, three approach cards, office slideshow band, technology switcher, "Our Work" carousel (9 photos, click to enlarge), four-ideas cards |
+| `/author/dr-nushin-shir/` | Dr. Shir's author page: bio from the About team data, all her posts (by byline), consult link, Person JSON-LD. Post bylines and the article JSON-LD author link here |
 | `/about-us/`, `/before-after/`, `/appointment/`, `/thank-you/` (noindex) | singletons |
 | `/services/` | services hub: one photo + accordion band per category, each service linking to its page |
 | `/services/<category>/` | `[category]`, 6 pages (implants, cosmetic, restorative, periodontic, preventive, dental technology) |
@@ -30,7 +31,7 @@ The old site kept 16 menu pages under `/locations/mclean/...`, plus 21 more copi
 - pages with no Beverly Hills page of their own → their category (TMJ, porcelain crowns) or the closest service (Invisalign → Clear Aligners, Dentures → Partial Dentures, Soft Tissue Lasers → Laser Gum Treatments);
 - the empty `/locations/` and `/locations/mclean/` hubs → `/`.
 
-Also redirected: every old `/wp-content/uploads/...` photo (any WordPress size) and the hero video to the new files, `?page_id=` / `?p=` short links to their page, the WordPress sitemaps to `/sitemap.xml`, and the author page to `/about-us/`. WordPress-only paths (`/feed/`, `/wp-json/`, `/wp-admin/`, `/wp-login.php`, `/xmlrpc.php`, theme and plugin files) answer **410 Gone**. The redirect block is generated from the old site's data; to change one, edit its line in `.htaccess` (keep it above the trailing-slash rule).
+Also redirected: every old `/wp-content/uploads/...` photo (any WordPress size) and the hero video to the new files, `?page_id=` / `?p=` short links to their page, the WordPress sitemaps to `/sitemap.xml`, and other `/author/<name>/` pages to `/about-us/` (Dr. Shir's own page, `/author/dr-nushin-shir/`, is a real page and is not redirected). WordPress-only paths (`/feed/`, `/wp-json/`, `/wp-admin/`, `/wp-login.php`, `/xmlrpc.php`, theme and plugin files) answer **410 Gone**. The redirect block is generated from the old site's data; to change one, edit its line in `.htaccess` (keep it above the trailing-slash rule).
 
 ## Areas We Serve
 

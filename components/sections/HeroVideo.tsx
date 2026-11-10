@@ -8,7 +8,7 @@ import { useEffect, useRef } from "react";
  * down by the multi-megabyte video. Until the first frame plays, the video is
  * transparent and the poster shows through. Not played for reduced motion.
  */
-export function HeroVideo({ mp4, webm }: { mp4?: string; webm?: string }) {
+export function HeroVideo({ mp4, webm, className = "absolute inset-0 h-full w-full object-cover" }: { mp4?: string; webm?: string; className?: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     const video = ref.current;
@@ -33,7 +33,7 @@ export function HeroVideo({ mp4, webm }: { mp4?: string; webm?: string }) {
     };
   }, []);
   return (
-    <video ref={ref} className="absolute inset-0 h-full w-full object-cover" muted loop playsInline preload="none" aria-hidden="true">
+    <video ref={ref} className={className} muted loop playsInline preload="none" aria-hidden="true">
       {webm ? <source src={webm} type="video/webm" /> : null}
       {mp4 ? <source src={mp4} type="video/mp4" /> : null}
     </video>

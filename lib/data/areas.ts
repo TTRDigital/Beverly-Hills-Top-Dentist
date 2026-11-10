@@ -353,14 +353,14 @@ export const fallbackAreaPages: AreaPage[] = [
   },
   /*
    * TTR-579: "Dentist Near Santa Monica". Santa Monica is a nearby town, not an office: the only office is Beverly Hills.
-   * approved: false = reachable for review, noindex, not in the sitemap and not on the hub, until the practice approves it.
+   * Approved for publishing by the practice (Kia, via Ben, Nov 10, 2026): indexable, in the sitemap and on the hub.
    * No drive times or distances (not verified). Statements the practice must confirm are listed in docs/ttr-579/README.md.
    * The same document is exported to docs/ttr-579/areaPage-santa-monica.json for loading into Sanity.
    */
   {
     slug: "santa-monica",
     order: 7,
-    approved: false,
+    approved: true,
     name: "Santa Monica",
     zips: ["90401", "90402", "90403", "90404", "90405"],
     cardLine: "Directions from Santa Monica to our Beverly Hills office. Cosmetic dentistry, implants and mercury-free fillings.",
