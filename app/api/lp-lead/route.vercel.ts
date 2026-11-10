@@ -2,11 +2,11 @@
  * Lead handler for the ChatGPT Ads landing pages (/lp/, TTR-1156). Same delivery as app/api/lead/route.vercel.ts (the practice's
  * GoHighLevel inbound webhook), with the landing page's rules: name, phone and a short comment required (Nov 5, 2026), email optional, and the page key plus campaign details kept as hidden fields in the internal lead record.
  */
-import { deliverLead, ghlWebhooks } from "@/lib/ghl";
+import { deliverLead, ghlWebhooks, isSandbox } from "@/lib/ghl";
 import { MIN_FILL_MS } from "@/lib/lead-options";
 import { sendLeadToTtrOs } from "@/lib/ttr-os-lead";
 import { after } from "next/server";
-import { cookieOf, leadSource, sendLeadEvent } from "@/lib/ads-capi";
+import { VISITOR_COOKIE, cookieOf, leadSource, sendLeadEvent } from "@/lib/ads-capi";
 import { sendLeadAlerts } from "@/lib/lead-alerts";
 
 type In = Record<string, unknown>;
@@ -53,16 +53,21 @@ export async function POST(request: Request) {
   if (name.length < 2) errors.full_name = "Please enter your full name.";
   if (!/^[0-9()#&+*\-=. ]+$/.test(phoneIn) || phoneIn.replace(/\D/g, "").length < 10) errors.phone = "Please enter a phone number with area code.";
   if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) errors.email = "Please enter a valid email address or leave it empty.";
-  if (comment.length < 2) errors.comment = "Please add a short comment.";
   if (input.consent !== true) errors.consent = "Please agree so we can contact you.";
   if (Object.keys(errors).length) return reply(422, { ok: false, error: "Please check the form.", fields: errors });
 
   const trapFilled = text(input, "website_url", 200) !== "";
   const elapsed = Number.isInteger(input.elapsed_ms) ? (input.elapsed_ms as number) : null;
   const tooFast = elapsed !== null && elapsed < MIN_FILL_MS;
-  if (trapFilled && tooFast) return reply(200, { ok: true });
+  // A bot: the page shows its usual thank-you, but nothing is saved, alerted or counted (delivered:false keeps the browser from firing lead_created).
+  if (trapFilled && tooFast) return reply(200, { ok: true, delivered: false });
   const spamCheck = trapFilled ? "suspect: hidden field filled" : tooFast ? `suspect: sent in ${elapsed} ms` : "ok";
 
+  // Previews, localhost and test builds: the form works and says thank you, but nothing real is sent (no CRM, TTR OS, alert or ad event).
+  if (isSandbox()) {
+    console.warn("[lead] not production: the request was accepted and nothing was sent");
+    return reply(200, { ok: true, delivered: true, sandbox: true });
+  }
   if (!ghlWebhooks().length) return reply(503, { ok: false, error: "The form is not connected yet. Please call us instead." });
 
 
@@ -92,7 +97,7 @@ export async function POST(request: Request) {
   const details = [`ChatGPT Ads landing page: ${PAGE_LABEL[pageKey]}`, hid.campaign && `campaign ${hid.campaign}`, hid.ad_group && `ad group ${hid.ad_group}`, hid.ad_id && `ad ${hid.ad_id}`, hid.oppref && `oppref ${hid.oppref}`, spamCheck !== "ok" && `check: ${spamCheck}`].filter(Boolean).join(" | ");
   const [ghl, os] = await Promise.all([
     deliverLead(payload, "lp-lead"),
-    sendLeadToTtrOs({ name, phone: phoneIn, email, service: PAGE_LABEL[pageKey], message: `${comment}\n\n${details}`, pageUrl: text(input, "page_url", 1000), landingUrl: text(input, "page_url", 1000), referrer: text(input, "referrer", 1000),
+    sendLeadToTtrOs({ name, phone: phoneIn, email, service: PAGE_LABEL[pageKey], message: comment ? `${comment}\n\n${details}` : details, pageUrl: text(input, "page_url", 1000), landingUrl: text(input, "page_url", 1000), referrer: text(input, "referrer", 1000),
       ip: (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim(), userAgent: request.headers.get("user-agent") ?? "" }),
   ]);
   // Email and text alerts to the office (lib/lead-alerts.ts), sent after the answer so they can never hold up or fail the submit.
@@ -112,6 +117,7 @@ export async function POST(request: Request) {
           eventId, leadId, name: name, email: email, phone: phoneIn, sourceUrl: text(input, "page_url", 1000) || "https://beverlyhillstopdentist.com/",
           ip: hdr("x-forwarded-for").split(",")[0].trim(), userAgent: hdr("user-agent"),
           oppref: text(input, "oppref", 300) || cookieOf(cookies, "__oppref"), obref: cookieOf(cookies, "__obref"), gpc: hdr("sec-gpc") === "1",
+          visitorId: cookieOf(cookies, VISITOR_COOKIE),
         });
       });
     }

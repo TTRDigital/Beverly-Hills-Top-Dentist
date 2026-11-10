@@ -51,7 +51,7 @@ export function emailText(l: LeadAlert): { subject: string; text: string } {
   const lines = rows.filter(([, v]) => v).map(([k, v]) => `${k}: ${oneLine(v as string)}`);
   const text = [
     "New lead from ChatGPT Ads, on a Beverly Hills Dental Arts Studio landing page.", "",
-    ...lines, "", "Comment:", l.comment?.trim() || "(none)", "",
+    ...lines, "", ...(l.comment?.trim() ? ["Comment:", l.comment.trim(), ""] : []),
     "Please call the patient back as soon as you can. This lead was also sent to GoHighLevel as usual.",
   ].join("\n");
   return { subject, text };
