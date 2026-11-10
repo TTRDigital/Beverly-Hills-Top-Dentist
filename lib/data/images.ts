@@ -25,6 +25,8 @@ export const images = {
   metlife: { src: "/images/insurance/metlife.png", alt: "MetLife insurance", width: 224, height: 48 },
   unitedhealthcare: { src: "/images/insurance/unitedhealthcare.png", alt: "UnitedHealthcare insurance", width: 296, height: 60 },
   cosmeticDentistrySign: { src: "/images/office/cosmetic-dentistry-sign.jpg", alt: "Cosmetic Dentistry sign with flowers and a mosaic mirror", width: 2400, height: 1800 },
+  teamTreatingPatientWide: { src: "/images/office/team-treating-patient-wide.jpg", alt: "Dr. Shir's team treating a patient at Beverly Hills Dental Arts Studio", width: 1600, height: 1067 },
+  lobbyRoundTableWide: { src: "/images/office/round-table-lobby-wide.jpg", alt: "Reception lobby at Beverly Hills Dental Arts Studio", width: 2000, height: 1250 },
   dentistsTreatingPatient: { src: "/images/office/dentists-treating-patient.jpg", alt: "Two clinicians treating a patient in the treatment room", width: 1920, height: 2560 },
   frontOffice: { src: "/images/office/front-office.jpg", alt: "Front office workstation and hallway", width: 1920, height: 2560 },
   hallwayFlowers: { src: "/images/office/hallway-flowers.jpg", alt: "Office hallway with blossom flowers and a glass partition", width: 1920, height: 2560 },
