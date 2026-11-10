@@ -6,13 +6,13 @@ PASS  first events carry hashed visitor id (external_id_sha256) in init, no raw 
 PASS  page load, scroll and opening the form send no lead_created and nothing to OpenAI
 
 == B. valid submit with NO comment and an email
-PASS  exactly one lead_created in the browser  event_id=lead_acf0f109-074e-4814-ad23-37e53d5b091d
-       pixel init user object (hashed): {"external_id_sha256":"632d070ceaaeefc8de067819489368d3179aed5a12dded1c8690aefc8b7545e6","email_sha256":"22ec08cb6a9272789a6360b339b5cfc9ec7dc6ff55719c8f85d605c00df9e60d","phone_number_sha256":"ee4f02b71ef9feba80c2f8cc3cc96d3fac4486986906f4390adc64ac6f4b08d1"}
+PASS  exactly one lead_created in the browser  event_id=lead_f9946ab9-da51-412f-9a86-0be61bbe976d
+       pixel init user object (hashed): {"external_id_sha256":"b14ddcad2b7a5867e7d8922075de3ce9d1093fffb982e18ffb3577f81a503f22","email_sha256":"22ec08cb6a9272789a6360b339b5cfc9ec7dc6ff55719c8f85d605c00df9e60d","phone_number_sha256":"ee4f02b71ef9feba80c2f8cc3cc96d3fac4486986906f4390adc64ac6f4b08d1"}
 PASS  email and phone hashed correctly, external id = hash of the visitor cookie
 PASS  comment field is optional: request accepted without a comment
-PASS  TTR OS message has no empty comment  "ChatGPT Ads landing page: Gum health and gum disease treatment | check: suspect: sent in 381 ms"
+PASS  TTR OS message has no empty comment  "ChatGPT Ads landing page: Gum health and gum disease treatment | check: suspect: sent in 468 ms"
 PASS  server sent exactly one lead_created to OpenAI with the SAME id as the pixel
-       server event (as sent to OpenAI): {"id":"lead_acf0f109-074e-4814-ad23-37e53d5b091d","type":"lead_created","timestamp_ms":1794266661578,"action_source":"web","source_url":"https://beverlyhillstopdentist.com/lp/gum-health-beverly-hills/","user":{"user_agent":"[browser UA]","external_ids_sha256":["632d070ceaaeefc8de067819489368d3179aed5a12dded1c8690aefc8b7545e6"],"emails_sha256":["22ec08cb6a9272789a6360b339b5cfc9ec7dc6ff55719c8f85d605c00df9e60d"],"phone_numbers_sha256":["ee4f02b71ef9feba80c2f8cc3cc96d3fac4486986906f4390adc64ac6f4b08d1"],"ip_address":"[ip]"},"opt_out":false,"data":{"type":"customer_action"}}
+       server event (as sent to OpenAI): {"id":"lead_f9946ab9-da51-412f-9a86-0be61bbe976d","type":"lead_created","timestamp_ms":1794286351833,"action_source":"web","source_url":"https://beverlyhillstopdentist.com/lp/gum-health-beverly-hills/","user":{"user_agent":"[browser UA]","external_ids_sha256":["b14ddcad2b7a5867e7d8922075de3ce9d1093fffb982e18ffb3577f81a503f22"],"emails_sha256":["22ec08cb6a9272789a6360b339b5cfc9ec7dc6ff55719c8f85d605c00df9e60d"],"phone_numbers_sha256":["ee4f02b71ef9feba80c2f8cc3cc96d3fac4486986906f4390adc64ac6f4b08d1"],"ip_address":"[ip]"},"opt_out":false,"data":{"type":"customer_action"}}
 PASS  server event hashes: same external id hash, email, phone; no raw values, no comment, no name
 
 == C. things that must NOT count
@@ -21,10 +21,10 @@ PASS  bot (hidden field filled, sent fast): no lead_created, not saved, nothing 
 PASS  double click on submit: one lead_created, one saved lead, one server event
 
 == D. call tap
-PASS  one phone_call_click in the pixel (a second tap adds nothing)  event_id=call_mw9w1sq2nuertn
+PASS  one phone_call_click in the pixel (a second tap adds nothing)  event_id=call_mwa7rtyiar0kw5
 PASS  one beacon to the server endpoint with the same id
 PASS  server sent one custom phone_call_click to OpenAI, same id, hashed visitor id, no personal data
-       server call event: {"id":"call_mw9w1sq2nuertn","type":"custom","custom_event_name":"phone_call_click","timestamp_ms":1794266672058,"action_source":"web","source_url":"https://beverlyhillstopdentist.com/lp/gum-health-beverly-hills/","user":{"user_agent":"[browser UA]","external_ids_sha256":["34f7f855d4fabc50284984dce96e0d63f28dfded2e8a1281167a16b9e40f991d"],"ip_address":"[ip]"},"opt_out":false,"data":{"type":"custom"}}
+       server call event: {"id":"call_mwa7rtyiar0kw5","type":"custom","custom_event_name":"phone_call_click","timestamp_ms":1794286362493,"action_source":"web","source_url":"https://beverlyhillstopdentist.com/lp/gum-health-beverly-hills/","user":{"user_agent":"[browser UA]","external_ids_sha256":["e9dccb625802cad9aea548bf7a6e8e66b8b8116c40f98eb2d7d2d6283f6530f7"],"ip_address":"[ip]"},"opt_out":false,"data":{"type":"custom"}}
 
 == E. previews and localhost send nothing
 PASS  localhost/preview host: pixel script NOT requested
