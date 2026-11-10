@@ -6,7 +6,8 @@
  * in /cms, never overwrites newer work. A hero whose photo changes also gets the left shade, as on the repo's pages.
  */
 export type ImageEdit = { doc: string; path: string; from: string; to: string; alt: string; fromFile: string; toFile: string };
-export type EditSet = { name: string; source: string; edits: ImageEdit[] };
+/** `upload`: a photo that must exist in Sanity first. url is a path on this site; id is the asset id Sanity gives it (image-<sha1 of the file>-<w>x<h>-<ext>). */
+export type EditSet = { name: string; source: string; edits: ImageEdit[]; upload?: { url: string; id: string; filename: string } };
 export type SanityDoc = { _id: string; _rev: string; [k: string]: unknown };
 
 export type Planned = { doc: string; path: string; status: "change" | "done" | "skip" | "excluded"; why?: string; fromFile: string; toFile: string };
