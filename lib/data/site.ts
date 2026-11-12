@@ -374,7 +374,7 @@ export const fallbackPosts: Post[] = [
     category: "implants",
     service: "/services/dental-implants-dentistry/",
     excerpt: "A dental implant from the first visit to the final crown: how long each stage usually takes, what recovery feels like and how to care for it.",
-    image: images.imagingArea,
+    image: images.treatmentRoomsHallway,
     cta: "At the first visit we examine your mouth and, if an implant looks right for you, take a 3D scan, so you know your timeline before anything starts.",
     figures: [
       { beforeHeading: "What happens on the day of surgery?", image: images.dentistsTreatingPatient, alt: "Two clinicians treating a patient in a treatment room at the Bedford Drive office", caption: "Two of our clinicians at work in a treatment room on Bedford Drive.", position: "center 40%" },
