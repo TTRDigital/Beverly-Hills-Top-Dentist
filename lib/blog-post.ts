@@ -35,7 +35,7 @@ export const formatDate = (iso: string) => new Date(iso).toLocaleDateString("en-
 
 const isH2 = (p: string) => p.startsWith("## ");
 const isH3 = (p: string) => p.startsWith("### ");
-const invites = (p: string) => /\]\(\/appointment\/\)/.test(p);
+const invites = (p: string) => /\]\((https:\/\/beverlyhillstopdentist\.com)?\/appointment\/\)/.test(p);
 
 export function outlinePost(body: string[]): PostOutline {
   const intro: string[] = [];

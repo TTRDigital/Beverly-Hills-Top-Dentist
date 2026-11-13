@@ -1,7 +1,7 @@
 /*
- * TTR-976: "Night Guards Hollywood | Beverly Hills Dental Arts Studio". SCAFFOLD: the final text is Leo's (task TTR-976) and is
- * pasted in here. It is a post like the Culver City one (byline, related page card, article structured data), at
- * /blog/night-guards-hollywood/. Hidden from search until approved: seo.noIndex is true and it is not in the sitemap.
+ * TTR-976: "Night Guards Hollywood | Beverly Hills Dental Arts Studio". The approved text (Kia, Nov 13, 2026) as written on task
+ * TTR-976, word for word. A post like the Culver City one (byline, related page card, article and FAQ structured data), at
+ * /blog/night-guards-hollywood/. Hidden from search until the practice approves it: seo.noIndex is true and it is not in the sitemap.
  */
 import type { Post } from "../types";
 import { images } from "./images.ts";
@@ -13,16 +13,67 @@ export const nightGuardsHollywood: Post = {
   author: "Dr. Nushin Shir",
   category: "preventive",
   service: "/services/preventive-dentistry/night-guards/",
-  excerpt: "TTR-976 scaffold: text to come.",
+  excerpt: "Night guards for Hollywood patients at Beverly Hills Dental Arts Studio, a holistic, modern practice with in-house CT scanning and in-house specialists.",
   image: {
     ...images.hallwayWide,
     alt: "The hallway at Beverly Hills Dental Arts Studio with a round table, flowers and framed black and white portraits",
   },
-  cta: "TTR-976 scaffold: text to come.",
-  body: ["TTR-976 scaffold: the final text from Leo goes here.", "## TTR-976 scaffold heading", "TTR-976 scaffold: text to come."],
+  cta: "If grinding or clenching is a concern, or you want a guard that can help shield your veneers, crowns or implants, a visit with our team is a good first step.",
+  body: [
+    "Hollywood patients can get a custom night guard, a removable mouthpiece worn during sleep to help shield teeth and dental work from grinding and clenching, at Beverly Hills Dental Arts Studio, 416 North Bedford Drive, Suite 105, in Beverly Hills, CA. The studio pairs it with modern, holistic care, including in-house CT scanning, lasers, ozone therapy and in-house specialists.",
+    "## What is a night guard, and who might need one?",
+    "A night guard is a thin, custom-fitted mouthpiece that sits over your upper or lower teeth while you sleep. If you grind or clench, the guard sits between your teeth and can help shield them and your dental work from grinding contact. Learn more about [night guards at Beverly Hills Dental Arts Studio](https://beverlyhillstopdentist.com/services/preventive-dentistry/night-guards/).",
+    "Some people grind or clench at night without knowing it. A partner may hear it, or a dentist may notice wear at a checkup.",
+    "A guard is worth discussing if you:",
+    "- Have been told you grind or clench your teeth",
+    "- Have veneers, crowns, bridges or implants you want to look after",
+    "- Notice worn, flattened or chipped tooth edges",
+    "Your dentist will check your teeth and bite and talk through whether a guard makes sense for you.",
+    "## What types of night guards are there?",
+    "There are three main routes:",
+    "| Route | What it includes |",
+    "| --- | --- |",
+    "| Drugstore \"boil and bite\" guards | You shape them yourself |",
+    "| Guards from an online lab | A lab mails you an impression kit |",
+    "| Custom guards made through a dentist | A dentist can talk you through which type suits your teeth, your bite and any dental work you have |",
+    "One 2026 cost guide splits dentist-made guards into custom soft and custom dual-laminate types ([realdentalcosts.com](https://realdentalcosts.com/en/night-guard-cost/)). Another 2026 guide says a hard guard tends to last about 3 to 5 years ([dentalcoverageguide.com](https://dentalcoverageguide.com/night-guard-cost/)).",
+    "Your dentist can talk you through which type suits your teeth, your bite and any dental work you have.",
+    "## Why get a night guard from a dentist instead of an online lab?",
+    "A dentist-made guard starts with an exam and planning, not just the guard. One direct-to-consumer lab, Clear Comfort, says in a 2026 guide that its online guards use the same lab materials as a dentist's guard ([clearcomfortnightguards.com](https://clearcomfortnightguards.com/blogs/blog/dentist-vs-online-cost)). What an online lab cannot do is look at your teeth, your bite or the dental work already in your mouth.",
+    "At the studio, a dentist checks your teeth before a guard is made. This matters if you have veneers, crowns or implants, because the guard needs to fit around them.",
+    "If a 3D scan would help, it can be done on site with our [in-house CT scanning](https://beverlyhillstopdentist.com/services/dental-technology/ct-scans/). The ADA advises ordering a 3D scan only when, after a thorough exam, it is expected to benefit care ([ADA Council on Scientific Affairs, 2012](https://pubmed.ncbi.nlm.nih.gov/22855905/)).",
+    "## How can a night guard help protect veneers, crowns and implants?",
+    "A night guard can help shield enamel, porcelain and implant restorations from direct grinding contact. For patients who have chosen cosmetic or restorative work, that is a good reason to ask about one.",
+    "With implants, the post in the bone often stays in place for many years, but the crown on top can chip, loosen or wear and may need replacing. One review found chipped porcelain on about 3 in 100 implant crowns by 5 years ([Jung et al. 2012](https://pubmed.ncbi.nlm.nih.gov/23062124/)).",
+    "If you have [porcelain veneers](https://beverlyhillstopdentist.com/services/cosmetic-dentistry/porcelain-veneers/) or are planning implants, ask whether a guard belongs in your plan. These guides explain more:",
+    "- [How long fillings, crowns, implants and veneers last](https://beverlyhillstopdentist.com/blog/how-long-do-fillings-crowns-implants-veneers-last/)",
+    "- [What to expect with dental implants in Beverly Hills](https://beverlyhillstopdentist.com/blog/dental-implants-beverly-hills-what-to-expect/)",
+    "## What technology and holistic care does the studio bring to your visit?",
+    "The studio offers in-house CT scanning, lasers, ozone therapy, holistic care and in-house specialists. Your night guard is part of a wider look at your mouth, not a one-off product.",
+    "Your care is led by Dr. Charlton, General & Cosmetic Dentist, and Dr. Shir, General & Cosmetic Dentist. If your exam points to something beyond a night guard, your dentist can talk with you about whether one of the studio's in-house specialists should be involved.",
+    "## Is a night guard covered by insurance, and what does it cost?",
+    "The studio does not list night guard insurance details or fees online. Coverage depends on your own plan, so check your benefits and ask the office what information they can share when you book.",
+    "When you weigh your options, look at what goes into the guard as well as the guard itself. At the studio, that means an exam by a dentist, a fit planned around your teeth and any veneers, crowns or implants, and in-house CT scanning when an exam shows it would help.",
+    "## Visiting our Beverly Hills studio from Hollywood",
+    "The studio is at 416 N. Bedford Dr., Suite 105, Beverly Hills, CA, and serves Hollywood, CA patients. We also see patients from Century City, CA; Mid-City, CA; Studio City, CA; Culver City, CA and West LA, CA, and offer [dental care for West Hollywood patients](https://beverlyhillstopdentist.com/areas-we-serve/west-hollywood/).",
+    "## Frequently asked questions",
+    "### What are night guards?",
+    "Night guards are removable, custom-fitted mouthpieces worn during sleep to help shield your teeth and dental work from grinding and clenching.",
+    "### What types of night guards are there?",
+    "There are drugstore boil-and-bite guards, online lab guards, and custom guards made through a dentist. Dentist guards include soft and dual-laminate designs.",
+    "### Why choose a dentist-made night guard instead of an online or drugstore guard?",
+    "A dentist-made guard starts with an exam of your teeth, your bite and any dental work, and the fit is planned around them. Online and drugstore guards do not include a dentist checking your mouth.",
+    "### Is a night guard covered by insurance?",
+    "The studio does not list night guard insurance details online. Coverage depends on your plan, so check your benefits and ask the office what information they can share.",
+    "### How long does a night guard last?",
+    "One 2026 cost guide says a hard night guard lasts about 3 to 5 years. Bring it to your checkups so your dentist can see how it is wearing.",
+    "### Where can I find a good night guard near Hollywood?",
+    "Beverly Hills Dental Arts Studio, at 416 N. Bedford Dr., Suite 105, Beverly Hills, CA, offers custom night guards with in-house CT scanning and in-house specialists.",
+    "If grinding or clenching is a concern, or you want a guard that can help shield your veneers, crowns or implants, a visit with our team is a good first step. [Book your night guard consultation](https://beverlyhillstopdentist.com/appointment/) at our Beverly Hills studio.",
+  ],
   seo: {
     title: "Night Guards Hollywood | Beverly Hills Dental Arts Studio",
-    description: "TTR-976 scaffold: description to come.",
+    description: "Night guards for Hollywood patients at Beverly Hills Dental Arts Studio, a holistic, modern practice with in-house CT scanning and in-house specialists.",
     noIndex: true,
   },
 };
