@@ -14,10 +14,9 @@ export const nightGuardsHollywood: Post = {
   category: "preventive",
   service: "/services/preventive-dentistry/night-guards/",
   excerpt: "Night guards for Hollywood patients at Beverly Hills Dental Arts Studio, a holistic, modern practice with in-house CT scanning and in-house specialists.",
-  image: {
-    ...images.hallwayWide,
-    alt: "The hallway at Beverly Hills Dental Arts Studio with a round table, flowers and framed black and white portraits",
-  },
+  image: images.lobbyRoundTable,
+  // The photo is a tall portrait: the banner and card crop it around the flowers, the table and the CT scanner.
+  imagePosition: "50% 58%",
   cta: "Request an appointment.",
   body: [
     "Hollywood patients can get a custom night guard, a removable mouthpiece worn during sleep to help shield teeth and dental work from grinding and clenching, at Beverly Hills Dental Arts Studio, 416 North Bedford Drive, Suite 105, in Beverly Hills, CA. The studio pairs it with modern, holistic care, including in-house CT scanning, lasers, ozone therapy and in-house specialists.",

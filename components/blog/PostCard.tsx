@@ -14,7 +14,7 @@ export function PostCard({ post, excerpt = true }: { post: Post; excerpt?: boole
     <article className={`group flex h-full flex-col overflow-hidden ${card} ${cardLift}`}>
       <Link href={href} tabIndex={-1} aria-hidden="true" className="relative block aspect-video overflow-hidden bg-dropdown">
         {post.image ? (
-          <Image src={post.image.src} alt={post.image.alt || post.title} fill sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" />
+          <Image src={post.image.src} alt={post.image.alt || post.title} fill sizes="(min-width: 1024px) 360px, (min-width: 640px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.04]" style={post.imagePosition ? { objectPosition: post.imagePosition } : undefined} />
         ) : null}
       </Link>
       <div className="flex flex-1 flex-col p-5 md:p-6">
