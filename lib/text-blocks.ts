@@ -8,8 +8,8 @@ export type ParaGroup =
   | { kind: "ul" | "ol"; items: string[] }
   | { kind: "table"; header: string[]; rows: string[][] };
 
-const BULLET = /^- (.+)$/s;
-const NUMBER = /^\d+\. (.+)$/s;
+const BULLET = /^- ([\s\S]+)$/;
+const NUMBER = /^\d+\. ([\s\S]+)$/;
 const cells = (row: string) => row.replace(/^\|\s*/, "").replace(/\s*\|\s*$/, "").split(/\s*\|\s*/);
 
 export function groupParas(paras: string[]): ParaGroup[] {

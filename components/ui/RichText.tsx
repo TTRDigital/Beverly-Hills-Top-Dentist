@@ -43,7 +43,7 @@ export function Inline({ text }: { text: string }) {
 
 /** A bullet list, numbered list or table from lib/text-blocks.ts. */
 export function ListOrTable({ g }: { g: Exclude<ParaGroup, { kind: "para" }> }) {
-  if (g.kind === "ul" || g.kind === "ol") {
+  if (g.kind !== "table") {
     const Tag = g.kind;
     return (
       <Tag className={`my-4 space-y-1.5 pl-6 text-left ${g.kind === "ul" ? "list-disc" : "list-decimal"}`}>
