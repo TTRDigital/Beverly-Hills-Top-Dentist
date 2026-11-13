@@ -161,6 +161,18 @@ export const fallbackTeam: TeamMember[] = [
     order: 2,
   },
   {
+    // STAGING-ONLY (code fallback): Dr. Kim's Sanity teamMember document is not created yet (Rory will create it).
+    // Once that document exists (same name "Dr. Jinnu Kim"), the CMS copy replaces this one. See getTeam in lib/content.ts.
+    id: "dr-jinnu-kim",
+    name: "Dr. Jinnu Kim",
+    heading: "Dr. Jinnu Kim - Periodontist & Implant Surgeon.",
+    bio: [
+      "Dr. Kim is a board-eligible periodontist, focused on the gums, the bone that supports the teeth, and dental implants. Dr. Kim earned a D.M.D. from the University of Pennsylvania School of Dental Medicine, then completed specialty training in Periodontics and Implantology at the USC Herman Ostrow School of Dentistry, along with a Specialty Certificate in Periodontics. A Master of Science in Biomedical Implants and Tissue Engineering from USC and a B.A. in Psychology from New York University round out the training. In practice, Dr. Kim places dental implants, performs All-on-X full-arch implant surgery, and rebuilds the tissue around the teeth with bone grafting, sinus augmentation, and gum grafting. Regenerative techniques, including platelet-rich fibrin, are part of that care to support healing. If you are wondering whether periodontal treatment or an implant is right for you, contact our Beverly Hills office to schedule a consultation.",
+    ],
+    photo: images.drJinnuKim,
+    order: 3,
+  },
+  {
     id: "thanys-m",
     name: "Thanys M.",
     heading: "Thanys M. — Practice Professional",
@@ -168,7 +180,7 @@ export const fallbackTeam: TeamMember[] = [
       "Thanys M., our practice professional, holds a Bachelor’s degree in Business and brings nearly a decade of experience across clinical support, office management, treatment coordination, billing, and patient relations. Currently pursuing a law degree focused on healthcare compliance and regulatory law, Thanys blends dentistry, business, and legal insight to strengthen patient care and practice operations.",
     ],
     photo: images.thanysM,
-    order: 3,
+    order: 4,
   },
   {
     id: "nicole-vazquez",
@@ -178,7 +190,7 @@ export const fallbackTeam: TeamMember[] = [
       "My name is Nicole Vazquez and I’m a dental hygienist heading into my fourth year in the field. I’m completely passionate about prevention and helping people take charge of their health. I love showing patients how a clean, healthy mouth supports their overall well-being and energy, since everything in the body is connected. My favorite part of the job is making dental visits comfortable, educational, and genuinely stress-free so you can walk out feeling great and smiling with total confidence.",
     ],
     photo: images.nicoleVazquez,
-    order: 4,
+    order: 5,
   },
   {
     id: "carlos-torres",
@@ -188,7 +200,7 @@ export const fallbackTeam: TeamMember[] = [
       "With over 25 years of experience in project management, staff leadership, and business operations, Carlos Torres is a seasoned dental industry professional with a proven ability to drive growth and build high-performing practices. Throughout his career, Carlos has successfully managed several dental offices, including orthodontic practices, while developing strong teams and improving day-to-day operations. Outside of work, he is an avid gym-goer who enjoys traveling and exploring new destinations.",
     ],
     photo: images.carlosTorres,
-    order: 5,
+    order: 6,
   },
 ];
 
