@@ -18,7 +18,7 @@ export const nightGuardsHollywood: Post = {
     ...images.hallwayWide,
     alt: "The hallway at Beverly Hills Dental Arts Studio with a round table, flowers and framed black and white portraits",
   },
-  cta: "If grinding or clenching is a concern, or you want a guard that can help shield your veneers, crowns or implants, a visit with our team is a good first step.",
+  cta: "Request an appointment.",
   body: [
     "Hollywood patients can get a custom night guard, a removable mouthpiece worn during sleep to help shield teeth and dental work from grinding and clenching, at Beverly Hills Dental Arts Studio, 416 North Bedford Drive, Suite 105, in Beverly Hills, CA. The studio pairs it with modern, holistic care, including in-house CT scanning, lasers, ozone therapy and in-house specialists.",
     "## What is a night guard, and who might need one?",

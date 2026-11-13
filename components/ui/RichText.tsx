@@ -57,11 +57,11 @@ export function ListOrTable({ g }: { g: Exclude<ParaGroup, { kind: "para" }> }) 
   }
   return (
     <div className="my-6 overflow-x-auto text-left">
-      <table className="w-full min-w-[420px] border-collapse text-[0.95em]">
+      <table className="w-full table-fixed border-collapse text-[0.95em]">
         <thead>
           <tr>
             {g.header.map((h, i) => (
-              <th key={i} scope="col" className="border-b-2 border-current/30 px-3 py-2 text-left font-semibold">
+              <th key={i} scope="col" className="break-words border-b-2 border-current/30 px-3 py-2 text-left font-semibold">
                 <Inline text={h} />
               </th>
             ))}
@@ -71,7 +71,7 @@ export function ListOrTable({ g }: { g: Exclude<ParaGroup, { kind: "para" }> }) 
           {g.rows.map((r, i) => (
             <tr key={i}>
               {r.map((c, j) => (
-                <td key={j} className="border-b border-current/15 px-3 py-2 align-top">
+                <td key={j} className="break-words border-b border-current/15 px-3 py-2 align-top">
                   <Inline text={c} />
                 </td>
               ))}
