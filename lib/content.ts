@@ -266,6 +266,8 @@ export const getAreaPages = cache(async (): Promise<AreaPage[]> => {
 
 /* ---------- Collections ---------- */
 
+const CODE_ONLY_TEAM = ["Dr. Jinnu Kim"];
+
 export const getTeam = cache(async (): Promise<TeamMember[]> => {
   const cms = await sanityFetch<TeamMember[]>(
     `*[_type == "teamMember"] | order(order asc){ "id": _id, name, heading, bio, order, "photo": photo${IMG} }`,
@@ -273,7 +275,17 @@ export const getTeam = cache(async (): Promise<TeamMember[]> => {
     ["teamMember"],
   );
   if (!cms?.length) return fallbackTeam;
-  return cms.map((m) => merge(fallbackTeam.find((f) => f.name === m.name) ?? { id: m.id, name: m.name, heading: m.heading, bio: [], order: m.order }, m));
+  const team = cms.map((m) => merge(fallbackTeam.find((f) => f.name === m.name) ?? { id: m.id, name: m.name, heading: m.heading, bio: [], order: m.order }, m));
+  // Added at the client's request, Nov 13: code-only team entries not yet in Sanity are shown right after the entry before them in the fallback list.
+  // Once the Sanity teamMember document exists (same name), the CMS copy is used and this adds nothing.
+  for (const f of CODE_ONLY_TEAM) {
+    if (team.some((m) => m.name === f)) continue;
+    const entry = fallbackTeam.find((m) => m.name === f);
+    const prev = fallbackTeam[fallbackTeam.findIndex((m) => m.name === f) - 1];
+    const at = team.findIndex((m) => m.name === prev?.name);
+    if (entry) team.splice(at === -1 ? team.length : at + 1, 0, entry);
+  }
+  return team;
 });
 
 /**

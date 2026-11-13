@@ -50,6 +50,7 @@ export const images = {
   smileResult3: { src: "/images/results/smile-result-3.jpg", alt: "Before and after smile result with a replaced front tooth", width: 1005, height: 1005 },
   carlosTorres: { src: "/images/team/carlos-torres.jpg", alt: "Carlos Torres, operations leader", width: 819, height: 1024 },
   drDanielCharlton: { src: "/images/team/dr-daniel-charlton.webp", alt: "Dr. Daniel Charlton, general and cosmetic dentist", width: 510, height: 537 },
+  drJinnuKim: { src: "/images/team/dr-jinnu-kim.jpg", alt: "Dr. Jinnu Kim", width: 819, height: 1024 },
   drNushinShir: { src: "/images/team/dr-nushin-shir.jpg", alt: "Dr. Nushin Shir, general and cosmetic dentist", width: 690, height: 1024 },
   nicoleVazquez: { src: "/images/team/nicole-vazquez.jpg", alt: "Nicole Vazquez, dental hygienist", width: 768, height: 1024 },
   teamPhoto: { src: "/images/team/team-photo.jpg", alt: "The Beverly Hills Dental Arts Studio team", width: 1536, height: 1024 },
