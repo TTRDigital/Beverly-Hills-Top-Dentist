@@ -2049,7 +2049,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Porcelain Veneers in Beverly Hills | Dr. Nushin Shir, DDS",
+      title: "Dental Veneers in Beverly Hills | Porcelain Veneers | Dr. Shir",
       description: "Natural-looking porcelain veneers designed for your smile and placed with digital planning. Call our Beverly Hills office to book your consultation."
     }
   },
@@ -3818,7 +3818,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Root Canal Therapy - Beverly Hills Dental",
+      title: "Root Canals in Beverly Hills - Beverly Hills Dental",
       description: "Treat the infection inside the tooth and keep the tooth itself. Canal anatomy mapped in 3D where the case calls for it, and the protective crown afterwards"
     }
   },
@@ -4033,7 +4033,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Wisdom Teeth Extractions - Beverly Hills Dental",
+      title: "Wisdom Teeth Extraction in Beverly Hills - Beverly Hills Dental",
       description: "Removal planned on a 3D scan taken in this office, so nerve position and root anatomy are known before we begin rather than discovered during."
     }
   },
@@ -4250,7 +4250,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Partial Dentures - Beverly Hills Dental",
+      title: "Partial Dentures in Beverly Hills - Beverly Hills Dental",
       description: "A removable replacement for several missing teeth, designed around the teeth you still have so those are protected rather than overloaded."
     }
   },
@@ -4961,7 +4961,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Deep Cleanings (Scaling & Root Planing) - Beverly Hills Dental",
+      title: "Deep Cleaning in Beverly Hills: Scaling & Root Planing",
       description: "Cleaning below the gum line to remove what a routine cleaning cannot reach. Carried out under local anaesthetic, supported by laser therapy and ozone."
     }
   },
@@ -5161,7 +5161,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Laser Gum Treatments - Beverly Hills Dental",
+      title: "Laser Gum Treatment in Beverly Hills - Beverly Hills Dental",
       description: "A soft tissue laser used alongside deep cleaning to treat gum disease, and to reshape gum tissue. For many patients it is an alternative to surgery, with less"
     }
   },
@@ -5361,7 +5361,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Gum Contouring - Beverly Hills Dental",
+      title: "Gum Contouring in Beverly Hills - Beverly Hills Dental",
       description: "Reshaping the gum line so it frames your teeth evenly. Carried out with a soft tissue laser, and planned before any veneers or crowns are designed to it."
     }
   },

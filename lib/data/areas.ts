@@ -64,7 +64,7 @@ export const fallbackAreasHub: AreasHub = {
   ctaHeading: "Ready to book?",
   ctaText: "Call 310-274-7005 or book an appointment online. We're open Monday to Thursday 8:00 to 5:30 and Friday 8:00 to 1:00.",
   seo: {
-    title: "Dentist Serving West LA & Beverly Hills Neighborhoods | Dr. Nushin Shir",
+    title: "Dentist Serving West LA & Beverly Hills | Dr. Nushin Shir",
     description: "Patients from Beverly Grove, Century City, West Hollywood, Culver City, West LA and Hollywood see Dr. Nushin Shir in Beverly Hills. Call 310-274-7005.",
   },
 };
