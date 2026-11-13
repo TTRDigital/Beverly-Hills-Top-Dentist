@@ -429,6 +429,7 @@ export const fallbackAreaPages: AreaPage[] = [
    */
   {
     slug: "marina-del-rey",
+    heroVideo: true,
     order: 8,
     approved: false,
     name: "Marina del Rey",
