@@ -437,7 +437,7 @@ export const fallbackAreaPages: AreaPage[] = [
     cardLine: "",
     heading: "Dentist Near Marina del Rey: Holistic Care in Beverly Hills",
     subhead: "",
-    heroImage: { ...images.hallwayWide, alt: "The hallway at Beverly Hills Dental Arts Studio with a round table, flowers and framed black and white portraits" },
+    heroImage: images.heroPoster,
     byline: ["Dr. Nushin Shir"],
     bylineUrl: "/author/dr-nushin-shir/",
     intro: [
