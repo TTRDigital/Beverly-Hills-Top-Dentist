@@ -19,6 +19,16 @@ import type { NextConfig } from "next";
  */
 const onVercel = !!process.env.VERCEL;
 
+
+/*
+ * Content-Security-Policy for Vercel builds. It was in vercel.json; it is built here so the TTR OS editing bar's new address
+ * (portal.ttrdigitalmarketing.com) can be allowed on Vercel PREVIEW builds only. The production policy is the same text as before.
+ */
+const CSP = "default-src 'self'; script-src 'self' 'unsafe-inline' https://bzrcdn.openai.com https://www.googletagmanager.com https://*.googletagmanager.com https://ttr-portal.vercel.app https://*.leadconnectorhq.com https://*.msgsndr.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://*.leadconnectorhq.com https://*.msgsndr.com https://fonts.googleapis.com https://fonts.bunny.net; img-src 'self' data: blob: https:; font-src 'self' data: https://*.leadconnectorhq.com https://*.msgsndr.com https://fonts.gstatic.com https://fonts.bunny.net; connect-src 'self' https://*.openai.com https://ttr-portal.vercel.app https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.leadconnectorhq.com https://*.msgsndr.com wss://*.leadconnectorhq.com https://*.googleapis.com https://challenges.cloudflare.com; frame-src 'self' https://www.googletagmanager.com https://www.google.com https://*.leadconnectorhq.com https://*.msgsndr.com https://challenges.cloudflare.com; media-src 'self' blob: https://cdn.sanity.io; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; upgrade-insecure-requests";
+const isPreview = process.env.VERCEL_ENV === "preview";
+const PORTAL = "https://ttr-portal.vercel.app";
+const csp = isPreview ? CSP.split(PORTAL).join(`${PORTAL} https://portal.ttrdigitalmarketing.com`) : CSP;
+
 const nextConfig: NextConfig = {
   output: onVercel ? undefined : "export",
   pageExtensions: onVercel ? ["vercel.ts", "tsx", "ts"] : ["tsx", "ts"],
@@ -29,6 +39,7 @@ const nextConfig: NextConfig = {
   experimental: { globalNotFound: true },
   trailingSlash: true,
   poweredByHeader: false,
+  headers: async () => (onVercel ? [{ source: "/((?!cms).*)", headers: [{ key: "Content-Security-Policy", value: csp }] }] : []),
   images: {
     loader: "custom",
     loaderFile: "./lib/image-loader.ts",
