@@ -421,4 +421,36 @@ export const fallbackAreaPages: AreaPage[] = [
       description: "Dentist near Santa Monica? Beverly Hills Dental Arts Studio offers cosmetic and implant care with in-house CBCT scanning and ozone therapy. Call 310-274-7005.",
     },
   },
+  /*
+   * TTR-906: "Dentist Near Malibu". SCAFFOLD: the final text is Leo's (task TTR-906) and is
+   * pasted in here. Hidden from search until approved: approved: false = noindex, not in the sitemap, not on the hub.
+   */
+  {
+    slug: "malibu",
+    order: 8,
+    approved: false,
+    name: "Malibu",
+    zips: ["90265"],
+    cardLine: "TTR-906 scaffold: text to come.",
+    heading: "Dentist Near Malibu",
+    subhead: "TTR-906 scaffold: text to come.",
+    heroImage: { ...images.hallwayWide, alt: "The hallway at Beverly Hills Dental Arts Studio with a round table, flowers and framed black and white portraits" },
+    byline: ["Dr. Nushin Shir"],
+    bylineUrl: "/author/dr-nushin-shir/",
+    intro: ["TTR-906 scaffold: the final text from Leo goes here."],
+    gettingHere: ["TTR-906 scaffold: text to come."],
+    mapFrom: "Malibu, CA",
+    mapTitle: "Map: route from Malibu to 416 N. Bedford Dr., Beverly Hills",
+    treatmentsHeading: "TTR-906 scaffold",
+    treatments: [],
+    whyHeading: "TTR-906 scaffold",
+    whyItems: [],
+    whyText: [],
+    faqs: [{ question: "TTR-906 scaffold: question", answer: ["TTR-906 scaffold: answer."] }],
+    reviews: [],
+    seo: {
+      title: "Dentist Near Malibu",
+      description: "TTR-906 scaffold: description to come.",
+    },
+  },
 ];
