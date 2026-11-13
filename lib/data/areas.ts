@@ -421,4 +421,36 @@ export const fallbackAreaPages: AreaPage[] = [
       description: "Dentist near Santa Monica? Beverly Hills Dental Arts Studio offers cosmetic and implant care with in-house CBCT scanning and ozone therapy. Call 310-274-7005.",
     },
   },
+  /*
+   * TTR-961: "Dentist Near Marina del Rey: Holistic Care in Beverly Hills". SCAFFOLD: the final text is Leo's (task TTR-961) and is
+   * pasted in here. Hidden from search until approved: approved: false = noindex, not in the sitemap, not on the hub.
+   */
+  {
+    slug: "marina-del-rey",
+    order: 8,
+    approved: false,
+    name: "Marina del Rey",
+    zips: ["90292"],
+    cardLine: "TTR-961 scaffold: text to come.",
+    heading: "Dentist Near Marina del Rey: Holistic Care in Beverly Hills",
+    subhead: "TTR-961 scaffold: text to come.",
+    heroImage: { ...images.hallwayWide, alt: "The hallway at Beverly Hills Dental Arts Studio with a round table, flowers and framed black and white portraits" },
+    byline: ["Dr. Nushin Shir"],
+    bylineUrl: "/author/dr-nushin-shir/",
+    intro: ["TTR-961 scaffold: the final text from Leo goes here."],
+    gettingHere: ["TTR-961 scaffold: text to come."],
+    mapFrom: "Marina del Rey, CA",
+    mapTitle: "Map: route from Marina del Rey to 416 N. Bedford Dr., Beverly Hills",
+    treatmentsHeading: "TTR-961 scaffold",
+    treatments: [],
+    whyHeading: "TTR-961 scaffold",
+    whyItems: [],
+    whyText: [],
+    faqs: [{ question: "TTR-961 scaffold: question", answer: ["TTR-961 scaffold: answer."] }],
+    reviews: [],
+    seo: {
+      title: "Dentist Near Marina del Rey: Holistic Care in Beverly Hills",
+      description: "TTR-961 scaffold: description to come.",
+    },
+  },
 ];
