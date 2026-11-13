@@ -161,8 +161,8 @@ export const fallbackTeam: TeamMember[] = [
     order: 2,
   },
   {
-    // STAGING-ONLY (code fallback): Dr. Kim's Sanity teamMember document is not created yet (Rory will create it).
-    // Once that document exists (same name "Dr. Jinnu Kim"), the CMS copy replaces this one. See getTeam in lib/content.ts.
+    // Added at the client's request, Nov 13. Code entry until a Sanity teamMember document named "Dr. Jinnu Kim" exists;
+    // once it does, the CMS copy replaces this one. See getTeam in lib/content.ts.
     id: "dr-jinnu-kim",
     name: "Dr. Jinnu Kim",
     heading: "Dr. Jinnu Kim - Periodontist & Implant Surgeon.",

@@ -276,7 +276,7 @@ export const getTeam = cache(async (): Promise<TeamMember[]> => {
   );
   if (!cms?.length) return fallbackTeam;
   const team = cms.map((m) => merge(fallbackTeam.find((f) => f.name === m.name) ?? { id: m.id, name: m.name, heading: m.heading, bio: [], order: m.order }, m));
-  // STAGING-ONLY: code-only team entries not yet in Sanity are shown right after the entry before them in the fallback list.
+  // Added at the client's request, Nov 13: code-only team entries not yet in Sanity are shown right after the entry before them in the fallback list.
   // Once the Sanity teamMember document exists (same name), the CMS copy is used and this adds nothing.
   for (const f of CODE_ONLY_TEAM) {
     if (team.some((m) => m.name === f)) continue;
