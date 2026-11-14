@@ -424,17 +424,17 @@ export const fallbackAreaPages: AreaPage[] = [
   /*
    * TTR-961: "Dentist Near Marina del Rey: Holistic Care in Beverly Hills". The approved text (Kia, Nov 10 and Nov 13, 2026)
    * as written on task TTR-961, word for word. A long-form article page: `article` holds the headings, lists and links, and the
-   * route, treatments and why-row blocks are left out. Hidden from search until the practice approves it: approved: false =
-   * noindex, not in the sitemap, not on the hub.
+   * route, treatments and why-row blocks are left out. Live and findable (Kia, Nov 14, 2026: for Beverly, live means findable):
+   * approved: true = indexable, in the sitemap and on the hub; the hub card line is the approved meta description.
    */
   {
     slug: "marina-del-rey",
     heroVideo: true,
     order: 8,
-    approved: false,
+    approved: true,
     name: "Marina del Rey",
     zips: [],
-    cardLine: "",
+    cardLine: "Looking for a dentist near Marina del Rey? Beverly Hills Dental Arts Studio offers implants, clear aligners and cosmetic care with in-house CT and ozone.",
     heading: "Dentist Near Marina del Rey: Holistic Care in Beverly Hills",
     subhead: "",
     heroImage: images.heroPoster,
