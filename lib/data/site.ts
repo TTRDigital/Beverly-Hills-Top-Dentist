@@ -2,6 +2,7 @@
 import type { BeforeAfterCase, Faq, MenuItem, Post, SiteSettings, TeamMember, Testimonial } from "../types";
 import { images } from "./images.ts";
 import { nightGuardsCulverCity } from "./posts-night-guards-culver-city.ts";
+import { nightGuardsHollywood } from "./posts-night-guards-hollywood.ts";
 
 /** Main menu, in the old site's order (Services has two levels of dropdowns). */
 export const fallbackMenu: MenuItem[] = [
@@ -533,4 +534,5 @@ export const fallbackPosts: Post[] = [
     seo: { title: "Bridge or Implant? How to Choose | Beverly Hills Dentist Dr. Shir", description: "How to choose between a dental bridge and an implant: the teeth beside the gap, the bone, your health, time and cost, from our Beverly Hills office." },
   },
   nightGuardsCulverCity,
+  nightGuardsHollywood,
 ];
