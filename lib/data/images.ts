@@ -36,6 +36,7 @@ export const images = {
   hallwayFlowers: { src: "/images/office/hallway-flowers.jpg", alt: "Office hallway with blossom flowers and a glass partition", width: 1920, height: 2560 },
   hallwayRoundTable: { src: "/images/office/hallway-round-table.jpg", alt: "Office hallway with a round table and flowers leading to the treatment rooms", width: 1920, height: 2560 },
   hallwayTableDetail: { src: "/images/office/hallway-table-detail.jpg", alt: "Round marble table in the office hallway", width: 1920, height: 2560 },
+  lobbyRoundTable: { src: "/images/office/lobby-round-table-kia.jpg", alt: "Beverly Hills Dental Arts Studio lobby with a round table and flowers", width: 1500, height: 2000 },
   hallwayWide1024: { src: "/images/office/hallway-wide-1024.jpg", alt: "Wide view of the office hallway with framed photographs", width: 1024, height: 684 },
   hallwayWide2: { src: "/images/office/hallway-wide-2.jpg", alt: "Wide view of the office hallway with framed photographs", width: 2048, height: 1367 },
   hallwayWide: { src: "/images/office/hallway-wide.jpg", alt: "Wide view of the office hallway with framed photographs", width: 2048, height: 1367 },

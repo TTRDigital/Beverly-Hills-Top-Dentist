@@ -174,6 +174,8 @@ export type Post = {
   /** The approved text, paragraph by paragraph. The design around it (photos, blocks) lives in the fields below. */
   body: Paragraphs;
   image?: Img;
+  /** Optional: where a tall or wide photo is cropped in the banner and the card (CSS object-position, e.g. "50% 58%"). */
+  imagePosition?: string;
   /** Photos between the sections, each above the heading it names. */
   figures?: PostFigure[];
   /** Quick facts, numbered steps and option cards between the sections. */

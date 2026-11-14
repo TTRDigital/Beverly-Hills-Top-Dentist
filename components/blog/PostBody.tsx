@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { PostFigure } from "@/lib/types";
 import type { Extras, PlacedExtras, PostFaq, PostOutline } from "@/lib/blog-post";
-import { Inline } from "@/components/ui/RichText";
+import { Inline, ListOrTable } from "@/components/ui/RichText";
+import { groupParas } from "@/lib/text-blocks";
 import { Minus, PhoneIcon, Plus } from "@/components/ui/Icons";
 import { PostBlockView } from "@/components/blog/PostBlocks";
 import { btnOnDark, card } from "@/components/blog/styles";
@@ -115,14 +116,16 @@ export function PostBody({ outline, extras, cta }: { outline: PostOutline; extra
             <h2 id={s.id} className="post-h2 scroll-mt-28">
               <Inline text={s.heading} />
             </h2>
-            {s.paras.map((p, j) =>
-              p.startsWith("### ") ? (
+            {groupParas(s.paras).map((g, j) =>
+              g.kind !== "para" ? (
+                <ListOrTable key={j} g={g} />
+              ) : g.text.startsWith("### ") ? (
                 <h3 key={j} className="mt-8 text-[1.25rem] font-semibold leading-snug text-ink">
-                  <Inline text={p.slice(4)} />
+                  <Inline text={g.text.slice(4)} />
                 </h3>
               ) : (
                 <p key={j}>
-                  <Inline text={p} />
+                  <Inline text={g.text} />
                 </p>
               ),
             )}
