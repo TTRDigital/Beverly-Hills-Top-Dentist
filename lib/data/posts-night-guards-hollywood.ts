@@ -1,7 +1,7 @@
 /*
  * TTR-976: "Night Guards Hollywood | Beverly Hills Dental Arts Studio". The approved text (Kia, Nov 13, 2026) as written on task
  * TTR-976, word for word. A post like the Culver City one (byline, related page card, article and FAQ structured data), at
- * /blog/night-guards-hollywood/. Hidden from search until the practice approves it: seo.noIndex is true and it is not in the sitemap.
+ * /blog/night-guards-hollywood/. Live and findable (Kia, Nov 14, 2026: for Beverly, live means findable): no noindex, so it is indexable and in the sitemap.
  */
 import type { Post } from "../types";
 import { images } from "./images.ts";
@@ -73,6 +73,5 @@ export const nightGuardsHollywood: Post = {
   seo: {
     title: "Night Guards Hollywood | Beverly Hills Dental Arts Studio",
     description: "Night guards for Hollywood patients at Beverly Hills Dental Arts Studio, a holistic, modern practice with in-house CT scanning and in-house specialists.",
-    noIndex: true,
   },
 };
