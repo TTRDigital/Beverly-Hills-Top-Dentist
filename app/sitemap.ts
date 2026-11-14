@@ -21,6 +21,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...(hub.approved ? [entry("/areas-we-serve/", 0.7)] : []),
     ...areas.filter((a) => a.approved).map((a) => entry(`/areas-we-serve/${a.slug}/`, 0.6)),
     ...(posts.length ? [entry("/blog/", 0.6)] : []),
-    ...posts.map((p) => entry(`/blog/${p.slug}/`, 0.5)),
+    ...posts.filter((p) => !p.seo?.noIndex).map((p) => entry(`/blog/${p.slug}/`, 0.5)),
   ];
 }

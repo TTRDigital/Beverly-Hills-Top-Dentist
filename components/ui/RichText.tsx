@@ -1,5 +1,6 @@
 import { Fragment, type ReactNode } from "react";
 import Link from "next/link";
+import { groupParas, type ParaGroup } from "@/lib/text-blocks";
 
 /** **bold** markers inside one run of text. */
 function Bold({ text }: { text: string }) {
@@ -40,6 +41,48 @@ export function Inline({ text }: { text: string }) {
   return <>{out}</>;
 }
 
+/** A bullet list, numbered list or table from lib/text-blocks.ts. */
+export function ListOrTable({ g }: { g: Exclude<ParaGroup, { kind: "para" }> }) {
+  if (g.kind !== "table") {
+    const Tag = g.kind;
+    return (
+      <Tag className={`my-4 space-y-1.5 pl-6 text-left ${g.kind === "ul" ? "list-disc" : "list-decimal"}`}>
+        {g.items.map((t, i) => (
+          <li key={i}>
+            <Inline text={t} />
+          </li>
+        ))}
+      </Tag>
+    );
+  }
+  return (
+    <div className="my-6 overflow-x-auto text-left">
+      <table className="w-full table-fixed border-collapse text-[0.95em]">
+        <thead>
+          <tr>
+            {g.header.map((h, i) => (
+              <th key={i} scope="col" className="break-words border-b-2 border-current/30 px-3 py-2 text-left font-semibold">
+                <Inline text={h} />
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {g.rows.map((r, i) => (
+            <tr key={i}>
+              {r.map((c, j) => (
+                <td key={j} className="break-words border-b border-current/15 px-3 py-2 align-top">
+                  <Inline text={c} />
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 /**
  * Paragraphs from the CMS (plain strings; **bold** and [text](/path/) links allowed).
  * A paragraph starting "## " is a heading (h2), "### " a smaller one (h3): blog posts use them for their questions.
@@ -48,7 +91,9 @@ export function RichText({ paras, className = "" }: { paras?: string[]; classNam
   if (!paras?.length) return null;
   return (
     <div className={`prose-p ${className}`}>
-      {paras.map((p, i) => {
+      {groupParas(paras).map((g, i) => {
+        if (g.kind !== "para") return <ListOrTable key={i} g={g} />;
+        const p = g.text;
         if (p.startsWith("## ")) {
           return (
             <h2 key={i} className="mb-3 mt-10 text-h2 font-semibold text-black">

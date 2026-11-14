@@ -174,6 +174,8 @@ export type Post = {
   /** The approved text, paragraph by paragraph. The design around it (photos, blocks) lives in the fields below. */
   body: Paragraphs;
   image?: Img;
+  /** Optional: where a tall or wide photo is cropped in the banner and the card (CSS object-position, e.g. "50% 58%"). */
+  imagePosition?: string;
   /** Photos between the sections, each above the heading it names. */
   figures?: PostFigure[];
   /** Quick facts, numbered steps and option cards between the sections. */
@@ -254,6 +256,10 @@ export type AreaPage = {
   related?: AreaRelated;
   /** Optional: this page's own trust strip; empty or missing shows the site-wide one. */
   trustStrip?: string[];
+  /** Optional: a long-form article (headings, lists, links) shown after the intro, instead of the route, treatments and why-row blocks. */
+  article?: Paragraphs;
+  /** Optional: closing invitation shown after the questions. */
+  closing?: Paragraphs;
   seo: Seo;
 };
 
