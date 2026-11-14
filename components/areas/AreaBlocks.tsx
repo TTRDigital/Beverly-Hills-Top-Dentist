@@ -58,7 +58,7 @@ export function AreaHero({ s, page, heading, subhead, image, video }: { s: SiteS
       <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/20" />
       <div className="container-x relative text-white">
         <h1 className="max-w-[760px] text-h1 font-semibold md:text-[44px]">{heading}</h1>
-        <p className="mt-4 max-w-[640px] text-[18px] leading-snug text-white/90">{subhead}</p>
+        {subhead ? <p className="mt-4 max-w-[640px] text-[18px] leading-snug text-white/90">{subhead}</p> : null}
         <CtaButtons s={s} page={page} className="mt-7" />
       </div>
     </section>
@@ -127,6 +127,15 @@ export function Intro({ paras }: { paras: string[] }) {
   return (
     <section className="bg-white py-14 md:py-20">
       <RichText paras={paras} className="container-x max-w-[860px] text-[17px] leading-[1.7] md:text-center" />
+    </section>
+  );
+}
+
+/** A long-form article (headings, lists, links), left-aligned, for area pages written as an article. */
+export function Article({ paras }: { paras: string[] }) {
+  return (
+    <section className="bg-white pb-14 md:pb-20">
+      <RichText paras={paras} className="container-x max-w-[860px] text-[17px] leading-[1.7]" />
     </section>
   );
 }

@@ -4,7 +4,7 @@ import { getAreaPages, getAreasHub, getSiteSettings } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 import { areaPageSchema, breadcrumbSchema, faqPageSchema } from "@/lib/schema";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { AreaFaq, AreaHero, Byline, CtaBand, FinalCta, GettingHere, Intro, RelatedCard, Reviews, StickyMobileBar, Treatments, TrustStrip, WhyRow } from "@/components/areas/AreaBlocks";
+import { AreaFaq, AreaHero, Article, Byline, CtaBand, FinalCta, GettingHere, Intro, RelatedCard, Reviews, StickyMobileBar, Treatments, TrustStrip, WhyRow } from "@/components/areas/AreaBlocks";
 
 export const dynamicParams = false;
 
@@ -44,13 +44,15 @@ export default async function AreaRoute({ params }: { params: Promise<{ slug: st
       <Byline names={page.byline ?? []} url={page.bylineUrl} />
       <TrustStrip items={page.trustStrip?.length ? page.trustStrip : s.trustStrip} />
       <Intro paras={page.intro} />
-      <GettingHere page={page} mapCaption={hub.mapCaption} />
-      <Treatments page={page} />
+      {page.article?.length ? <Article paras={page.article} /> : null}
+      {page.gettingHere.length ? <GettingHere page={page} mapCaption={hub.mapCaption} /> : null}
+      {page.treatments.length ? <Treatments page={page} /> : null}
       <CtaBand s={s} page={track} />
-      <WhyRow heading={page.whyHeading} items={page.whyItems} text={page.whyText} />
+      {page.whyItems.length ? <WhyRow heading={page.whyHeading} items={page.whyItems} text={page.whyText} /> : null}
       <Reviews reviews={page.reviews} area={page.name} />
       <RelatedCard related={page.related} />
       <AreaFaq faqs={page.faqs} />
+      {page.closing?.length ? <Intro paras={page.closing} /> : null}
       <FinalCta s={s} page={track} heading={hub.ctaHeading} />
       <StickyMobileBar s={s} page={track} />
     </>
