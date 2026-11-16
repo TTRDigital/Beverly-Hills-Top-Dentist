@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { getAreaPages, getAreasHub, getSiteSettings } from "@/lib/content";
 import { pageMetadata } from "@/lib/seo";
 import { areaPageSchema, breadcrumbSchema, faqPageSchema } from "@/lib/schema";
-import { settingsForPath } from "@/lib/ads-number";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { AreaFaq, AreaHero, Article, Byline, CtaBand, FinalCta, GettingHere, Intro, RelatedCard, Reviews, StickyMobileBar, Treatments, TrustStrip, WhyRow } from "@/components/areas/AreaBlocks";
 
@@ -27,9 +26,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 /** One neighborhood page: the shared Areas We Serve template. */
 export default async function AreaRoute({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const [page, hub, siteSettings] = await Promise.all([find(slug), getAreasHub(), getSiteSettings()]);
+  const [page, hub, s] = await Promise.all([find(slug), getAreasHub(), getSiteSettings()]);
   if (!page) notFound();
-  const s = settingsForPath(siteSettings, `/areas-we-serve/${page.slug}/`);
   const track = `area-${page.slug}`;
   return (
     <>
