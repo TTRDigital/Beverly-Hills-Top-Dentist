@@ -6,6 +6,8 @@ import { pageMetadata } from "@/lib/seo";
 import { breadcrumbSchema, faqPageSchema, postSchema } from "@/lib/schema";
 import { authorFor, categoryFor, CATEGORIES } from "@/lib/data/blog";
 import { linkedPaths, outlinePost, placeExtras } from "@/lib/blog-post";
+import { settingsForPath } from "@/lib/ads-number";
+import { LpForm } from "@/components/lp/LpForm";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { InShort, PostHero, ReadingProgress, SideCta, Toc } from "@/components/blog/PostHeader";
 import { ExtrasView, PostBody } from "@/components/blog/PostBody";
@@ -55,8 +57,9 @@ function relatedPage(path: string, categories: ServiceCategory[], services: Serv
  * and FAQPage. Everything reads without JavaScript; the motion is a gentle extra.
  */
 export default async function PostPage({ params }: Props) {
-  const [post, posts, settings, categories, services] = await Promise.all([load(params), getPosts(), getSiteSettings(), getCategories(), getServices()]);
+  const [post, posts, siteSettings, categories, services] = await Promise.all([load(params), getPosts(), getSiteSettings(), getCategories(), getServices()]);
   if (!post) notFound();
+  const settings = settingsForPath(siteSettings, `/blog/${post.slug}/`);
   const author = authorFor(post.author);
   const category = categoryFor(post.category);
   const outline = outlinePost(post.body);
@@ -87,6 +90,11 @@ export default async function PostPage({ params }: Props) {
             <Toc outline={outline} collapsible className="mt-5 lg:hidden" />
             <ExtrasView extras={extras.top} />
             <PostBody outline={outline} extras={extras} cta={cta} />
+            {post.slug === "night-guards-hollywood" ? (
+              <section id="request" aria-label="Request an appointment" className="my-10">
+                <LpForm pageKey="night-guards-hollywood" id="request-form" title="Request an appointment" button="Request an Appointment" note="Whether a night guard suits you depends on an examination. Appointment availability varies, and online requests are not confirmed bookings." />
+              </section>
+            ) : null}
             {related ? <RelatedCard page={related} more={more} /> : null}
             <AuthorCard author={author} />
           </div>
