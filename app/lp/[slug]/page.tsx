@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { RequestButton, RequestModal } from "@/components/lp/RequestModal";
+import { LpForm } from "@/components/lp/LpForm";
+import { LpHeadline } from "@/components/lp/LpHeadline";
+import { LpScrollTracker } from "@/components/lp/LpScrollTracker";
 import { BAND, BIO, DEFAULT_OFFERS, finePrint, LP_PAGES, OFFERS, PILLARS, PRACTICE, STRIP, TECH, TECH_INTRO, WORK } from "@/lib/lp-pages";
 import { getLpPage } from "@/lib/lp-content";
 import { HeroVideo } from "@/components/sections/HeroVideo";
@@ -53,29 +56,37 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
       ) : null}
 
       {/* Hero: the practice's own photo, the headline and the two actions */}
-      <section className="relative isolate flex min-h-[560px] items-end overflow-hidden bg-night sm:min-h-[660px]">
+      <section className="relative isolate flex items-end overflow-hidden bg-night sm:min-h-[660px]">
         <Image src={p.hero.src} alt={p.hero.alt} fill priority sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: p.hero.pos ?? "50% 50%" }} />
         {/* The site's hero video over the photo: only large screens on a normal connection, after the page has loaded; the photo shows until it plays. */}
         {p.heroVideo !== false ? <HeroVideo mp4="/video/home-hero.mp4" webm="/video/home-hero.webm" className="absolute inset-0 -z-[15] h-full w-full object-cover" /> : null}
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/45 to-black/10 sm:bg-gradient-to-r sm:from-black/75 sm:via-black/40 sm:to-black/5" />
-        <div className="container-x pb-12 pt-32 sm:pb-20">
-          <div className="max-w-[680px]">
-            <h1 className="lp-rise text-[38px] font-semibold leading-[1.08] text-white sm:text-[56px]">{p.headline}</h1>
-            <p className="lp-rise lp-rise-2 mt-5 max-w-[580px] text-[18px] leading-relaxed text-white/90 sm:text-[20px]">{p.support}</p>
-            <div className="lp-rise lp-rise-3 mt-8 flex flex-col gap-3 sm:flex-row">{actions("hero", true)}</div>
-            {/* New patient specials: under the actions, so the Call button stays where it was */}
-            {offers.length ? (
-            <div className="lp-rise lp-rise-3 mt-5 max-w-[520px] rounded-[6px] bg-white/95 px-5 py-4 text-ink shadow-[0_6px_24px_rgb(0_0_0/0.25)]">
-              <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-brand">New patient {offers.length > 1 ? "specials" : "special"}</p>
-              <ul className="mt-2 space-y-1">
-                {offers.map((o) => (
-                  <li key={o.text} className="text-[18px] leading-snug sm:text-[19px]">{o.or ? "or " : ""}<span className="font-bold text-brand">{o.amount}</span> {o.text}{o.aside ? <span className="text-[15px] text-body"> {o.aside}</span> : null}</li>
-                ))}
-              </ul>
-              <p className="mt-2 text-[13px] leading-snug text-body">{fine}</p>
+        <div className="container-x pb-10 pt-8 sm:pb-20 sm:pt-32">
+          {/* Phones: headline, short form, call button, then the offers. Large screens: text on the left, the form beside it. */}
+          <div className="grid gap-x-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end">
+            <div className="max-w-[680px] lg:col-start-1">
+              <LpHeadline pageKey={p.key} fallback={p.headline} className="lp-rise text-[32px] font-semibold leading-[1.1] text-white sm:text-[56px] sm:leading-[1.08]" />
+              <p className="lp-rise lp-rise-2 mt-3 max-w-[580px] text-[16px] leading-snug text-white/90 sm:mt-5 sm:text-[20px] sm:leading-relaxed">{p.support}</p>
             </div>
-            ) : null}
-            {p.availability ? <p className="mt-4 max-w-[520px] text-[14px] leading-snug text-white/80">{p.availability}</p> : null}
+            <div id="request-form" className="lp-rise lp-rise-3 mt-5 w-full max-w-[520px] lg:col-start-2 lg:row-span-3 lg:row-start-1 lg:mt-0 lg:justify-self-end">
+              <LpForm compact pageKey={p.key} title={p.formTitle} button={p.formButton} note={p.formNote} />
+            </div>
+            <div className="max-w-[680px] lg:col-start-1">
+              <div className="lp-rise lp-rise-3 mt-4 flex flex-col gap-3 sm:mt-8 sm:flex-row">{callBtn("hero", call ? onDark.solid : onDark.ghost, call ? p.primary.label : undefined)}</div>
+              {/* New patient specials: under the actions, so the Call button stays where it was */}
+              {offers.length ? (
+              <div className="lp-rise lp-rise-3 mt-5 max-w-[520px] rounded-[6px] bg-white/95 px-5 py-4 text-ink shadow-[0_6px_24px_rgb(0_0_0/0.25)]">
+                <p className="text-[13px] font-bold uppercase tracking-[0.12em] text-brand">New patient {offers.length > 1 ? "specials" : "special"}</p>
+                <ul className="mt-2 space-y-1">
+                  {offers.map((o) => (
+                    <li key={o.text} className="text-[18px] leading-snug sm:text-[19px]">{o.or ? "or " : ""}<span className="font-bold text-brand">{o.amount}</span> {o.text}{o.aside ? <span className="text-[15px] text-body"> {o.aside}</span> : null}</li>
+                  ))}
+                </ul>
+                <p className="mt-2 text-[13px] leading-snug text-body">{fine}</p>
+              </div>
+              ) : null}
+              {p.availability ? <p className="mt-4 max-w-[520px] text-[14px] leading-snug text-white/80">{p.availability}</p> : null}
+            </div>
           </div>
         </div>
       </section>
@@ -268,6 +279,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
         <RequestButton className="inline-flex min-h-[48px] items-center justify-center rounded-[3px] bg-brand text-[16px] font-semibold text-white">{call ? "Request Callback" : "Request"}</RequestButton>
       </div>
 
+      <LpScrollTracker pageKey={p.key} />
       <RequestModal pageKey={p.key} title={p.formTitle} button={p.formButton} note={p.formNote} />
     </>
   );
