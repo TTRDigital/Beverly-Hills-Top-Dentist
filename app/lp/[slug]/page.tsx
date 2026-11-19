@@ -248,7 +248,6 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
           <div>
             <H2>Visit us</H2>
             <p className="mt-4 text-[17px] leading-relaxed text-body"><span className="font-semibold text-ink">{PRACTICE.name}</span><br />{PRACTICE.doctor}<br />{PRACTICE.address}</p>
-            <p className="mt-3"><a href={PRACTICE.map} className="font-semibold text-brand underline" target="_blank" rel="noopener noreferrer">Open in Maps<span className="sr-only"> (opens in a new tab)</span></a></p>
             <p className="mt-2"><a href={PRACTICE.tel} data-track="click_to_call" data-track-page={`lp-${p.key}-visit`} className="font-semibold text-brand underline">{PRACTICE.phone}</a></p>
           </div>
           <div>
