@@ -4,20 +4,23 @@ import { useId, useRef, useState } from "react";
 import { ATTRIBUTION_STORAGE_KEY } from "@/lib/lead-options";
 import { PRACTICE } from "@/lib/lp-pages";
 import { newLeadIds, oppref, trackLead, wasKept } from "@/lib/ads-tracking";
+import { LP_SERVICES } from "@/lib/lp-form-options";
+import { lpEvent } from "@/lib/lp-events";
 
 type Errors = Partial<Record<"full_name" | "phone" | "email" | "comment" | "consent" | "form", string>>;
 const URL_KEYS = ["campaign", "ad_group", "ad_id", "oppref", "utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "gclid", "fbclid"] as const;
 
 /**
  * Short request form for the ChatGPT Ads landing pages. Name and phone are required; email and the comment are optional (Nov 9, 2026; the comment was required from Nov 5 to Nov 9). The comment goes only to the practice's lead record, never to the ads platform. The lead_created ad event goes out once, only after the server accepted the request, and carries no
- * form data. Campaign details travel as hidden fields in the internal lead record.
+ * form data. compact (TTR-2344) is the short form in the hero: name, phone and an optional service only. Campaign details travel as hidden fields in the internal lead record.
  */
-export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; title: string; button: string; note: string; id?: string }) {
+export function LpForm({ pageKey, title, button, note, id, compact = false }: { pageKey: string; title: string; button: string; note: string; id?: string; compact?: boolean }) {
   const uid = useId();
   const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
   const [errors, setErrors] = useState<Errors>({});
   const startedAt = useRef(0);
   const leadSent = useRef(false);
+  const opened = useRef(false);
   const formRef = useRef<HTMLFormElement>(null);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -55,7 +58,7 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          full_name: v("full_name"), phone: v("phone"), email: v("email"), comment: v("comment"), consent: true, page_key: pageKey,
+          full_name: v("full_name"), phone: v("phone"), email: v("email"), comment: v("comment"), service: v("service"), consent: true, page_key: pageKey,
           website_url: v("website_url"), elapsed_ms: Date.now() - startedAt.current,
           page_url: window.location.href.slice(0, 1000), landing_page: (stored.landing_page || window.location.href).slice(0, 1000), referrer: (stored.referrer || document.referrer).slice(0, 1000),
           lead_id: ids.leadId, event_id: ids.eventId,
@@ -69,6 +72,7 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
         leadSent.current = true;
         await trackLead({ form: "landing_page", page: pageKey, email: v("email"), phone: v("phone"), leadId: ids.leadId, eventId: ids.eventId });
       }
+      lpEvent("lp_form_submit", { page_key: pageKey, form: compact ? "hero" : "popup" });
       setStatus("sent");
     } catch {
       setStatus("idle");
@@ -93,9 +97,9 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
   const err = (k: keyof Errors) => (errors[k] ? <p id={`${uid}-${k}-err`} role="alert" className="mt-1 text-sm font-medium text-[#b42318]">{errors[k]}</p> : null);
 
   return (
-    <form id={id} ref={formRef} onSubmit={onSubmit} onFocus={() => { if (!startedAt.current) startedAt.current = Date.now(); }} noValidate className="rounded-[6px] bg-white p-5 text-body shadow-menu sm:p-6">
-      <h2 className="text-h3 font-bold text-ink">{title}</h2>
-      <div className="mt-4 space-y-3.5">
+    <form id={id} ref={formRef} onSubmit={onSubmit} onFocus={() => { if (!startedAt.current) startedAt.current = Date.now(); if (compact && !opened.current) { opened.current = true; lpEvent("lp_form_open", { page_key: pageKey, form: "hero" }); } }} noValidate className={`rounded-[6px] bg-white text-body shadow-menu ${compact ? "p-4 sm:p-6" : "p-5 sm:p-6"}`}>
+      {compact ? <p className="text-h3 font-bold text-ink">{title}</p> : <h2 className="text-h3 font-bold text-ink">{title}</h2>}
+      <div className={compact ? "mt-3 space-y-3" : "mt-4 space-y-3.5"}>
         <div>
           <label htmlFor={`${uid}-full_name`} className="mb-1 block text-[15px] font-semibold text-ink">Full name <span aria-hidden="true">*</span></label>
           <input id={`${uid}-full_name`} name="full_name" autoComplete="name" required aria-required="true" aria-invalid={!!errors.full_name || undefined} aria-describedby={errors.full_name ? `${uid}-full_name-err` : undefined} className={input(errors.full_name)} />
@@ -106,21 +110,30 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
           <input id={`${uid}-phone`} name="phone" type="tel" inputMode="tel" autoComplete="tel" required aria-required="true" aria-invalid={!!errors.phone || undefined} aria-describedby={errors.phone ? `${uid}-phone-err` : undefined} className={input(errors.phone)} />
           {err("phone")}
         </div>
-        <div>
+        {compact ? (
+          <div>
+            <label htmlFor={`${uid}-service`} className="mb-1 block text-[15px] font-semibold text-ink">Service <span className="font-normal text-body">(optional)</span></label>
+            <select id={`${uid}-service`} name="service" defaultValue="" className={input()}>
+              <option value="">Choose a service</option>
+              {LP_SERVICES.map((o) => <option key={o} value={o}>{o}</option>)}
+            </select>
+          </div>
+        ) : null}
+        {compact ? null : <div>
           <label htmlFor={`${uid}-email`} className="mb-1 block text-[15px] font-semibold text-ink">Email <span className="font-normal text-body">(optional)</span></label>
           <input id={`${uid}-email`} name="email" type="email" inputMode="email" autoComplete="email" aria-invalid={!!errors.email || undefined} aria-describedby={errors.email ? `${uid}-email-err` : undefined} className={input(errors.email)} />
           {err("email")}
-        </div>
-        <div>
+        </div>}
+        {compact ? null : <div>
           <label htmlFor={`${uid}-comment`} className="mb-1 block text-[15px] font-semibold text-ink">Comment <span className="font-normal text-body">(optional)</span></label>
           <textarea id={`${uid}-comment`} name="comment" rows={3} maxLength={1000} placeholder="How can we help you?" aria-invalid={!!errors.comment || undefined} aria-describedby={errors.comment ? `${uid}-comment-err` : undefined} className={`${input(errors.comment)} resize-y`} />
           {err("comment")}
-        </div>
+        </div>}
         <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
           <label>Leave this empty<input name="website_url" tabIndex={-1} autoComplete="off" /></label>
         </div>
         <div>
-          <label className="flex items-start gap-3 text-[14px] leading-snug">
+          <label className={`flex items-start gap-3 leading-snug ${compact ? "text-[12.5px]" : "text-[14px]"}`}>
             <input id={`${uid}-consent`} name="consent" type="checkbox" aria-invalid={!!errors.consent || undefined} aria-describedby={errors.consent ? `${uid}-consent-err` : undefined} className="mt-0.5 h-5 w-5 shrink-0 accent-[#20472c]" />
             <span>I agree to be contacted by {PRACTICE.name} about my request, by phone, text message or email. Message frequency varies. Message and data rates may apply. Reply STOP to cancel, HELP for help. Consent is not a condition of care. See the <a href="/sms-terms/" target="_blank" rel="noopener noreferrer" className="font-semibold text-brand underline">SMS terms</a> and <a href="/privacy-policy/" target="_blank" rel="noopener noreferrer" className="font-semibold text-brand underline">privacy policy</a>.</span>
           </label>

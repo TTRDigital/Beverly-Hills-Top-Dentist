@@ -7,6 +7,7 @@ import { MIN_FILL_MS } from "@/lib/lead-options";
 import { sendLeadToTtrOs } from "@/lib/ttr-os-lead";
 import { after } from "next/server";
 import { VISITOR_COOKIE, cookieOf, leadSource, sendLeadEvent } from "@/lib/ads-capi";
+import { isLpService } from "@/lib/lp-form-options";
 import { sendLeadAlerts } from "@/lib/lead-alerts";
 
 type In = Record<string, unknown>;
@@ -47,7 +48,10 @@ export async function POST(request: Request) {
     return reply(400, { ok: false, error: "Invalid request." });
   }
 
-  const name = text(input, "full_name", 120), email = text(input, "email", 200), phoneIn = text(input, "phone", 40), pageKey = text(input, "page_key", 40), comment = text(input, "comment", 1000);
+  const name = text(input, "full_name", 120), email = text(input, "email", 200), phoneIn = text(input, "phone", 40), pageKey = text(input, "page_key", 40), comment0 = text(input, "comment", 1000);
+  // Optional service from the short hero form: only the listed choices are accepted, and it travels with the comment so the alerts and the lead record show it.
+  const serviceIn = text(input, "service", 80), service = isLpService(serviceIn) ? serviceIn : "";
+  const comment = service ? (comment0 ? `Service: ${service}\n${comment0}` : `Service: ${service}`) : comment0;
   const errors: Record<string, string> = {};
   if (!PAGE_KEYS.has(pageKey)) return reply(400, { ok: false, error: "Invalid request." });
   if (name.length < 2) errors.full_name = "Please enter your full name.";

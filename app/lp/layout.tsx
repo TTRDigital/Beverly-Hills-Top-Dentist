@@ -25,9 +25,10 @@ export default function LpLayout({ children }: Readonly<{ children: React.ReactN
       <a href="#main" className="sr-only z-[100] rounded bg-brand px-5 py-3 font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4">Skip to content</a>
       <header className="sticky top-0 z-40 bg-header/95 backdrop-blur">
         <div className="container-x flex h-[64px] items-center justify-between gap-3 sm:h-[76px]">
-          <Link href="/" aria-label={`${PRACTICE.name}, home`} className="shrink-0">
+          {/* Kia, Nov 19: the logo keeps visitors on the ad page (the main site shows the untracked office number), so it links to the top of this same page. */}
+          <a href="#main" aria-label={`${PRACTICE.name}, back to the top of the page`} className="shrink-0">
             <Image src="/images/brand/logo-300.png" alt={PRACTICE.name} width={300} height={71} priority sizes="(min-width: 640px) 240px, 170px" className="h-auto w-[170px] sm:w-[240px]" />
-          </Link>
+          </a>
           <div className="flex items-center gap-2 sm:gap-3">
             <a href={PRACTICE.tel} data-track="click_to_call" data-track-page="lp-header" className="inline-flex min-h-[42px] items-center justify-center rounded-[3px] border-2 border-brand px-3 text-[14px] font-bold text-brand transition-colors hover:bg-brand hover:text-white sm:px-5 sm:text-[15px]">
               <span className="sm:hidden">Call</span><span className="hidden sm:inline">Call {PRACTICE.phone}</span>

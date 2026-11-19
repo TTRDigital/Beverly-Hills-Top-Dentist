@@ -2,18 +2,19 @@
 
 import { useEffect, useRef } from "react";
 import { LpForm } from "@/components/lp/LpForm";
+import { lpEvent } from "@/lib/lp-events";
 
 /** The request form as a pop-up. Any RequestButton opens it (also the #request link). Native dialog: focus stays inside, Esc closes. */
 export function RequestModal({ pageKey, title, button, note }: { pageKey: string; title: string; button: string; note: string }) {
   const ref = useRef<HTMLDialogElement>(null);
   useEffect(() => {
-    const open = () => { if (ref.current && !ref.current.open) ref.current.showModal(); };
+    const open = () => { if (ref.current && !ref.current.open) { ref.current.showModal(); lpEvent("lp_form_open", { page_key: pageKey, form: "popup" }); } };
     window.addEventListener("lp-open", open);
     if (window.location.hash === "#request") open();
     const onHash = () => window.location.hash === "#request" && open();
     window.addEventListener("hashchange", onHash);
     return () => { window.removeEventListener("lp-open", open); window.removeEventListener("hashchange", onHash); };
-  }, []);
+  }, [pageKey]);
   const close = () => { ref.current?.close(); if (window.location.hash === "#request") history.replaceState(null, "", window.location.pathname + window.location.search); };
   return (
     <dialog
