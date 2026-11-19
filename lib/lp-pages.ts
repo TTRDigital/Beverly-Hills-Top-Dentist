@@ -41,7 +41,6 @@ export const PRACTICE = {
   phone: "424-424-3347",
   tel: "tel:+14244243347",
   address: "416 N. Bedford Dr., Suite 105, Beverly Hills, CA 90210",
-  map: "https://www.google.com/maps/search/?api=1&query=416+N+Bedford+Dr+Suite+105+Beverly+Hills+CA+90210",
   hours: [
     { days: "Monday to Thursday", time: "8:00 a.m. to 5:30 p.m." },
     { days: "Friday", time: "8:00 a.m. to 1:00 p.m." },
