@@ -48,7 +48,7 @@ export type CardPairSection = {
   heading: string;
   text: Paragraphs;
   link?: Link;
-  cards: { image?: Img; video?: Video; videoPosition?: string; title: string; text: Paragraphs }[];
+  cards: { image?: Img; video?: Video; videoPosition?: string; /** "contain" shows the whole photo (a before and after) on the paper background. */ imageFit?: "cover" | "contain"; title: string; text: Paragraphs }[];
 };
 
 export type StepsSection = {

@@ -5,7 +5,7 @@
  * home-care advice. The 911 line is the live site's own wording. Preview only: noIndex until Kia approves it.
  */
 import type { Post } from "../types";
-import { images, videos } from "./images.ts";
+import { images } from "./images.ts";
 
 export const emergencyDentistBeverlyHills: Post = {
   slug: "emergency-dentist-beverly-hills",
@@ -16,17 +16,16 @@ export const emergencyDentistBeverlyHills: Post = {
   service: "/services/restorative-dentistry/",
   excerpt:
     "A toothache, a broken tooth or a lost filling or crown? Call Beverly Hills Dental Arts Studio at 310.274.7005. Here is what happens when you call and what we can treat.",
-  image: images.receptionWindowWide,
+  // TTR-2604 (Dr. Shir, Nov 20): the team photo is the main picture. The practice video stays on TMJ only.
+  image: images.teamPhoto,
   cta: "If a tooth is hurting or something has broken, call us at 310.274.7005 and tell us what is going on.",
   figures: [
     {
       beforeHeading: "How does the studio find the cause?",
-      // TTR-2593: the practice's video in place of the X-ray room photo (the photo stays as the fallback).
       image: images.digitalXRayRoom,
-      video: videos.treatmentRoom,
       alt: "Treatment room with a dental chair and a digital X-ray monitor at the Bedford Drive studio",
-      caption: "A dentist and an assistant at work in one of the treatment rooms on Bedford Drive.",
-      position: "center 30%",
+      caption: "An exam and digital X-rays come first, and a 3D scan only when it will help.",
+      position: "center 40%",
     },
   ],
   blocks: [

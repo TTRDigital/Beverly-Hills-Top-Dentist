@@ -77,7 +77,12 @@ export const ttr2491Services: Service[] = [
         text: ["Two ways to restore a damaged tooth, chosen by how much of the tooth is left and how much protection it needs."],
         cards: [
           {
-            image: images.hygienistTreatingPatient,
+            // TTR-2604 (Dr. Shir, Nov 20): one of the practice's own before and after cases, shown whole (not cropped).
+            image: {
+              ...images.smileResult2,
+              alt: "Before and after from one of Dr. Shir's patients: upper front teeth with a dark line at the gum, then an even row of new teeth",
+            },
+            imageFit: "contain",
             title: "PORCELAIN CROWN:",
             text: ["Full coverage for a tooth too damaged to hold a filling. Metal-free porcelain, made from a digital scan and shaded against your own teeth. Used where an onlay would not give enough protection."],
           },

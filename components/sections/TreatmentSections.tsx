@@ -145,7 +145,7 @@ export function CardPair({ s }: { s: CardPairSection }) {
                   </div>
                 ) : c.image ? (
                   <div className="relative h-[270px]">
-                    <Image src={c.image.src} alt={c.image.alt || c.title} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" className="object-cover" />
+                    <Image src={c.image.src} alt={c.image.alt || c.title} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" className={c.imageFit === "contain" ? "object-contain" : "object-cover"} />
                   </div>
                 ) : null}
                 <h3 className="mb-2.5 mt-[25px] text-h3 font-semibold uppercase text-black">{c.title}</h3>
