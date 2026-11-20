@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { ATTRIBUTION_STORAGE_KEY, attributionKeys } from "@/lib/lead-options";
+import { preloadRecaptcha, recaptchaToken } from "@/lib/spam-guard";
 import { newLeadIds, oppref, trackLead, wasKept } from "@/lib/ads-tracking";
 
 type Field = "full_name" | "email" | "phone" | "comment";
@@ -60,6 +61,7 @@ export function AppointmentForm({
 
   useEffect(() => {
     startedAt.current = Date.now();
+    preloadRecaptcha();
   }, []);
 
   const required: Field[] = ["full_name", "email", "phone"];
@@ -101,6 +103,8 @@ export function AppointmentForm({
     }
     const ids = newLeadIds();
     const honeypot = (formRef.current?.elements.namedItem("website_url") as HTMLInputElement | null)?.value ?? "";
+    const elapsed = Date.now() - startedAt.current;
+    const token = await recaptchaToken("lead");
 
     try {
       const res = await fetch(process.env.NEXT_PUBLIC_LEAD_ENDPOINT ?? "/api/lead.php", {
@@ -110,7 +114,8 @@ export function AppointmentForm({
           ...values,
           consent: true,
           website_url: honeypot,
-          elapsed_ms: Date.now() - startedAt.current,
+          elapsed_ms: elapsed,
+          recaptcha_token: token,
           page_url: window.location.href,
           landing_page: attribution.landing_page ?? "",
           referrer: attribution.referrer ?? document.referrer,

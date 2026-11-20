@@ -5,6 +5,7 @@
  */
 import { deliverLead, ghlWebhooks, isSandbox } from "@/lib/ghl";
 import { attributionKeys, MIN_FILL_MS } from "@/lib/lead-options";
+import { clientIp, guardLead, rateLimited, SPAM_LABEL } from "@/lib/spam-guard";
 import { sendLeadToTtrOs } from "@/lib/ttr-os-lead";
 import { after } from "next/server";
 import { VISITOR_COOKIE, cookieOf, leadSource, sendLeadEvent } from "@/lib/ads-capi";
@@ -20,17 +21,6 @@ const text = (input: In, key: string, max: number) => {
   return typeof v === "string" ? v.trim().slice(0, max) : "";
 };
 
-/* Best-effort per-address limit: 10 requests per 10 minutes on this server instance. */
-const recent = new Map<string, number[]>();
-function tooMany(ip: string): boolean {
-  const now = Date.now();
-  const times = (recent.get(ip) ?? []).filter((t) => now - t < 600_000);
-  times.push(now);
-  recent.set(ip, times);
-  if (recent.size > 5000) recent.clear();
-  return times.length > 10;
-}
-
 export async function POST(request: Request) {
   // Same-site posts only.
   const origin = request.headers.get("origin");
@@ -42,8 +32,7 @@ export async function POST(request: Request) {
       return reply(403, { ok: false, error: "Forbidden." });
     }
   }
-  const ip = (request.headers.get("x-forwarded-for") ?? "unknown").split(",")[0].trim();
-  if (tooMany(ip)) return reply(429, { ok: false, error: "Too many requests. Please call us instead." });
+  if (rateLimited(clientIp(request))) return reply(429, { ok: false, error: "Too many requests. Please call us instead." });
 
   let input: In;
   try {
@@ -68,12 +57,14 @@ export async function POST(request: Request) {
   if (input.consent !== true) errors.consent = "Please agree so we can contact you.";
   if (Object.keys(errors).length) return reply(422, { ok: false, error: "Please check the form.", fields: errors });
 
-  // Spam: drop only when both signals agree (hidden field filled AND sent faster than a person can type).
-  const trapFilled = text(input, "website_url", 200) !== "";
-  const elapsed = Number.isInteger(input.elapsed_ms) ? (input.elapsed_ms as number) : null;
-  const tooFast = elapsed !== null && elapsed < MIN_FILL_MS;
-  if (trapFilled && tooFast) return reply(200, { ok: true, delivered: false });
-  const spamCheck = trapFilled ? "suspect: hidden field filled" : tooFast ? `suspect: sent in ${elapsed} ms` : "ok";
+  // Spam (lib/spam-guard.ts): a bot gets the usual thank-you and nothing is sent; a doubtful lead is still sent, marked "Possible spam".
+  const verdict = await guardLead({
+    trap: input.website_url, elapsedMs: input.elapsed_ms, minFillMs: MIN_FILL_MS,
+    texts: [lead.full_name, lead.email, lead.comment], recaptchaToken: input.recaptcha_token, ip: clientIp(request),
+  });
+  // A bot: the page shows its usual thank-you, but nothing is saved, alerted or counted (delivered:false keeps the browser from firing lead_created).
+  if (verdict.action === "drop") return reply(200, { ok: true, delivered: false });
+  const spamCheck = verdict.note;
 
   // Previews, localhost and test builds: the form works and says thank you, but nothing real is sent (no CRM, TTR OS, alert or ad event).
   if (isSandbox()) {
@@ -87,7 +78,7 @@ export async function POST(request: Request) {
   const phone = digits.length === 10 ? `+1${digits}` : digits.length === 11 && digits[0] === "1" ? `+${digits}` : `${lead.phone.startsWith("+") ? "+" : ""}${digits}`;
   const [first = "", ...rest] = lead.full_name.split(/\s+/);
   const tags = ["website-lead", "appointment-request"];
-  if (spamCheck !== "ok") tags.push("suspected-spam");
+  if (verdict.possibleSpam) tags.unshift(SPAM_LABEL, "suspected-spam");
 
   const payload: Record<string, unknown> = {
     source: "Website appointment form",
@@ -112,7 +103,7 @@ export async function POST(request: Request) {
   // The request counts as saved when either accepts it, so a lead is never lost to one side being down.
   const [ghl, os] = await Promise.all([
     deliverLead(payload, "lead"),
-    sendLeadToTtrOs({ name: lead.full_name, phone: lead.phone, email: lead.email, service: "Appointment request", message: lead.comment, pageUrl: text(input, "page_url", 1000), landingUrl: text(input, "landing_page", 1000) || text(input, "page_url", 1000), referrer: text(input, "referrer", 1000),
+    sendLeadToTtrOs({ name: lead.full_name, phone: lead.phone, email: lead.email, service: verdict.possibleSpam ? `${SPAM_LABEL}: Appointment request` : "Appointment request", message: lead.comment, pageUrl: text(input, "page_url", 1000), landingUrl: text(input, "landing_page", 1000) || text(input, "page_url", 1000), referrer: text(input, "referrer", 1000),
       ip: (request.headers.get("x-forwarded-for") ?? "").split(",")[0].trim(), userAgent: request.headers.get("user-agent") ?? "" }),
   ]);
   if (ghl || os) {
