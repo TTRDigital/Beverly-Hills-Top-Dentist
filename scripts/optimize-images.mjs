@@ -9,7 +9,7 @@ import path from "node:path";
 import sharp from "sharp";
 
 // deviceSizes + imageSizes from next.config.ts.
-const WIDTHS = [96, 256, 384, 640, 828, 1200, 1920];
+const WIDTHS = [96, 256, 384, 480, 640, 750, 828, 1200, 1920];
 const SRC = path.resolve("public/images");
 const OUT = path.resolve("public/_img/images");
 

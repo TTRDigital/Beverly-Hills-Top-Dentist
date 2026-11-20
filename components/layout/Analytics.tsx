@@ -55,7 +55,7 @@ const chatgptLoader = (now: boolean) => `(function(w,d){var gpc=!!navigator.glob
 export function Analytics({ pixelNow = false }: { pixelNow?: boolean }) {
   return (
     <>
-      {TTR_SITE_KEY ? <script async src="https://ttr-portal.vercel.app/api/site/script" data-site={TTR_SITE_KEY} /> : null}
+      {TTR_SITE_KEY ? <script async src="https://portal.ttrdigitalmarketing.com/api/site/script/5a23a7758595" data-site={TTR_SITE_KEY} /> : null}
       {GA_ID || GTM_ID ? <script dangerouslySetInnerHTML={{ __html: GOOGLE_LOADER + TRACK_CLICKS }} /> : null}
       {CHATGPT_PIXEL ? <script dangerouslySetInnerHTML={{ __html: chatgptLoader(pixelNow) + TRACK_CALLS }} /> : null}
     </>

@@ -22,7 +22,7 @@ const PATH = author.url;
 export const metadata: Metadata = pageMetadata(
   {
     title: "Dr. Nushin Shir, DDS, MPH | Beverly Hills Dentist and Blog Author",
-    description: "Meet Dr. Nushin Shir, DDS, MPH, principal dentist at Beverly Hills Dental Arts Studio, and read every article she has written about implants, cosmetic dentistry, gum care and prevention.",
+    description: "Meet Dr. Nushin Shir, DDS, MPH, of Beverly Hills Dental Arts Studio, and read her articles on implants, cosmetic dentistry, gum care and prevention.",
   },
   PATH,
   author.image,
@@ -61,7 +61,7 @@ export default async function AuthorPage() {
           </nav>
           <div className="mt-8 grid gap-8 md:grid-cols-[minmax(0,240px)_minmax(0,1fr)] md:items-center lg:gap-14">
             <div className="post-rise mx-auto w-full max-w-[240px] md:mx-0" style={css(1)}>
-              <Image src={author.image.src} alt={author.image.alt} width={author.image.width} height={author.image.height} priority sizes="240px" className="h-auto w-full rounded-xl object-cover shadow-[0_24px_60px_rgb(33_29_29_/_0.18)]" />
+              <Image src={author.image.src} alt={author.image.alt} width={author.image.width} height={author.image.height} loading="eager" fetchPriority="high" sizes="240px" className="h-auto w-full rounded-xl object-cover shadow-[0_24px_60px_rgb(33_29_29_/_0.18)]" />
             </div>
             <div>
               <p className={`post-rise ${eyebrow}`} style={css(2)}>

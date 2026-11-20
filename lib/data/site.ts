@@ -302,7 +302,7 @@ export const fallbackPosts: Post[] = [
       "It can. Grinding and clenching put heavy force on teeth and dental work, which can wear, chip or crack them. A custom night guard helps protect them.",
       "If you have fillings, crowns, implants or veneers and want them to last, come and see us. Our office is at 416 N. Bedford Dr. in Beverly Hills, a short drive from [Century City](/areas-we-serve/century-city/) and [West Hollywood](/areas-we-serve/west-hollywood/). [Request an appointment](/appointment/), or call us.",
     ],
-    seo: { title: "How Long Do Crowns, Implants & Veneers Last? | Dr. Shir, Beverly Hills", description: "How long fillings, crowns, implants and veneers often last, according to studies, and what helps your dental work last longer, from Beverly Hills dentist Dr. Shir." },
+    seo: { title: "How Long Do Crowns, Implants & Veneers Last? | Dr. Shir", description: "How long fillings, crowns, implants and veneers often last, according to studies, and what helps dental work last longer, from Dr. Shir in Beverly Hills." },
   },
   // TTR-910 (Oct 26 and 27, 2026): Dr. Shir's two new services, from her answers: Curodont; Guided Biofilm Therapy with EMS
   // AIRFLOW; adults and implant patients; no cost or insurance lines.
@@ -377,7 +377,7 @@ export const fallbackPosts: Post[] = [
       "It depends on the health of your gums. We set how often you come back with you after the exam.",
       "If you have white spots, sensitive areas or gums that bleed when you brush, come and see us. We will check your teeth and gums and go through your options, with no pressure to decide that day. Our office is at 416 N. Bedford Dr. in Beverly Hills, a short drive from [Century City](/areas-we-serve/century-city/) and [West Hollywood](/areas-we-serve/west-hollywood/). [Request an appointment](/appointment/), or call us.",
     ],
-    seo: { title: "No-Drill Cavity Care & Biofilm Therapy | Beverly Hills Dentist Dr. Shir", description: "Curodont no-drill cavity care and Guided Biofilm Therapy with EMS AIRFLOW in Beverly Hills: what each does and what the research shows, from Dr. Shir." },
+    seo: { title: "No-Drill Cavity Care & Biofilm Therapy in Beverly Hills", description: "Curodont no-drill cavity care and Guided Biofilm Therapy with EMS AIRFLOW in Beverly Hills: what each does and what the research shows, from Dr. Shir." },
   },
   {
     slug: "dental-implants-beverly-hills-what-to-expect",

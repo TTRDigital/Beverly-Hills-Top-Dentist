@@ -153,7 +153,7 @@ export const fallbackAppointment: AppointmentContent = {
   formButton: "Request an Appointment",
   seo: {
     title: "Appointment - Beverly Hills Dental",
-    description: "Request an appointment at Beverly Hills Dental Arts Studio, 416 N. Bedford Dr., Suite 105, Beverly Hills. Call (310) 274-7005 or send the form and our team will reach out.",
+    description: "Request an appointment at Beverly Hills Dental Arts Studio, 416 N. Bedford Dr., Suite 105. Call 310.274.7005 or send the form and our team will reach out.",
   },
 };
 

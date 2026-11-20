@@ -26,14 +26,18 @@ const nextConfig: NextConfig = {
   // /about-us/ -> about-us/index.html, which Apache serves as is
   // (and matches the old WordPress URLs).
   // The 404 page for unmatched addresses is app/global-not-found.tsx, so the site menu stays out of every other page's HTML.
+  // Not inlineCss: tried Nov 20 (TTR-2518). It removes the two render-blocking stylesheet requests, but Next also repeats
+  // the CSS in the page data, so the HTML doubles (26 KB to 56 KB) and phones paint the hero photo later (Lighthouse LCP
+  // 2.8 s to 3.4 s on the full-arch page).
   experimental: { globalNotFound: true },
   trailingSlash: true,
   poweredByHeader: false,
   images: {
     loader: "custom",
     loaderFile: "./lib/image-loader.ts",
-    // Keep in sync with WIDTHS in scripts/optimize-images.mjs.
-    deviceSizes: [640, 828, 1200, 1920],
+    // Keep in sync with WIDTHS in scripts/optimize-images.mjs. 480 and 750 sit between the old steps so phones get a file
+    // close to the size they show, instead of jumping to 828 (Nov 20 sweep: photos served well above display size).
+    deviceSizes: [480, 640, 750, 828, 1200, 1920],
     imageSizes: [96, 256, 384],
     qualities: [75],
   },
