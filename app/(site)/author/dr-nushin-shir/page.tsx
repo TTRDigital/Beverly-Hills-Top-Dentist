@@ -22,7 +22,7 @@ const PATH = author.url;
 export const metadata: Metadata = pageMetadata(
   {
     title: "Dr. Nushin Shir, DDS, MPH | Beverly Hills Dentist and Blog Author",
-    description: "Meet Dr. Nushin Shir, DDS, MPH, principal dentist at Beverly Hills Dental Arts Studio, and read every article she has written about implants, cosmetic dentistry, gum care and prevention.",
+    description: "Meet Dr. Nushin Shir, DDS, MPH, of Beverly Hills Dental Arts Studio, and read her articles on implants, cosmetic dentistry, gum care and prevention.",
   },
   PATH,
   author.image,

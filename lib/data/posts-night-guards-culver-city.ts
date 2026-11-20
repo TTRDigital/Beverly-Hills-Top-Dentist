@@ -101,7 +101,7 @@ export const nightGuardsCulverCity: Post = {
     "If you would like a night guard made for your mouth, or you just want to know what is going on with your jaw, we would love to meet you. [Request an appointment](/appointment/) or call us at 310.274.7005. Our office is at 416 N. Bedford Dr., Suite 105, Beverly Hills.",
   ],
   seo: {
-    title: "Night Guards for Culver City Patients | Beverly Hills Dental Arts Studio",
+    title: "Night Guards for Culver City Patients | Beverly Hills Dental",
     description: "Waking up with a tight jaw? Culver City patients visit our Beverly Hills office for custom night guards made from a digital scan. Call 310.274.7005.",
   },
 };
