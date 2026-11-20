@@ -1,13 +1,14 @@
 /* Generated from the live WordPress site (text copied exactly). Edit in /cms; this file is the built-in fallback and seed source. */
 import type { HubContent, Service, ServiceCategory } from "../types";
 import { images } from "./images.ts";
+import { ttr2491Services } from "./services-added-ttr-2491.ts";
 
 /**
  * Services added after the content was loaded into Sanity (TTR-910, Oct 26, 2026). They are listed here once and used by
  * the main menu, the Services hub and their category page. lib/content.ts also adds them to the copies of those pages saved
  * in /cms, until they are entered there.
  */
-export const addedServiceLinks: { category: string; title: string; body: string[]; href: string }[] = [
+export const addedServiceLinks: { category: string; title: string; body: string[]; href: string; replaces?: string }[] = [
   {
     category: "preventive-dentistry",
     title: "No-Drill Cavity Care",
@@ -23,6 +24,26 @@ export const addedServiceLinks: { category: string; title: string; body: string[
       "Guided Biofilm Therapy with EMS AIRFLOW: a disclosing dye shows the plaque, then air polishing, and ultrasonic instruments where needed, remove it."
     ],
     href: "/services/preventive-dentistry/biofilm-therapy/"
+  },
+  // TTR-2491 (Nov 2026): pages for two services already listed, without a link, on the Restorative Dentistry page.
+  // "replaces" names that unlinked item, so the linked one takes its place instead of being added twice.
+  {
+    category: "restorative-dentistry",
+    title: "Porcelain Crowns",
+    replaces: "Dental Crowns",
+    body: [
+      "Full coverage for a tooth too damaged to hold a filling. Metal-free porcelain, made from a digital scan and shaded against your own teeth. Used where an onlay would not give enough protection."
+    ],
+    href: "/services/restorative-dentistry/porcelain-crowns/"
+  },
+  {
+    category: "restorative-dentistry",
+    title: "TMJ Treatment",
+    replaces: "TMJ Treatment",
+    body: [
+      "Assessment and treatment for jaw pain, clicking and the headaches that come with it. Diagnosis first, then the most conservative treatment that addresses the cause."
+    ],
+    href: "/services/restorative-dentistry/tmj-treatment/"
   }
 ];
 
@@ -7472,5 +7493,7 @@ export const fallbackServices: Service[] = [
       title: "3D CT Scans - Beverly Hills Dental",
       description: "Cone beam imaging taken in this office. Bone measured in three dimensions, nerve position located, and root anatomy seen properly before treatment begins."
     }
-  }
+  },
+  // TTR-2491: Porcelain Crowns and TMJ Treatment (preview only, noindex until Kia approves).
+  ...ttr2491Services
 ];

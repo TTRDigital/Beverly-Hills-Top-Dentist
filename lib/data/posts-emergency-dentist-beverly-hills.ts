@@ -70,7 +70,7 @@ export const emergencyDentistBeverlyHills: Post = {
     "Your dentist explains what they see and what your options are before anything is done. Depending on the cause, care at the studio can include:",
     "- [Dental fillings](/services/restorative-dentistry/dental-fillings/) in composite or ceramic, with no metal",
     "- [Dental bonding](/services/cosmetic-dentistry/dental-bonding/) to repair a chipped tooth",
-    "- Porcelain crowns for a tooth too damaged to hold a filling",
+    "- [Porcelain crowns](/services/restorative-dentistry/porcelain-crowns/) for a tooth too damaged to hold a filling",
     "- [Root canal therapy](/services/restorative-dentistry/root-canal-therapy/) to treat the infection inside the tooth and keep the tooth itself",
     "- [Tooth extractions](/services/restorative-dentistry/tooth-extractions/) and [wisdom teeth extractions](/services/restorative-dentistry/wisdom-teeth-extractions/)",
     "## Who will I see?",

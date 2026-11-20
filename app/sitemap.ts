@@ -14,7 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     entry("/author/dr-nushin-shir/", 0.5),
     entry("/services/", 0.8),
     ...categories.map((c) => entry(`/services/${c.slug}/`, 0.8)),
-    ...services.map((s) => entry(`/services/${s.category}/${s.slug}/`, 0.7)),
+    ...services.filter((s) => !s.seo?.noIndex).map((s) => entry(`/services/${s.category}/${s.slug}/`, 0.7)),
     entry("/before-after/", 0.7),
     entry("/appointment/", 0.8),
     // Areas We Serve pages appear once Dr. Shir approves them.

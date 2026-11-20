@@ -7,6 +7,8 @@ import { dentalImplantsBeverlyHills } from "./posts-dental-implants-beverly-hill
 import { emergencyDentistBeverlyHills } from "./posts-emergency-dentist-beverly-hills.ts";
 import { inHouseSpecialistsCtScanning } from "./posts-in-house-specialists-ct-scanning.ts";
 import { compositeFillingsHollywood } from "./posts-composite-fillings-hollywood.ts";
+import { compositeFillingsWestHollywood } from "./posts-composite-fillings-west-hollywood.ts";
+import { compositeFillingsStudioCity } from "./posts-composite-fillings-studio-city.ts";
 
 /** Main menu, in the old site's order (Services has two levels of dropdowns). */
 export const fallbackMenu: MenuItem[] = [
@@ -544,4 +546,7 @@ export const fallbackPosts: Post[] = [
   emergencyDentistBeverlyHills,
   inHouseSpecialistsCtScanning,
   compositeFillingsHollywood,
+  // TTR-2491 batch 2 (preview only, noindex until Kia approves).
+  compositeFillingsWestHollywood,
+  compositeFillingsStudioCity,
 ];
