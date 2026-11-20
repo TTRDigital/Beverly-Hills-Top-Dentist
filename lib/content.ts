@@ -11,7 +11,7 @@ import {
   fallbackPrivacy,
   fallbackThankYou,
 } from "@/lib/data/pages";
-import { addedServiceLinks, fallbackCategories, fallbackServices, fallbackServicesHub } from "@/lib/data/services";
+import { addedServiceItems, addedServiceLinks, fallbackCategories, fallbackServices, fallbackServicesHub } from "@/lib/data/services";
 import { fallbackAreaPages, fallbackAreasHub } from "@/lib/data/areas";
 import type {
   AboutContent,
@@ -140,19 +140,14 @@ function withAddedMenuItems(menu: MenuItem[]): MenuItem[] {
 
 /** Adds the category's new services to the accordion section that matches (the first one when no test is given). */
 function withAddedItems(sections: Section[], category: string, matches: (s: Section) => boolean = () => true): Section[] {
-  const add = addedServiceLinks.filter((a) => a.category === category);
+  const add = addedServiceItems(category);
   if (!add.length) return sections;
   const at = sections.findIndex((s) => s._type === "accordionFeature" && matches(s));
   if (at < 0) return sections;
   return sections.map((s, i) => {
     if (i !== at || s._type !== "accordionFeature") return s;
-    // An unlinked item with the title an added service "replaces" becomes that service (same place in the list).
-    const replaced = s.items.map((it) => {
-      const a = !it.href && add.find((x) => x.replaces === it.title && !s.items.some((o) => o.href === x.href));
-      return a ? { title: a.title, body: a.body, href: a.href } : it;
-    });
-    const missing = add.filter((a) => !replaced.some((it) => it.href === a.href)).map(({ title, body, href }) => ({ title, body, href }));
-    return missing.length || replaced.some((it, j) => it !== s.items[j]) ? { ...s, items: [...replaced, ...missing] } : s;
+    const missing = add.filter((a) => !s.items.some((it) => it.href === a.href));
+    return missing.length ? { ...s, items: [...s.items, ...missing] } : s;
   });
 }
 

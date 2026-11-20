@@ -29,12 +29,12 @@
     },
     {
       "source": "/services/restorative-dentistry/tmj-tmd-treatments",
-      "destination": "/services/restorative-dentistry/tmj-treatment/",
+      "destination": "/services/restorative-dentistry/",
       "statusCode": 301
     },
     {
       "source": "/services/restorative-dentistry/tmj-tmd-treatments/",
-      "destination": "/services/restorative-dentistry/tmj-treatment/",
+      "destination": "/services/restorative-dentistry/",
       "statusCode": 301
     },
     {
@@ -229,12 +229,12 @@
     },
     {
       "source": "/locations/mclean/tmj-tmd-treatments",
-      "destination": "/services/restorative-dentistry/tmj-treatment/",
+      "destination": "/services/restorative-dentistry/",
       "statusCode": 301
     },
     {
       "source": "/locations/mclean/tmj-tmd-treatments/",
-      "destination": "/services/restorative-dentistry/tmj-treatment/",
+      "destination": "/services/restorative-dentistry/",
       "statusCode": 301
     },
     {
@@ -269,12 +269,12 @@
     },
     {
       "source": "/locations/mclean/porcelain-crowns",
-      "destination": "/services/restorative-dentistry/porcelain-crowns/",
+      "destination": "/services/restorative-dentistry/",
       "statusCode": 301
     },
     {
       "source": "/locations/mclean/porcelain-crowns/",
-      "destination": "/services/restorative-dentistry/porcelain-crowns/",
+      "destination": "/services/restorative-dentistry/",
       "statusCode": 301
     },
     {
@@ -459,12 +459,12 @@
     },
     {
       "source": "/dental-services/general-family-dentistry/tmj-treatment",
-      "destination": "/services/restorative-dentistry/tmj-treatment/",
+      "destination": "/services/preventive-dentistry/night-guards/",
       "statusCode": 301
     },
     {
       "source": "/dental-services/general-family-dentistry/tmj-treatment/",
-      "destination": "/services/restorative-dentistry/tmj-treatment/",
+      "destination": "/services/preventive-dentistry/night-guards/",
       "statusCode": 301
     },
     {
@@ -479,12 +479,12 @@
     },
     {
       "source": "/dental-services/restorative-dentistry/dental-crowns",
-      "destination": "/services/restorative-dentistry/porcelain-crowns/",
+      "destination": "/services/restorative-dentistry/",
       "statusCode": 301
     },
     {
       "source": "/dental-services/restorative-dentistry/dental-crowns/",
-      "destination": "/services/restorative-dentistry/porcelain-crowns/",
+      "destination": "/services/restorative-dentistry/",
       "statusCode": 301
     },
     {

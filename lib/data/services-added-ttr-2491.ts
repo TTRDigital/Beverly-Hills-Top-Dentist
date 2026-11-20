@@ -239,7 +239,7 @@ export const ttr2491Services: Service[] = [
           },
           {
             question: "What is the TMJ?",
-            answer: ["The TMJ, or temporomandibular joint, is the joint where your lower jaw meets your skull, just in front of each ear. TMD is the name for problems with that joint and the muscles around it."],
+            answer: ["The TMJ is your jaw joint, just in front of each ear. TMD is the name for problems with that joint and the muscles around it."],
           },
           {
             question: "Will a night guard help my jaw?",
