@@ -6,7 +6,7 @@
  * pages and Dr. Charlton's bio). No prices, no treatment times, no lifespans. Preview only: noIndex until Kia approves.
  */
 import type { Service } from "../types";
-import { images } from "./images.ts";
+import { images, videos } from "./images.ts";
 
 export const ttr2491Services: Service[] = [
   {
@@ -191,7 +191,10 @@ export const ttr2491Services: Service[] = [
         text: ["Grinding, jaw joint problems and sleep can overlap, so they are assessed together."],
         cards: [
           {
+            // TTR-2593: the practice's video in place of the CT scanner photo (the photo stays as the fallback).
             image: images.cbctScanner,
+            video: videos.treatmentRoom,
+            videoPosition: "center 30%",
             title: "JAW JOINT IMAGING:",
             text: [
               "For TMJ cases where the picture is unclear, the joint structures can be viewed in three dimensions with our [in-house CT scanning](/services/dental-technology/ct-scans/), rather than inferred from symptoms alone. A scan is taken only when the exam shows it would help.",

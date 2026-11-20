@@ -1,6 +1,8 @@
 /* Content types shared by lib/data (built-in content), lib/content.ts (Sanity) and the components. */
 
 export type Img = { src: string; alt: string; width: number; height: number };
+/** A short muted, looping clip shown in place of a photo. `label` is the plain text read out for it (like an image alt). */
+export type Video = { src: string; poster: string; label: string; width: number; height: number };
 export type Link = { label: string; href: string };
 export type Seo = { title: string; description: string; noIndex?: boolean; image?: Img };
 
@@ -46,7 +48,7 @@ export type CardPairSection = {
   heading: string;
   text: Paragraphs;
   link?: Link;
-  cards: { image?: Img; title: string; text: Paragraphs }[];
+  cards: { image?: Img; video?: Video; videoPosition?: string; title: string; text: Paragraphs }[];
 };
 
 export type StepsSection = {
@@ -151,7 +153,7 @@ export type BeforeAfterCase = {
 export type Testimonial = { quote: string; name: string; rating: number; source?: string };
 
 /** A photo inside a blog post, shown above the H2 whose text is beforeHeading (as written in the body, without "## "), with a caption. position is an optional CSS object-position for the crop, for example "center 30%". */
-export type PostFigure = { _key?: string; beforeHeading: string; image: Img; caption: string; position?: string; alt?: string };
+export type PostFigure = { _key?: string; beforeHeading: string; image: Img; video?: Video; caption: string; position?: string; alt?: string };
 
 /**
  * A visual block inside a blog post, built in HTML so Google and AI tools read every word: quick facts (label and value),

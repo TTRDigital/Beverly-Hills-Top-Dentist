@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { LoopVideo } from "@/components/ui/LoopVideo";
 import type { PostFigure } from "@/lib/types";
 import type { Extras, PlacedExtras, PostFaq, PostOutline } from "@/lib/blog-post";
 import { Inline, ListOrTable } from "@/components/ui/RichText";
@@ -14,7 +15,11 @@ export function Figure({ figure }: { figure: PostFigure }) {
   return (
     <figure className="mt-10" data-reveal>
       <div className="relative aspect-[3/2] overflow-hidden rounded-lg bg-dropdown shadow-[0_12px_32px_rgb(33_29_29_/_0.12)]">
-        <Image src={figure.image.src} alt={figure.alt || figure.image.alt || figure.caption} fill sizes="(min-width: 1024px) 720px, 100vw" className="object-cover" style={figure.position ? { objectPosition: figure.position } : undefined} />
+        {figure.video ? (
+          <LoopVideo video={figure.video} position={figure.position} />
+        ) : (
+          <Image src={figure.image.src} alt={figure.alt || figure.image.alt || figure.caption} fill sizes="(min-width: 1024px) 720px, 100vw" className="object-cover" style={figure.position ? { objectPosition: figure.position } : undefined} />
+        )}
       </div>
       {figure.caption ? <figcaption className="mt-3 text-sm leading-snug text-ink/70">{figure.caption}</figcaption> : null}
     </figure>

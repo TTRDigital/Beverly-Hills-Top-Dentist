@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { LoopVideo } from "@/components/ui/LoopVideo";
 import type {
   AccordionFeatureSection,
   CardPairSection,
@@ -138,7 +139,11 @@ export function CardPair({ s }: { s: CardPairSection }) {
           <div className="grid gap-10 sm:grid-cols-2 sm:gap-5 lg:w-[60%] lg:items-start">
             {s.cards.map((c, i) => (
               <div key={i}>
-                {c.image ? (
+                {c.video ? (
+                  <div className="relative h-[270px] overflow-hidden">
+                    <LoopVideo video={c.video} position={c.videoPosition} />
+                  </div>
+                ) : c.image ? (
                   <div className="relative h-[270px]">
                     <Image src={c.image.src} alt={c.image.alt || c.title} fill sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw" className="object-cover" />
                   </div>

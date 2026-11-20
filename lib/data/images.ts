@@ -3,7 +3,7 @@
  * (copied from the old site, metadata stripped). Components and lib/data
  * reference these entries; /cms photos replace them once uploaded.
  */
-import type { Img } from "../types";
+import type { Img, Video } from "../types";
 
 export const images = {
   logo300: { src: "/images/brand/logo-300.png", alt: "Beverly Hills Dental Arts Studio", width: 300, height: 71 },
@@ -64,3 +64,17 @@ export const images = {
 } satisfies Record<string, Img>;
 
 export type ImageKey = keyof typeof images;
+
+/*
+ * TTR-2593: the practice's own clip (7.6 s, filmed Nov 13, 2026), re-encoded for the web: H.264, 720x1280, no audio track,
+ * faststart. The poster is a frame from 2 s in. The raw file is not in git. The label does not name the patient.
+ */
+export const videos = {
+  treatmentRoom: {
+    src: "/images/office/treatment-video.mp4",
+    poster: "/images/office/treatment-video-poster.jpg",
+    label: "A dentist and an assistant treating a patient in one of the studio's treatment rooms",
+    width: 720,
+    height: 1280,
+  },
+} satisfies Record<string, Video>;

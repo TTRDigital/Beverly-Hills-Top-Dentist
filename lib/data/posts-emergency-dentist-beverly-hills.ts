@@ -5,7 +5,7 @@
  * home-care advice. The 911 line is the live site's own wording. Preview only: noIndex until Kia approves it.
  */
 import type { Post } from "../types";
-import { images } from "./images.ts";
+import { images, videos } from "./images.ts";
 
 export const emergencyDentistBeverlyHills: Post = {
   slug: "emergency-dentist-beverly-hills",
@@ -21,10 +21,12 @@ export const emergencyDentistBeverlyHills: Post = {
   figures: [
     {
       beforeHeading: "How does the studio find the cause?",
+      // TTR-2593: the practice's video in place of the X-ray room photo (the photo stays as the fallback).
       image: images.digitalXRayRoom,
+      video: videos.treatmentRoom,
       alt: "Treatment room with a dental chair and a digital X-ray monitor at the Bedford Drive studio",
-      caption: "An exam and digital X-rays come first, and a 3D scan only when it will help.",
-      position: "center 40%",
+      caption: "A dentist and an assistant at work in one of the treatment rooms on Bedford Drive.",
+      position: "center 30%",
     },
   ],
   blocks: [
