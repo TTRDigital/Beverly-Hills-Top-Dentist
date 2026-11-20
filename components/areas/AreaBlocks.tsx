@@ -6,6 +6,7 @@ import { RichText } from "@/components/ui/RichText";
 import { Accordion } from "@/components/ui/Accordion";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
 import { HeroVideo } from "@/components/sections/HeroVideo";
+import { MapFrame } from "@/components/areas/MapFrame";
 import { CheckCircle, LaserIcon, LeafIcon, MapMarker, OzoneIcon, PhoneIcon, ScanIcon, ToothIcon } from "@/components/ui/Icons";
 
 /*
@@ -140,7 +141,7 @@ export function Article({ paras }: { paras: string[] }) {
   );
 }
 
-/** Lazy-loaded Google Map: a route when `from` is given, else the office pin. */
+/** Google Map that loads when scrolled near or tapped (MapFrame): a route when `from` is given, else the office pin. */
 export function OfficeMap({ from, title, embedUrl, className = "" }: { from?: string; title: string; embedUrl?: string; className?: string }) {
   const src =
     embedUrl ||
@@ -149,7 +150,7 @@ export function OfficeMap({ from, title, embedUrl, className = "" }: { from?: st
       : `https://www.google.com/maps?q=${encodeURIComponent(OFFICE)}&z=15&output=embed`);
   return (
     <div className={`relative overflow-hidden rounded-[12px] bg-beige ${className}`}>
-      <iframe src={src} title={title} loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="absolute inset-0 h-full w-full border-0" allowFullScreen />
+      <MapFrame src={src} title={title} />
     </div>
   );
 }

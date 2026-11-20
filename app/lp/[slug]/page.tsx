@@ -54,7 +54,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
 
       {/* Hero: the practice's own photo, the headline and the two actions */}
       <section className="relative isolate flex min-h-[560px] items-end overflow-hidden bg-night sm:min-h-[660px]">
-        <Image src={p.hero.src} alt={p.hero.alt} fill priority sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: p.hero.pos ?? "50% 50%" }} />
+        <Image src={p.hero.src} alt={p.hero.alt} fill loading="eager" fetchPriority="high" sizes="100vw" className="-z-20 object-cover" style={{ objectPosition: p.hero.pos ?? "50% 50%" }} />
         {/* The site's hero video over the photo: only large screens on a normal connection, after the page has loaded; the photo shows until it plays. */}
         {p.heroVideo !== false ? <HeroVideo mp4="/video/home-hero.mp4" webm="/video/home-hero.webm" className="absolute inset-0 -z-[15] h-full w-full object-cover" /> : null}
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-black/80 via-black/45 to-black/10 sm:bg-gradient-to-r sm:from-black/75 sm:via-black/40 sm:to-black/5" />
