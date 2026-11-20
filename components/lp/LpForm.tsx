@@ -2,6 +2,7 @@
 
 import { useId, useRef, useState } from "react";
 import { ATTRIBUTION_STORAGE_KEY } from "@/lib/lead-options";
+import { preloadRecaptcha, recaptchaToken } from "@/lib/spam-guard";
 import { PRACTICE } from "@/lib/lp-pages";
 import { newLeadIds, oppref, trackLead, wasKept } from "@/lib/ads-tracking";
 
@@ -49,6 +50,8 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
     for (const k of URL_KEYS) hidden[k] = (params.get(k) || stored[k] || "").slice(0, 300);
     if (!hidden.oppref) hidden.oppref = oppref().slice(0, 300);
     const ids = newLeadIds();
+    const elapsed = Date.now() - startedAt.current;
+    const token = await recaptchaToken("lp_lead");
 
     try {
       const res = await fetch("/api/lp-lead/", {
@@ -56,7 +59,7 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           full_name: v("full_name"), phone: v("phone"), email: v("email"), comment: v("comment"), consent: true, page_key: pageKey,
-          website_url: v("website_url"), elapsed_ms: Date.now() - startedAt.current,
+          website_url: v("website_url"), elapsed_ms: elapsed, recaptcha_token: token,
           page_url: window.location.href.slice(0, 1000), landing_page: (stored.landing_page || window.location.href).slice(0, 1000), referrer: (stored.referrer || document.referrer).slice(0, 1000),
           lead_id: ids.leadId, event_id: ids.eventId,
           ...hidden,
@@ -93,7 +96,7 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
   const err = (k: keyof Errors) => (errors[k] ? <p id={`${uid}-${k}-err`} role="alert" className="mt-1 text-sm font-medium text-[#b42318]">{errors[k]}</p> : null);
 
   return (
-    <form id={id} ref={formRef} onSubmit={onSubmit} onFocus={() => { if (!startedAt.current) startedAt.current = Date.now(); }} noValidate className="rounded-[6px] bg-white p-5 text-body shadow-menu sm:p-6">
+    <form id={id} ref={formRef} onSubmit={onSubmit} onFocus={() => { if (!startedAt.current) { startedAt.current = Date.now(); preloadRecaptcha(); } }} noValidate className="rounded-[6px] bg-white p-5 text-body shadow-menu sm:p-6">
       <h2 className="text-h3 font-bold text-ink">{title}</h2>
       <div className="mt-4 space-y-3.5">
         <div>
