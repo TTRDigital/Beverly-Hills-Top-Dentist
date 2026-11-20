@@ -3,6 +3,10 @@ import type { BeforeAfterCase, Faq, MenuItem, Post, SiteSettings, TeamMember, Te
 import { images } from "./images.ts";
 import { nightGuardsCulverCity } from "./posts-night-guards-culver-city.ts";
 import { nightGuardsHollywood } from "./posts-night-guards-hollywood.ts";
+import { dentalImplantsBeverlyHills } from "./posts-dental-implants-beverly-hills.ts";
+import { emergencyDentistBeverlyHills } from "./posts-emergency-dentist-beverly-hills.ts";
+import { inHouseSpecialistsCtScanning } from "./posts-in-house-specialists-ct-scanning.ts";
+import { compositeFillingsHollywood } from "./posts-composite-fillings-hollywood.ts";
 
 /** Main menu, in the old site's order (Services has two levels of dropdowns). */
 export const fallbackMenu: MenuItem[] = [
@@ -535,4 +539,9 @@ export const fallbackPosts: Post[] = [
   },
   nightGuardsCulverCity,
   nightGuardsHollywood,
+  // TTR-2491 batch 1 (preview only, noindex until Kia approves).
+  dentalImplantsBeverlyHills,
+  emergencyDentistBeverlyHills,
+  inHouseSpecialistsCtScanning,
+  compositeFillingsHollywood,
 ];
