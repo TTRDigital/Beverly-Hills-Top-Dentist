@@ -176,7 +176,7 @@ export const getSiteSettings = cache(async (): Promise<SiteSettings> => {
 /* ---------- Treatment-template pages ---------- */
 
 export const getCategories = cache(async (): Promise<ServiceCategory[]> => {
-  const cms = await sanityFetch<Partial<ServiceCategory>[]>(`*[_type == "serviceCategory" && defined(slug.current)] | order(order asc) ${PAGE}`, {}, ["serviceCategory"]);
+  const cms = await sanityFetch<Partial<ServiceCategory>[]>(`*[_type == "serviceCategory" && defined(slug.current)] | order(order asc) ${PAGE}`, {}, ["serviceCategory", "faq"]);
   return mergeBySlug(fallbackCategories, cms, { ...blankPage, order: 99 }).map((c) => ({ ...c, sections: withAddedItems(c.sections, c.slug) }));
 });
 
@@ -184,13 +184,13 @@ export const getServices = cache(async (): Promise<Service[]> => {
   const cms = await sanityFetch<Partial<Service>[]>(
     `*[_type == "service" && defined(slug.current)] | order(order asc){ "slug": slug.current, "category": category->slug.current, title, order, ${SECTIONS}, ${SEO} }`,
     {},
-    ["service"],
+    ["service", "serviceCategory", "faq"],
   );
   return mergeBySlug(fallbackServices, cms, { ...blankPage, category: "", order: 99 });
 });
 
 async function hub(id: string, fallback: HubContent): Promise<HubContent> {
-  const cms = await sanityFetch<Partial<HubContent>>(`*[_id == $id][0]{ title, ${SECTIONS}, ${SEO} }`, { id }, [id]);
+  const cms = await sanityFetch<Partial<HubContent>>(`*[_id == $id][0]{ title, ${SECTIONS}, ${SEO} }`, { id }, [id, "faq"]);
   return normalizePage(merge(fallback, cms));
 }
 
@@ -249,7 +249,7 @@ export const getAreaPages = cache(async (): Promise<AreaPage[]> => {
       whyHeading, ${WHY}, whyText, ${FAQS}, "reviews": reviews[]->{ quote, name, "rating": coalesce(rating, 5), source }, byline, bylineUrl, related{ title, text, href }, trustStrip, ${SEO}
     }`,
     {},
-    ["areaPage"],
+    ["areaPage", "testimonial"],
   );
   if (!cms?.length) return fallbackAreaPages;
   const bySlug = new Map(fallbackAreaPages.map((f) => [f.slug, f]));

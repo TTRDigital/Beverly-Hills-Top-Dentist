@@ -18,7 +18,7 @@ const FIELDS = `{
 export const getLpPage = cache(async (slug: string): Promise<LpPage | undefined> => {
   const base = lpBySlug(slug);
   if (!base) return undefined;
-  const cms = await sanityFetch<Partial<LpPage>>(`*[_type == "lpPage" && _id == $id][0]${FIELDS}`, { id: `lpPage-${slug}` }, ["lpPage"]);
+  const cms = await sanityFetch<Partial<LpPage>>(`*[_type == "lpPage" && _id == $id][0]${FIELDS}`, { id: `lpPage-${slug}` }, [`lpPage-${slug}`, "lpPage"]);
   const page = merge(base, cms);
   // An empty list is a real choice here (no offer card), and merge keeps the built-in list when the CMS one is empty.
   if (cms && Array.isArray(cms.offers) && cms.offers.length === 0) page.offers = [];
