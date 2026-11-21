@@ -6,8 +6,12 @@ import { isPreview } from "@/lib/preview";
 /**
  * Fetch published content from Sanity's API CDN.
  *
- * - Runs at build time only (static export): publishing in Sanity starts a
- *   rebuild + upload (.github/workflows/deploy-siteground.yml).
+ * - Static export: runs at build time; publishing in Sanity starts a rebuild +
+ *   upload (.github/workflows/deploy-siteground.yml).
+ * - Vercel: published reads are cached and tagged "sanity", plus the ids and
+ *   types each caller passes (the document's id and type, and those of the
+ *   documents its query follows), so the signed Sanity webhook at
+ *   /api/revalidate (lib/revalidate.ts) refreshes them after a publish.
  * - Never throws: returns null on any failure so pages fall back to
  *   lib/content.ts defaults and the site keeps working.
  */
@@ -33,7 +37,7 @@ export async function sanityFetch<T>(
   try {
     const res = preview
       ? await fetch(url, { cache: "no-store", headers: { Authorization: `Bearer ${token}` } })
-      : await fetch(url, { cache: "force-cache" });
+      : await fetch(url, { cache: "force-cache", next: { tags: ["sanity", ...tags] } });
     if (!res.ok) {
       console.warn(`[sanity] ${res.status} for query tags=${tags.join(",")}`);
       return null;
