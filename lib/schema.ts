@@ -1,4 +1,4 @@
-import type { AreaPage, Faq, Post, SiteSettings, TeamMember, Testimonial } from "@/lib/types";
+import type { AreaPage, Faq, Post, SeoPage, SiteSettings, TeamMember, Testimonial } from "@/lib/types";
 import { AUTHORS, authorFor, categoryFor, DEFAULT_AUTHOR } from "@/lib/data/blog";
 import { absoluteUrl, siteUrl } from "@/lib/site";
 import { images } from "@/lib/data/images";
@@ -137,6 +137,27 @@ export function areaPageSchema(page: AreaPage) {
     publisher: { "@id": `${siteUrl}/#dentist` },
     about: { "@id": `${siteUrl}/#dentist` },
     ...(page.related?.href ? { relatedLink: absoluteUrl(page.related.href) } : {}),
+  };
+}
+
+/** A page from TTR OS (TTR-1873), like an area page: the dentist who wrote it, the practice it is about, when it went up. */
+export function seoPageSchema(page: SeoPage) {
+  const path = `/${page.slug}/`;
+  const a = authorFor(DEFAULT_AUTHOR);
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${absoluteUrl(path)}#webpage`,
+    url: absoluteUrl(path),
+    name: page.seo.title || page.title,
+    ...(page.seo.description ? { description: page.seo.description } : {}),
+    inLanguage: "en-US",
+    ...(page.published ? { datePublished: page.published } : {}),
+    ...(page.modified ? { dateModified: page.modified } : {}),
+    ...(page.image ? { primaryImageOfPage: abs(page.image.src) } : {}),
+    author: [{ "@type": "Person", name: a.name, jobTitle: a.jobTitle, url: absoluteUrl(a.url), worksFor: { "@id": `${siteUrl}/#dentist` } }],
+    publisher: { "@id": `${siteUrl}/#dentist` },
+    about: { "@id": `${siteUrl}/#dentist` },
   };
 }
 

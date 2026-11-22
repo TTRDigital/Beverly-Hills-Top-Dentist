@@ -2061,6 +2061,11 @@
   "headers": [
     {
       "source": "/(.*)",
+      "has": [{ "type": "cookie", "key": "__prerender_bypass" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/(.*)",
       "headers": [
         {
           "key": "Strict-Transport-Security",

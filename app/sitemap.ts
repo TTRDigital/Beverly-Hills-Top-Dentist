@@ -1,12 +1,12 @@
 import type { MetadataRoute } from "next";
-import { getAreaPages, getAreasHub, getCategories, getPosts, getServices } from "@/lib/content";
+import { getAreaPages, getAreasHub, getCategories, getPosts, getSeoPages, getServices } from "@/lib/content";
 import { absoluteUrl } from "@/lib/site";
 
 export const dynamic = "force-static";
 
 /** Every indexable page (thank-you, the unlinked privacy draft and unapproved area pages are noindex). Old McLean / Virginia URLs are 301 redirects in .htaccess, so they are not listed. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [categories, services, posts, hub, areas] = await Promise.all([getCategories(), getServices(), getPosts(), getAreasHub(), getAreaPages()]);
+  const [categories, services, posts, hub, areas, pages] = await Promise.all([getCategories(), getServices(), getPosts(), getAreasHub(), getAreaPages(), getSeoPages()]);
   const entry = (path: string, priority: number) => ({ url: absoluteUrl(path), changeFrequency: "monthly" as const, priority });
   return [
     entry("/", 1),
@@ -22,5 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...areas.filter((a) => a.approved).map((a) => entry(`/areas-we-serve/${a.slug}/`, 0.6)),
     ...(posts.length ? [entry("/blog/", 0.6)] : []),
     ...posts.filter((p) => !p.seo?.noIndex).map((p) => entry(`/blog/${p.slug}/`, 0.5)),
+    // Published pages from TTR OS (TTR-1873). The sitemap is built from published content only, never drafts.
+    ...pages.filter((p) => p.title && !p.seo.noIndex).map((p) => entry(`/${p.slug}/`, 0.6)),
   ];
 }

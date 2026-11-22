@@ -4,7 +4,7 @@ import { CalendarCheck, CircleCheck, CircleHelp, Cog, FileText, Home, Images, In
 const singleton = (S: Parameters<StructureResolver>[0], type: string, title: string, icon: React.ComponentType) =>
   S.listItem().title(title).id(type).icon(icon).child(S.document().schemaType(type).documentId(type).title(title));
 
-/** Grouped sidebar: Settings, Pages, Services, Areas, Before & after, Team, Reviews, FAQs, Blog. */
+/** Grouped sidebar: Settings, Pages, Services, Areas, Pages from TTR OS, Before & after, Team, Reviews, FAQs, Blog. */
 export const structure: StructureResolver = (S) =>
   S.list()
     .title("Beverly Hills Dental")
@@ -31,6 +31,7 @@ export const structure: StructureResolver = (S) =>
       S.listItem().title("Service categories").icon(Stethoscope).child(S.documentTypeList("serviceCategory").title("Service categories").defaultOrdering([{ field: "order", direction: "asc" }])),
       S.listItem().title("Services").icon(FileText).child(S.documentTypeList("service").title("Services").defaultOrdering([{ field: "order", direction: "asc" }])),
       S.listItem().title("Area pages").icon(MapPin).child(S.documentTypeList("areaPage").title("Area pages").defaultOrdering([{ field: "order", direction: "asc" }])),
+      S.listItem().title("Pages from TTR OS").icon(MapPin).child(S.documentTypeList("seoPage").title("Pages from TTR OS")),
       S.divider(),
       S.listItem().title("Before & after cases").icon(Images).child(S.documentTypeList("beforeAfterCase").title("Before & after cases").defaultOrdering([{ field: "order", direction: "asc" }])),
       S.listItem().title("Team").icon(Users).child(S.documentTypeList("teamMember").title("Team").defaultOrdering([{ field: "order", direction: "asc" }])),
