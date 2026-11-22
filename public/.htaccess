@@ -280,6 +280,8 @@ ErrorDocument 404 /404.html
 
   # Build-time placeholder for the empty blog route (static export needs one path).
   RewriteRule ^blog/_none/?$ - [R=404,L]
+  # Same for the empty route of pages from TTR OS (TTR-1873).
+  RewriteRule ^_none/?$ - [R=404,L]
 
   # Pages live at /page/ (page/index.html): add the missing slash, on https
   # (absolute, so visitors behind SiteGround's proxy are not bounced through http).

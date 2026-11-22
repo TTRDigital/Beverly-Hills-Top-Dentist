@@ -13,6 +13,8 @@ import {
 } from "@/lib/data/pages";
 import { addedServiceItems, addedServiceLinks, fallbackCategories, fallbackServices, fallbackServicesHub } from "@/lib/data/services";
 import { fallbackAreaPages, fallbackAreasHub } from "@/lib/data/areas";
+import { bodyItems, cleanSlug } from "@/lib/seo-page";
+import { siteUrl } from "@/lib/site";
 import type {
   AboutContent,
   AreaPage,
@@ -28,6 +30,8 @@ import type {
   HubContent,
   LegalContent,
   Post,
+  Seo,
+  SeoPage,
   Service,
   ServiceCategory,
   SiteSettings,
@@ -353,6 +357,42 @@ export const getPosts = cache(async (): Promise<Post[]> => {
   }));
   const slugs = new Set(published.map((p) => p.slug));
   return [...published, ...fallbackPosts.filter((p) => !slugs.has(p.slug))].sort((a, b) => b.date.localeCompare(a.date));
+});
+
+/* ---------- Pages from TTR OS (TTR-1873) ---------- */
+
+/**
+ * City and service pages TTR OS writes (Sanity type seoPage), shown at /<slug>/. Published pages only, except in a TTR OS draft
+ * preview, where the drafts are read too (lib/sanity/fetch.ts). No built-in pages: an empty list when there are none.
+ */
+export const getSeoPages = cache(async (): Promise<SeoPage[]> => {
+  type Raw = { slug?: string; path?: string; title?: string; subhead?: string; image?: Img; body?: unknown; seo?: Partial<Seo> & { publishedTime?: string; modifiedTime?: string }; _updatedAt?: string };
+  const cms = await sanityFetch<Raw[]>(
+    `*[_type == "seoPage" && (defined(slug.current) || defined(path))] | order(_createdAt asc){
+      "slug": slug.current, path, title, subhead,
+      "image": select(defined(image.asset) => image${IMG}, defined(mainImage.asset) => mainImage${IMG}),
+      "body": body[]{ _type, _key, style, listItem, markDefs, children, alt, "src": asset->url, "width": asset->metadata.dimensions.width, "height": asset->metadata.dimensions.height },
+      seo{ title, description, noIndex, "image": ogImage${IMG}, publishedTime, modifiedTime }, _updatedAt }`,
+    {},
+    ["seoPage"],
+  );
+  const seen = new Set<string>();
+  return arr<Raw>(cms).flatMap((p) => {
+    const slug = cleanSlug(p.slug) ?? cleanSlug(p.path);
+    if (!slug || seen.has(slug)) return [];
+    seen.add(slug);
+    const title = String(p.title ?? "").trim();
+    return [{
+      slug,
+      title,
+      subhead: String(p.subhead ?? "").trim(),
+      image: p.image?.src ? { ...p.image, alt: p.image.alt || title } : undefined,
+      body: bodyItems(p.body, siteUrl),
+      seo: { title: p.seo?.title || title, description: p.seo?.description ?? "", noIndex: !!p.seo?.noIndex, ...(p.seo?.image?.src ? { image: p.seo.image } : {}) },
+      published: p.seo?.publishedTime || null,
+      modified: p.seo?.modifiedTime || p._updatedAt || null,
+    }];
+  });
 });
 
 /* ---------- Page singletons ---------- */

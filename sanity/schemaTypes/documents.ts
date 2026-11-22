@@ -599,6 +599,80 @@ export const lpPage = defineType({
   preview: { select: { title: "headline", slug: "slug" }, prepare: (v) => ({ title: v.title, subtitle: `/lp/${v.slug}/` }) },
 });
 
+/*
+ * City and service pages TTR OS writes (TTR-1873), shown at /<slug>/ by app/(site)/[slug]/page.tsx. The fields match what TTR OS
+ * saves (ttr-portal lib/connectors/sanity.ts, pieceToDoc): title, path, slug, body as Portable Text, seo with its own extra fields,
+ * and a featured photo in `image` or `mainImage`. TTR OS saves a draft and publishes it only after Kia and the client say yes.
+ */
+const seoPageImage = (name: string, title: string, hidden = false) =>
+  defineField({ name, title, type: "image", options: { hotspot: true }, fields: [defineField({ name: "alt", title: "Alt text", type: "string" })], ...(hidden ? { hidden: ({ value }: { value?: unknown }) => !value } : {}) });
+
+export const seoPage = defineType({
+  name: "seoPage",
+  title: "Page from TTR OS",
+  type: "document",
+  fields: [
+    defineField({ name: "title", title: "Title (H1)", type: "string", validation: (r) => r.required() }),
+    defineField({ ...slugField, description: "The page address is /<slug>/. Changing it changes the page address." }),
+    defineField({ name: "path", title: "Address", type: "string", readOnly: true, description: "Set by TTR OS, for example /dentist-near-malibu/." }),
+    defineField({ name: "subhead", title: "Line under the H1 (optional)", type: "string" }),
+    seoPageImage("image", "Top photo (real office photo)"),
+    seoPageImage("mainImage", "Top photo (from TTR OS)", true),
+    defineField({
+      name: "body",
+      title: "Text",
+      type: "array",
+      description: "A section headed with questions or FAQ, with each question as a smaller heading, shows as the questions list near the end.",
+      of: [
+        defineArrayMember({
+          type: "block",
+          styles: [
+            { title: "Normal", value: "normal" },
+            { title: "Heading", value: "h2" },
+            { title: "Smaller heading", value: "h3" },
+            { title: "Smallest heading", value: "h4" },
+          ],
+          lists: [
+            { title: "Bullets", value: "bullet" },
+            { title: "Numbers", value: "number" },
+          ],
+          marks: {
+            decorators: [
+              { title: "Bold", value: "strong" },
+              { title: "Italic", value: "em" },
+            ],
+            annotations: [
+              defineArrayMember({
+                name: "link",
+                type: "object",
+                title: "Link",
+                fields: [defineField({ name: "href", title: "Address", type: "string" }), defineField({ name: "rel", type: "string", hidden: true })],
+              }),
+            ],
+          },
+        }),
+        defineArrayMember({ type: "image", fields: [defineField({ name: "alt", title: "Alt text", type: "string" })] }),
+      ],
+    }),
+    defineField({
+      name: "seo",
+      title: "SEO",
+      type: "object",
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        defineField({ name: "title", title: "SEO title", type: "string", validation: (r) => r.max(70).warning("Long titles may be cut off in Google.") }),
+        defineField({ name: "description", title: "Meta description", type: "text", rows: 3, validation: (r) => r.max(170).warning("Long descriptions may be cut off in Google.") }),
+        defineField({ name: "noIndex", title: "Hide from search engines", type: "boolean", initialValue: false }),
+        defineField({ name: "canonical", type: "string", readOnly: true, description: "Set by TTR OS. The page always uses its own address." }),
+        defineField({ name: "publishedTime", type: "string", readOnly: true }),
+        defineField({ name: "modifiedTime", type: "string", readOnly: true }),
+        defineField({ name: "schema", title: "Structured data from TTR OS", type: "text", rows: 3, readOnly: true, description: "Kept for reference. The page shows the site's own structured data." }),
+      ],
+    }),
+  ],
+  preview: { select: { title: "title", slug: "slug.current" }, prepare: (v) => ({ title: v.title, subtitle: `/${v.slug ?? ""}/` }) },
+});
+
 export const documentTypes = [
   siteSettings,
   homePage,
@@ -618,4 +692,5 @@ export const documentTypes = [
   teamMember,
   post,
   lpPage,
+  seoPage,
 ];

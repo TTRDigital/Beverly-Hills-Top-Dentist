@@ -1,3 +1,4 @@
+import type { BodyItem } from "@/lib/seo-page";
 /* Content types shared by lib/data (built-in content), lib/content.ts (Sanity) and the components. */
 
 export type Img = { src: string; alt: string; width: number; height: number };
@@ -286,4 +287,19 @@ export type AreasHub = {
   ctaHeading: string;
   ctaText: string;
   seo: Seo;
+};
+
+/* ---------- Pages from TTR OS (TTR-1873): Sanity type seoPage, at /<slug>/ ---------- */
+
+export type SeoPage = {
+  slug: string;
+  title: string;
+  subhead: string;
+  image?: Img;
+  /** Paragraphs in the site's format and photos, in order (lib/seo-page.ts). */
+  body: BodyItem[];
+  seo: Seo;
+  /** ISO dates from TTR OS, for the structured data. */
+  published: string | null;
+  modified: string | null;
 };
