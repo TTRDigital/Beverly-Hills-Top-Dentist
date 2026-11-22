@@ -13,8 +13,12 @@ import { AuthorCard, MoreFromBlog, RelatedCard, type RelatedPage } from "@/compo
 
 type Props = { params: Promise<{ slug: string }> };
 
-/* The old site has no blog posts; posts published in /cms (Posts) are built here at /blog/<slug>/. */
-export const dynamicParams = false;
+/*
+ * The old site has no blog posts; posts published in /cms (Posts) are built here at /blog/<slug>/.
+ * dynamicParams stays at its default (true) so a TTR OS draft preview (lib/preview.ts) can open a post that was not built
+ * yet (Vercel only). A slug with no published post, and no draft in draft mode, still gets the 404 page from notFound().
+ * The static export only writes the slugs below, so unknown addresses there stay 404s too.
+ */
 
 export async function generateStaticParams() {
   const posts = await getPosts();
