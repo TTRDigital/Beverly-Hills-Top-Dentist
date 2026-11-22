@@ -13,6 +13,8 @@ export async function GET(request: Request) {
     new Date(),
   );
   if (!r.ok) return plain(r.why.startsWith("Previews are not") ? 503 : 401, r.why);
+  // Without the Viewer token draft mode would show published content only, so a draft would look missing (404).
+  if (!process.env.SANITY_READ_TOKEN) return plain(503, "Previews are not set up on this site.");
   (await draftMode()).enable();
   // Same site only: the path was checked above, so this can never send the visitor elsewhere.
   return new Response(null, { status: 307, headers: { Location: new URL(r.path, url.origin).toString(), "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } });

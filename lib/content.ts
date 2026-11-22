@@ -323,9 +323,19 @@ export const getFaqs = cache(async (): Promise<Faq[]> => {
   return cms?.length ? cms : fallbackFaqs;
 });
 
+/** Body paragraphs as text. A draft made elsewhere (TTR OS's staging check) may send Portable Text blocks instead of strings. */
+function bodyText(body: unknown): string[] {
+  return arr<unknown>(body).flatMap((b) => {
+    if (typeof b === "string") return [b];
+    const text = arr<Loose>((b as Loose | null)?.children).map((c) => String(c.text ?? "")).join("");
+    return text.trim() ? [text] : [];
+  });
+}
+
 export const getPosts = cache(async (): Promise<Post[]> => {
-  const cms = await sanityFetch<Post[]>(
-    `*[_type == "post" && defined(slug.current)] | order(date desc){ "slug": slug.current, title, date, author, category, service, excerpt, body, "image": image${IMG}, cta,
+  // _updatedAt only stands in for a draft's missing date (a published post always has one), so nothing sorts or shows "undefined".
+  const cms = await sanityFetch<(Post & { _updatedAt?: string })[]>(
+    `*[_type == "post" && defined(slug.current)] | order(date desc){ "slug": slug.current, title, date, _updatedAt, author, category, service, excerpt, body, "image": image${IMG}, cta,
       "figures": figures[]{ _key, beforeHeading, "image": image${IMG}, caption, position },
       "blocks": blocks[]{ "_type": select(_type == "postFacts" => "facts", _type == "postSteps" => "steps", _type == "postOptions" => "options", _type), _key, beforeHeading, heading, items[]{ icon, label, value, title, text } },
       ${SEO} }`,
@@ -334,7 +344,13 @@ export const getPosts = cache(async (): Promise<Post[]> => {
   );
   if (!cms?.length) return fallbackPosts;
   // A post published in /cms replaces the built-in post with the same slug; built-in posts not yet in /cms stay.
-  const published = cms.map((p) => ({ ...p, body: p.body ?? [], seo: merge({ title: p.title, description: p.excerpt ?? "" }, p.seo) }));
+  const published = cms.map(({ _updatedAt, ...p }) => ({
+    ...p,
+    title: p.title ?? "",
+    date: p.date || (_updatedAt ?? new Date().toISOString()).slice(0, 10),
+    body: bodyText(p.body),
+    seo: merge({ title: p.title ?? "", description: p.excerpt ?? "" }, p.seo),
+  }));
   const slugs = new Set(published.map((p) => p.slug));
   return [...published, ...fallbackPosts.filter((p) => !slugs.has(p.slug))].sort((a, b) => b.date.localeCompare(a.date));
 });
