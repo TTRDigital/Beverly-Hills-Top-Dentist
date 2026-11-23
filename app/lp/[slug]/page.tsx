@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { RequestButton, RequestModal } from "@/components/lp/RequestModal";
-import { BAND, BIO, DEFAULT_OFFERS, finePrint, LP_PAGES, OFFERS, PILLARS, PRACTICE, STRIP, TECH, TECH_INTRO, WORK } from "@/lib/lp-pages";
+import { BAND, BIO, DEFAULT_OFFERS, finePrint, LP_PAGES, OFFERS, PILLARS, PRACTICE, STRIP, TECH, TECH_INTRO, WORK, type OfferKey } from "@/lib/lp-pages";
 import { getLpPage } from "@/lib/lp-content";
 import { HeroVideo } from "@/components/sections/HeroVideo";
 
@@ -17,6 +17,17 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 const btn = "inline-flex min-h-[50px] items-center justify-center rounded-[3px] px-7 text-[16px] font-semibold transition-colors";
 const onDark = { solid: `${btn} bg-white text-brand hover:bg-cream`, ghost: `${btn} border-2 border-white text-white hover:bg-white/15` };
 const onLight = { solid: `${btn} bg-brand text-white hover:bg-brand-2`, ghost: `${btn} border-2 border-brand text-brand hover:bg-brand hover:text-white` };
+/*
+ * Offer and Call at the very top (TTR-3066, Kia's yes Nov 23): the new patient offer and a big Call button are the first thing on every
+ * page, above the hero. The offer wording and terms are the flyer offers already on the pages (OFFERS). The implant pages and the
+ * Invisalign page show only the $99 visit up top (no implant offer in this block; Invisalign keeps its own offer card in the hero).
+ * The hero offer card stays only where Kia said to keep the page offers (Veneers, Whitening, Restorative) and on Invisalign, whose
+ * offer is different; elsewhere it would repeat the top block.
+ */
+const TOP_ONLY_VISIT = new Set(["dental-implants", "full-arch-implants", "clear-aligners"]);
+const KEEP_HERO_OFFERS = new Set(["veneers-smile-makeover", "teeth-whitening", "restorative-dentistry", "clear-aligners"]);
+const PHONE_DISPLAY = `(${PRACTICE.phone.slice(0, 3)}) ${PRACTICE.phone.slice(4)}`;
+
 // Width of one step on desktop, so the row always fills evenly (32px gaps).
 const STEP_W: Record<number, string> = { 2: "lg:w-[calc((100%-32px)/2)]", 3: "lg:w-[calc((100%-64px)/3)]", 4: "lg:w-[calc((100%-96px)/4)]", 5: "lg:w-[calc((100%-128px)/5)]" };
 
@@ -29,8 +40,11 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
   if (!p) notFound();
   const call = p.primary.target === "call";
   const offerKeys = p.offers ?? DEFAULT_OFFERS;
-  const offers = offerKeys.map((k) => OFFERS[k]);
+  const offers = KEEP_HERO_OFFERS.has(p.key) ? offerKeys.map((k) => OFFERS[k]) : [];
+  const topKeys: OfferKey[] = TOP_ONLY_VISIT.has(p.key) ? ["cleaning"] : DEFAULT_OFFERS;
+  const topOffers = topKeys.map((k) => OFFERS[k]);
   const fine = finePrint(offerKeys);
+  const topFine = finePrint(topKeys);
   const requestLabel = call ? "Request a Callback" : p.primary.label;
   const callBtn = (where: string, cls: string, label?: string) => (
     <a href={PRACTICE.tel} data-track="click_to_call" data-track-page={`lp-${p.key}-${where}`} className={cls}>{label ?? `Call ${PRACTICE.phone}`}</a>
@@ -46,6 +60,28 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
 
   return (
     <>
+      {/* Offer and Call first (TTR-3066): phones see the offer, a full-width Call button and the request button before anything else */}
+      <section aria-label="New patient offer" className="border-b border-line bg-cream">
+        <div className="container-x py-4 sm:py-5 lg:flex lg:items-center lg:justify-between lg:gap-10">
+          <div className="lg:max-w-[640px]">
+            <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-brand">New patient special</p>
+            <ul className="mt-1.5 space-y-0.5 text-ink">
+              {topOffers.map((o) => (
+                <li key={o.text} className={o.or ? "text-[17px] leading-snug sm:text-[18px]" : "text-[21px] font-semibold leading-snug sm:text-[24px]"}>
+                  {o.or ? "or " : ""}<span className="font-bold text-brand">{o.amount}</span> {o.text}{o.aside ? <span className="text-[14px] font-normal text-body"> {o.aside}</span> : null}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-1.5 text-[14px] leading-snug text-body">{PILLARS.heading}. Holistic, biomimetic care, {STRIP[0].toLowerCase()}.</p>
+            <p className="mt-1 text-[12px] leading-snug text-body">{topFine}</p>
+          </div>
+          <div className="mt-3.5 flex flex-col gap-2.5 sm:flex-row lg:mt-0 lg:shrink-0">
+            {callBtn("top", "inline-flex min-h-[56px] w-full items-center justify-center rounded-[3px] bg-brand px-7 text-[18px] font-bold text-white transition-colors hover:bg-brand-2 sm:w-auto", `Call ${PHONE_DISPLAY}`)}
+            <RequestButton className="inline-flex min-h-[50px] w-full items-center justify-center rounded-[3px] border-2 border-brand px-6 text-[16px] font-semibold text-brand transition-colors hover:bg-brand hover:text-white sm:w-auto">Request an Appointment</RequestButton>
+          </div>
+        </div>
+      </section>
+
       {p.notice ? (
         <div role="note" className="bg-[#fff4e5] text-[#5c3b00]">
           <p className="container-x py-3 text-[15px] font-semibold leading-snug">{p.notice}</p>
