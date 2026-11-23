@@ -4,7 +4,7 @@
  * { event_id }) deduplicates with the server's Conversions API event (lib/ads-capi.ts) on the same id. Nothing personal goes to GA4.
  * Where the browser sends Global Privacy Control, no ad event or hash is sent.
  */
-import { LIVE_HOST, VISITOR_COOKIE, VISITOR_ID_RE } from "./ads-gate.ts";
+import { LIVE_HOST, OPPREF_COOKIE, OPPREF_RE, VISITOR_COOKIE, VISITOR_ID_RE } from "./ads-gate.ts";
 import { normEmail, normName, normPhone, splitName } from "./ads-normalize.ts";
 
 const PIXEL_ID = process.env.NEXT_PUBLIC_CHATGPT_PIXEL || "3Son8DJqAvAi4ET8SZPsD5";
@@ -32,10 +32,24 @@ export function visitorId(): string {
 /** True only when the answer from the lead API says the request was kept. A dropped bot answers delivered:false. */
 export const wasKept = (data: unknown) => !(data && typeof data === "object" && (data as { delivered?: unknown }).delivered === false);
 
-/** The ad click reference the OpenAI pixel keeps in a first-party cookie, for the server event. */
+/** The ad click reference: this address's ?oppref=, else the site's bh_oppref cookie, else the OpenAI pixel's __oppref cookie; "" when none. */
 export function oppref(): string {
-  const m = document.cookie.match(/(?:^|;\s*)__oppref=([^;]+)/);
-  return m ? decodeURIComponent(m[1]) : "";
+  const cookie = (name: string) => {
+    const m = document.cookie.match(new RegExp(`(?:^|;\\s*)${name}=([^;]+)`));
+    try {
+      return m ? decodeURIComponent(m[1]) : "";
+    } catch {
+      return "";
+    }
+  };
+  let fromUrl = "";
+  try {
+    fromUrl = new URLSearchParams(location.search).get("oppref") ?? "";
+  } catch {
+    /* no address */
+  }
+  for (const v of [fromUrl, cookie(OPPREF_COOKIE), cookie("__oppref")]) if (v && OPPREF_RE.test(v)) return v;
+  return "";
 }
 
 /** After the server accepted a lead: GA4 and the dataLayer (no personal data), then the ChatGPT Ads lead_created with hashed details. */

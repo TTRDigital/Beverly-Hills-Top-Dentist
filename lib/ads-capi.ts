@@ -9,7 +9,7 @@
  * custom events (request_appointment_click, form_started) from the server through app/api/lp-event, each with the browser's event id.
  */
 import { createHash } from "node:crypto";
-import { LIVE_HOST, VISITOR_COOKIE, VISITOR_ID_RE } from "./ads-gate.ts";
+import { LIVE_HOST, OPPREF_COOKIE, OPPREF_RE, VISITOR_COOKIE, VISITOR_ID_RE } from "./ads-gate.ts";
 import { normEmail, normName, normPhone, splitName } from "./ads-normalize.ts";
 export { LIVE_HOST, VISITOR_COOKIE };
 export { normEmail, normName, normPhone, splitName };
@@ -114,6 +114,31 @@ export const sendLeadEvent = (l: CapiLead) =>
     firstName: splitName(l.name).first, lastName: splitName(l.name).last,
     ip: l.ip, userAgent: l.userAgent, oppref: l.oppref, obref: l.obref, gpc: l.gpc, name_hint: l.name });
 
+/** The ad click reference: the one the page sent, else the site's own cookie (bh_oppref), else OpenAI's (__oppref). "" when none fits. */
+export function opprefFrom(sent: unknown, cookieHeader: string | null): string {
+  for (const v of [typeof sent === "string" ? sent.trim() : "", cookieOf(cookieHeader, OPPREF_COOKIE), cookieOf(cookieHeader, "__oppref")]) {
+    if (v && OPPREF_RE.test(v)) return v;
+  }
+  return "";
+}
+
+/**
+ * Every identifier the server can attach to an event from the request itself (TTR-3042 follow-up): the visitor id cookie (hashed later),
+ * the client IP, the user agent, the ad click references and the Global Privacy Control signal. Used by every route that sends events.
+ */
+export function requestIdentifiers(request: Request, sentOppref?: unknown) {
+  const cookies = request.headers.get("cookie");
+  const hdr = (k: string) => request.headers.get(k) ?? "";
+  return {
+    visitorId: cookieOf(cookies, VISITOR_COOKIE),
+    ip: hdr("x-forwarded-for").split(",")[0].trim() || hdr("x-real-ip").trim(),
+    userAgent: hdr("user-agent"),
+    oppref: opprefFrom(sentOppref, cookies),
+    obref: cookieOf(cookies, "__obref"),
+    gpc: hdr("sec-gpc") === "1",
+  };
+}
+
 /** Where a lead came from, in one word, from the UTM source. */
 export function leadSource(utmSource: string, referrer: string): string {
   const s = utmSource.toLowerCase();
@@ -127,5 +152,10 @@ export function leadSource(utmSource: string, referrer: string): string {
 /** The cookie value, or "". */
 export function cookieOf(header: string | null, name: string): string {
   const m = (header ?? "").match(new RegExp(`(?:^|;\\s*)${name}=([^;]+)`));
-  return m ? decodeURIComponent(m[1]) : "";
+  if (!m) return "";
+  try {
+    return decodeURIComponent(m[1]);
+  } catch {
+    return "";
+  }
 }

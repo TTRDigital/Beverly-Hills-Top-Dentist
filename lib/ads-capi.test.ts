@@ -2,7 +2,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { afterEach, beforeEach, describe, it } from "node:test";
-import { LIVE_HOST, buildBody, sendEvent, sendLeadEvent, type CapiEvent } from "./ads-capi.ts";
+import { LIVE_HOST, buildBody, opprefFrom, requestIdentifiers, sendEvent, sendLeadEvent, type CapiEvent } from "./ads-capi.ts";
 import { wasKept } from "./ads-tracking.ts";
 import { normName, splitName } from "./ads-normalize.ts";
 import { emailText } from "./lead-alerts.ts";
@@ -88,6 +88,54 @@ describe("TTR-3042: names, page and content events", () => {
       assert.equal(ev.custom_event_name, name);
       assert.deepEqual(ev.data, { type: "custom" });
     }
+  });
+});
+
+describe("TTR-3042 follow-up: oppref and every identifier on every event", () => {
+  const req = (headers: Record<string, string>) => new Request("https://beverlyhillstopdentist.com/api/lp-event/", { method: "POST", headers });
+  it("oppref: the page's value first, then the site's cookie, then OpenAI's; odd values are dropped", () => {
+    assert.equal(opprefFrom("opp_from_page", "bh_oppref=opp_site; __oppref=opp_openai"), "opp_from_page");
+    assert.equal(opprefFrom("", "bh_oppref=opp_site; __oppref=opp_openai"), "opp_site");
+    assert.equal(opprefFrom(undefined, "__oppref=opp_openai"), "opp_openai");
+    assert.equal(opprefFrom("<script>", "bh_oppref=%E0%A4%A"), "");
+    assert.equal(opprefFrom(null, null), "");
+  });
+  it("the request gives the visitor id, IP, user agent, oppref and GPC", () => {
+    const ids = requestIdentifiers(req({ cookie: `bh_vid=${VID}; bh_oppref=opp_1`, "x-forwarded-for": "203.0.113.7, 10.0.0.1", "user-agent": "Mozilla/5.0 (iPhone)" }));
+    assert.deepEqual(ids, { visitorId: VID, ip: "203.0.113.7", userAgent: "Mozilla/5.0 (iPhone)", oppref: "opp_1", obref: "", gpc: false });
+    assert.equal(requestIdentifiers(req({ "x-real-ip": "198.51.100.4", "sec-gpc": "1" })).ip, "198.51.100.4");
+    assert.equal(requestIdentifiers(req({ "sec-gpc": "1" })).gpc, true);
+  });
+  it("phone_call_click, request_appointment_click and form_started carry oppref, IP, user agent, the event id and the hashed visitor id", () => {
+    const ids = requestIdentifiers(req({ cookie: `bh_vid=${VID}; bh_oppref=opp_9`, "x-forwarded-for": "203.0.113.7", "user-agent": "UA-x" }));
+    for (const [name, id] of [["phone_call_click", "call_abc123"], ["request_appointment_click", "ra_abc123"], ["form_started", "fs_abc123"]]) {
+      const ev = buildBody({ eventId: id, name, sourceUrl: "https://beverlyhillstopdentist.com/lp/x/", ...ids }).events[0] as Record<string, any>;
+      assert.equal(ev.id, id);
+      assert.equal(ev.oppref, "opp_9");
+      assert.equal(ev.user.ip_address, "203.0.113.7");
+      assert.equal(ev.user.user_agent, "UA-x");
+      assert.deepEqual(ev.user.external_ids_sha256, [sha(VID)]);
+    }
+  });
+  it("lead_created always sends the hashed email and phone when the form has them", async () => {
+    const env = { ...process.env };
+    const realFetch = globalThis.fetch;
+    const sent: Record<string, any>[] = [];
+    globalThis.fetch = (async (_u: string, init: RequestInit) => { sent.push(JSON.parse(String(init.body))); return new Response("{}", { status: 200 }); }) as typeof fetch;
+    process.env.OPENAI_ADS_CAPI_KEY = "k"; process.env.VERCEL_ENV = "production"; delete process.env.OPENAI_ADS_VALIDATE_ONLY;
+    try {
+      await sendLeadEvent({ eventId: "lead_e1", leadId: "e1-lead", name: "Jane Doe", email: " Jane@Example.com", phone: "(310) 555-0100", sourceUrl: "https://beverlyhillstopdentist.com/lp/x/", userAgent: "UA", ip: "203.0.113.7", oppref: "opp_2", visitorId: VID, gpc: false });
+      await sendLeadEvent({ eventId: "lead_e2", leadId: "e2-lead", name: "John Roe", phone: "3105550101", sourceUrl: "https://beverlyhillstopdentist.com/lp/x/", userAgent: "UA", gpc: false });
+      const [a, b] = sent.map((x) => x.events[0]);
+      assert.deepEqual(a.user.emails_sha256, [sha("jane@example.com")]);
+      assert.deepEqual(a.user.phone_numbers_sha256, [sha("13105550100")]);
+      assert.equal(a.oppref, "opp_2");
+      assert.equal(a.user.ip_address, "203.0.113.7");
+      // The short form has no email field: the phone (always required) still goes, hashed.
+      assert.equal(b.user.emails_sha256, undefined);
+      assert.deepEqual(b.user.phone_numbers_sha256, [sha("13105550101")]);
+      assert.ok(!JSON.stringify(sent).match(/Jane|Example|555-0100|3105550101/));
+    } finally { globalThis.fetch = realFetch; process.env = { ...env }; }
   });
 });
 
