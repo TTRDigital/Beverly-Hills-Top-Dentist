@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { getImageProps } from "next/image";
+import { preload } from "react-dom";
 import { notFound } from "next/navigation";
 import { RequestButton, RequestModal } from "@/components/lp/RequestModal";
 import { finePrint, LP_PAGES, OFFERS, PILLARS, PRACTICE, type OfferKey } from "@/lib/lp-pages";
@@ -23,6 +24,14 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
  * the availability note) stay in small text. Every tracked action is unchanged: tel: links (phone_call_click), the Request buttons
  * (request_appointment_click), the form in the pop-up (form_started, lead_created), the bottom call bar.
  */
+/*
+ * The banner photo (TTR-3066 speed, Kia's bar: PageSpeed mobile 90+ and largest paint 2.5 s or less). Phones get their own 4:3 crop of the
+ * home poster (780 x 585 WebP, about 29 KB), preloaded at high priority; from tablet width up, the home poster at full width. The video
+ * starts only after the page has loaded and covers the photo once it plays.
+ */
+const PHONE_POSTER = "/lp/hero-poster-phone.webp";
+const wideSrcSet = getImageProps({ src: images.heroPoster.src, alt: "", fill: true, sizes: "100vw" }).props.srcSet;
+
 const PHONE_DISPLAY = `(${PRACTICE.phone.slice(0, 3)}) ${PRACTICE.phone.slice(4)}`;
 // The one-line offer: the $99 visit everywhere, Invisalign's own offer on the Invisalign page. No implant offer anywhere in the banner.
 const offerFor = (keys: OfferKey[]): OfferKey => (keys.includes("invisalign") ? "invisalign" : "cleaning");
@@ -42,6 +51,7 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
     <a href={PRACTICE.tel} data-track="click_to_call" data-track-page={`lp-${p.key}-${where}`} className={cls}>Call {PHONE_DISPLAY}</a>
   );
   const what = p.focus.paragraphs?.slice(0, 2) ?? [];
+  preload(PHONE_POSTER, { as: "image", fetchPriority: "high", media: "(max-width: 767px)" });
 
   return (
     <>
@@ -52,8 +62,12 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
       */}
       <section className="relative isolate overflow-hidden bg-night text-white md:flex md:min-h-[640px] md:items-end">
         <div className="relative aspect-[4/3] w-full md:absolute md:inset-0 md:-z-10 md:aspect-auto">
-          <Image src={images.heroPoster.src} alt={images.heroPoster.alt} fill loading="eager" fetchPriority="high" sizes="100vw" className="object-cover" />
-          <HeroVideo mp4="/video/home-hero.mp4" webm="/video/home-hero.webm" phoneMp4="/video/home-hero-phone.mp4" poster={images.heroPoster.src} className="absolute inset-0 h-full w-full object-cover" />
+          <picture>
+            {/* Art direction (next/image getImageProps pattern): a phone crop under 768 px, the wide home poster above */}
+            <source media="(min-width: 768px)" srcSet={wideSrcSet} sizes="100vw" />
+            <img src={PHONE_POSTER} alt={images.heroPoster.alt} width={780} height={585} loading="eager" fetchPriority="high" decoding="async" className="absolute inset-0 h-full w-full object-cover" />
+          </picture>
+          <HeroVideo mp4="/video/home-hero.mp4" webm="/video/home-hero.webm" phoneMp4="/video/home-hero-phone.mp4" className="absolute inset-0 h-full w-full object-cover" />
           <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-night/90 via-transparent to-transparent md:from-black/80 md:via-black/35 md:to-black/10" />
         </div>
         <div className="container-x pb-6 pt-1 md:pb-16 md:pt-32">
