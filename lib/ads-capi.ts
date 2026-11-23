@@ -5,44 +5,43 @@
  * Conversions, Conversion keys; never in client code). Without the key nothing is sent. Test leads and visitors who send Global Privacy
  * Control are never sent. Set OPENAI_ADS_VALIDATE_ONLY=1 to check the wiring without recording conversions. Also used for call taps
  * (phone_call_click, app/api/lp-call) and only on the real site (VERCEL_ENV production).
+ * TTR-3042 (Nov 23, 2026): first and last names are hashed too, and the landing pages also send page_viewed, contents_viewed and two
+ * custom events (request_appointment_click, form_started) from the server through app/api/lp-event, each with the browser's event id.
  */
 import { createHash } from "node:crypto";
 import { LIVE_HOST, VISITOR_COOKIE, VISITOR_ID_RE } from "./ads-gate.ts";
+import { normEmail, normName, normPhone, splitName } from "./ads-normalize.ts";
 export { LIVE_HOST, VISITOR_COOKIE };
+export { normEmail, normName, normPhone, splitName };
 
 const PIXEL_ID = process.env.NEXT_PUBLIC_CHATGPT_PIXEL || "3Son8DJqAvAi4ET8SZPsD5";
 const sha = (s: string) => createHash("sha256").update(s, "utf8").digest("hex");
-
-/** Email: trim and lowercase. */
-export const normEmail = (e: string) => e.trim().toLowerCase();
-/** Phone: keep the country code, digits only, no leading zeros; a US 10 digit number gets 1. Null when it is not 8 to 15 digits. */
-export function normPhone(p: string): string | null {
-  let d = p.replace(/\D/g, "");
-  if (d.length === 10) d = `1${d}`;
-  d = d.replace(/^0+/, "");
-  return d.length >= 8 && d.length <= 15 ? d : null;
-}
 
 const validVisitorId = (v: string) => VISITOR_ID_RE.test(v);
 
 export type CapiEvent = {
   /** The same id the browser pixel used for this event (OpenAI keeps the first of a matching id). */
   eventId: string;
-  /** lead_created, or a custom event such as phone_call_click. */
+  /** A standard event (lead_created, page_viewed, contents_viewed) or a custom event such as phone_call_click. */
   name: string;
+  /** The content items of page_viewed and contents_viewed (no personal data). */
+  contents?: { id: string; name?: string; content_type: string }[];
   sourceUrl: string;
   /** First-party visitor id (hashed here), sent on every event. Falls back to the lead id when the cookie is missing. */
   visitorId?: string;
   fallbackId?: string;
-  email?: string; phone?: string;
+  email?: string; phone?: string; firstName?: string; lastName?: string;
   ip?: string; userAgent: string; oppref?: string; obref?: string; gpc: boolean;
-  /** Visitor name: used only to skip obvious test leads, never sent. */
+  /** Visitor name as typed: used only to skip obvious test leads, never sent (firstName and lastName are sent only as hashes). */
   name_hint?: string;
 };
 
 export type CapiResult = { status: "sent" | "skipped" | "failed"; reason?: string; http?: number; body?: string };
 
-/** The JSON body for OpenAI (no health details, no comment, no name: only hashes, the ids OpenAI asks for, the user agent and the IP). */
+/** OpenAI's standard events this site sends, with the data type each one takes (developers.openai.com/ads/supported-events). */
+const STANDARD: Record<string, "customer_action" | "contents"> = { lead_created: "customer_action", page_viewed: "contents", contents_viewed: "contents" };
+
+/** The JSON body for OpenAI (no health details, no comment, no raw name: only hashes, the ids OpenAI asks for, the user agent and the IP). */
 export function buildBody(e: CapiEvent, now = Date.now()) {
   const user: Record<string, unknown> = { user_agent: e.userAgent.slice(0, 500) };
   const ext = e.visitorId && validVisitorId(e.visitorId) ? e.visitorId : e.fallbackId ?? "";
@@ -51,16 +50,22 @@ export function buildBody(e: CapiEvent, now = Date.now()) {
   if (email) user.emails_sha256 = [sha(email)];
   const phone = e.phone ? normPhone(e.phone) : null;
   if (phone) user.phone_numbers_sha256 = [sha(phone)];
+  const first = e.firstName ? normName(e.firstName) : "";
+  if (first) user.first_names_sha256 = [sha(first)];
+  const last = e.lastName ? normName(e.lastName) : "";
+  if (last) user.last_names_sha256 = [sha(last)];
   if (e.ip && /^[0-9a-fA-F:.]+$/.test(e.ip)) user.ip_address = e.ip;
   if (e.obref) user.obref = e.obref;
-  const custom = e.name !== "lead_created";
+  const std = STANDARD[e.name];
+  const custom = !std;
+  const data = std === "contents" ? { type: "contents", contents: (e.contents ?? []).slice(0, 10) } : { type: std ?? "custom" };
   return {
     integration_source: "ttr-os-beverly-hills",
     ...(process.env.OPENAI_ADS_VALIDATE_ONLY === "1" ? { validate_only: true } : {}),
     events: [{
       id: e.eventId, type: custom ? "custom" : e.name, ...(custom ? { custom_event_name: e.name } : {}),
       timestamp_ms: now, action_source: "web", source_url: e.sourceUrl,
-      ...(e.oppref ? { oppref: e.oppref } : {}), user, opt_out: false, data: { type: custom ? "custom" : "customer_action" },
+      ...(e.oppref ? { oppref: e.oppref } : {}), user, opt_out: false, data,
     }],
   };
 }
@@ -106,6 +111,7 @@ export type CapiLead = {
 /** lead_created, after a lead was saved. */
 export const sendLeadEvent = (l: CapiLead) =>
   sendEvent({ eventId: l.eventId, name: "lead_created", sourceUrl: l.sourceUrl, visitorId: l.visitorId, fallbackId: l.leadId, email: l.email, phone: l.phone,
+    firstName: splitName(l.name).first, lastName: splitName(l.name).last,
     ip: l.ip, userAgent: l.userAgent, oppref: l.oppref, obref: l.obref, gpc: l.gpc, name_hint: l.name });
 
 /** Where a lead came from, in one word, from the UTM source. */

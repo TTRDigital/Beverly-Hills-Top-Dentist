@@ -4,6 +4,7 @@ import { createHash } from "node:crypto";
 import { afterEach, beforeEach, describe, it } from "node:test";
 import { LIVE_HOST, buildBody, sendEvent, sendLeadEvent, type CapiEvent } from "./ads-capi.ts";
 import { wasKept } from "./ads-tracking.ts";
+import { normName, splitName } from "./ads-normalize.ts";
 import { emailText } from "./lead-alerts.ts";
 
 const sha = (s: string) => createHash("sha256").update(s).digest("hex");
@@ -40,6 +41,53 @@ describe("server event body", () => {
   it("falls back to the lead id when the visitor cookie is missing or malformed", () => {
     const ev = buildBody({ ...lead, visitorId: "bad id!" }).events[0] as Record<string, any>;
     assert.deepEqual(ev.user.external_ids_sha256, [sha("abc12345-lead")]);
+  });
+});
+
+describe("TTR-3042: names, page and content events", () => {
+  it("names are normalized as OpenAI's docs show, then hashed; the raw name never appears", () => {
+    assert.equal(normName("O'Connor"), "oconnor");
+    assert.equal(normName("  José "), "josé");
+    assert.equal(normName("Mary-Ann"), "maryann");
+    assert.deepEqual(splitName("  Jane   van der Berg "), { first: "Jane", last: "van der Berg" });
+    const body = buildBody({ ...lead, firstName: "Jane", lastName: "van der Berg" });
+    const ev = body.events[0] as Record<string, any>;
+    assert.deepEqual(ev.user.first_names_sha256, [sha("jane")]);
+    assert.deepEqual(ev.user.last_names_sha256, [sha("vanderberg")]);
+    assert.ok(!/van der|Berg/i.test(JSON.stringify(body)));
+  });
+  it("a lead from the form carries the hashed first and last name", async () => {
+    const env = { ...process.env };
+    const realFetch = globalThis.fetch;
+    let sent: Record<string, any> | undefined;
+    globalThis.fetch = (async (_u: string, init: RequestInit) => { sent = JSON.parse(String(init.body)); return new Response("{}", { status: 200 }); }) as typeof fetch;
+    process.env.OPENAI_ADS_CAPI_KEY = "k"; process.env.VERCEL_ENV = "production"; delete process.env.OPENAI_ADS_VALIDATE_ONLY;
+    try {
+      await sendLeadEvent({ eventId: "lead_n1", leadId: "n1-lead", name: "Jane Doe", phone: "3105550100", sourceUrl: "https://beverlyhillstopdentist.com/lp/x/", userAgent: "UA", gpc: false });
+      const u = sent!.events[0].user;
+      assert.deepEqual(u.first_names_sha256, [sha("jane")]);
+      assert.deepEqual(u.last_names_sha256, [sha("doe")]);
+      assert.ok(!JSON.stringify(sent).includes("Jane"));
+    } finally { globalThis.fetch = realFetch; process.env = { ...env }; }
+  });
+  it("page_viewed and contents_viewed are standard events with contents data", () => {
+    for (const [name, type] of [["page_viewed", "page"], ["contents_viewed", "product"]]) {
+      const ev = buildBody({ eventId: "pv_abc123", name, contents: [{ id: "gum-health-beverly-hills", name: "Gum health", content_type: type }], sourceUrl: "https://beverlyhillstopdentist.com/lp/gum-health-beverly-hills/", visitorId: VID, userAgent: "UA", ip: "203.0.113.7", gpc: false }).events[0] as Record<string, any>;
+      assert.equal(ev.type, name);
+      assert.equal(ev.custom_event_name, undefined);
+      assert.equal(ev.data.type, "contents");
+      assert.equal(ev.data.contents[0].content_type, type);
+      assert.equal(ev.user.ip_address, "203.0.113.7");
+      assert.equal(ev.user.user_agent, "UA");
+    }
+  });
+  it("request_appointment_click and form_started are custom events", () => {
+    for (const name of ["request_appointment_click", "form_started"]) {
+      const ev = buildBody({ eventId: "ra_abc123", name, sourceUrl: "https://beverlyhillstopdentist.com/lp/x/", userAgent: "UA", gpc: false }).events[0] as Record<string, any>;
+      assert.equal(ev.type, "custom");
+      assert.equal(ev.custom_event_name, name);
+      assert.deepEqual(ev.data, { type: "custom" });
+    }
   });
 });
 
