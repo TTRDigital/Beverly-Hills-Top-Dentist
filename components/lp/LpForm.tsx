@@ -67,7 +67,7 @@ export function LpForm({ pageKey, title, button, note, id }: { pageKey: string; 
       // One lead_created per request the server kept: never for a request it dropped (a bot), never twice.
       if (!leadSent.current && wasKept(answer)) {
         leadSent.current = true;
-        await trackLead({ form: "landing_page", page: pageKey, email: v("email"), phone: v("phone"), leadId: ids.leadId, eventId: ids.eventId });
+        await trackLead({ form: "landing_page", page: pageKey, email: v("email"), phone: v("phone"), fullName: v("full_name"), leadId: ids.leadId, eventId: ids.eventId });
       }
       setStatus("sent");
     } catch {

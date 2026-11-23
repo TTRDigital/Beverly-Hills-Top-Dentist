@@ -5,6 +5,7 @@
  * Where the browser sends Global Privacy Control, no ad event or hash is sent.
  */
 import { LIVE_HOST, VISITOR_COOKIE, VISITOR_ID_RE } from "./ads-gate.ts";
+import { normEmail, normName, normPhone, splitName } from "./ads-normalize.ts";
 
 const PIXEL_ID = process.env.NEXT_PUBLIC_CHATGPT_PIXEL || "3Son8DJqAvAi4ET8SZPsD5";
 
@@ -14,13 +15,6 @@ const hex = async (s: string) => {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
 };
-function normPhone(p: string): string | null {
-  let d = p.replace(/\D/g, "");
-  if (d.length === 10) d = `1${d}`;
-  d = d.replace(/^0+/, "");
-  return d.length >= 8 && d.length <= 15 ? d : null;
-}
-
 /** A lead id (not personal) and the event id the browser and the server both use, so the lead counts once. */
 export function newLeadIds() {
   const id = typeof crypto.randomUUID === "function" ? crypto.randomUUID() : `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 12)}`;
@@ -45,7 +39,7 @@ export function oppref(): string {
 }
 
 /** After the server accepted a lead: GA4 and the dataLayer (no personal data), then the ChatGPT Ads lead_created with hashed details. */
-export async function trackLead(o: { form: string; page?: string; email?: string; phone?: string; leadId: string; eventId: string }) {
+export async function trackLead(o: { form: string; page?: string; email?: string; phone?: string; fullName?: string; leadId: string; eventId: string }) {
   const w = window as unknown as W;
   const params = { form: o.form, ...(o.page ? { page: o.page } : {}) };
   w.gtag?.("event", "generate_lead", params);
@@ -56,10 +50,14 @@ export async function trackLead(o: { form: string; page?: string; email?: string
   try {
     // The visitor id (set on the first visit), hashed, goes with every event; the lead id is only a fallback when there is none.
     const user: Record<string, string> = { external_id_sha256: await hex((visitorId() || o.leadId).trim()) };
-    const email = (o.email ?? "").trim().toLowerCase();
+    const email = normEmail(o.email ?? "");
     if (email) user.email_sha256 = await hex(email);
     const phone = o.phone ? normPhone(o.phone) : null;
     if (phone) user.phone_number_sha256 = await hex(phone);
+    // First and last name (TTR-3042), normalized the same way as on the server, then hashed here: the raw name never leaves the page.
+    const { first, last } = splitName(o.fullName ?? "");
+    if (normName(first)) user.first_name_sha256 = await hex(normName(first));
+    if (normName(last)) user.last_name_sha256 = await hex(normName(last));
     w.oaiq?.("init", { pixelId: PIXEL_ID, user });
   } catch {
     /* hashing unavailable: the event still goes out without the details */
