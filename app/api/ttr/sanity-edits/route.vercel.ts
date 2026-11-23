@@ -18,8 +18,9 @@ import { apiVersion, dataset, projectId } from "@/sanity/env";
 import { plan, type EditSet, type SanityDoc } from "@/lib/sanity-edits/plan";
 import photoSwap from "@/lib/sanity-edits/photo-swap.json";
 import sculptureSwap from "@/lib/sanity-edits/sculpture-swap.json";
+import seoMeta2880 from "@/lib/sanity-edits/seo-meta-2880.json";
 
-const SETS: Record<string, EditSet> = { "photo-swap": photoSwap as EditSet, "sculpture-swap": sculptureSwap as EditSet };
+const SETS: Record<string, EditSet> = { "photo-swap": photoSwap as EditSet, "sculpture-swap": sculptureSwap as EditSet, "seo-meta-2880": seoMeta2880 as EditSet };
 const PORTAL = (process.env.TTR_PORTAL_URL || "https://ttr-portal.vercel.app").replace(/\/$/, "");
 
 const reply = (status: number, body: Record<string, unknown>) =>
@@ -74,7 +75,7 @@ export async function POST(request: Request) {
   const token = process.env.SANITY_WRITE_TOKEN || "";
   if (apply && !token) return reply(503, { ok: false, error: "SANITY_WRITE_TOKEN is not set on this deployment, so nothing can be written. A dry run still works." });
 
-  const ids = [...new Set(set.edits.map((e) => e.doc))].filter((id) => !exclude.includes(id));
+  const ids = [...new Set([...set.edits, ...(set.text ?? [])].map((e) => e.doc))].filter((id) => !exclude.includes(id));
   let docs: SanityDoc[];
   let drafts: string[];
   try {
@@ -92,7 +93,7 @@ export async function POST(request: Request) {
     agent: me.email ?? me.name ?? me.id ?? null,
     fields: { total: rows.length, change: count("change"), done: count("done"), skip: count("skip"), excluded: count("excluded") },
     excluded: exclude,
-    excludeNotInSet: exclude.filter((id) => !set.edits.some((e) => e.doc === id)),
+    excludeNotInSet: exclude.filter((id) => ![...set.edits, ...(set.text ?? [])].some((e) => e.doc === id)),
     documents: patches.length,
     draftsToCheck: drafts.map((d) => d.replace(/^drafts\./, "")),
     canWrite: !!token,

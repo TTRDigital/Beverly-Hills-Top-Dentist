@@ -1,0 +1,87 @@
+{
+ "name": "seo-meta-2880",
+ "source": "TTR-2880: page titles with the page's target search first, plus the /areas-we-serve/ title and /appointment/ description already shortened in code by TTR-2518 (lib/data). Meta tags only, no words on the page.",
+ "edits": [],
+ "text": [
+  {
+   "doc": "service-tooth-extractions",
+   "path": "seo.title",
+   "from": [
+    "Tooth Extractions - Beverly Hills Dental"
+   ],
+   "to": "Tooth Extraction Beverly Hills | Dr. Nushin Shir, DDS"
+  },
+  {
+   "doc": "service-full-arch-implants",
+   "path": "seo.title",
+   "from": [
+    "Full Arch Implants - Beverly Hills Dental"
+   ],
+   "to": "Full-Arch Dental Implants in Beverly Hills | Dr. Nushin Shir"
+  },
+  {
+   "doc": "service-deep-cleanings",
+   "path": "seo.title",
+   "from": [
+    "Deep Cleanings (Scaling & Root Planing) - Beverly Hills Dental"
+   ],
+   "to": "Deep Cleaning in Beverly Hills: Scaling & Root Planing | Dr. Shir"
+  },
+  {
+   "doc": "service-laser-gum-treatments",
+   "path": "seo.title",
+   "from": [
+    "Laser Gum Treatments - Beverly Hills Dental"
+   ],
+   "to": "Laser Gum Treatment Beverly Hills | Dr. Nushin Shir, DDS"
+  },
+  {
+   "doc": "service-root-canal-therapy",
+   "path": "seo.title",
+   "from": [
+    "Root Canal Therapy - Beverly Hills Dental"
+   ],
+   "to": "Root Canals in Beverly Hills: Root Canal Therapy | Dr. Shir"
+  },
+  {
+   "doc": "service-wisdom-teeth-extractions",
+   "path": "seo.title",
+   "from": [
+    "Wisdom Teeth Extractions - Beverly Hills Dental"
+   ],
+   "to": "Wisdom Teeth Extraction in Beverly Hills | Dr. Nushin Shir"
+  },
+  {
+   "doc": "service-gum-contouring",
+   "path": "seo.title",
+   "from": [
+    "Gum Contouring - Beverly Hills Dental"
+   ],
+   "to": "Gum Contouring in Beverly Hills | Dr. Nushin Shir, DDS"
+  },
+  {
+   "doc": "service-dental-sealants",
+   "path": "seo.title",
+   "from": [
+    "Dental Sealants - Beverly Hills Dental"
+   ],
+   "to": "Dental Sealants in Beverly Hills | Dr. Nushin Shir, DDS"
+  },
+  {
+   "doc": "areasPage",
+   "path": "seo.title",
+   "from": [
+    "Dentist Serving West LA & Beverly Hills Neighborhoods | Dr. Nushin Shir"
+   ],
+   "to": "Dentist Serving West LA & Beverly Hills Neighborhoods"
+  },
+  {
+   "doc": "appointmentPage",
+   "path": "seo.description",
+   "from": [
+    "Request an appointment at Beverly Hills Dental Arts Studio, 416 N. Bedford Dr., Suite 105, Beverly Hills. Call (310) 274-7005 or send the form and our team will reach out."
+   ],
+   "to": "Request an appointment at Beverly Hills Dental Arts Studio, 416 N. Bedford Dr., Suite 105. Call 310.274.7005 or send the form and our team will reach out."
+  }
+ ]
+}

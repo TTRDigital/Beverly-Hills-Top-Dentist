@@ -1860,7 +1860,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Full Arch Implants - Beverly Hills Dental",
+      title: "Full-Arch Dental Implants in Beverly Hills | Dr. Nushin Shir",
       description: "A fixed set of teeth carried by a small number of implants, for patients missing most or all of an arch or living with a denture that will not stay put."
     }
   },
@@ -3396,7 +3396,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Tooth Extractions - Beverly Hills Dental",
+      title: "Tooth Extraction Beverly Hills | Dr. Nushin Shir, DDS",
       description: "Removal planned in 3D, carried out gently, and finished with site preservation so your options for replacement stay open. Dr. Shir will also tell you when a"
     }
   },
@@ -3818,7 +3818,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Root Canal Therapy - Beverly Hills Dental",
+      title: "Root Canals in Beverly Hills: Root Canal Therapy | Dr. Shir",
       description: "Treat the infection inside the tooth and keep the tooth itself. Canal anatomy mapped in 3D where the case calls for it, and the protective crown afterwards"
     }
   },
@@ -4033,7 +4033,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Wisdom Teeth Extractions - Beverly Hills Dental",
+      title: "Wisdom Teeth Extraction in Beverly Hills | Dr. Nushin Shir",
       description: "Removal planned on a 3D scan taken in this office, so nerve position and root anatomy are known before we begin rather than discovered during."
     }
   },
@@ -4961,7 +4961,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Deep Cleanings (Scaling & Root Planing) - Beverly Hills Dental",
+      title: "Deep Cleaning in Beverly Hills: Scaling & Root Planing | Dr. Shir",
       description: "Cleaning below the gum line to remove what a routine cleaning cannot reach. Carried out under local anaesthetic, supported by laser therapy and ozone."
     }
   },
@@ -5161,7 +5161,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Laser Gum Treatments - Beverly Hills Dental",
+      title: "Laser Gum Treatment Beverly Hills | Dr. Nushin Shir, DDS",
       description: "A soft tissue laser used alongside deep cleaning to treat gum disease, and to reshape gum tissue. For many patients it is an alternative to surgery, with less"
     }
   },
@@ -5361,7 +5361,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Gum Contouring - Beverly Hills Dental",
+      title: "Gum Contouring in Beverly Hills | Dr. Nushin Shir, DDS",
       description: "Reshaping the gum line so it frames your teeth evenly. Carried out with a soft tissue laser, and planned before any veneers or crowns are designed to it."
     }
   },
@@ -5732,7 +5732,7 @@ export const fallbackServices: Service[] = [
       }
     ],
     seo: {
-      title: "Dental Sealants - Beverly Hills Dental",
+      title: "Dental Sealants in Beverly Hills | Dr. Nushin Shir, DDS",
       description: "A thin protective coating bonded into the deep grooves of back teeth, where a toothbrush bristle physically cannot reach. Quick to place, no drilling, no"
     }
   },

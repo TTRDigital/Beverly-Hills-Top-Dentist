@@ -1,5 +1,5 @@
 /*
- * Turns a list of image swaps (lib/sanity-edits/*.json) into Sanity patches, checking each field first. Pure functions:
+ * Turns a list of image swaps and text changes (lib/sanity-edits/*.json) into Sanity patches, checking each field first. Pure functions:
  * the route (app/api/ttr/sanity-edits/route.vercel.ts) fetches the documents and sends the mutations.
  *
  * A field is changed only when it still holds the expected old image, so running twice, or after someone edited the field
@@ -7,7 +7,12 @@
  */
 export type ImageEdit = { doc: string; path: string; from: string; to: string; alt: string; fromFile: string; toFile: string };
 /** `upload`: a photo that must exist in Sanity first. url is a path on this site; id is the asset id Sanity gives it (image-<sha1 of the file>-<w>x<h>-<ext>). */
-export type EditSet = { name: string; source: string; edits: ImageEdit[]; upload?: { url: string; id: string; filename: string }; deleteAsset?: string };
+/**
+ * A plain text field (a page title or description). `from` lists the values the field may hold now (what was loaded into Sanity, and
+ * any earlier wording); the field is changed only when it holds one of them, so newer work typed in /cms is never overwritten.
+ */
+export type TextEdit = { doc: string; path: string; from: string[]; to: string };
+export type EditSet = { name: string; source: string; edits: ImageEdit[]; text?: TextEdit[]; upload?: { url: string; id: string; filename: string }; deleteAsset?: string };
 export type SanityDoc = { _id: string; _rev: string; [k: string]: unknown };
 
 export type Planned = { doc: string; path: string; status: "change" | "done" | "skip" | "excluded"; why?: string; fromFile: string; toFile: string };
@@ -90,6 +95,31 @@ export function plan(set: EditSet, docs: Map<string, SanityDoc>, exclude: string
     }
     sets.set(e.doc, s);
     rows.push({ ...base, status: "change" });
+  }
+  for (const e of set.text ?? []) {
+    const base = { doc: e.doc, path: e.path, fromFile: e.from[0] ?? "", toFile: e.to };
+    if (skipDocs.has(e.doc)) {
+      rows.push({ ...base, status: "excluded", why: "document excluded in this request" });
+      continue;
+    }
+    const doc = docs.get(e.doc);
+    if (!doc) {
+      rows.push({ ...base, status: "skip", why: "document not found" });
+      continue;
+    }
+    const now = resolve(doc, e.path);
+    if (now === e.to) {
+      rows.push({ ...base, status: "done", why: "already the new text" });
+      continue;
+    }
+    if (typeof now !== "string" || !e.from.includes(now)) {
+      rows.push({ ...base, status: "skip", why: typeof now === "string" && now ? `field now holds "${now}", not the expected old text` : "field is empty or gone" });
+      continue;
+    }
+    const s = sets.get(e.doc) ?? {};
+    s[e.path] = e.to;
+    sets.set(e.doc, s);
+    rows.push({ ...base, fromFile: now, status: "change" });
   }
   const patches: Patch[] = [...sets].map(([id, set]) => ({ patch: { id, ifRevisionID: (docs.get(id) as SanityDoc)._rev, set } }));
   return { rows, patches };
