@@ -8,7 +8,7 @@
  * site (except OPENAI_ADS_VALIDATE_ONLY=1, which records nothing), for Global Privacy Control and for anything that does not look right.
  */
 import { after } from "next/server";
-import { VISITOR_COOKIE, cookieOf, sendEvent } from "@/lib/ads-capi";
+import { requestIdentifiers, sendEvent } from "@/lib/ads-capi";
 import { LP_PAGES } from "@/lib/lp-pages";
 
 const reply = () => new Response(null, { status: 204, headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } });
@@ -71,15 +71,10 @@ export async function POST(request: Request) {
     : name === "contents_viewed" ? [{ id: slug, ...(title ? { name: title } : {}), content_type: "product" }]
     : undefined;
 
-  const cookies = request.headers.get("cookie");
-  const hdr = (k: string) => request.headers.get(k) ?? "";
+  // Every identifier the request carries (visitor id, IP, user agent, oppref, GPC), the same set as every other event.
+  const ids = requestIdentifiers(request, input.oppref);
   after(async () => {
-    await sendEvent({
-      eventId, name, contents, sourceUrl: pageUrl, visitorId: cookieOf(cookies, VISITOR_COOKIE),
-      ip: hdr("x-forwarded-for").split(",")[0].trim(), userAgent: hdr("user-agent"),
-      oppref: (typeof input.oppref === "string" ? input.oppref.slice(0, 300) : "") || cookieOf(cookies, "__oppref"), obref: cookieOf(cookies, "__obref"),
-      gpc: hdr("sec-gpc") === "1",
-    });
+    await sendEvent({ eventId, name, contents, sourceUrl: pageUrl, ...ids });
   });
   return reply();
 }

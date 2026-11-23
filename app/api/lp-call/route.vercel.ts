@@ -5,7 +5,7 @@
  * Skipped (answer is still 204) without the key, off the real site, for Global Privacy Control and for ids that do not look right.
  */
 import { after } from "next/server";
-import { VISITOR_COOKIE, cookieOf, sendEvent } from "@/lib/ads-capi";
+import { requestIdentifiers, sendEvent } from "@/lib/ads-capi";
 
 const reply = () => new Response(null, { status: 204, headers: { "Cache-Control": "no-store", "X-Robots-Tag": "noindex" } });
 const bad = (status: number) => new Response(null, { status, headers: { "Cache-Control": "no-store" } });
@@ -48,15 +48,10 @@ export async function POST(request: Request) {
   }
   if (!pageUrl) return bad(400);
 
-  const cookies = request.headers.get("cookie");
-  const hdr = (k: string) => request.headers.get(k) ?? "";
+  // Every identifier the request carries (visitor id, IP, user agent, oppref, GPC), the same set as every other event.
+  const ids = requestIdentifiers(request, input.oppref);
   after(async () => {
-    await sendEvent({
-      eventId, name: "phone_call_click", sourceUrl: pageUrl, visitorId: cookieOf(cookies, VISITOR_COOKIE), fallbackId: eventId,
-      ip: hdr("x-forwarded-for").split(",")[0].trim(), userAgent: hdr("user-agent"),
-      oppref: (typeof input.oppref === "string" ? input.oppref.slice(0, 300) : "") || cookieOf(cookies, "__oppref"), obref: cookieOf(cookies, "__obref"),
-      gpc: hdr("sec-gpc") === "1",
-    });
+    await sendEvent({ eventId, name: "phone_call_click", sourceUrl: pageUrl, fallbackId: eventId, ...ids });
   });
   return reply();
 }

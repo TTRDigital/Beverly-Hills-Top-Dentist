@@ -7,7 +7,7 @@ import { deliverLead, ghlWebhooks, isSandbox } from "@/lib/ghl";
 import { attributionKeys, MIN_FILL_MS } from "@/lib/lead-options";
 import { sendLeadToTtrOs } from "@/lib/ttr-os-lead";
 import { after } from "next/server";
-import { VISITOR_COOKIE, cookieOf, leadSource, sendLeadEvent } from "@/lib/ads-capi";
+import { leadSource, requestIdentifiers, sendLeadEvent } from "@/lib/ads-capi";
 
 type In = Record<string, unknown>;
 
@@ -120,14 +120,11 @@ export async function POST(request: Request) {
     // for test leads and for Global Privacy Control; a failure is logged and never changes the visitor's answer.
     const eventId = text(input, "event_id", 100), leadId = text(input, "lead_id", 80);
     if (/^[A-Za-z0-9_-]{8,100}$/.test(eventId) && /^[A-Za-z0-9_-]{8,80}$/.test(leadId)) {
-      const cookies = request.headers.get("cookie");
-      const hdr = (k: string) => request.headers.get(k) ?? "";
+      const ids = requestIdentifiers(request, text(input, "oppref", 300));
       after(async () => {
         await sendLeadEvent({
           eventId, leadId, name: lead.full_name, email: lead.email, phone: lead.phone, sourceUrl: text(input, "page_url", 1000) || "https://beverlyhillstopdentist.com/",
-          ip: hdr("x-forwarded-for").split(",")[0].trim(), userAgent: hdr("user-agent"),
-          oppref: text(input, "oppref", 300) || cookieOf(cookies, "__oppref"), obref: cookieOf(cookies, "__obref"), gpc: hdr("sec-gpc") === "1",
-          visitorId: cookieOf(cookies, VISITOR_COOKIE),
+          ...ids,
         });
       });
     }
