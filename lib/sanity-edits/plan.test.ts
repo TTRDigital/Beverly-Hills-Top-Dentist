@@ -77,7 +77,7 @@ test("the TTR-2880 set: titles 30 to 70 characters, descriptions 110 to 170, no 
   for (const e of set.text ?? []) {
     const [min, max] = e.path.endsWith("title") ? [30, 70] : [110, 170];
     assert.ok(e.to.length >= min && e.to.length <= max, `${e.doc} ${e.path} is ${e.to.length} characters`);
-    assert.ok(!e.to.includes("—"), `${e.doc} has an em dash`);
+    assert.ok(!e.to.includes("\u2014"), `${e.doc} has an em dash`);
     assert.ok(code.includes(JSON.stringify(e.to)), `${e.doc}: the code fallback should hold the same text`);
   }
 });
