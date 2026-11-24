@@ -7,7 +7,7 @@ import { finePrint, GOOGLE_PROFILE, LP_PAGES, LP_REVIEWS, OFFERS, PILLARS, PRACT
 import { getLpPage } from "@/lib/lp-content";
 import { images } from "@/lib/data/images";
 import { HeroVideo } from "@/components/sections/HeroVideo";
-import { Reviews } from "@/components/areas/AreaBlocks";
+import { ReviewCarousel } from "@/components/lp/ReviewCarousel";
 import { getTeam, getTestimonials } from "@/lib/content";
 
 export const dynamicParams = false;
@@ -152,9 +152,9 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      {/* Reviews: the site's reviews component. The CMS reviews when there are any, else the two Google reviews in LP_REVIEWS (Kia, Nov 23),
+      {/* Reviews: a slowly drifting, swipeable row of Google review cards (Kia, Nov 24). The CMS reviews when there are any, else the two Google reviews in LP_REVIEWS (Kia, Nov 23),
           and a link to the practice's Google profile. Visible text only: no rating or review structured data. */}
-      <Reviews reviews={(reviews.length ? reviews : LP_REVIEWS).slice(0, 3)} area="Beverly Hills" moreHref={GOOGLE_PROFILE} />
+      <ReviewCarousel reviews={(reviews.length ? reviews : LP_REVIEWS).slice(0, 10)} moreHref={GOOGLE_PROFILE} />
 
       {/* 3. A few questions */}
       {p.faqs.length ? (
