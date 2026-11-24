@@ -7,6 +7,8 @@ import { finePrint, LP_PAGES, OFFERS, PILLARS, PRACTICE, type OfferKey } from "@
 import { getLpPage } from "@/lib/lp-content";
 import { images } from "@/lib/data/images";
 import { HeroVideo } from "@/components/sections/HeroVideo";
+import { Reviews } from "@/components/areas/AreaBlocks";
+import { getTeam, getTestimonials } from "@/lib/content";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => LP_PAGES.map((p) => ({ slug: p.slug }));
@@ -42,8 +44,16 @@ const requestOnDark = "flex min-h-[54px] w-full items-center justify-center roun
 const requestOnLight = "flex min-h-[54px] w-full items-center justify-center rounded-[18px] border-2 border-brand px-7 text-[16px] font-semibold text-brand transition-colors hover:bg-brand hover:text-white md:inline-flex md:w-auto";
 
 export default async function LandingPage({ params }: { params: Promise<{ slug: string }> }) {
-  const p = await getLpPage((await params).slug);
+  const [p, team, reviews] = await Promise.all([getLpPage((await params).slug), getTeam(), getTestimonials()]);
   if (!p) notFound();
+  // Dr. Shir's bio in the About page's approved words (Kia, Nov 24): the first sentence shows, the rest opens with "Read more".
+  const shir = team.find((m) => m.name === "Dr. Nushin Shir");
+  const bio = (shir?.bio ?? []).join(" ");
+  const cut = bio.indexOf(". ", 60) + 1; // the first sentence end, past titles such as "Dr."
+  const photo = shir?.photo ?? images.drNushinShir;
+  const { style: _s, ...shirPhoto } = getImageProps({ src: photo.src, alt: photo.alt || "Dr. Nushin Shir", fill: true, sizes: "(min-width: 640px) 200px, 140px" }).props;
+  void _s;
+  const [bioLead, bioMore] = cut > 0 ? [bio.slice(0, cut), bio.slice(cut).trim()] : [bio, ""];
   const offerKey = offerFor(p.offers ?? []);
   const offer = OFFERS[offerKey];
   const terms = finePrint([offerKey]);
@@ -102,6 +112,31 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
+      {/* About Dr. Shir (Kia, Nov 24): her photo (loads lazily) and the About page's bio, short on phones with "Read more" */}
+      {shir ? (
+        <section className="bg-cream">
+          <div className="container-x grid max-w-[900px] items-start gap-5 py-14 sm:grid-cols-[200px_1fr] sm:gap-10 sm:py-20">
+            <div className="relative aspect-[4/5] w-[140px] overflow-hidden rounded-[12px] sm:w-full">
+              {/* A plain lazy image (getImageProps), so this photo adds no page script and never competes with the banner */}
+              {/* eslint-disable-next-line @next/next/no-img-element -- getImageProps gives the optimized srcset; plain img keeps the page script-free */}
+              <img {...shirPhoto} alt={shirPhoto.alt} loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover" style={{ objectPosition: "50% 20%" }} />
+            </div>
+            <div>
+              <h2 className="h2 text-ink">Meet {shir.name}</h2>
+              <p className="mt-1 text-[14px] font-semibold text-brand">General &amp; Cosmetic Dentist</p>
+              <p className="mt-3 leading-[1.65] text-body">{bioLead}</p>
+              {bioMore ? (
+                <details className="group mt-1">
+                  <summary className="cursor-pointer list-none font-semibold text-brand underline group-open:hidden">Read more</summary>
+                  <p className="leading-[1.65] text-body">{bioMore}</p>
+                </details>
+              ) : null}
+              <p className="mt-4"><a href={PRACTICE.tel} data-track="click_to_call" data-track-page={`lp-${p.key}-doctor`} className="font-semibold text-brand underline">Call {PHONE_DISPLAY}</a></p>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
       {/* 2. Why this practice: the home page's three ideas */}
       <section className="bg-paper">
         <div className="container-x py-14 sm:py-20">
@@ -116,6 +151,10 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
           </div>
         </div>
       </section>
+
+      {/* Reviews: the site's reviews component, with the practice's real reviews from the CMS (added with permission only). Hidden
+          while there are none. Visible text only: no rating or review structured data. */}
+      <Reviews reviews={reviews.slice(0, 3)} area="Beverly Hills" />
 
       {/* 3. A few questions */}
       {p.faqs.length ? (
