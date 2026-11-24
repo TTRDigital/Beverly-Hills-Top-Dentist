@@ -242,7 +242,7 @@ export function WhyRow({ heading, items, text }: { heading: string; items: AreaW
 }
 
 /** Area reviews: hidden until the office supplies reviews with written permission. */
-export function Reviews({ reviews, area }: { reviews: Testimonial[]; area: string }) {
+export function Reviews({ reviews, area, moreHref }: { reviews: Testimonial[]; area: string; moreHref?: string }) {
   if (!reviews.length) return null;
   return (
     <section className="bg-white py-14 md:py-20">
@@ -255,10 +255,13 @@ export function Reviews({ reviews, area }: { reviews: Testimonial[]; area: strin
                 {"★".repeat(Math.round(r.rating))}
               </p>
               <blockquote className="mt-3 leading-[1.65]">{r.quote}</blockquote>
-              <p className="mt-3 font-semibold text-black">{r.name}</p>
+              <p className="mt-3 font-semibold text-black">{r.name}{r.source ? <span className="font-normal text-body"> · {r.source}</span> : null}</p>
             </li>
           ))}
         </ul>
+        {moreHref ? (
+          <p className="mt-6 md:text-center"><a href={moreHref} target="_blank" rel="noopener noreferrer" className="font-semibold text-brand underline">Read more reviews on Google<span className="sr-only"> (opens in a new tab)</span></a></p>
+        ) : null}
       </div>
     </section>
   );

@@ -3,7 +3,7 @@ import { getImageProps } from "next/image";
 import { preload } from "react-dom";
 import { notFound } from "next/navigation";
 import { RequestButton, RequestModal } from "@/components/lp/RequestModal";
-import { finePrint, LP_PAGES, OFFERS, PILLARS, PRACTICE, type OfferKey } from "@/lib/lp-pages";
+import { finePrint, GOOGLE_PROFILE, LP_PAGES, LP_REVIEWS, OFFERS, PILLARS, PRACTICE, type OfferKey } from "@/lib/lp-pages";
 import { getLpPage } from "@/lib/lp-content";
 import { images } from "@/lib/data/images";
 import { HeroVideo } from "@/components/sections/HeroVideo";
@@ -152,9 +152,9 @@ export default async function LandingPage({ params }: { params: Promise<{ slug: 
         </div>
       </section>
 
-      {/* Reviews: the site's reviews component, with the practice's real reviews from the CMS (added with permission only). Hidden
-          while there are none. Visible text only: no rating or review structured data. */}
-      <Reviews reviews={reviews.slice(0, 3)} area="Beverly Hills" />
+      {/* Reviews: the site's reviews component. The CMS reviews when there are any, else the two Google reviews in LP_REVIEWS (Kia, Nov 23),
+          and a link to the practice's Google profile. Visible text only: no rating or review structured data. */}
+      <Reviews reviews={(reviews.length ? reviews : LP_REVIEWS).slice(0, 3)} area="Beverly Hills" moreHref={GOOGLE_PROFILE} />
 
       {/* 3. A few questions */}
       {p.faqs.length ? (

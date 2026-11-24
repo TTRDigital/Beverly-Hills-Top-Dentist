@@ -62,6 +62,18 @@ export const DEFAULT_OFFERS: OfferKey[] = ["cleaning", "treatment"];
 export const finePrint = (keys: OfferKey[]) =>
   keys.includes("cleaning") && keys.includes("treatment") ? "New patients only. Choose one offer. Offers can't be combined. Ends Dec 31, 2026." : "New patients only. Offers can't be combined. Ends Dec 31, 2026.";
 
+/*
+ * Google reviews on the landing pages (Kia, Nov 23: "just add it"). Two real reviews from the practice's own Google Business Profile,
+ * word for word, first name and last initial, read through TTR OS on Nov 23, 2026. Used only while the CMS (Reviews) has none, so more
+ * can be added there later. Visible text only: no Review or AggregateRating markup. Before going live: Dr. Shir's OK (Kia).
+ */
+export const LP_REVIEWS: { quote: string; name: string; rating: number; source: string }[] = [
+  { name: "Neila B.", rating: 5, source: "Google review", quote: "I had a fantastic experience today! The office is beautiful and state-of-the-art, and the dentist, hygienist, and entire staff were wonderful. Everything ran right on time, and I felt so well cared for. Highly recommend" },
+  { name: "Patrick D.", rating: 5, source: "Google review", quote: "This dental group has taken care of my oral health needs for many years. Beverly Hills Dental Arts Studio is friendly and professional. Highly recommend" },
+];
+/** The practice's own Google profile (the link the main site already uses). */
+export const GOOGLE_PROFILE = "https://www.google.com/maps/place/Beverly+Hills+Dental+Arts+Studio/@34.0684016,-118.4050211,15z/data=!4m6!3m5!1s0x80c2bb639f83cb85:0xfacde87966461c7f!8m2!3d34.0684016!4d-118.4050211";
+
 /* Shared building blocks, from the practice's homepage and About page. */
 export const STRIP = ["Over 30 years of experience", "In-office 3D imaging", "Ozone therapy and soft-tissue lasers"];
 
